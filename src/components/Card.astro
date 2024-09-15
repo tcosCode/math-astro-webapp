@@ -13,11 +13,7 @@ const { img, grade, subjects } = Astro.props;
 
   <h3>{grade}</h3>
   <ul>
-    {
-      subjects.map((subject: string) => {
-        <li>{subject}</li>;
-      })
-    }
+    {subjects.map((subject: string) => <li>{subject}</li>)}
   </ul>
   <hr />
 </article>
