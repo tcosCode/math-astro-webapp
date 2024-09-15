@@ -1,50 +1,101 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <!--Contenedor-->
+    <div class="container">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary-color: #0983d9;
+    --primary-color-dark: #2195e7;
+    --primary-color-dark-2: #47a9ef;
+    --primary-color-light: #9ed3f8;
+    --primary-color-light-2: #6ebcf4;
+    --secondary-color-dark: #ff5516;
+    --secondary-color-dark-2: #ff4500;
+    --secondary-color-dark-3: #f0c808;
+    --secondary-color-2: #575bf2;
+    --secondary-color-2-dark: #7b7ef5;
+    --secondary-color-2-light: #a7a9f9;
+    --secondary-color-light: #ffb79c;
+    --secondary-color-light-2: #ff926a;
+    --secondary-color-light-3: #fff1d0;
+    --dark-grey: #2d3047;
+    --dark-grey-2: #a4acc4;
+    --light-grey: #ebebef;
+    --light-grey-2: #e4e4e4;
+    --white-color: #fff;
+    --black-color: #000;
+  }
+
+  /* Reducción de animaciones para accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      scroll-behavior: smooth;
+    }
+  }
+
+  html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    background-color: var(--white-color);
+    color: var(--black-color);
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  body,
+  html {
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 </style>

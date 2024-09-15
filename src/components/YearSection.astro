@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="topics">
+  <h2>{title}</h2>
+  <div class="topic-container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 2rem;
+    padding: 4rem 4rem;
+  }
+
+  .topics {
+    background-color: var(--light-grey);
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .topics h2 {
+    color: var(--dark-grey);
+    text-align: center;
+  }
+
+  .topic-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    .topic-container {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+      gap: 2rem;
+    }
+    .topics h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+</style>
