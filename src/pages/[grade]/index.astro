@@ -1,22 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { topics } from "../data/topics";
+import Layout from "../../layouts/Layout.astro";
+import { topics } from "../../data/topics";
 
 export function getStaticPaths(): Array<Object> {
   return [
-    { params: { grade: "7mo" } },
-    { params: { grade: "8vo" } },
-    { params: { grade: "9no" } },
-    { params: { grade: "10mo" } },
-    { params: { grade: "11no" } },
-    { params: { grade: "12vo" } },
+    { params: { grade: "7mo" }, props: { grade: "7mo" } },
+    { params: { grade: "8vo" }, props: { grade: "8vo" } },
+    { params: { grade: "9no" }, props: { grade: "9no" } },
+    { params: { grade: "10mo" }, props: { grade: "10mo" } },
+    { params: { grade: "11no" }, props: { grade: "11no" } },
+    { params: { grade: "12vo" }, props: { grade: "12vo" } },
   ];
 }
 
 const { grade } = Astro.params;
 ---
 
-<Layout title={grade}>
+<Layout title={`Grado ${grade}`}>
   <section>
     <h2>Ejercicios de {grade} grado</h2>
     <div class="section-container">
@@ -37,25 +37,16 @@ const { grade } = Astro.params;
                   <ul class="exercises-list">
                     {topic.exercises.map((exercise) => {
                       // Handle both string and object exercises
-                      if (typeof exercise === "string") {
-                        return (
-                          <li>
-                            <a href="#">
-                              <p>Ejercicio {exercise}.</p>
-                            </a>
-                          </li>
-                        );
-                      } else if (typeof exercise === "object") {
-                        return (
-                          <li>
-                            <a href="#">
-                              <p>
-                                Ejercicio {exercise.id}: {exercise.title}
-                              </p>
-                            </a>
-                          </li>
-                        );
-                      }
+
+                      return (
+                        <li>
+                          <a href={`/${grade}/${exercise.id}`}>
+                            <p>
+                              Ejercicio {exercise.id}: {exercise.title}
+                            </p>
+                          </a>
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>

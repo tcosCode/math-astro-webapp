@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { topics } from "../../data/topics";
+
+// Define la función getStaticPaths
+export function getStaticPaths() {
+  const paths: Array<{ params: { grade: string; exercise: string } }> = [];
+
+  // Genera rutas dinámicas basadas en los datos disponibles
+  const grades = ["7mo", "8vo", "9no", "10mo", "11no", "12vo"];
+  grades.forEach((grade) => {
+    topics.forEach((topic) => {
+      if (topic.title === grade) {
+        topic.exercises.forEach((exercise) => {
+          paths.push({ params: { grade, exercise: exercise.id } });
+        });
+      }
+    });
+  });
+
+  return paths;
+}
+
+const { grade, exercise } = Astro.params;
+---
+
+<Layout title={`Grado ${grade} | Ejercicio ${exercise}`}>
+  <h1>Ejercicio No{exercise} de grado {grade}</h1>
+</Layout>
