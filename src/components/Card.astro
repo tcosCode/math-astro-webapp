@@ -3,19 +3,21 @@ interface Props {
   img: string;
   grade: string;
   subjects: Array<string>;
+  href: string;
 }
 
-const { img, grade, subjects } = Astro.props;
+const { img, grade, subjects, href } = Astro.props;
 ---
 
 <article class="grade">
-  <img src={img} alt={grade} />
-
-  <h3>{grade}</h3>
-  <ul>
-    {subjects.map((subject: string) => <li>{subject}</li>)}
-  </ul>
-  <hr />
+  <a href={href}>
+    <img src={img} alt={grade} transition:name={`image ${grade} id`} />
+    <h3>{grade}</h3>
+    <ul>
+      {subjects.map((subject: string) => <li>{subject}</li>)}
+    </ul>
+    <hr />
+  </a>
 </article>
 
 <style>

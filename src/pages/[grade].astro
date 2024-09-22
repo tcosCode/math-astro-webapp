@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { topics } from "../data/topics";
+
+export function getStaticPaths(): Array<Object> {
+  return [
+    { params: { grade: "7mo" } },
+    { params: { grade: "8vo" } },
+    { params: { grade: "9no" } },
+    { params: { grade: "10mo" } },
+    { params: { grade: "11no" } },
+    { params: { grade: "12vo" } },
+  ];
+}
+
+const { grade } = Astro.params;
+---
+
+<Layout title={grade}>
+  <section>
+    <h2>Ejercicios de {grade} grado</h2>
+    <div class="section-container">
+      {
+        topics
+          .filter((topic) => topic.title === grade)
+          .map((topic) => {
+            return (
+              <>
+                <figure>
+                  <img
+                    src={topic.img}
+                    alt={grade}
+                    transition:name={`image ${grade} id`}
+                  />
+                </figure>
+                <div class="exercises-container">
+                  <ul class="exercises-list">
+                    {topic.exercises.map((exercise) => {
+                      // Handle both string and object exercises
+                      if (typeof exercise === "string") {
+                        return (
+                          <li>
+                            <a href="#">
+                              <p>Ejercicio {exercise}.</p>
+                            </a>
+                          </li>
+                        );
+                      } else if (typeof exercise === "object") {
+                        return (
+                          <li>
+                            <a href="#">
+                              <p>
+                                Ejercicio {exercise.id}: {exercise.title}
+                              </p>
+                            </a>
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </div>
+              </>
+            );
+          })
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  section {
+    margin-top: 3rem;
+    padding: 2rem 4rem;
+    background-color: var(--light-grey);
+    border-radius: 15px;
+  }
+
+  h2 {
+    margin-left: 2rem;
+    color: var(--dark-grey);
+  }
+
+  .section-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+  }
+
+  li {
+    max-width: 100%;
+    border-radius: 5px;
+    background-color: var(--white-color);
+    color: var(--dark-grey);
+    margin-bottom: 1rem;
+    padding: 1rem 0.5rem;
+  }
+
+  li:hover {
+    border: 2px solid var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .section-container {
+      display: block;
+    }
+    h2 {
+      text-align: center;
+    }
+  }
+</style>

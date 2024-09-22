@@ -2,67 +2,37 @@
 import Layout from "../layouts/Layout.astro";
 import YearSection from "../components/YearSection.astro";
 import Card from "../components/Card.astro";
-
-const topics = [
-  {
-    title: "7moº",
-    img: "/img/Calculator.svg",
-    list: ["Álgebra", "Geometría", "Números Racionales"],
-  },
-  {
-    title: "8voº",
-    img: "/img/online-class-27.svg",
-    list: ["Funciones", "Estadística", "Probabilidad"],
-  },
-  {
-    title: "9noº",
-    img: "/img/school-36.svg",
-    list: ["Trigonometría", "Geometría Analítica", "Polinomios"],
-  },
-  {
-    title: "10moº",
-    img: "/img/Calculator.svg",
-    list: ["Álgebra Avanzada", "Geometría Euclidiana", "Funciones y Gráficas"],
-  },
-  {
-    title: "11noº",
-    img: "/img/online-class-27.svg",
-    list: ["Cálculo Diferencial", "Estadística", "Geometría Analítica"],
-  },
-  {
-    title: "12voº",
-    img: "/img/school-36.svg",
-    list: ["Cálculo Integral", "Álgebra Lineal", "Mat. Discretas"],
-  },
-];
+import { topics } from "../data/topics";
 ---
 
 <Layout title="Matemáticas">
-  <main class="main">
-    <YearSection title="Temas por Grado-Secundaria">
-      {
-        topics
-          .slice(0, 3)
-          .map((topic) => (
-            <Card img={topic.img} grade={topic.title} subjects={topic.list} />
-          ))
-      }
-    </YearSection>
+  <YearSection title="Temas por Grado-Secundaria">
+    {
+      topics
+        .slice(0, 3)
+        .map((topic) => (
+          <Card
+            img={topic.img}
+            grade={topic.title}
+            subjects={topic.list}
+            href={`/${topic.title}`}
+          />
+        ))
+    }
+  </YearSection>
 
-    <YearSection title="Temas por Grado-PreUniversitario">
-      {
-        topics
-          .slice(3)
-          .map((topic) => (
-            <Card img={topic.img} grade={topic.title} subjects={topic.list} />
-          ))
-      }
-    </YearSection>
-  </main>
+  <YearSection title="Temas por Grado-PreUniversitario">
+    {
+      topics
+        .slice(3)
+        .map((topic) => (
+          <Card
+            img={topic.img}
+            grade={topic.title}
+            subjects={topic.list}
+            href={`${topic.title}`}
+          />
+        ))
+    }
+  </YearSection>
 </Layout>
-
-<style>
-  main {
-    margin: 1rem;
-  }
-</style>

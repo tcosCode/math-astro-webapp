@@ -13,47 +13,26 @@ import Menu from "./icons/Menu.astro";
   <nav class="navbar" id="navbar">
     <ul class="navbar-list">
       <li class="navbar-item">
-        <a href="#" class="navbar-link">Inicio</a>
+        <a href="/" class="navbar-link">Inicio</a>
       </li>
       <li class="navbar-item">
         <a href="#" class="navbar-link">Ejercicios</a>
       </li>
-      <li class="navbar-item">
-        <a href="#" class="navbar-link">Contacto</a>
-      </li>
+      <li class="navbar-item"><a href="#" class="navbar-link">Contacto</a></li>
     </ul>
   </nav>
   <figure>
     <Menu class="menu" id="menu" />
   </figure>
 </header>
-
-<script>
-  const menu = document.getElementById("menu");
-  const navbar = document.getElementById("navbar");
-
-  if (menu && navbar) {
-    menu.addEventListener("click", function () {
-      navbar.classList.toggle("open");
-    });
-
-    document.addEventListener("click", function (event) {
-      if (
-        !navbar.contains(event.target as Node) &&
-        !menu.contains(event.target as Node)
-      ) {
-        navbar.classList.remove("open");
-      }
-    });
-  }
-</script>
+<script src="../utils/scriptMenu.ts"></script>
 
 <style>
   .header {
     height: 3.5rem;
     margin-top: 1.2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
   }
 

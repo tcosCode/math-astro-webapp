@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Página no encontrada">
+  <div>
+    <h1>Oops!</h1>
+    <p>Lo siento, la página que estás buscando no existe.</p>
+    <img src="../../public/img/404-page-not-found.svg" alt="404" />
+    <p>Por favor, verifica la URL e inténtalo de nuevo.</p>
+  </div>
+</Layout>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    margin: 2rem 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem 0;
+  }
+</style>
