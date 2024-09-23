@@ -1,12 +1,13 @@
 ---
-import Logo from "./icons/Logo.astro";
+import ArrowDown from "./icons/ArrowDown.astro";
+import LogoFunction from "./icons/LogoFunction.astro";
 import Menu from "./icons/Menu.astro";
 ---
 
 <!--Header-->
 <header class="header">
-  <div class="logo">
-    <Logo class="svg-logo" />
+  <div>
+    <figure><LogoFunction class="svg svg-logo" /></figure>
     <h1 class="header-title">Matemática</h1>
   </div>
   <!--Nav-->
@@ -15,8 +16,9 @@ import Menu from "./icons/Menu.astro";
       <li class="navbar-item">
         <a href="/" class="navbar-link">Inicio</a>
       </li>
-      <li class="navbar-item">
-        <a href="#" class="navbar-link">Ejercicios</a>
+      <li class="navbar-item static">
+        <span>Ejercicios</span>
+        <ArrowDown class="svg" />
       </li>
       <li class="navbar-item"><a href="#" class="navbar-link">Contacto</a></li>
     </ul>
@@ -29,30 +31,29 @@ import Menu from "./icons/Menu.astro";
 
 <style>
   .header {
-    height: 3.5rem;
-    margin-top: 1.2rem;
     display: flex;
+    height: 3.5rem;
+    padding: 2.5rem 0;
     justify-content: space-evenly;
     align-items: center;
+    border-bottom: 2px solid var(--primary-color);
   }
 
-  @media (max-width: 768px) {
-    .header-title {
-      font-size: 2rem;
-    }
-  }
-
-  .logo {
+  .header > div {
     display: flex;
-    gap: 1rem;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: 600;
+    gap: 0.5rem;
+  }
+
+  .header-title {
+    font-size: 3rem;
     color: var(--primary-color);
   }
 
   .svg-logo {
+    fill: var(--secondary-color-light-2);
     width: 4rem;
+    height: auto;
   }
 
   .navbar {
@@ -64,24 +65,34 @@ import Menu from "./icons/Menu.astro";
 
   .navbar-item {
     padding: 0.5rem 1rem;
-    background: linear-gradient(
-      to right,
-      var(--secondary-color-2-dark) 50%,
-      transparent 50%
-    );
-    background-position: 100% 0;
-    background-size: 300% 100%;
     color: var(--dark-grey);
     font-weight: 500;
     cursor: pointer;
+    border-radius: 4px;
     transition:
-      background-position 0.6s ease,
-      color 0.6s ease;
+      background-color 0.4s ease,
+      transform 0.4s ease;
   }
 
   .navbar-item:hover {
-    background-position: left bottom;
-    color: var(--white-color);
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
+    transform: translateX(0.5rem);
+  }
+
+  .navbar-link {
+    width: 100%;
+    height: 100%;
+  }
+
+  .static {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .static:hover {
+    transform: none;
   }
 
   .menu {

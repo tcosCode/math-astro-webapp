@@ -106,4 +106,19 @@ const { title } = Astro.props;
   main {
     margin: 1rem;
   }
+
+  .svg {
+    width: 1em; /* Adopta el tamaño del texto usando unidades relativas */
+    height: 1em; /* Mantiene la relación de aspecto del icono */
+    fill: currentColor; /* Utiliza el color actual del texto */
+  }
+  @media (max-width: 768px) {
+    .svg {
+      width: 1em; /* Adopta el tamaño del texto usando unidades relativas */
+      height: 1em; /* Mantiene la relación de aspecto del icono */
+      fill: currentColor; /* Utiliza el color actual del texto */
+      align-items: center;
+      justify-content: center;
+    }
+  }
 </style>
