@@ -132,6 +132,98 @@ export const topics = [
         title: "Factorizar",
         texto:
           "Factorizar completamente. Trabaje en su libreta y luego seleccione una opción como resultado:",
+        incisos: [
+          {
+            id: "a",
+            exercise: "8x<sup>3</sup> - 2x",
+            answer: [
+              { text: "2x(2x-1)(2x-1)", validation: INCORRECT },
+              { text: "2x(2x+1)(2x+1)", validation: INCORRECT },
+              { text: "2x(2x+1)(2x-1)", validation: CORRECT },
+            ],
+          },
+          {
+            id: "b",
+            exercise: "3y<sup>2</sup> + 6y - 24",
+            answer: [
+              { text: "(3y - 6)(y + 4)", validation: CORRECT },
+              { text: "(3y + 6)(y + 4)", validation: INCORRECT },
+              { text: "(3y + 6)(y - 4)", validation: INCORRECT },
+            ],
+          },
+          {
+            id: "c",
+            exercise: "18z<sup>3</sup> - 54z",
+            answer: [
+              { text: "9z(2z<sup>2</sup> + 6)", validation: INCORRECT },
+              { text: "9z(9z<sup>2</sup> - 6)", validation: CORRECT },
+              { text: "9z(2z<sup>2</sup> + 27)", validation: INCORRECT },
+            ],
+          },
+          {
+            id: "d",
+            exercise: "b<sup>4</sup> - b<sup>2</sup> - 12",
+            answer: [
+              { text: "(b+2)(b+2)(b<sup>2</sup>+3)", validation: INCORRECT },
+              { text: "(b+2)(b-2)(b<sup>2</sup>+3)", validation: CORRECT },
+              { text: "(b-2)(b-2)(b<sup>2</sup>+3)", validation: INCORRECT },
+            ],
+          },
+          {
+            id: "e",
+            exercise: "2x<sup>5</sup> - 16x<sup>3</sup> + 32x",
+            answer: [
+              {
+                text: "2x(x-2)<sup>2</sup>(x+2)<sup>2</sup>",
+                validation: CORRECT,
+              },
+              {
+                text: "2x(x+2)<sup>2</sup>(x+2)<sup>2</sup>",
+                validation: INCORRECT,
+              },
+              {
+                text: "2x(x-2)<sup>2</sup>(x-2)<sup>2</sup></sup>",
+                validation: INCORRECT,
+              },
+            ],
+          },
+          {
+            id: "f",
+            exercise: "x<sup>2</sup> - 8x + 16",
+            answer: [
+              { text: "(x - 4)(x + 4)", validation: INCORRECT },
+              { text: "(x - 4)(x - 4)", validation: CORRECT },
+              { text: "(x + 4)(x + 4)", validation: INCORRECT },
+            ],
+          },
+          {
+            id: "g",
+            exercise: "m<sup>4</sup> - 256",
+            answer: [
+              { text: "(m<sup>2</sup>+16)(m+4)(m+4)", validation: INCORRECT },
+              { text: "(m<sup>2</sup>+16)(m+4)(m-4)", validation: CORRECT },
+              { text: "(m<sup>2</sup>+16)(m-4)(m-4)", validation: INCORRECT },
+            ],
+          },
+          {
+            id: "h",
+            exercise: "v<sup>2</sup> - 36 + 12v",
+            answer: [
+              {
+                text: "3y(y<sup>6</sup>z - y<sup>3</sup>z - 2z)",
+                validation: INCORRECT,
+              },
+              {
+                text: "3yz(y<sup>5</sup> - y<sup>3</sup> - 2)",
+                validation: INCORRECT,
+              },
+              {
+                text: "3yz(y<sup>6</sup> - y<sup>3</sup> - 2)",
+                validation: CORRECT,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

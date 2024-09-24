@@ -47,94 +47,20 @@ const { inciso, exerciseText, answer } = Astro.props as ChooseAnswerProps;
   </button>
 </div>
 
-<script>
-  /* Listener-wrap para cuando cargue la pagina*/
-  document.addEventListener("astro:page-load", () => {
-    // Listener para todos los botones de opciones
-    document.querySelectorAll(".option-btn").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const target = event.currentTarget as HTMLButtonElement;
-        const validation = target.getAttribute("data-validation");
-
-        if (validation) {
-          validateAnswer(validation, target);
-        }
-      });
-    });
-
-    // Listener para todos los Botones de Retry
-    document.querySelectorAll("#retryButton").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const target = event.currentTarget as HTMLButtonElement;
-        retry(target);
-      });
-    });
-
-    // Funcion para validar la respuesta
-    function validateAnswer(answer: string, button: HTMLButtonElement) {
-      const parent = button.parentElement as HTMLDivElement;
-      if (!parent) return;
-      const options = parent.querySelectorAll(
-        ".option-btn",
-      ) as NodeListOf<HTMLButtonElement>;
-      const retryButton = parent.querySelector(
-        "#retryButton",
-      ) as HTMLButtonElement;
-      const feedback = parent.querySelector("#feedback") as HTMLDivElement;
-
-      // Deshabilitar todos los botones después de una respuesta
-      options.forEach((opt) => (opt.disabled = true));
-
-      if (answer === "correct") {
-        button.classList.add("correct");
-        const h3 = feedback.querySelector(".h3-correct") as HTMLHeadingElement;
-        h3.style.display = "block";
-      } else {
-        const h3 = feedback.querySelector(
-          ".h3-incorrect",
-        ) as HTMLHeadingElement;
-        h3.style.display = "block";
-        button.classList.add("incorrect");
-        retryButton.style.display = "block"; // Muestra el botón de "Intentar de nuevo"
-      }
-    }
-  });
-
-  //Funcion para reintentar el ejercicio
-  function retry(button: HTMLButtonElement) {
-    const parent = button.parentElement as HTMLDivElement;
-    if (!parent) return;
-    const feedback = parent.querySelector("#feedback") as HTMLDivElement;
-    // Limpia el espacio de retroalimentación
-    feedback.querySelectorAll("h3").forEach((h3) => {
-      h3.style.display = "none";
-    });
-    const retryButton = parent.querySelector(
-      "#retryButton",
-    ) as HTMLButtonElement;
-    const options = parent.querySelectorAll(
-      ".option-btn",
-    ) as NodeListOf<HTMLButtonElement>;
-    retryButton.style.display = "none"; // Oculta el botón de "Intentar de nuevo"
-    options.forEach((opt) => {
-      opt.disabled = false; // Habilita los botones
-      opt.classList.remove("correct", "incorrect"); // Remueve las clases de estilo
-    });
-  }
-</script>
+<script src="../../utils/scriptExerciseChooseAnswer.ts"></script>
 
 <style>
   .grid-item {
-    background-color: #f9f9f9;
+    background-color: var(--background-color);
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-background-color);
     border-radius: 8px;
     text-align: left;
   }
 
   .option-btn {
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
+    background-color: var(--btn-option-background-color);
+    border: 2px solid var(--border-btn-option);
     padding: 10px 15px;
     font-size: 1rem;
     cursor: pointer;
@@ -146,30 +72,30 @@ const { inciso, exerciseText, answer } = Astro.props as ChooseAnswerProps;
   }
 
   .option-btn:hover {
-    background-color: #e7e7e7;
+    background-color: var(--btn-option-hover-background-color);
     transform: scale(1.05);
   }
 
   .h3-correct {
-    color: #5cb85c;
+    color: var(--correct-color);
     margin-top: 1rem;
   }
 
   .h3-incorrect {
-    color: #d9534f;
+    color: var(--incorrect-color);
     margin-top: 1rem;
   }
 
   .correct {
-    background-color: #5cb85c;
-    color: white;
-    border-color: #4cae4c;
+    background-color: var(--correct-color);
+    color: var(--white-color);
+    border-color: var(--border-correct-color);
   }
 
   .incorrect {
-    background-color: #d9534f;
-    color: white;
-    border-color: #d43f3a;
+    background-color: var(--incorrect-color);
+    color: var(--white-color);
+    border-color: var(--border-incorrect-color);
   }
 
   #retryButton {
