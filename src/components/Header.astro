@@ -2,6 +2,7 @@
 import ArrowDown from "./icons/ArrowDown.astro";
 import LogoFunction from "./icons/LogoFunction.astro";
 import Menu from "./icons/Menu.astro";
+import { topics } from "../data/topics.js";
 ---
 
 <!--Header-->
@@ -12,16 +13,21 @@ import Menu from "./icons/Menu.astro";
   </div>
   <!--Nav-->
   <nav class="navbar" id="navbar">
-    <ul class="navbar-list">
-      <li class="navbar-item">
-        <a href="/" class="navbar-link">Inicio</a>
-      </li>
-      <li class="navbar-item static">
+    <div class="navbar-list">
+      <a href="/" class="navbar-item navbar-link">Inicio</a>
+      <div class="navbar-item drop-down">
         <span>Ejercicios</span>
-        <ArrowDown class="svg" />
-      </li>
-      <li class="navbar-item"><a href="#" class="navbar-link">Contacto</a></li>
-    </ul>
+        <ArrowDown class="svg arrow" />
+        <div class="menu-drop-down">
+          {
+            topics.map((topic) => (
+              <a href={`/${topic.title}`}>{topic.title} Grado</a>
+            ))
+          }
+        </div>
+      </div>
+      <a href="#" class="navbar-item navbar-link">Contacto</a>
+    </div>
   </nav>
   <figure>
     <Menu class="menu" id="menu" />
@@ -58,9 +64,19 @@ import Menu from "./icons/Menu.astro";
 
   .navbar {
     display: flex;
+    position: relative;
+    transition: 300ms;
   }
+
   .navbar-list {
     display: flex;
+    padding: 5px;
+    margin-bottom: 3px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 100000;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .navbar-item {
@@ -69,7 +85,8 @@ import Menu from "./icons/Menu.astro";
     font-weight: 500;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.4s ease;
+    transition: background-color 0.3s ease;
+    user-select: none;
   }
 
   .navbar-item:hover {
@@ -80,16 +97,59 @@ import Menu from "./icons/Menu.astro";
   .navbar-link {
     width: 100%;
     height: 100%;
+    user-select: none;
   }
 
-  .static {
+  .drop-down {
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    position: relative;
   }
 
-  .static:hover {
-    transform: none;
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .menu-drop-down {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.8rem;
+    width: 100%;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: var(--light-grey);
+    position: absolute;
+    margin-top: 0.4rem;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      opacity 300ms,
+      transform 300ms;
+  }
+
+  .drop-down:hover .menu-drop-down {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .drop-down:hover .arrow {
+    transform: rotate(180deg);
+  }
+
+  .menu-drop-down a {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu-drop-down a:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
   }
 
   .menu {
@@ -107,14 +167,12 @@ import Menu from "./icons/Menu.astro";
     .menu:active {
       scale: 0.8;
     }
-  }
 
-  @media (max-width: 768px) {
     .navbar {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: -60vw;
-      border-radius: 0 0 5px 0;
+      border-radius: 0 5px 5px 0;
       background-color: var(--secondary-color-2-dark);
       box-shadow: 5px 0 20px var(--secondary-color-2-dark);
       width: 45vw;
@@ -122,8 +180,14 @@ import Menu from "./icons/Menu.astro";
       z-index: 100;
       transition: left 0.3s ease;
     }
+
+    .navbar.open {
+      left: 0;
+    }
+
     .navbar-list {
       flex-direction: column;
+      justify-content: flex-start;
       gap: 1rem;
       margin-top: 2rem;
       width: 100%;
@@ -133,13 +197,58 @@ import Menu from "./icons/Menu.astro";
       background: var(--secondary-color-2-light);
       color: var(--white-color);
       font-weight: 600;
+      height: fit-content;
     }
     .navbar-item:active {
       color: var(--secondary-color-2-dark);
       background: var(--secondary-color-2-dark);
     }
-    .navbar.open {
-      left: 0;
+
+    .drop-down {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .menu-drop-down {
+      align-items: flex-start;
+      gap: 0;
+      padding: 0;
+      position: static;
+      opacity: 1;
+      transform: none;
+      transition: none;
+      background-color: var(--secondary-color-2-light);
+      transition: background-color 0.3s ease;
+    }
+
+    .drop-down a {
+      padding-left: 1rem;
+    }
+
+    .drop-down:hover .menu-drop-down,
+    .drop-down:hover a {
+      background-color: var(--light-grey);
+    }
+
+    .drop-down:hover a {
+      color: var(--dark-grey);
+    }
+
+    .drop-down .arrow {
+      display: none;
+    }
+
+    .menu-drop-down a {
+      padding: 0.8rem 1.5rem;
+      width: 100%;
+      color: var(--white-color);
+      background-color: var(--secondary-color-2-light);
+    }
+
+    .menu-drop-down a:hover {
+      background-color: var(--primary-color);
     }
   }
 </style>

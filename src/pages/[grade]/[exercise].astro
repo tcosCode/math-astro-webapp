@@ -4,6 +4,23 @@ import { topics } from "../../data/topics";
 import ChooseAnswer from "../../components/exercisesComponents/ChooseAnswer.astro";
 import Pencil from "../../components/icons/Pencil.astro";
 
+interface Exercise {
+  id: string;
+  type: string;
+  title: string;
+  texto: string;
+  incisos?: Array<{
+    id: string;
+    exercise: string;
+    answer: Array<Answer>;
+  }>;
+}
+
+interface Answer {
+  text: string;
+  validation: "correct" | "incorrect";
+}
+
 // Define la función getStaticPaths
 export function getStaticPaths() {
   const paths: Array<{ params: { grade: string; exercise: string } }> = [];
@@ -24,7 +41,7 @@ export function getStaticPaths() {
 }
 
 const { grade, exercise } = Astro.params;
-const currentExercise = topics
+const currentExercise: Exercise | undefined = topics
   .find((topic) => topic.title === grade)
   ?.exercises.find((ex) => ex.id === exercise);
 

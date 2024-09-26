@@ -8,7 +8,7 @@ export const topics = [
   {
     title: "7mo",
     img: "/img/calculator.svg",
-    list: ["Álgebra", "Geometría", "Números Racionales"],
+    list: ["No Racionales", "Geometría", "Variables"],
     exercises: [
       {
         id: "1",
@@ -21,7 +21,7 @@ export const topics = [
   {
     title: "8vo",
     img: "/img/book-lover.svg",
-    list: ["Funciones", "Estadística", "Probabilidad"],
+    list: ["Estadística", "Geometría", "Funciones"],
     exercises: [
       {
         id: "1",
@@ -34,7 +34,7 @@ export const topics = [
   {
     title: "9no",
     img: "/img/school-36.svg",
-    list: ["Trigonometría", "Geometría Analítica", "Polinomios"],
+    list: ["Estadística", "Geometría", "Ecuaciones"],
     exercises: [
       {
         id: "1",
@@ -230,7 +230,7 @@ export const topics = [
   {
     title: "10mo",
     img: "/img/video-tutorial.svg",
-    list: ["Álgebra Avanzada", "Geometría Euclidiana", "Funciones y Gráficas"],
+    list: ["Variables", "Potencias", "Raíces"],
     exercises: [
       {
         id: "1",
@@ -243,7 +243,7 @@ export const topics = [
   {
     title: "11no",
     img: "/img/coach-85.svg",
-    list: ["Cálculo Diferencial", "Estadística", "Geometría Analítica"],
+    list: ["Logarirmos", "Geometría", " Límites"],
     exercises: [
       {
         id: "1",
@@ -256,7 +256,7 @@ export const topics = [
   {
     title: "12vo",
     img: "/img/presentation.svg",
-    list: ["Cálculo Integral", "Álgebra Lineal", "Mat. Discretas"],
+    list: ["Probabilidades", "Geometría", "Trigonometría"],
     exercises: [
       {
         id: "1",
