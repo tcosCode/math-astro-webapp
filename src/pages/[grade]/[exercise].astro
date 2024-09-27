@@ -2,9 +2,10 @@
 import Layout from "../../layouts/Layout.astro";
 import { topics } from "../../data/topics";
 import ChooseAnswer from "../../components/exercisesComponents/ChooseAnswer.astro";
+import TrueFalse from "../../components/exercisesComponents/TrueFalse.astro";
 import Pencil from "../../components/icons/Pencil.astro";
 
-interface Exercise {
+interface ExerciseChooseAnswer {
   id: string;
   type: string;
   title: string;
@@ -19,6 +20,18 @@ interface Exercise {
 interface Answer {
   text: string;
   validation: "correct" | "incorrect";
+}
+
+interface ExerciseTrueFalse {
+  id: string;
+  type: string;
+  title: string;
+  texto: string;
+  incisos?: Array<{
+    id: string;
+    exercise: string;
+    validation: string;
+  }>;
 }
 
 // Define la función getStaticPaths
@@ -41,9 +54,10 @@ export function getStaticPaths() {
 }
 
 const { grade, exercise } = Astro.params;
-const currentExercise: Exercise | undefined = topics
-  .find((topic) => topic.title === grade)
-  ?.exercises.find((ex) => ex.id === exercise);
+const currentExercise: ExerciseChooseAnswer | ExerciseTrueFalse | undefined =
+  topics
+    .find((topic) => topic.title === grade)
+    ?.exercises.find((ex) => ex.id === exercise);
 
 if (!currentExercise) {
   Astro.redirect("/404");
@@ -63,19 +77,38 @@ if (!currentExercise) {
     <!-- Sección de ejercicios -->
     <div class="grid-container">
       {
-        currentExercise?.incisos?.map((inciso) => {
-          if (!inciso) return null;
-          return (
-            <ChooseAnswer
-              inciso={inciso["id"]}
-              exerciseText={inciso["exercise"]}
-              answer={inciso["answer"]}
-            />
-          );
-        })
+        currentExercise?.type === "ChooseAnswer" &&
+          currentExercise?.incisos
+            ?.filter(
+              (
+                inciso,
+              ): inciso is { id: string; exercise: string; answer: Answer[] } =>
+                "answer" in inciso,
+            )
+            .map((inciso) => {
+              return (
+                <ChooseAnswer
+                  inciso={inciso["id"]}
+                  exerciseText={inciso["exercise"]}
+                  answer={inciso["answer"]}
+                />
+              );
+            })
       }
       {currentExercise?.type === "" && "Ejercicio por añadir"}
-      {currentExercise?.type === "TrulyFalsy" && "Ejercicio de Verdadero/Falso"}
+      {
+        currentExercise?.type === "TrueFalse" &&
+          currentExercise?.incisos?.map((inciso) => {
+            if (!inciso) return null;
+            return (
+              <TrueFalse
+                inciso={inciso.id}
+                exerciseText={inciso.exercise}
+                validation={"validation" in inciso ? inciso.validation : ""}
+              />
+            );
+          })
+      }
     </div>
   </section>
 </Layout>
@@ -102,8 +135,14 @@ if (!currentExercise) {
 
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

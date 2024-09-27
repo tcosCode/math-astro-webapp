@@ -1,5 +1,8 @@
-const TRULYFALSY = "TrulyFalsy";
+const TRUEFALSE = "TrueFalse";
 const CHOOSEANSWER = "ChooseAnswer";
+
+const VALIDATE_TRUE = "true";
+const VALIDATE_FALSE = "false";
 
 const CORRECT = "correct";
 const INCORRECT = "incorrect";
@@ -8,7 +11,7 @@ export const topics = [
   {
     title: "7mo",
     img: "/img/calculator.svg",
-    list: ["No Racionales", "Geometría", "Variables"],
+    list: ["Racionales", "Geometría", "Variables"],
     exercises: [
       {
         id: "1",
@@ -225,6 +228,62 @@ export const topics = [
           },
         ],
       },
+      {
+        id: "3",
+        type: TRUEFALSE,
+        title: "Seleccionar",
+        texto: "Escoja Verdadero o Falso segun corresponda:",
+        incisos: [
+          {
+            id: "a",
+            exercise:
+              "La operación de sustracción no se puede realizar de manera ilimitada en el conjunto de los números naturales.",
+            validation: VALIDATE_TRUE,
+          },
+          {
+            id: "b",
+            exercise:
+              "La estadística se caracteriza por realizar estudios de datos relativos a conjuntos de datos, individuos y observaciones lo más numerosas posible y ocurridos en diferentes instantes de tiempo.",
+            validation: VALIDATE_TRUE,
+          },
+          {
+            id: "c",
+            exercise:
+              "1/6 es un número fraccionario que es a la vez menor que 0,6 y mayor que 1/5.",
+            validation: VALIDATE_FALSE,
+          },
+          {
+            id: "d",
+            exercise:
+              "La estadística descriptiva estudia una muestra derivando conclusiones sobre un grupo mayor de esta.",
+            validation: VALIDATE_FALSE,
+          },
+          {
+            id: "e",
+            exercise:
+              "El rango o recorrido de una variable es la diferencia entre el dato mayor y el dato menor del conjunto de valores que toma la variable.",
+            validation: VALIDATE_TRUE,
+          },
+          {
+            id: "f",
+            exercise:
+              "La marca de clase es el punto medio de la clase que se obtiene restando los límites de clase superior e inferior y dividiendo entre dos.",
+            validation: VALIDATE_FALSE,
+          },
+          {
+            id: "g",
+            exercise:
+              "La clase modal es la clase de menor frecuencias cuando la anotaciones se presentan unidas en clases.",
+            validation: VALIDATE_TRUE,
+          },
+          {
+            id: "h",
+            exercise:
+              "La clase mediana es la clase en que se encuentra el mayor número de datos.",
+            validation: VALIDATE_FALSE,
+          },
+        ],
+      },
     ],
   },
   {
@@ -247,7 +306,7 @@ export const topics = [
     exercises: [
       {
         id: "1",
-        type: TRULYFALSY,
+        type: TRUEFALSE,
         title: "Componer",
         texto: "Por añadir:",
       },
@@ -260,7 +319,7 @@ export const topics = [
     exercises: [
       {
         id: "1",
-        type: TRULYFALSY,
+        type: TRUEFALSE,
         title: "Componer",
         texto: "Por añadir:",
       },

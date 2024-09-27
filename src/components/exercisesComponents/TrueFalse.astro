@@ -1,0 +1,106 @@
+---
+import ArrowRedoRight from "../icons/ArrowRedoRight.astro";
+
+interface TrueFalseProps {
+  inciso: string;
+  exerciseText: string;
+  validation: "true" | "false";
+}
+
+const { inciso, exerciseText, validation } = Astro.props as TrueFalseProps;
+---
+
+<div class="grid-item">
+  <!-- Opciones de respuesta utilizando CSS Grid -->
+  <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
+  <div class="buttons">
+    {
+      validation === "true" ? (
+        <>
+          <button class="option-btn" data-validation="correct">
+            Verdadero
+          </button>
+          <button class="option-btn" data-validation="incorrect">
+            Falso
+          </button>
+        </>
+      ) : (
+        <>
+          <button class="option-btn" data-validation="incorrect">
+            Verdadero
+          </button>
+          <button class="option-btn" data-validation="correct">
+            Falso
+          </button>
+        </>
+      )
+    }
+  </div>
+
+  <script src="../../utils/scriptTrueFalse.ts"></script>
+
+  <style>
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--background-color);
+      padding: 20px;
+      border: 1px solid var(--border-background-color);
+      border-radius: 8px;
+      text-align: left;
+    }
+    .grid-item p {
+      flex: 1;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .option-btn {
+      background-color: var(--btn-option-background-color);
+      border: 2px solid var(--border-btn-option);
+      padding: 1rem 1.5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      width: 100%;
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .option-btn:hover {
+      background-color: var(--btn-option-hover-background-color);
+      transform: scale(1.05);
+    }
+
+    .correct {
+      background-color: var(--correct-color);
+      color: var(--white-color);
+      border-color: var(--border-correct-color);
+    }
+
+    .incorrect {
+      background-color: var(--incorrect-color);
+      color: var(--white-color);
+      border-color: var(--border-incorrect-color);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .correct,
+    .incorrect {
+      animation: fadeIn 0.5s ease;
+    }
+  </style>
+</div>
