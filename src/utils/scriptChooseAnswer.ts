@@ -1,5 +1,5 @@
-import { validateAnswer } from "./validateAnswer";
-import { retry } from "./retryExercise";
+import { validateAnswer } from "@utils/validateAnswer";
+import { retry } from "@utils/retryExercise";
 
 /* Listener-wrap para cuando cargue la pagina*/
 document.addEventListener("astro:page-load", () => {

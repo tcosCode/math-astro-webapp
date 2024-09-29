@@ -1,8 +1,8 @@
 ---
-import ArrowDown from "./icons/ArrowDown.astro";
-import LogoFunction from "./icons/LogoFunction.astro";
-import Menu from "./icons/Menu.astro";
-import { topics } from "../data/topics.js";
+import ArrowDown from "@components/icons/ArrowDown.astro";
+import LogoFunction from "@components/icons/LogoFunction.astro";
+import Menu from "@components/icons/Menu.astro";
+import { topics } from "@data/topics.js";
 ---
 
 <!--Header-->
@@ -126,14 +126,27 @@ import { topics } from "../data/topics.js";
     top: 100%;
     left: 0;
     opacity: 0;
+    pointer-events: none;
     transform: translateY(-10px);
     transition:
       opacity 300ms,
       transform 300ms;
   }
 
+  /* Extender el área de hover con un espacio invisible usando ::before */
+  .menu-drop-down::before {
+    content: "";
+    position: absolute;
+    top: -0.4rem; /* Ajusta esto según el espacio que quieras entre el botón y el menú */
+    left: 0;
+    right: 0;
+    height: 0.4rem; /* Ajusta la altura de la zona invisible */
+    pointer-events: auto; /* Asegura que esta área sea interactiva */
+  }
+
   .drop-down:hover .menu-drop-down {
     opacity: 1;
+    pointer-events: auto;
     transform: translateY(0);
   }
 

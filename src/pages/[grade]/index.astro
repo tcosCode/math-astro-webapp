@@ -1,6 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { topics } from "../../data/topics";
+import Layout from "@layouts/Layout.astro";
+import { topics } from "@data/topics";
 
 export function getStaticPaths(): Array<Object> {
   return [
@@ -9,7 +9,7 @@ export function getStaticPaths(): Array<Object> {
     { params: { grade: "9no" }, props: { grade: "9no" } },
     { params: { grade: "10mo" }, props: { grade: "10mo" } },
     { params: { grade: "11no" }, props: { grade: "11no" } },
-    { params: { grade: "12vo" }, props: { grade: "12vo" } },
+    { params: { grade: "12mo" }, props: { grade: "12mo" } },
   ];
 }
 

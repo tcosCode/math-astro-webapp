@@ -1,9 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { topics } from "../../data/topics";
-import ChooseAnswer from "../../components/exercisesComponents/ChooseAnswer.astro";
-import TrueFalse from "../../components/exercisesComponents/TrueFalse.astro";
-import Pencil from "../../components/icons/Pencil.astro";
+import Layout from "@layouts/Layout.astro";
+import { topics } from "@data/topics";
+import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
+import TrueFalse from "@components/exercisesComponents/TrueFalse.astro";
+import Pencil from "@components/icons/Pencil.astro";
+import Problem from "@src/components/exercisesComponents/Problem.astro";
 
 interface ExerciseChooseAnswer {
   id: string;
@@ -34,12 +35,30 @@ interface ExerciseTrueFalse {
   }>;
 }
 
+interface ExerciseProblem {
+  id: string;
+  type: string;
+  title: string;
+  texto: string;
+  incisos?: Array<{
+    id: string;
+    exercise: string;
+    answer: string;
+  }>;
+}
+
+type Exercise =
+  | ExerciseChooseAnswer
+  | ExerciseTrueFalse
+  | ExerciseProblem
+  | undefined;
+
 // Define la función getStaticPaths
 export function getStaticPaths() {
   const paths: Array<{ params: { grade: string; exercise: string } }> = [];
 
   // Genera rutas dinámicas basadas en los datos disponibles
-  const grades: string[] = ["7mo", "8vo", "9no", "10mo", "11no", "12vo"];
+  const grades: string[] = ["7mo", "8vo", "9no", "10mo", "11no", "12mo"];
   grades.forEach((grade) => {
     topics.forEach((topic) => {
       if (topic.title === grade) {
@@ -54,10 +73,9 @@ export function getStaticPaths() {
 }
 
 const { grade, exercise } = Astro.params;
-const currentExercise: ExerciseChooseAnswer | ExerciseTrueFalse | undefined =
-  topics
-    .find((topic) => topic.title === grade)
-    ?.exercises.find((ex) => ex.id === exercise);
+const currentExercise: Exercise = topics
+  .find((topic) => topic.title === grade)
+  ?.exercises.find((ex) => ex.id === exercise);
 
 if (!currentExercise) {
   Astro.redirect("/404");
@@ -70,9 +88,7 @@ if (!currentExercise) {
       <Pencil class="svg" />
       <span>{grade} Grado | Ejercicio No. {exercise}</span>
     </h2>
-    <p>
-      {currentExercise?.texto}
-    </p>
+    <p set:html={currentExercise?.texto} />
 
     <!-- Sección de ejercicios -->
     <div class="grid-container">
@@ -95,7 +111,7 @@ if (!currentExercise) {
               );
             })
       }
-      {currentExercise?.type === "" && "Ejercicio por añadir"}
+
       {
         currentExercise?.type === "TrueFalse" &&
           currentExercise?.incisos?.map((inciso) => {
@@ -109,6 +125,22 @@ if (!currentExercise) {
             );
           })
       }
+
+      {
+        currentExercise?.type === "Problem" &&
+          currentExercise?.incisos?.map((inciso) => {
+            if (!inciso) return null;
+            return (
+              <Problem
+                inciso={inciso.id}
+                exerciseText={inciso.exercise}
+                answer={"answer" in inciso ? inciso.answer : ""}
+              />
+            );
+          })
+      }
+
+      {currentExercise?.type === "" && "Ejercicio por añadir"}
     </div>
   </section>
 </Layout>

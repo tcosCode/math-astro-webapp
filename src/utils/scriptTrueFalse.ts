@@ -1,4 +1,4 @@
-import { validateTrueFalse } from "./validateTrueFalse";
+import { validateTrueFalse } from "@utils/validateTrueFalse";
 
 /* Listener-wrap para cuando cargue la pagina*/
 document.addEventListener("astro:page-load", () => {
