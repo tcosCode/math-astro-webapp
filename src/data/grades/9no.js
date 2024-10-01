@@ -266,7 +266,7 @@ export const grades9no = {
       type: PROBLEM,
       title: "Problema de Estadística",
       texto:
-        "En el mcpio Yateras se celebró la Asamblea 55 Aniversario de la OPJM, la cual estuvo representada por pioneros de la Educación Primaria y Secundaria Básica. El rango de participantes de edad hasta 13 años se muestra a continuación: <div style='display:flex; max-width:70%;'><div style='flex: 1; padding: 10px;'><p>Edad (Años)</p><p>[7; 9)</p><p>[9; 11)</p><p>[11; 13)</p></div><div style='flex: 1; padding: 10px;'><p>Cantidad de pioneros</p><p>5</p><p>12</p><p>8</p></div></div>",
+        "En el mcpio Yateras se celebró la Asamblea 55 Aniversario de la OPJM, la cual estuvo representada por pioneros de la Educación Primaria y Secundaria Básica. El rango de participantes de edad hasta 13 años se muestra a continuación: <div style='display:flex; max-width:70%;'><div style='flex: 1; padding: 10px;'><p>Edad (Años)</p><p>[7; 9)</p><p>[9; 11)</p><p>[11; 13)</p></div><div style='flex: 1; padding: 10px;'><p>Cantidad de pioneros</p><p>05</p><p>12</p><p>08</p></div></div>",
       incisos: [
         {
           id: "a",
