@@ -5,6 +5,8 @@ import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
 import TrueFalse from "@components/exercisesComponents/TrueFalse.astro";
 import Pencil from "@components/icons/Pencil.astro";
 import Problem from "@src/components/exercisesComponents/Problem.astro";
+import Matching from "@src/components/exercisesComponents/Matching.astro";
+import { shuffle } from "@utils/shuffleArray";
 
 interface ExerciseChooseAnswer {
   id: string;
@@ -47,10 +49,22 @@ interface ExerciseProblem {
   }>;
 }
 
+interface ExerciseMatching {
+  id: string;
+  type: string;
+  title: string;
+  texto: string;
+  incisos?: Array<{
+    text: string;
+    pairId: number;
+  }>;
+}
+
 type Exercise =
   | ExerciseChooseAnswer
   | ExerciseTrueFalse
   | ExerciseProblem
+  | ExerciseMatching
   | undefined;
 
 // Define la función getStaticPaths
@@ -73,6 +87,8 @@ export function getStaticPaths() {
 }
 
 const { grade, exercise } = Astro.params;
+
+// Busca el ejercicio actual
 const currentExercise: Exercise = topics
   .find((topic) => topic.title === grade)
   ?.exercises.find((ex) => ex.id === exercise);
@@ -80,6 +96,14 @@ const currentExercise: Exercise = topics
 if (!currentExercise) {
   Astro.redirect("/404");
 }
+
+let shuffledIncisos: Array<{ text: string; pairId: number }> = [];
+if (currentExercise?.type === "Matching") {
+  shuffledIncisos = currentExercise?.incisos
+    ? (shuffle(currentExercise.incisos) as { text: string; pairId: number }[])
+    : [];
+}
+const length = currentExercise?.incisos?.length ?? 0;
 ---
 
 <Layout title={`Grado ${grade} | Ejercicio ${exercise}`}>
@@ -118,8 +142,8 @@ if (!currentExercise) {
             if (!inciso) return null;
             return (
               <TrueFalse
-                inciso={inciso.id}
-                exerciseText={inciso.exercise}
+                inciso={"id" in inciso ? inciso.id : ""}
+                exerciseText={"exercise" in inciso ? inciso.exercise : ""}
                 validation={"validation" in inciso ? inciso.validation : ""}
               />
             );
@@ -132,11 +156,25 @@ if (!currentExercise) {
             if (!inciso) return null;
             return (
               <Problem
-                inciso={inciso.id}
-                exerciseText={inciso.exercise}
+                inciso={"id" in inciso ? inciso.id : ""}
+                exerciseText={"exercise" in inciso ? inciso.exercise : ""}
                 answer={"answer" in inciso ? inciso.answer : ""}
               />
             );
+          })
+      }
+
+      {
+        currentExercise?.type === "Matching" &&
+          shuffledIncisos?.map((inciso) => {
+            if (!inciso) return null;
+            return "text" in inciso ? (
+              <Matching
+                text={inciso.text}
+                pairId={inciso.pairId}
+                length={length}
+              />
+            ) : null;
           })
       }
 
