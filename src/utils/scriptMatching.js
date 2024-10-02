@@ -3,7 +3,7 @@ let firstCard, secondCard;
 let matchedPairs = 0; // Contador de parejas emparejadas
 // Obtener la longitud desde el dataset
 const length = document.querySelectorAll(".card").length;
-const totalPairs = length / 2; // Número total de parejas
+const totalPairs = (length - 2) / 2; // Número total de parejas
 let lockBoard = false; // Bloqueo de interacción
 
 document.addEventListener("astro:page-load", () => {
@@ -43,6 +43,9 @@ document.addEventListener("astro:page-load", () => {
             if (matchedPairs === totalPairs) {
               document.querySelector("#game-over-message").style.display =
                 "block";
+              document.querySelectorAll(".card").forEach((card) => {
+                card.classList.add("correct");
+              });
             }
           }, 1000);
         } else {
