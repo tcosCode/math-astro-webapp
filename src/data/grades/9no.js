@@ -311,5 +311,156 @@ export const grades9no = {
         },
       ],
     },
+    {
+      id: "5",
+      type: PROBLEM,
+      title: "Problema de Estadística",
+      texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día.
+      Temp.	FA
+      38	5
+      37	8
+      36	10
+      35	16
+`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "La temperatura más común es:",
+          answer: "35",
+        },
+        {
+          id: "b",
+          exercise: "¿Cuál es la mediana de las temperaturas?",
+          answer: "36,5",
+        },
+        {
+          id: "c",
+          exercise: "¿Cuál es el total de veces en que se tomó la temperatura?",
+          answer: "39",
+        },
+        {
+          id: "d",
+          exercise: "La temperatura más alta registrada es:",
+          answer: "38",
+        },
+        {
+          id: "e",
+          exercise: "¿Cuál es la variable objeto de estudio?",
+          answer: "Temperatura",
+        },
+        {
+          id: "f",
+          exercise: "El promedio de las temperaturas es:",
+          answer: "36,5",
+        },
+        {
+          id: "g",
+          exercise: "El moda de las tres mayores temperaturas es:",
+          answer: "36",
+        },
+        {
+          id: "h",
+          exercise:
+            "¿Cuántas veces se tomó la temperatura inferior a 36 grados?",
+          answer: "13 veces",
+        },
+      ],
+    },
+    {
+      id: "6",
+      type: PROBLEM,
+      title: "Problema de Estadística",
+      texto: `La tabla muestra la cantidad de puntos anotados por los jugadores de un equipo de baloncesto al finalizar el juego.
+      Cantidad de puntos	 0 	 4 	 6 	 10  15  20 
+      Cantidad jugadores	 2 	 1 	 2 	 4 	 2 	 1
+`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "¿Cuál es el total de puntos anotados?",
+          answer: "55",
+        },
+        {
+          id: "b",
+          exercise: "¿Cuál es la mediana de los puntos?",
+          answer: "8",
+        },
+        {
+          id: "c",
+          exercise: "¿Cuál es la puntuación más común?",
+          answer: "10",
+        },
+        {
+          id: "d",
+          exercise: "La puntuación más alta anotada es:",
+          answer: "20",
+        },
+        {
+          id: "e",
+          exercise: "¿Cuál es la variable objeto de estudio?",
+          answer: "Puntos anotados",
+        },
+        {
+          id: "f",
+          exercise: "Promedio de la puntuación es:",
+          answer: "9,16",
+        },
+        {
+          id: "g",
+          exercise: "El promedio de las tres menores puntuaciones es:",
+          answer: "3,3",
+        },
+        {
+          id: "h",
+          exercise: "Moda de las tres mayores puntuaciones:",
+          answer: "10",
+        },
+      ],
+    },
+    {
+      id: "7",
+      type: PROBLEM,
+      title: "Problema de Estadística",
+      texto: `La tabla muestra el consumo eléctrico, en kl/h, durante un mes en los apartamentos que hay en un edificio.
+      Consumo	    No. de apartamento
+      [50; 100)	2	
+      [100; 150)	8
+      [150; 200)	6
+      [200; 250)	3
+      [250; 300)	2`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "¿Cuál es el total de apartamentos del edificio?",
+          answer: "21",
+        },
+        {
+          id: "b",
+          exercise: "Clasifíca la variable en estudio.",
+          answer: "Consumo eléctrico",
+        },
+        {
+          id: "c",
+          exercise: "¿Cuál es la clase modal?",
+          answer: "[100; 150)",
+        },
+        {
+          id: "d",
+          exercise:
+            "Si el plan de consumo para cada apartamento era hasta 200kwh ¿qué porcentaje de ellos incumplió con su plan?",
+          answer: "23,8%",
+        },
+        {
+          id: "e",
+          exercise: "Identifique la amplitud de clase utilizada.",
+          answer: "30",
+        },
+        {
+          id: "f",
+          exercise: "La clase mediana es:",
+          answer: "[150; 200)",
+        },
+      ],
+    },
   ],
 };

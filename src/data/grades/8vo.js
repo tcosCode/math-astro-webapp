@@ -19,42 +19,53 @@ export const grades8vo = {
       id: "1",
       type: MATCHING,
       title: "Emparejar",
-      texto: "Encuentra las parejas:",
+      texto:
+        "Encuentra las parejas. Para cada pregunta, seleccione la respuesta correcta:",
       incisos: [
         {
-          text: "<strong>a) x<sup>3</sup> + 3x<sup>2</sup> - x - 3 : x - 3</strong>",
+          text: "<strong>Pregunta:</strong> x<sup>3</sup> + 3x<sup>2</sup> - x - 3 : x - 3",
           pairId: 1,
         },
-        { text: "x<sup>2</sup> - 1", pairId: 1 },
+        { text: "<strong>Respuesta: </strong>x<sup>2</sup> - 1", pairId: 1 },
         {
-          text: "<strong>b) x<sup>3</sup> + 3x<sup>2</sup> - x - 3 : x - 1</strong>",
+          text: "<strong>Pregunta:</strong> x<sup>3</sup> + 3x<sup>2</sup> - x - 3 : x - 1",
           pairId: 2,
         },
-        { text: "x<sup>2</sup> + 4x + 3", pairId: 2 },
         {
-          text: "<strong>c) x<sup>2</sup> + 4x + 3 : x - 1</strong>",
+          text: "<strong>Respuesta: </strong>x<sup>2</sup> + 4x + 3",
+          pairId: 2,
+        },
+        {
+          text: "<strong>Pregunta:</strong> x<sup>2</sup> + 4x + 3 : x - 1",
           pairId: 3,
         },
-        { text: "x + 1", pairId: 3 },
+        { text: "<strong>Respuesta: </strong>x + 1", pairId: 3 },
         {
-          text: "<strong>d) x<sup>2</sup> + 4x + 3 : x + 1</strong>",
+          text: "<strong>Pregunta:</strong> x<sup>2</sup> + 4x + 3 : x + 1",
           pairId: 4,
         },
-        { text: "x + 3", pairId: 4 },
-        { text: "<strong>e) x<sup>2</sup> - 4 : x + 2</strong>", pairId: 5 },
-        { text: "x - 2", pairId: 5 },
+        { text: "<strong>Respuesta: </strong>x + 3", pairId: 4 },
         {
-          text: "<strong>f) x<sup>3</sup> - x - 3 : x - 3</strong>",
+          text: "<strong>Pregunta:</strong> x<sup>2</sup> - 4 : x + 2",
+          pairId: 5,
+        },
+        { text: "<strong>Respuesta: </strong>x - 2", pairId: 5 },
+        {
+          text: "<strong>Pregunta:</strong> x<sup>3</sup> - x - 3 : x - 3",
           pairId: 6,
         },
-        { text: "x<sup>2</sup> + 3x + 8", pairId: 6 },
+        {
+          text: "<strong>Respuesta: </strong>x<sup>2</sup> + 3x + 8",
+          pairId: 6,
+        },
       ],
     },
     {
       id: "2",
       type: MATCHING,
       title: "Emparejar",
-      texto: "Encuentra las parejas:",
+      texto:
+        "Encuentra las parejas. Para cada pregunta, seleccione la respuesta correcta:",
       incisos: [
         {
           text: "<strong>a) x<sup>3</sup> - 3x - 3 : x + 1</strong>",
