@@ -37,7 +37,6 @@ document.addEventListener("astro:page-load", () => {
 
           setTimeout(() => {
             firstCard = secondCard = null; // Resetear referencias
-            lockBoard = false; // Desbloquear el tablero
 
             // Si se emparejan todas las cartas, mostrar el mensaje
             if (matchedPairs === totalPairs) {
@@ -47,6 +46,7 @@ document.addEventListener("astro:page-load", () => {
                 card.classList.add("correct");
               });
             }
+            lockBoard = false; // Desbloquear el tablero
           }, 1000);
         } else {
           // Si son incorrectas, hacer shake y quitar borde azul
