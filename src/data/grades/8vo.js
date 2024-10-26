@@ -4,6 +4,7 @@ const {
   TRUEFALSE,
   CHOOSEANSWER,
   MATCHING,
+  FILLBLANK,
   CORRECT,
   INCORRECT,
   VALIDATE_TRUE,
@@ -113,6 +114,13 @@ export const grades8vo = {
         { text: "Respuesta: Q", pairId: 8 },
         { text: "Respuesta: <sup>5</sup>/<sub>9</sub>", pairId: 9 },
       ],
+    },
+    {
+      id: "3",
+      type: FILLBLANK,
+      title: "Completar",
+      texto: "Complete el espacio en blanco:",
+      
     },
   ],
 };
