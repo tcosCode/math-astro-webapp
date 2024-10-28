@@ -71,5 +71,325 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         },
       ],
     },
+    {
+      id: "2",
+      type: TRUEFALSE,
+      title: "Función ",
+      texto: "Seleccionar V o F",
+      incisos: [
+        {
+          id: "a",
+          exercise: "La relación { R --  R: x/3 - 4} es una función ",
+          validation: VALIDATE_TRUE,
+        },
+        {
+          id: "b",
+          exercise: "La relación { R -- R: y= x/2 - 4\\} es una función.",
+          validation: "VALIDATE_FALSE",
+        },
+        {
+          id: "c",
+          exercise:
+            "La correspondencia definida de R en R que a cada número real le hace corresponder su raíz cuadrada.",
+          validation: "VALIDATE_FALSE",
+        },
+      ],
+    },
+    {
+      id: "3",
+      type: CHOOSEANSWER,
+      title: "Función lineal",
+      texto: "Calcular en la libreta y seleccionar la respuesta correcta: ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "m = -1 y su gráfica pasa por P(0; 6).",
+          answer: [
+            {
+              text: "y = -x - 6",
+              validation: INCORRECT,
+            },
+            {
+              text: "y = x + 6",
+              validation: INCORRECT,
+            },
+            {
+              text: "y = -x + 6",
+              validation: CORRECT,
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "n = 2/3 y su gráfica pasa por el punto M(-1; 1/3)",
+          answer: [
+            {
+              text: "y = -1/3x + 2/3",
+              validation: INCORRECT,
+            },
+            {
+              text: "y = 1/3x - 2/3",
+              validation: INCORRECT,
+            },
+            {
+              text: "y = 1/3x + 2/3",
+              validation: CORRECT,
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "Su gráfica pasa por los puntos A(-2; 2) y B(5; -5)",
+          answer: [
+            {
+              text: "y = x",
+              validation: INCORRECT,
+            },
+            {
+              text: "y = x + 1",
+              validation: INCORRECT,
+            },
+            {
+              text: "y = -x",
+              validation: CORRECT,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "4",
+      type: CHOOSEANSWER,
+      title: "Ejercicio 2",
+      texto: "Seleccionar la monotonía de la función ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "a) a(x) = -x + 6",
+          answer: [
+            {
+              text: "Creciente ",
+              validation: INCORRECT,
+            },
+            {
+              text: "Decreciente ",
+              validation: CORRECT,
+            },
+            {
+              text: "Ninguna ",
+              validation: INCORRECT,
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "b) = -x + 1/3",
+          answer: [
+            {
+              text: "Creciente ",
+              validation: INCORRECT,
+            },
+            {
+              text: "Decreciente ",
+              validation: CORRECT,
+            },
+            {
+              text: "Ninguna ",
+              validation: INCORRECT,
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "c(x) = x - 6",
+          answer: [
+            {
+              text: "Creciente",
+              validation: CORRECT,
+            },
+            {
+              text: "Decreciente ",
+              validation: INCORRECT,
+            },
+            {
+              text: "Ninguna ",
+              validation: INCORRECT,
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "d(x) = x + 6",
+          answer: [
+            {
+              text: "Creciente ",
+              validation: CORRECT,
+            },
+            {
+              text: "Decreciente ",
+              validation: INCORRECT,
+            },
+            {
+              text: "Ninguna ",
+              validation: INCORRECT,
+            },
+          ],
+        },
+        {
+          id: "e",
+          exercise: "e(x) = x",
+          answer: [
+            {
+              text: "Creciente ",
+              validation: CORRECT,
+            },
+            {
+              text: "Decreciente ",
+              validation: INCORRECT,
+            },
+            {
+              text: "Ninguna ",
+              validation: INCORRECT,
+            },
+          ],
+        },
+        {
+          id: "f",
+          exercise: "f(x) = -x",
+          answer: [
+            {
+              text: "Creciente ",
+              validation: INCORRECT,
+            },
+            {
+              text: "Decreciente ",
+              validation: CORRECT,
+            },
+            {
+              text: "Ninguna ",
+              validation: INCORRECT,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "5",
+      type: TRUEFALSE,
+      title: "Ejercicio 4",
+      texto: "Seleccionar V si la función es cuadrática y F para otros casos",
+      incisos: [
+        {
+          id: "a",
+          exercise: "f(x) = x<sup>2</sup> - 3\n",
+          validation: VALIDATE_TRUE,
+        },
+        {
+          id: "b",
+          exercise: "f(x) = x<sup>2</sup> - x + 1\n\n",
+          validation: VALIDATE_TRUE,
+        },
+        {
+          id: "c",
+          exercise: "k(x) = x<sup>3</sup> -2x + 3",
+          validation: VALIDATE_FALSE,
+        },
+        {
+          id: "d",
+          exercise: "h(x) = 2x + x<sup>2<sup>",
+          validation: VALIDATE_TRUE,
+        },
+        {
+          id: "e",
+          exercise: "f(x) = 2x - 3",
+          validation: VALIDATE_FALSE,
+        },
+        {
+          id: "f",
+          exercise: "h(x) = 1/3 x<sup>2</sup> + 1,5",
+          validation: VALIDATE_TRUE,
+        },
+      ],
+    },
+    {
+      id: "6",
+      type: CHOOSEANSWER,
+      title: "Ejercicio 4",
+      texto: "Seleccionar los valores de las funciones para x=5",
+      incisos: [
+        {
+          id: "a",
+          exercise: "a) a(x) = -x + 6",
+          answer: [
+            {
+              text: "a(5) = 0",
+              validation: INCORRECT,
+            },
+            {
+              text: "a(5) = 4",
+              validation: INCORRECT,
+            },
+            {
+              text: "a(5) =1",
+              validation: CORRECT,
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "b(x) = -x + 1/3",
+          answer: [
+            {
+              text: "b(5) = -14/3",
+              validation: CORRECT,
+            },
+            {
+              text: "b(5) = 14/3",
+              validation: INCORRECT,
+            },
+            {
+              text: "b(5) = 13/3",
+              validation: INCORRECT,
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "c(x) = -x",
+          answer: [
+            {
+              text: "c(5) = 4",
+              validation: INCORRECT,
+            },
+            {
+              text: "c(5) = 5",
+              validation: INCORRECT,
+            },
+            {
+              text: "c(5) = -5",
+              validation: CORRECT,
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "d(x) = 2x - 6",
+          answer: [
+            {
+              text: "d(5) = -4",
+              validation: INCORRECT,
+            },
+            {
+              text: "d(5) = 4",
+              validation: CORRECT,
+            },
+            {
+              text: "d(5) = 5",
+              validation: INCORRECT,
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
