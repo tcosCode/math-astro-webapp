@@ -1,0 +1,195 @@
+---
+import CheckedCorrect from "@components/icons/CheckedCorrect.astro";
+import CheckedIncorrect from "@components/icons/CheckedIncorrect.astro";
+
+interface FillBlankProps {
+  inciso: string;
+  sentence: Array<string>;
+  options: Array<Options>;
+}
+
+interface Options {
+  id: string;
+  text: string;
+  position: string;
+}
+
+const { inciso, sentence, options } = Astro.props as FillBlankProps;
+---
+
+<div class="grid-item">
+  <div id="sentence" class="sentence">
+    <span>{inciso}) </span>
+    {
+      sentence.map((words) => {
+        return words.startsWith("blank") ? (
+          <span class="blank" data-id={words} />
+        ) : (
+          <span>{words}</span>
+        );
+      })
+    }
+  </div>
+  <div id="options" class="options">
+    {
+      options.map((option) => {
+        return (
+          <div
+            class="option"
+            draggable="true"
+            data-id={option.id}
+            data-position={option.position}
+          >
+            {option.text}
+          </div>
+        );
+      })
+    }
+  </div>
+  <div class="buttons">
+    <button id="checkAnswers">Check Answers</button>
+  </div>
+  <p id="result" class="result"></p>
+</div>
+
+<script src="@utils/scriptFillTheBlanks.ts"></script>
+
+<style>
+  .grid-item {
+    background-color: var(--background-color);
+    padding: 1.8rem 4rem;
+    border: 1px solid var(--border-background-color);
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .sentence {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .blank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100px;
+    height: 24px;
+    border-bottom: 2px dashed #999;
+    margin: 0 5px;
+    padding: 0 5px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .blank.correct {
+    border-color: #4caf50;
+    background-color: #e8f5e9;
+  }
+
+  .blank.incorrect {
+    border-color: #f44336;
+    background-color: #ffebee;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  .correct .icon {
+    color: #4caf50;
+  }
+
+  .incorrect .icon {
+    color: #f44336;
+  }
+
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-height: 40px;
+    padding: 10px;
+  }
+
+  .option {
+    background-color: var(--white-color);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: move;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .option:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  #checkAnswers {
+    background-color: #2196f3;
+    color: white;
+  }
+
+  #checkAnswers:hover {
+    background-color: #1976d2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #resetExercise {
+    background-color: #f44336;
+    color: white;
+  }
+
+  #resetExercise:hover {
+    background-color: #d32f2f;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .result {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    min-height: 27px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+  }
+
+  .result.correct {
+    color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.1);
+  }
+
+  .result.incorrect {
+    color: #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+</style>
