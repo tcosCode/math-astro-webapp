@@ -118,9 +118,62 @@ export const grades8vo = {
     {
       id: "3",
       type: FILLBLANK,
-      title: "Completar",
-      texto: "Complete el espacio en blanco:",
-      
+      title: "Complete el espacio en blanco",
+      texto: `La tabla muestra las temperaturas en grados Celsius registradas en una ciudad durante horas del día.
+    <table class="table">
+        <tr>
+            <td>Temp.</td>
+            <td>38</td>
+            <td>37</td>
+            <td>36</td>
+            <td>35</td>
+        </tr>
+        <tr>
+            <td>FA</td>
+            <td>5</td>
+            <td>8</td>
+            <td>10</td>
+            <td>16</td>
+        </tr>
+    </table>Arrastre hacia el espacio en blanco la respuesta correcta:`,
+      incisos: [
+        {
+          id: "a",
+          sentence: ["La temperatura más común es ", "blank1", "."],
+          options: [
+            { id: "option1", text: "35", position: "blank1" },
+            { id: "option2", text: "36", position: "" },
+            { id: "option3", text: "37", position: "" },
+            { id: "option4", text: "38", position: "" },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["La mediana de las temperaturas es ", "blank1", "."],
+          options: [
+            { id: "option1", text: "36,5", position: "blank1" },
+            { id: "option2", text: "37,5", position: "blank2" },
+            { id: "option3", text: "40", position: "none" },
+            { id: "option4", text: "50", position: "none" },
+          ],
+        },
+        {
+          id: "c",
+          sentence: [
+            "The quick ",
+            "blank1",
+            " fox jumps over the lazy ",
+            "blank2",
+            ".",
+          ],
+          options: [
+            { id: "option1", text: "brown", position: "blank1" },
+            { id: "option2", text: "dog", position: "blank2" },
+            { id: "option3", text: "cat", position: "none" },
+            { id: "option4", text: "rabbit", position: "none" },
+          ],
+        },
+      ],
     },
   ],
 };

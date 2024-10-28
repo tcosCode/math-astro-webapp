@@ -4,8 +4,9 @@ import { topics } from "@data/topics";
 import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
 import TrueFalse from "@components/exercisesComponents/TrueFalse.astro";
 import Pencil from "@components/icons/Pencil.astro";
-import Problem from "@src/components/exercisesComponents/Problem.astro";
-import Matching from "@src/components/exercisesComponents/Matching.astro";
+import Problem from "@components/exercisesComponents/Problem.astro";
+import Matching from "@components/exercisesComponents/Matching.astro";
+import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
 import { shuffle } from "@utils/shuffleArray";
 
 interface ExerciseChooseAnswer {
@@ -60,11 +61,24 @@ interface ExerciseMatching {
   }>;
 }
 
+interface ExerciseFillBlank {
+  id: string;
+  type: string;
+  title: string;
+  texto: string;
+  incisos: Array<{
+    id: string;
+    sentence: Array<string>;
+    options: Array<string>;
+  }>;
+}
+
 type Exercise =
   | ExerciseChooseAnswer
   | ExerciseTrueFalse
   | ExerciseProblem
   | ExerciseMatching
+  | ExerciseFillBlank
   | undefined;
 
 // Define la función getStaticPaths
@@ -178,6 +192,19 @@ const length = currentExercise?.incisos?.length ?? 0;
           })
       }
 
+      {
+        currentExercise?.type === "FillBlank" &&
+          currentExercise.incisos?.map((inciso) => {
+            return (
+              <FillBlanks
+                inciso={"id" in inciso ? inciso.id : ""}
+                sentence={"sentence" in inciso ? inciso.sentence : []}
+                options={"options" in inciso ? inciso.options : []}
+              />
+            );
+          })
+      }
+
       {currentExercise?.type === "" && "Ejercicio por añadir"}
     </div>
   </section>
@@ -214,5 +241,24 @@ const length = currentExercise?.incisos?.length ?? 0;
     .grid-container {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* Styles for the tables */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .table,
+  th,
+  td {
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: center;
   }
 </style>
