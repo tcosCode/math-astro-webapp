@@ -23,27 +23,62 @@ document.addEventListener("astro:page-load", () => {
     // Configura todos los eventos necesarios para el ejercicio actual
     setupEventListeners(exercise);
 
-    // Configura eventos de clic y arrastre
+    let draggedOptionId: string | null = null; // Variable global para el id de la opción arrastrada
+
     function setupEventListeners(exercise: Element) {
-      // Botón para verificar respuestas
       exercise
         .querySelector("#checkAnswers")
         ?.addEventListener("click", checkAnswers);
 
-      // Eventos para cada opción arrastrable
+      // Configuración de eventos para cada opción
       exercise.querySelectorAll(".option").forEach((optionEl) => {
         optionEl.addEventListener(
           "dragstart",
           handleDragStart as EventListener,
         );
+        optionEl.addEventListener(
+          "touchstart",
+          handleTouchStart as EventListener,
+        ); // Inicio del arrastre táctil
       });
 
-      // Eventos para cada espacio en blanco
+      // Configuración de eventos para cada espacio en blanco
       exercise.querySelectorAll(".blank").forEach((blank) => {
         blank.addEventListener("dragover", handleDragOver as EventListener); // Permite el drop
         blank.addEventListener("drop", handleDrop as EventListener); // Acción de soltar
         blank.addEventListener("click", handleBlankClick); // Limpia el contenido al hacer clic
+        blank.addEventListener("touchmove", handleTouchMove as EventListener); // Movimiento táctil
+        blank.addEventListener("touchend", handleTouchEnd as EventListener); // Soltar táctil
       });
+    }
+
+    // Al tocar una opción, guarda el id en la variable global
+    function handleTouchStart(e: TouchEvent) {
+      const target = e.target as HTMLElement;
+      draggedOptionId = target.getAttribute("data-id"); // Almacena el id de la opción tocada
+    }
+
+    // Al mover el dedo, previene el comportamiento predeterminado
+    function handleTouchMove(e: TouchEvent) {
+      e.preventDefault(); // Permite la acción de arrastre en móviles
+    }
+
+    // Al soltar la opción, simula el evento de "drop" en la opción objetivo
+    function handleTouchEnd(e: TouchEvent) {
+      const touch = e.changedTouches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY); // Ubica el elemento en la posición de soltado
+      const blankEl = target?.closest(".blank") as HTMLElement;
+
+      if (blankEl && draggedOptionId) {
+        const option = options.find((opt) => opt.id === draggedOptionId);
+
+        if (option) {
+          swapText(blankEl, option);
+          isChecked = false;
+          updateResult("", exercise);
+        }
+      }
+      draggedOptionId = null; // Resetea la variable después del drop
     }
 
     // Guarda el id de la opción arrastrada en el evento de transferencia de datos
