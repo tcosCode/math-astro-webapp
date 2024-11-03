@@ -391,5 +391,122 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         },
       ],
     },
+    {
+      id: "7",
+      type: "ChooseAnswer",
+      title: "Logaritmo",
+      texto: "Enlazar el logaritmo con su forma exponencial ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "log<sub>2</sub>8 = 3",
+          answer: [
+            {
+              text: "3<sup>3</sup> = 27",
+              validation: "incorrect",
+            },
+            {
+              text: "10<sup>0,77815</sup> = 6",
+              validation: "incorrect",
+            },
+            {
+              text: "5<sup><sup><sup>1</sup>/<sub>3</sub></sup></sup> = 5<sup><sup><sup>1</sup>/<sub>3</sub></sup></sup>",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "log<sub>4</sub>2 = 0,5",
+          answer: [
+            {
+              text: "3<sup>3</sup> = 27",
+              validation: "incorrect",
+            },
+            {
+              text: "2<sup><sup>-3</sup></sup> = 0,125",
+              validation: "incorrect",
+            },
+            {
+              text: "10<sup>0,77815</sup> = 6",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise:
+            "log<sub>5</sub>5<sup><sup>1</sup>/<sub>3</sub></sup> = <sup>1</sup>/<sub>3</sub>",
+          answer: [
+            {
+              text: "2<sup><sup>-3</sup></sup> = 0,125",
+              validation: "incorrect",
+            },
+            {
+              text: "3<sup>3</sup> = 27",
+              validation: "incorrect",
+            },
+            {
+              text: "10<sup>0,77815</sup> = 6",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "log<sub>3</sub>27 = 3",
+          answer: [
+            {
+              text: "5<sup><sup><sup>1</sup>/<sub>3</sub></sup></sup> = 5<sup><sup><sup>1</sup>/<sub>3</sub></sup></sup>",
+              validation: "incorrect",
+            },
+            {
+              text: "2<sup><sup>3</sup></sup> = 8",
+              validation: "incorrect",
+            },
+            {
+              text: "3<sup>3</sup> =27",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "e",
+          exercise: "log<sub>2</sub>0,125 = 3",
+          answer: [
+            {
+              text: "10<sub>0,77815</sub> = 6",
+              validation: "incorrect",
+            },
+            {
+              text: "2<sup><sup>-3</sup></sup> o,125",
+              validation: "incorrect",
+            },
+            {
+              text: "3<sup>3</sup> 27",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "f",
+          exercise: "log<sub>10</sub>6 = 0,77815",
+          answer: [
+            {
+              text: "4<sup>0,5</sup> = 2",
+              validation: "correct",
+            },
+            {
+              text: "5<sup><sup><sup>1</sup>/<sub>3</sub></sup></sup> = 5<sup><sup><sup>1</sup>/<sub>3</sub></sup></sup>",
+              validation: "incorrect",
+            },
+            {
+              text: "3<sup>3</sup> = 27",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
