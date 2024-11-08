@@ -17,7 +17,7 @@ export const grades10mo = {
     {
       id: "1",
       type: TRUEFALSE,
-      title: "Seleccionar",
+      title: "Seleccionar V o F",
       texto: `Función:
 Una función es una correspondencia que a cada elemento de un conjunto A asocia un único elemento de un conjunto B.
       Escoja Verdadero o Falso segun corresponda:`,
@@ -74,7 +74,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "2",
       type: TRUEFALSE,
-      title: "Función ",
+      title: "Seleccionar V o F",
       texto: "Seleccionar V o F",
       incisos: [
         {
@@ -160,7 +160,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "4",
       type: CHOOSEANSWER,
-      title: "Ejercicio 2",
+      title: "Monotonía de Funciones",
       texto: "Seleccionar la monotonía de la función ",
       incisos: [
         {
@@ -276,7 +276,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "5",
       type: TRUEFALSE,
-      title: "Ejercicio 4",
+      title: "Función cuadrática",
       texto: "Seleccionar V si la función es cuadrática y F para otros casos",
       incisos: [
         {
@@ -314,7 +314,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "6",
       type: CHOOSEANSWER,
-      title: "Ejercicio 4",
+      title: "Función lineal",
       texto: "Seleccionar los valores de las funciones para x=5",
       incisos: [
         {
@@ -394,7 +394,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "7",
       type: "ChooseAnswer",
-      title: "Logaritmo ",
+      title: "Logaritmo",
       texto: "Enlazar el logaritmo con su forma exponencial ",
       incisos: [
         {

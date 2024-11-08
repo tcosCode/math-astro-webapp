@@ -208,7 +208,7 @@ export const grades9no = {
     {
       id: "3",
       type: TRUEFALSE,
-      title: "Seleccionar",
+      title: "Seleccionar V o F",
       texto: "Escoja Verdadero o Falso segun corresponda:",
       incisos: [
         {
