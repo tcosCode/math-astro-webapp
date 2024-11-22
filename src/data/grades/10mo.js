@@ -508,5 +508,57 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         },
       ],
     },
+    {
+      id: "8",
+      type: "Matching",
+      title: "Logaritmo",
+      texto: "Resolver en la libreta y luego enlazar con la respuesta: ",
+      incisos: [
+        {
+          text: "<strong>Pregunta:</strong> log<sub>3</sub>x=4",
+          pairId: 1,
+        },
+        {
+          text: "Respuesta: x=81",
+          pairId: 1,
+        },
+        {
+          text: "<strong>Pregunta:</strong> log<sub>&#8730;3</sub>x=2",
+          pairId: 2,
+        },
+        {
+          text: "Respuesta: x=3",
+          pairId: 2,
+        },
+        {
+          text: "<strong>Pregunta:</strong> log<sub>5</sub>(2x-y)=1\nlog<sub>5</sub>(3x-2y)=1",
+          pairId: 3,
+        },
+        {
+          text: "Respuesta: x=5; y=5",
+          pairId: 3,
+        },
+        {
+          text: "<strong>Pregunta:</strong> log<sub>2</sub>(x+y)=3\n2<sup>x</sup>:2<sup>y</sup>=5<sup>log<sub>5</sub>2</sup>",
+          pairId: 4,
+        },
+        {
+          text: "Respuesta: x=9/2; y=7/2",
+          pairId: 4,
+        },
+        {
+          text: "<strong>Pregunta:</strong> log<sub>7</sub>(3x-2y)=1\nlog<sub>5</sub>(2x-y)=1",
+          pairId: 5,
+        },
+        {
+          text: "Respuesta: x=3; y=1 ",
+          pairId: 5,
+        },
+        {
+          text: "Respuesta: x=0; y=1 ",
+          pairId: 6,
+        },
+      ],
+    },
   ],
 };
