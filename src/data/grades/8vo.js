@@ -157,22 +157,6 @@ export const grades8vo = {
             { id: "option4", text: "50", position: "none" },
           ],
         },
-        {
-          id: "c",
-          sentence: [
-            "The quick ",
-            "blank1",
-            " fox jumps over the lazy ",
-            "blank2",
-            ".",
-          ],
-          options: [
-            { id: "option1", text: "brown", position: "blank1" },
-            { id: "option2", text: "dog", position: "blank2" },
-            { id: "option3", text: "cat", position: "none" },
-            { id: "option4", text: "rabbit", position: "none" },
-          ],
-        },
       ],
     },
   ],

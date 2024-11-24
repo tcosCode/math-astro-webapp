@@ -34,7 +34,7 @@ interface ExerciseTrueFalse {
   incisos?: Array<{
     id: string;
     exercise: string;
-    validation: string;
+    validation: "correct" | "incorrect";
   }>;
 }
 
@@ -69,7 +69,11 @@ interface ExerciseFillBlank {
   incisos: Array<{
     id: string;
     sentence: Array<string>;
-    options: Array<string>;
+    options: Array<{
+      id: string;
+      text: string;
+      position: string;
+    }>;
   }>;
 }
 
@@ -78,8 +82,7 @@ type Exercise =
   | ExerciseTrueFalse
   | ExerciseProblem
   | ExerciseMatching
-  | ExerciseFillBlank
-  | undefined;
+  | ExerciseFillBlank;
 
 // Define la función getStaticPaths
 export function getStaticPaths() {
@@ -103,9 +106,9 @@ export function getStaticPaths() {
 const { grade, exercise } = Astro.params;
 
 // Busca el ejercicio actual
-const currentExercise: Exercise = topics
+const currentExercise = topics
   .find((topic) => topic.title === grade)
-  ?.exercises.find((ex) => ex.id === exercise);
+  ?.exercises.find((ex) => ex.id === exercise) as Exercise | undefined;
 
 if (!currentExercise) {
   Astro.redirect("/404");
