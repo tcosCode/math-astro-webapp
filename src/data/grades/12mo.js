@@ -78,7 +78,8 @@ export const grades12mo = {
         },
         {
           id: "c",
-          exercise: "El resultado de calcular [(-8)&#8531;]&#189; &#8712; R",
+          exercise:
+            "El resultado de calcular [(-8)<sup>&#8531;</sup>]<sup>&#189;</sup> &#8712; R",
           validation: "false",
         },
         {
