@@ -315,12 +315,7 @@ export const grades9no = {
       id: "5",
       type: PROBLEM,
       title: "Problema de Estadística",
-      texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día.
-      Temp.	FA
-      38	5
-      37	8
-      36	10
-      35	16
+      texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día:<br> <table style='width: 50%; margin: auto; border-collapse: collapse; text-align: left;'><thead><tr><th>Temp.</th> <th>FA</th> </tr> </thead> <tbody> <tr> <td>38</td> <td>5</td> </tr> <tr> <td>37</td> <td>8</td> </tr> <tr> <td>36</td> <td>10</td> </tr> <tr> <td>35</td> <td>16</td> </tr> </tbody></table>
 `,
       incisos: [
         {

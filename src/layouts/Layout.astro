@@ -75,6 +75,25 @@ const { title } = Astro.props;
     --black-color: #000;
   }
 
+  /* Styles for the tables */
+  table {
+    width: 50%;
+    margin: auto;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  th,
+  td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
   /* Reducción de animaciones para accesibilidad */
   @media (prefers-reduced-motion: reduce) {
     * {
