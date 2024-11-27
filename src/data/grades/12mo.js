@@ -23,7 +23,7 @@ export const grades12mo = {
         {
           id: "a",
           exercise:
-            "Si m y n son dos números reales cualesquiera tales que m=n+2, entonces 2<sup>m</sup>&#8826;4(2<sup>n</sup>",
+            "Si m y n son dos números reales cualesquiera tales que m=n+2, entonces 2<sup>m</sup>&#8826;4(2<sup>n</sup>)",
           validation: "true",
         },
         {

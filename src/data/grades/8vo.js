@@ -119,23 +119,34 @@ export const grades8vo = {
       id: "3",
       type: FILLBLANK,
       title: "Complete el espacio en blanco",
-      texto: `La tabla muestra las temperaturas en grados Celsius registradas en una ciudad durante horas del día.
-    <table class="table">
-        <tr>
-            <td>Temp.</td>
+      texto: `La tabla muestra las temperaturas en grados Celsius registradas en una ciudad durante horas del día:
+    <table>
+        <thead>
+          <tr>
+            <th>Temp.</th>
+            <th>FA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
             <td>38</td>
-            <td>37</td>
-            <td>36</td>
-            <td>35</td>
-        </tr>
-        <tr>
-            <td>FA</td>
             <td>5</td>
+          </tr>
+          <tr>
+            <td>37</td>
             <td>8</td>
+          </tr>
+          <tr>
+            <td>36</td>
             <td>10</td>
+          </tr>
+          <tr>
+            <td>35</td>
             <td>16</td>
-        </tr>
-    </table>Arrastre hacia el espacio en blanco la respuesta correcta:`,
+          </tr>
+        </tbody>
+      </table>
+    Arrastre hacia el espacio en blanco la respuesta correcta:`,
       incisos: [
         {
           id: "a",

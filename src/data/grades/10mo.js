@@ -24,13 +24,25 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
       incisos: [
         {
           id: "a",
-          exercise: `A-------------B
-          0------------- 1
-          3------------- 1
-          -1----------- -8
-          12----------- -2
-          12---------  -2,5
-          Identificar si es función. Fundamente.`,
+          exercise: `Identificar si es función. Fundamente:
+          <div style="display: inline-block; font-size: 12px; margin-top: 10px;">
+            <div style="display: flex; gap:15px; padding: 5px 10px;">
+              <div style="margin-right: 15px;">A</div>
+              <div>0</div>
+              <div>3</div>
+              <div>-1</div>
+              <div>12</div>
+              <div>12</div>
+            </div>
+            <div style="display: flex; gap:15px; padding: 5px 10px; margin-top: 5px;">
+              <div style="margin-right: 15px;">B</div>
+              <div>1</div>
+              <div>1</div>
+              <div>-8</div>
+              <div>-2</div>
+              <div>-2.5</div>
+            </div>
+          </div>`,
           validation: VALIDATE_FALSE,
         },
         {

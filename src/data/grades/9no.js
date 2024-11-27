@@ -1,4 +1,5 @@
 import { constants } from "@data/constants";
+import { table } from "node_modules/astro/dist/core/logger/core";
 
 const {
   TRUEFALSE,
@@ -265,8 +266,29 @@ export const grades9no = {
       id: "4",
       type: PROBLEM,
       title: "Problema de Estadística",
-      texto:
-        "En el mcpio Yateras se celebró la Asamblea 55 Aniversario de la OPJM, la cual estuvo representada por pioneros de la Educación Primaria y Secundaria Básica. El rango de participantes de edad hasta 13 años se muestra a continuación: <div style='display:flex; max-width:70%;'><div style='flex: 1; padding: 10px;'><p>Edad (Años)</p><p>[7; 9)</p><p>[9; 11)</p><p>[11; 13)</p></div><div style='flex: 1; padding: 10px;'><p>Cantidad de pioneros</p><p>05</p><p>12</p><p>08</p></div></div>",
+      texto: `En el mcpio Yateras se celebró la Asamblea 55 Aniversario de la OPJM, la cual estuvo representada por pioneros de la Educación Primaria y Secundaria Básica. El rango de participantes de edad hasta 13 años se muestra a continuación: 
+      <table>
+        <thead>
+          <tr>
+            <th>Edad (Años)</th>
+            <th>Cantidad de pioneros</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>[7; 9)</td>
+            <td>05</td>
+          </tr>
+          <tr>
+            <td>[9; 11)</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>[11; 13)</td>
+            <td>08</td>
+          </tr>
+        </tbody>
+      </table>`,
       incisos: [
         {
           id: "a",
@@ -315,7 +337,33 @@ export const grades9no = {
       id: "5",
       type: PROBLEM,
       title: "Problema de Estadística",
-      texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día:<br> <table style='width: 50%; margin: auto; border-collapse: collapse; text-align: left;'><thead><tr><th>Temp.</th> <th>FA</th> </tr> </thead> <tbody> <tr> <td>38</td> <td>5</td> </tr> <tr> <td>37</td> <td>8</td> </tr> <tr> <td>36</td> <td>10</td> </tr> <tr> <td>35</td> <td>16</td> </tr> </tbody></table>
+      texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día:
+      <table>
+        <thead>
+          <tr>
+            <th>Temp.</th>
+            <th>FA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>38</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>36</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>35</td>
+            <td>16</td>
+          </tr>
+        </tbody>
+      </table>
 `,
       incisos: [
         {
@@ -366,9 +414,40 @@ export const grades9no = {
       type: PROBLEM,
       title: "Problema de Estadística",
       texto: `La tabla muestra la cantidad de puntos anotados por los jugadores de un equipo de baloncesto al finalizar el juego.
-      Cantidad de puntos	 0 	 4 	 6 	 10  15  20 
-      Cantidad jugadores	 2 	 1 	 2 	 4 	 2 	 1
-`,
+      <table>
+        <thead>
+          <tr>
+            <th>Cantidad de puntos</th>
+            <th>Cantidad jugadores</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>2</td>
+          </tr>
+           <tr>
+            <td>10</td>
+            <td>4</td>
+          </tr>
+           <tr>
+            <td>15</td>
+            <td>2</td>
+          </tr>
+           <tr>
+            <td>20</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>`,
       incisos: [
         {
           id: "a",
@@ -416,13 +495,37 @@ export const grades9no = {
       id: "7",
       type: PROBLEM,
       title: "Problema de Estadística",
-      texto: `La tabla muestra el consumo eléctrico, en kl/h, durante un mes en los apartamentos que hay en un edificio.
-      Consumo	    No. de apartamento
-      [50; 100)	2	
-      [100; 150)	8
-      [150; 200)	6
-      [200; 250)	3
-      [250; 300)	2`,
+      texto: `La tabla muestra el consumo eléctrico, en kl/h, durante un mes en los apartamentos que hay en un edificio:
+      <table>
+        <thead>
+          <tr>
+            <th>Consumo</th>
+            <th>No. de apartamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>[50; 100)</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>[100; 150)</td>
+            <td>8</td>
+          </tr>
+           <tr>
+            <td>[150; 200)</td>
+            <td>6</td>
+          </tr>
+           <tr>
+            <td>[200; 250)</td>
+            <td>3</td>
+          </tr>
+           <tr>
+            <td>[250; 300)</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>`,
       incisos: [
         {
           id: "a",
