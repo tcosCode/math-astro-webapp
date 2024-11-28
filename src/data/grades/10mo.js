@@ -447,8 +447,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         },
         {
           id: "c",
-          exercise:
-            "log<sub>5</sub>5<sup><sup>1</sup>/<sub>3</sub></sup> = 5<sup>1</sup>/<sub>3</sub>",
+          exercise: "log<sub>5</sub>5<sup>1/3</sup> = 5<sup>1/3</sup>",
           answer: [
             {
               text: "3<sup>3</sup> = 27",
