@@ -68,17 +68,17 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         },
         {
           id: "f",
-          exercise: "La relación de Q en Q+ tal que f(x) = 1/3 x:",
+          exercise: "La relación de Q en Q<sub>+</sub> tal que f(x) = 1/3 x:",
           validation: VALIDATE_FALSE,
         },
         {
           id: "g",
-          exercise: "La relación de N en R tal que f(x) = x2 - 4x:",
+          exercise: "La relación de N en R tal que f(x) = x<sup>2</sup> - 4x:",
           validation: VALIDATE_TRUE,
         },
         {
           id: "h",
-          exercise: "La relación de Z+ en Z tal que f(x) = x3 + 3:",
+          exercise: "La relación de Z+ en Z tal que f(x) = x<sup>3</sup> + 3:",
           validation: VALIDATE_TRUE,
         },
       ],
