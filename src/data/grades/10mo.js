@@ -512,7 +512,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
               validation: "incorrect",
             },
             {
-              text: "4<sup>2</sup> = 4<sup>2</sup>",
+              text: "4<sup>2</sup> = 2<sup>4</sup>",
               validation: "incorrect",
             },
           ],
