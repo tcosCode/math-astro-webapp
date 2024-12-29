@@ -90,5 +90,103 @@ export const grades12mo = {
         },
       ],
     },
+    {
+      id: "3",
+      type: "ChooseAnswer",
+      title: "Números complejos ",
+      texto: "Calcular la suma de los siguientes números complejos ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "(3+2i)+(5+3i)",
+          answer: [
+            {
+              text: "8+5i",
+              validation: "correct",
+            },
+            {
+              text: "8-5i",
+              validation: "incorrect",
+            },
+            {
+              text: "5+8i",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "(1+7i)+(4+5i)",
+          answer: [
+            {
+              text: "31+13i",
+              validation: "incorrect",
+            },
+            {
+              text: "-31+13i",
+              validation: "correct",
+            },
+            {
+              text: "31+13i",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "(5+5i)+(-8+2i)",
+          answer: [
+            {
+              text: "-3+7i",
+              validation: "incorrect",
+            },
+            {
+              text: "3-7i",
+              validation: "incorrect",
+            },
+            {
+              text: "3+7i",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "(2+4i)+(-9-7i)",
+          answer: [
+            {
+              text: "7-3i",
+              validation: "incorrect",
+            },
+            {
+              text: "-7-3i",
+              validation: "correct",
+            },
+            {
+              text: "7+3i",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "e",
+          exercise: "(-3+2i)+(16-11i)",
+          answer: [
+            {
+              text: "13-9i",
+              validation: "correct",
+            },
+            {
+              text: "13+9i",
+              validation: "incorrect",
+            },
+            {
+              text: "-13+9i",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
