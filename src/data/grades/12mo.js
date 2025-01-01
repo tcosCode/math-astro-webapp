@@ -188,5 +188,121 @@ export const grades12mo = {
         },
       ],
     },
+    {
+      id: "4",
+      type: "ChooseAnswer",
+      title: "Función inversa ",
+      texto: "Determinar si tienen inversa las funciones sgtes ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "f(x) = 5 - 2x",
+          answer: [
+            {
+              text: "Sí ",
+              validation: "correct",
+            },
+            {
+              text: "No",
+              validation: "incorrect",
+            },
+            {
+              text: "No estoy seguro ",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "f(x) = |x+6|",
+          answer: [
+            {
+              text: "Sí ",
+              validation: "incorrect",
+            },
+            {
+              text: "No ",
+              validation: "correct",
+            },
+            {
+              text: "No estoy seguro ",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "f(x) = x<sup>2</sup> + 2",
+          answer: [
+            {
+              text: "Sí ",
+              validation: "incorrect",
+            },
+            {
+              text: "No",
+              validation: "correct",
+            },
+            {
+              text: "No estoy seguro ",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "log<sub>a</sub>x",
+          answer: [
+            {
+              text: "Sí ",
+              validation: "correct",
+            },
+            {
+              text: "No ",
+              validation: "incorrect",
+            },
+            {
+              text: "No estoy seguro ",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "5",
+      type: "TrueFalse",
+      title: "Ejercicio 4",
+      texto: "F. Compuesta. V o F",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "f(x) = &#8730;x ; g(x) = x² ; (f&#8226;g)(x) = (g&#8226;f)(x) = x",
+          validation: "true",
+        },
+        {
+          id: "b",
+          exercise: "f(x) = <sup>1</sup>/<sub>x</sub> ; (f&#8226;f)(x) = x",
+          validation: "true",
+        },
+        {
+          id: "c",
+          exercise:
+            "f(x) = logx ; g(x) = 10<sup>x</sup> ; (f&#8226;g)(x) = (g&#8226;f)(x) = x",
+          validation: "true",
+        },
+        {
+          id: "d",
+          exercise: "f(x) = sen²x ; g(x) = &#8730;x ; (g&#8226;f)(x) = senx",
+          validation: "true",
+        },
+        {
+          id: "e",
+          exercise:
+            "f(x) = senx ; g(x) = 1 ; h(x) = &#8730;x ; h(g(x) - (f(x)²) = |cosx|",
+          validation: "false",
+        },
+      ],
+    },
   ],
 };
