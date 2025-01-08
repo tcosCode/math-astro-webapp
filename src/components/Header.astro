@@ -26,6 +26,7 @@ import { topics } from "@data/topics.js";
           }
         </div>
       </div>
+      <a href="#" class="navbar-item navbar-link">Clases</a>
       <a href="#" class="navbar-item navbar-link">Contacto</a>
     </div>
   </nav>
@@ -266,6 +267,12 @@ import { topics } from "@data/topics.js";
 
     .menu-drop-down a:hover {
       background-color: var(--primary-color);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .header-title {
+      display: none;
     }
   }
 </style>

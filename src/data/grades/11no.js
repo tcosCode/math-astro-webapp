@@ -213,5 +213,158 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "6",
+      type: "ChooseAnswer",
+      title: "Ecuaciones exponenciales",
+      texto:
+        "Resolver las sgtes ecuaciones exponenciales.\n&#9997;Trabaje primero en la libreta.",
+      incisos: [
+        {
+          id: "a",
+          exercise: "7<sup>x+1</sup> = 7<sup>3x+2</sup>",
+          answer: [
+            {
+              text: "x = &#189;",
+              validation: "incorrect",
+            },
+            {
+              text: "x = -&#189;",
+              validation: "correct",
+            },
+            {
+              text: "x = 2",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "5<sup>x+3</sup> = 5",
+          answer: [
+            {
+              text: "x = -2",
+              validation: "correct",
+            },
+            {
+              text: "x = 1",
+              validation: "incorrect",
+            },
+            {
+              text: "x = 2",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "2<sup>x</sup> = 1024",
+          answer: [
+            {
+              text: "x = 12",
+              validation: "incorrect",
+            },
+            {
+              text: "x = -10",
+              validation: "incorrect",
+            },
+            {
+              text: "x = 10",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "2<sup>3x+1</sup> = 1",
+          answer: [
+            {
+              text: "x = &#8531;",
+              validation: "incorrect",
+            },
+            {
+              text: "x = -&#8531;",
+              validation: "correct",
+            },
+            {
+              text: "x = &#189;",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "e",
+          exercise: "3<sup>5x</sup> = 81",
+          answer: [
+            {
+              text: "x = &#8538;",
+              validation: "incorrect",
+            },
+            {
+              text: "x = -&#8536;",
+              validation: "incorrect",
+            },
+            {
+              text: "x = &#8536;",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "f",
+          exercise: "3<sup>2x+1</sup> = &#185;/&#8329;",
+          answer: [
+            {
+              text: "x = -&#179;/&#8322;",
+              validation: "correct",
+            },
+            {
+              text: "x = &#190;",
+              validation: "incorrect",
+            },
+            {
+              text: "x = &#8535;",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "g",
+          exercise: "3<sup>x</sup> = &#8730;3",
+          answer: [
+            {
+              text: "x = -&#189;",
+              validation: "incorrect",
+            },
+            {
+              text: "x = &#189;",
+              validation: "correct",
+            },
+            {
+              text: "x = 2",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "h",
+          exercise: "7<sup>x+1</sup> = 49<sup>3x-2</sup>",
+          answer: [
+            {
+              text: "x = 2",
+              validation: "incorrect",
+            },
+            {
+              text: "x = -1",
+              validation: "incorrect",
+            },
+            {
+              text: "x = 1",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

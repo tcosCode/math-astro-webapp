@@ -9,6 +9,8 @@ import Matching from "@components/exercisesComponents/Matching.astro";
 import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
 import { shuffle } from "@utils/shuffleArray";
 
+import { classes } from "@data/constants";
+
 interface ExerciseChooseAnswer {
   id: string;
   type: string;
@@ -130,6 +132,12 @@ const length = currentExercise?.incisos?.length ?? 0;
       <span>{grade} Grado | Ejercicio No. {exercise}</span>
     </h2>
     <p set:html={currentExercise?.texto} />
+    <p class="p-exercises-video">
+      Si tienes alguna duda, mira la clase <span class="span-exercises-video">
+        <a href={`/${currentExercise?.title}`}>{currentExercise?.title}</a
+        ></span
+      >
+    </p>
 
     <!-- Sección de ejercicios -->
     <div class="grid-container">
@@ -228,6 +236,47 @@ const length = currentExercise?.incisos?.length ?? 0;
     color: var(--dark-grey);
   }
 
+  .p-exercises-video {
+    color: var(--secondary-color-light-3);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    margin-left: 10%;
+    padding: 0.3rem;
+    background-color: var(--secondary-color-dark);
+    border-radius: 0 0 0 25px;
+  }
+
+  .span-exercises-video {
+    color: var(--secondary-color-dark);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0.3rem 1rem;
+    background-color: white;
+  }
+
+  .span-exercises-video:hover {
+    color: black;
+  }
+
+  @media (max-width: 600px) {
+    .p-exercises-video {
+      width: 100%;
+      margin-left: 0;
+      border-radius: 0;
+    }
+
+    .span-exercises-video {
+      display: block;
+      width: fit-content;
+      margin-inline: auto;
+      margin-top: 0.3rem;
+      border-radius: 5px;
+    }
+  }
+
   p {
     font-size: 1.1rem;
     color: var(--dark-grey);
@@ -245,6 +294,4 @@ const length = currentExercise?.incisos?.length ?? 0;
       grid-template-columns: 1fr;
     }
   }
-
-
 </style>
