@@ -366,5 +366,85 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "7",
+      type: "ChooseAnswer",
+      title: "Funciones compuestas",
+      texto: "Dadas las funciones determinar f•g",
+      incisos: [
+        {
+          id: "a",
+          exercise: "f(x) = x<sup>-2</sup> + 1 \ng(x) = 2x + 1",
+          answer: [
+            {
+              text: "f•g = 2x+1",
+              validation: "incorrect",
+            },
+            {
+              text: "f•g = 1/(2x+1)²",
+              validation: "correct",
+            },
+            {
+              text: "f•g = 1/2x",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "f(x) = |x|\ng(x) = √x",
+          answer: [
+            {
+              text: "f•g = |√x|",
+              validation: "correct",
+            },
+            {
+              text: "f•g = √|x|",
+              validation: "incorrect",
+            },
+            {
+              text: "f•g = x",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "f(x) = x²\ng(x) = x+5",
+          answer: [
+            {
+              text: "x²-10x+25",
+              validation: "incorrect",
+            },
+            {
+              text: "f•g = x²+x+25",
+              validation: "incorrect",
+            },
+            {
+              text: "f•g = x²+10x+25",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "f(x) = x+3\ng(x) = x-3",
+          answer: [
+            {
+              text: "f•g = x",
+              validation: "correct",
+            },
+            {
+              text: "f•g = 3",
+              validation: "incorrect",
+            },
+            {
+              text: "f•g = -x",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

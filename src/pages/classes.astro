@@ -1,0 +1,22 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { classes } from "@data/constants";
+---
+
+<Layout title="Clases">
+  <h1>Clases</h1>
+  <ul>
+    {
+      classes.map((class_) => (
+        <li>
+          <a href={`/${class_.title}`}>{class_.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
+<style>
+  h1 {
+    font-size: 3rem;
+  }
+</style>

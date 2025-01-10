@@ -16,6 +16,12 @@ export const constants = {
 export const classes = [
   {
     title: "Ecuaciones exponenciales",
-    url: "XdaB464Gt4M?si=8U27kbYUmHCetPQS",
+    image: "XdaB464Gt4M", //Youtube video Id to capture the thumbnail
+    url: "PLeySRPnY35dHJJIKyqY0Wg4TTM0NDsS7f",
+  },
+  {
+    title: "Funciones compuestas",
+    image: "RIgzDV-AV_Q",
+    url: "PLeySRPnY35dEKKcGIdu6NYgMShNyuK9rA",
   },
 ];
