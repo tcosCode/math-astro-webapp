@@ -71,7 +71,6 @@ import { topics } from "@data/topics.js";
 
   .navbar-list {
     display: flex;
-    padding: 5px;
     margin-bottom: 3px;
     border-radius: 5px;
     position: relative;
@@ -85,7 +84,6 @@ import { topics } from "@data/topics.js";
     color: var(--dark-grey);
     font-weight: 500;
     cursor: pointer;
-    border-radius: 4px;
     transition: background-color 0.3s ease;
     user-select: none;
   }
@@ -134,15 +132,15 @@ import { topics } from "@data/topics.js";
       transform 300ms;
   }
 
-  /* Extender el área de hover con un espacio invisible usando ::before */
+  /* Extend the hover area with an invisible space using ::before */
   .menu-drop-down::before {
     content: "";
     position: absolute;
-    top: -0.4rem; /* Ajusta esto según el espacio que quieras entre el botón y el menú */
+    top: -0.4rem; /* Space above the element */
     left: 0;
     right: 0;
-    height: 0.4rem; /* Ajusta la altura de la zona invisible */
-    pointer-events: auto; /* Asegura que esta área sea interactiva */
+    height: 0.4rem; /* Adjust the height of the invisible area */
+    pointer-events: auto; /* Ensure that this area is interactive */
   }
 
   .drop-down:hover .menu-drop-down {
@@ -186,14 +184,16 @@ import { topics } from "@data/topics.js";
     .navbar {
       position: fixed;
       top: 0;
-      left: -60vw;
+      left: -65vw;
       border-radius: 0 5px 5px 0;
-      background-color: var(--secondary-color-2-dark);
-      box-shadow: 5px 0 20px var(--secondary-color-2-dark);
-      width: 45vw;
+      background-color: var(--secondary-color-dark);
+      box-shadow: 1px 0 8px var(--secondary-color-light-2);
+      width: 60vw;
       height: 100vh;
       z-index: 100;
       transition: left 0.3s ease;
+      overflow-y: scroll;
+      scrollbar-width: none;
     }
 
     .navbar.open {
@@ -203,20 +203,15 @@ import { topics } from "@data/topics.js";
     .navbar-list {
       flex-direction: column;
       justify-content: flex-start;
-      gap: 1rem;
+      gap: 0.1em;
       margin-top: 2rem;
       width: 100%;
     }
     .navbar-item {
       padding: 1rem 2rem;
-      background: var(--secondary-color-2-light);
       color: var(--white-color);
       font-weight: 600;
       height: fit-content;
-    }
-    .navbar-item:active {
-      color: var(--secondary-color-2-dark);
-      background: var(--secondary-color-2-dark);
     }
 
     .drop-down {
@@ -234,17 +229,11 @@ import { topics } from "@data/topics.js";
       opacity: 1;
       transform: none;
       transition: none;
-      background-color: var(--secondary-color-2-light);
-      transition: background-color 0.3s ease;
+      background-color: transparent;
     }
 
     .drop-down a {
       padding-left: 1rem;
-    }
-
-    .drop-down:hover .menu-drop-down,
-    .drop-down:hover a {
-      background-color: var(--light-grey);
     }
 
     .drop-down:hover a {
@@ -262,12 +251,10 @@ import { topics } from "@data/topics.js";
     .menu-drop-down a {
       padding: 0.8rem 1.5rem;
       width: 100%;
-      color: var(--white-color);
-      background-color: var(--secondary-color-2-light);
     }
 
     .menu-drop-down a:hover {
-      background-color: var(--primary-color);
+      background-color: var(--secondary-color-light-2);
     }
   }
 
