@@ -17,7 +17,7 @@ export const grades10mo = {
     {
       id: "1",
       type: TRUEFALSE,
-      title: "Seleccionar V o F",
+      title: "(Falta video)",
       texto: `Función:
 Una función es una correspondencia que a cada elemento de un conjunto A asocia un único elemento de un conjunto B.
       Escoja Verdadero o Falso segun corresponda:`,
@@ -86,7 +86,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "2",
       type: TRUEFALSE,
-      title: "Seleccionar V o F",
+      title: "(Falta video)",
       texto: "Seleccionar V o F",
       incisos: [
         {
@@ -110,7 +110,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "3",
       type: CHOOSEANSWER,
-      title: "Función lineal",
+      title: "Función lineal (Falta video)",
       texto: "Calcular en la libreta y seleccionar la respuesta correcta: ",
       incisos: [
         {
@@ -172,7 +172,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "4",
       type: CHOOSEANSWER,
-      title: "Monotonía de Funciones",
+      title: "Monotonía de Funciones (Falta video)",
       texto: "Seleccionar la monotonía de la función ",
       incisos: [
         {
@@ -288,7 +288,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "5",
       type: TRUEFALSE,
-      title: "Función cuadrática",
+      title: "Función cuadrática (Falta video)",
       texto: "Seleccionar V si la función es cuadrática y F para otros casos",
       incisos: [
         {
@@ -326,7 +326,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "6",
       type: CHOOSEANSWER,
-      title: "Función lineal",
+      title: "Función lineal (Falta video)",
       texto: "Seleccionar los valores de las funciones para x=5",
       incisos: [
         {

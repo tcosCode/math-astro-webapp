@@ -17,7 +17,7 @@ export const grades12mo = {
     {
       id: "1",
       type: "TrueFalse",
-      title: "Clasificar en V o F",
+      title: "(Falta video)",
       texto: "Seleccionar V o F, justificar las falsas:",
       incisos: [
         {
@@ -61,7 +61,7 @@ export const grades12mo = {
     {
       id: "2",
       type: "TrueFalse",
-      title: "Clasificar en V o F ",
+      title: "(Falta video)",
       texto: "Seleccionar V o F según convenga. Justificar las falsas ",
       incisos: [
         {
@@ -93,7 +93,7 @@ export const grades12mo = {
     {
       id: "3",
       type: "ChooseAnswer",
-      title: "Números complejos ",
+      title: "Números complejos (Falta video)",
       texto: "Calcular la suma de los siguientes números complejos ",
       incisos: [
         {
@@ -191,7 +191,7 @@ export const grades12mo = {
     {
       id: "4",
       type: "ChooseAnswer",
-      title: "Función inversa ",
+      title: "Función inversa (Falta video)",
       texto: "Determinar si tienen inversa las funciones sgtes ",
       incisos: [
         {
@@ -271,7 +271,7 @@ export const grades12mo = {
     {
       id: "5",
       type: "TrueFalse",
-      title: "Ejercicio 4",
+      title: "(Falta video)",
       texto: "F. Compuesta. V o F",
       incisos: [
         {

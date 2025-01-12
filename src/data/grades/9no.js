@@ -20,7 +20,7 @@ export const grades9no = {
     {
       id: "1",
       type: CHOOSEANSWER,
-      title: "Descomponer en factores",
+      title: "Descomponer en factores (Falta video)",
       texto:
         "Descomponer en factores. Trabaje en su libreta y luego seleccione una opción como resultado:",
       incisos: [
@@ -110,7 +110,7 @@ export const grades9no = {
     {
       id: "2",
       type: CHOOSEANSWER,
-      title: "Factorizar",
+      title: "Factorizar (Falta video)",
       texto:
         "Factorizar completamente. Trabaje en su libreta y luego seleccione una opción como resultado:",
       incisos: [
@@ -209,7 +209,7 @@ export const grades9no = {
     {
       id: "3",
       type: TRUEFALSE,
-      title: "Seleccionar V o F",
+      title: "(Falta video)",
       texto: "Escoja Verdadero o Falso segun corresponda:",
       incisos: [
         {
