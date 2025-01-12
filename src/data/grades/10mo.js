@@ -406,7 +406,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "7",
       type: "ChooseAnswer",
-      title: "Logaritmo",
+      title: "Logaritmos",
       texto: "Enlazar el logaritmo con su forma exponencial ",
       incisos: [
         {
@@ -522,7 +522,7 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "8",
       type: "Matching",
-      title: "Logaritmo",
+      title: "Logaritmos",
       texto: "Resolver en la libreta y luego enlazar con la respuesta: ",
       incisos: [
         {
@@ -568,6 +568,101 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         {
           text: "Respuesta: x=0; y=1 ",
           pairId: 6,
+        },
+      ],
+    },
+    {
+      id: "9",
+      type: "ChooseAnswer",
+      title: "Ecuaciones trigonométricas",
+      texto:
+        "Determinar el conjunto solución y seleccionar la respuesta correcta.",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "<sup>(2sen&#8733; . cot&#8733;)</sup>/<sub>cos&#8733;</sub> = 2sen&#8733; para 0 &#8804; &#8733; &#8804; 90°",
+          answer: [
+            {
+              text: "&#8733 = 90°",
+              validation: "correct",
+            },
+            {
+              text: "&#8733; = 30°",
+              validation: "incorrect",
+            },
+            {
+              text: "&#8733 = 45°",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise:
+            "sen&#946; - cos&#178;&#946; = 1  si (0 &#8804; &#946; &#8846; &#960;)",
+          answer: [
+            {
+              text: "&#946; = 45°",
+              validation: "incorrect",
+            },
+            {
+              text: "&#946; = 90°",
+              validation: "correct",
+            },
+            {
+              text: "&#946; =30°",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "(sen2&#8733; . cot&#8733) + (3cos&#8733; - 2) = 0",
+          answer: [
+            {
+              text: "&#8733; = &#960;",
+              validation: "incorrect",
+            },
+            {
+              text: "&#8733 = <sup>&#960;</sup>/<sub>2</sub>",
+              validation: "incorrect",
+            },
+            {
+              text: "&#8733; = <sup>&#960;</sup>/<sub>3</sub>",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "10",
+      type: "TrueFalse",
+      title: "Ecuaciones trigonométricas",
+      texto: "Seleccionar V o F. Fundamentar las falsas.",
+      incisos: [
+        {
+          id: "a",
+          exercise: "sen²&#8733; = 1 - cos²&#8733;",
+          validation: "true",
+        },
+        {
+          id: "b",
+          exercise:
+            "tan&#946; = <sup>sen&#946;</sup>/<sub>cos&#946;</sub> (&#946; &#8800; 0)",
+          validation: "true",
+        },
+        {
+          id: "c",
+          exercise:
+            "1 + tan&#178;&#8733; = <sup>1</sup>/<sub>sen&#8733</sub> (&#8733; &#8800; 90<sup>0</sup>) ",
+          validation: "false",
+        },
+        {
+          id: "d",
+          exercise: "tan2&#946; = cos&#178;&#946; - sen&#178;&#946;",
+          validation: "false",
         },
       ],
     },

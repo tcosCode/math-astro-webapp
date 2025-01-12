@@ -18,7 +18,7 @@ export const grades7mo = {
     {
       id: "1",
       type: PROBLEM,
-      title: "Problema de ecuaciones lineales",
+      title: "Sistema de ecuaciones lineales 2x2",
       texto:
         "La distancia entre las ciudades de Cienfuegos y Pinar del Río es de 421 km. El doble de la distancia de la ciudad de Cienfuegos a Matanzas aumentado en 61 es igual a la distancia de la ciudad de Pinar del Río y Matanzas. ¿Cuántos km separan a la ciudad de Cienfuegos y la de Matanzas?",
       incisos: [
@@ -48,7 +48,7 @@ export const grades7mo = {
     {
       id: "2",
       type: PROBLEM,
-      title: "Problema de ecuaciones lineales",
+      title: "Sistema de ecuaciones lineales 2x2",
       texto:
         "La edad actual de Ana aumentada en 8 es igual al doble de dicha edad disminuido en 3. ¿Qué edad tendrá Ana al cabo de 15 años?",
       incisos: [
@@ -77,7 +77,7 @@ export const grades7mo = {
     {
       id: "3",
       type: PROBLEM,
-      title: "Problema de ecuaciones lineales",
+      title: "Sistema de ecuaciones lineales 2x2",
       texto:
         "En un destacamento de 34 alumnos de una secundaria básica, el doble de la cantidad de varones disminuido en 5 es igual a la cantidad de hembras. ¿Cuántas hembras y cuántos varones integran el destacamento?",
       incisos: [

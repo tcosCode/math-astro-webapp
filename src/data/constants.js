@@ -24,4 +24,29 @@ export const classes = [
     image: "RIgzDV-AV_Q",
     url: "PLeySRPnY35dEKKcGIdu6NYgMShNyuK9rA",
   },
+  {
+    title: "Ecuaciones trigonométricas",
+    image: "ZTRETZaSx0s",
+    url: "PLeySRPnY35dEmHXbIXk9NjxWA_XzxkyEI",
+  },
+  {
+    title: "Sistema de ecuaciones lineales 2x2",
+    image: "oQQfG1zIPMc",
+    url: "PLeySRPnY35dErygDdRDp1912SPALoaBmZ",
+  },
+  {
+    title: "Logaritmos",
+    image: "pZTuEHrnOMg",
+    url: "PLeySRPnY35dHyUzy-YVDD9ZllhtXfcQ4_",
+  },
+  {
+    title: "Ecuación de la recta",
+    image: "GBSmycLgTeU",
+    url: "PLeySRPnY35dE1JAjLtnjoDTA5-oWq6m2w",
+  },
+  {
+    title: "Estadística",
+    image: "CWDYwZ_c1lI",
+    url: "PLeySRPnY35dFF5D9g_zi07yPKGXui4GII&index=1",
+  },
 ];

@@ -265,7 +265,7 @@ export const grades9no = {
     {
       id: "4",
       type: PROBLEM,
-      title: "Problema de Estadística",
+      title: "Estadística",
       texto: `En el mcpio Yateras se celebró la Asamblea 55 Aniversario de la OPJM, la cual estuvo representada por pioneros de la Educación Primaria y Secundaria Básica. El rango de participantes de edad hasta 13 años se muestra a continuación: 
       <table>
         <thead>
@@ -336,7 +336,7 @@ export const grades9no = {
     {
       id: "5",
       type: PROBLEM,
-      title: "Problema de Estadística",
+      title: "Estadística",
       texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día:
       <table>
         <thead>
@@ -412,7 +412,7 @@ export const grades9no = {
     {
       id: "6",
       type: PROBLEM,
-      title: "Problema de Estadística",
+      title: "Estadística",
       texto: `La tabla muestra la cantidad de puntos anotados por los jugadores de un equipo de baloncesto al finalizar el juego.
       <table>
         <thead>
@@ -494,7 +494,7 @@ export const grades9no = {
     {
       id: "7",
       type: PROBLEM,
-      title: "Problema de Estadística",
+      title: "Estadística",
       texto: `La tabla muestra el consumo eléctrico, en kl/h, durante un mes en los apartamentos que hay en un edificio:
       <table>
         <thead>

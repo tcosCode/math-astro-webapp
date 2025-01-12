@@ -17,7 +17,7 @@ export const grades11no = {
     {
       id: "1",
       type: "ChooseAnswer",
-      title: "Distancia entre puntos ",
+      title: "Ecuación de la recta",
       texto: "Calcular luego seleccionar la respuesta correcta.",
       incisos: [
         {
@@ -63,7 +63,7 @@ export const grades11no = {
     {
       id: "2",
       type: "ChooseAnswer",
-      title: "Pendiente de una recta ",
+      title: "Ecuación de la recta",
       texto:
         "Calcular la pendiente de la recta MN. Determinar los cuadrantes que pasa.",
       incisos: [
@@ -108,7 +108,7 @@ export const grades11no = {
     {
       id: "3",
       type: "Matching",
-      title: "Punto común de dos rectas. Ecuaciones cartesianas.",
+      title: "Ecuación de la recta",
       texto: "Calcular el puerto P común de las rectas r y s.",
       incisos: [
         {
@@ -144,7 +144,7 @@ export const grades11no = {
     {
       id: "4",
       type: "ChooseAnswer",
-      title: "Punto medio de dos puntos ",
+      title: "Ecuación de la recta",
       texto: "Calcular las coordenadas del punto medio M los puntos R y T",
       incisos: [
         {
@@ -188,7 +188,7 @@ export const grades11no = {
     {
       id: "5",
       type: "Matching",
-      title: "Intersección de dos rectas. Ecuación paramétrica.",
+      title: "Ecuación de la recta",
       texto: "Calcular el punto común de r y s.",
       incisos: [
         {
