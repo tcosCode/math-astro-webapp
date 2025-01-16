@@ -49,4 +49,14 @@ export const classes = [
     image: "CWDYwZ_c1lI",
     url: "PLeySRPnY35dFF5D9g_zi07yPKGXui4GII&index=1",
   },
+  {
+    title: "División de polinomios",
+    image: "PxycywivGUQ",
+    url: "PLYELZSZcFU6UVjDuVY2xxaFk1jzTAKpYm",
+  },
+  {
+    title: "Ecuaciones cuadráticas",
+    image: "aYkOsFHCqPM",
+    url: "PLeySRPnY35dF11EWceCxzKtcaZidCkXXh",
+  },
 ];
