@@ -446,5 +446,103 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "8",
+      type: "TrueFalse",
+      title: "Razones trigonométricas",
+      texto: "Escoge las razones correctas:",
+      incisos: [
+        {
+          id: "a",
+          exercise: "sen &#8733; = <sup>cat op</sup>/<sub>hip</sub>",
+          validation: "true",
+        },
+        {
+          id: "b",
+          exercise: "tan&$18733; = <sup><cat op></sup>/<sub\n<cat ad><sub>",
+          validation: "true",
+        },
+        {
+          id: "c",
+          exercise: "cos&#8733; = <sup>(cat op)</sup>/<sub>hip</sub>",
+          validation: "false",
+        },
+        {
+          id: "d",
+          exercise: "sec&#8733; = <sup>hip</sup>/<sub>(cat ady)</sub>\n",
+          validation: "true",
+        },
+        {
+          id: "e",
+          exercise: "csc&#8733; = <sup>(cat op)</sup>/<sub>hip</sub>",
+          validation: "false",
+        },
+        {
+          id: "f",
+          exercise: "cot&#8733; = <sup>(cat ady)</sup>/<sub>(cat op)</sub>",
+          validation: "true",
+        },
+        {
+          id: "g",
+          exercise: "sen90º = 0",
+          validation: "false",
+        },
+        {
+          id: "h",
+          exercise: "cos0º = 0",
+          validation: "false",
+        },
+        {
+          id: "i",
+          exercise: "tan90º = 0",
+          validation: "false",
+        },
+      ],
+    },
+    {
+      id: "9",
+      type: "ChooseAnswer",
+      title: "Razones trigonométricas ",
+      img: "/img/exercises/11no-9.webp",
+      texto: "Determinar el valor de x ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "Elegir la fórmula adecuada y calcular.",
+          answer: [
+            {
+              text: "sen&#946; = <sup>(cat op)</sup>/<sub>hip</sub>",
+              validation: "correct",
+            },
+            {
+              text: "cos&#946; = <sup>(cat ady)</sup>/<sub>hip</sub>",
+              validation: "incorrect",
+            },
+            {
+              text: "tan&#946; = <sup>(cat op)</sup>/<sub>(cat ady)</sub>",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "Seleccionar el valor de x calculado ",
+          answer: [
+            {
+              text: "x = 4&#8730;3 cm",
+              validation: "correct",
+            },
+            {
+              text: "x = 6&#8730;3 cm",
+              validation: "incorrect",
+            },
+            {
+              text: "x = 8&#8830;3 cm",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

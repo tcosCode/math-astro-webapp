@@ -59,4 +59,9 @@ export const classes = [
     image: "aYkOsFHCqPM",
     url: "PLeySRPnY35dF11EWceCxzKtcaZidCkXXh",
   },
+  {
+    title: "Razones trigonométricas",
+    image: "7pUi5lvLf7c",
+    url: "PLeySRPnY35dEAIFYvOhtD2cztVuq15qw1",
+  },
 ];
