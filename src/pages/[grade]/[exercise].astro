@@ -9,12 +9,11 @@ import Matching from "@components/exercisesComponents/Matching.astro";
 import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
 import { shuffle } from "@utils/shuffleArray";
 
-import { classes } from "@data/constants";
-
 interface ExerciseChooseAnswer {
   id: string;
   type: string;
   title: string;
+  img?: string;
   texto: string;
   incisos?: Array<{
     id: string;
@@ -32,6 +31,7 @@ interface ExerciseTrueFalse {
   id: string;
   type: string;
   title: string;
+  img?: string;
   texto: string;
   incisos?: Array<{
     id: string;
@@ -44,6 +44,7 @@ interface ExerciseProblem {
   id: string;
   type: string;
   title: string;
+  img?: string;
   texto: string;
   incisos?: Array<{
     id: string;
@@ -55,6 +56,7 @@ interface ExerciseProblem {
 interface ExerciseMatching {
   id: string;
   type: string;
+  img?: string;
   title: string;
   texto: string;
   incisos?: Array<{
@@ -67,6 +69,7 @@ interface ExerciseFillBlank {
   id: string;
   type: string;
   title: string;
+  img?: string;
   texto: string;
   incisos: Array<{
     id: string;
@@ -132,6 +135,15 @@ const length = currentExercise?.incisos?.length ?? 0;
       <span>{grade} Grado | Ejercicio No. {exercise}</span>
     </h2>
     <p set:html={currentExercise?.texto} />
+    {
+      currentExercise?.img && (
+        <img
+          class="img-exercises"
+          src={`/img/exercises/${grade}-${exercise}.webp`}
+          alt="Imagen del ejercicio"
+        />
+      )
+    }
     <p class="p-exercises-video">
       Si tienes alguna duda, mira la clase <span class="span-exercises-video">
         <a href={`/${currentExercise?.title}`}>{currentExercise?.title}</a
@@ -234,6 +246,23 @@ const length = currentExercise?.incisos?.length ?? 0;
     gap: 1rem;
     font-size: 1.5rem;
     color: var(--dark-grey);
+  }
+
+  .img-exercises {
+    width: 200px;
+    height: auto;
+    margin-block: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondary-color-light-3);
+    padding: 0.4rem;
+  }
+
+  @media (max-width: 768px) {
+    .img-exercises {
+      width: 70%;
+      margin-inline: auto;
+    }
   }
 
   .p-exercises-video {

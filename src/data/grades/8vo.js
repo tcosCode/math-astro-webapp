@@ -124,5 +124,69 @@ export const grades8vo = {
         },
       ],
     },
+    {
+      id: "3",
+      type: "ChooseAnswer",
+      title: "Área de figuras planas (falta video)",
+      img: "/img/exercises/8v0-3.webp",
+      texto: "En la figura ABCD es un rombo de 4,0cm de lado y DE altura.\n",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "Si la amplitud del &#8738;A=60° entonces la del &#8738;ADE es:",
+          answer: [
+            {
+              text: "30°",
+              validation: "correct",
+            },
+            {
+              text: "45°",
+              validation: "incorrect",
+            },
+            {
+              text: "60°",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "El perímetro del rombo ABCD es:",
+          answer: [
+            {
+              text: "23cm",
+              validation: "incorrect",
+            },
+            {
+              text: "16cm",
+              validation: "correct",
+            },
+            {
+              text: "12cm",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "Clasificar el &#916;AED según sus lados",
+          answer: [
+            {
+              text: "Isósceles ",
+              validation: "incorrect",
+            },
+            {
+              text: "Equilátero ",
+              validation: "incorrect",
+            },
+            {
+              text: "Escaleno ",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
