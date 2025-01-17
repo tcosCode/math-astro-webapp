@@ -12,7 +12,7 @@ const {
 export const grades11no = {
   title: "11no",
   img: "/img/coach-85.svg",
-  list: ["Logarirmos", "Geometría", " Límites"],
+  list: ["Logaritmos", "Geometría", " Límites"],
   exercises: [
     {
       id: "1",
@@ -454,12 +454,12 @@ export const grades11no = {
       incisos: [
         {
           id: "a",
-          exercise: "sen &#8733; = <sup>cat op</sup>/<sub>hip</sub>",
+          exercise: "sen&#8733; = <sup>cat op</sup>/<sub>hip</sub>",
           validation: "true",
         },
         {
           id: "b",
-          exercise: "tan&$18733; = <sup><cat op></sup>/<sub\n<cat ad><sub>",
+          exercise: "tan&#8733; = <sup>cat op</sup>/<sub>(cat ady)</sub>",
           validation: "true",
         },
         {
