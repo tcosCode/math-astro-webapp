@@ -1,16 +1,3 @@
-/* Types of Exercises */
-export const constants = {
-  TRUEFALSE: "TrueFalse",
-  CHOOSEANSWER: "ChooseAnswer",
-  MATCHING: "Matching",
-  FILLBLANK: "FillBlank",
-  PROBLEM: "Problem",
-  VALIDATE_TRUE: "true",
-  VALIDATE_FALSE: "false",
-  CORRECT: "correct",
-  INCORRECT: "incorrect",
-};
-
 /* Clases | Videos */
 
 export const classes = [
@@ -47,7 +34,7 @@ export const classes = [
   {
     title: "Estadística",
     image: "CWDYwZ_c1lI",
-    url: "PLeySRPnY35dFF5D9g_zi07yPKGXui4GII&index=1",
+    url: "PLeySRPnY35dFF5D9g_zi07yPKGXui4GII",
   },
   {
     title: "División de polinomios",
@@ -63,5 +50,41 @@ export const classes = [
     title: "Razones trigonométricas",
     image: "7pUi5lvLf7c",
     url: "PLeySRPnY35dEAIFYvOhtD2cztVuq15qw1",
+  },
+  {
+    title: "Funciones",
+    image: "HAeSkQH1C-I",
+    url: "PLeySRPnY35dGfEuNGbQmymhiQF4oTUIMb",
+  },
+  {
+    title: "Funciones cuadráticas",
+    image: "YlhOfpREfHE", // if !url, then the video will be captured from the thumbnail
+  },
+  {
+    title: "Funciones lineales",
+    image: "AoZpzAoC1Qg",
+  },
+  {
+    title: "Números complejos",
+    image: "KzMSuHApEvk",
+    url: "PLeySRPnY35dHfzYRb8StWkxnVTkrocv6X",
+  },
+  {
+    title: "Funciones inversas",
+    image: "9zXjR45lOUo",
+  },
+  {
+    title: "Funciones compuestas",
+    image: "RIgzDV-AV_Q",
+  },
+  {
+    title: "Factorización",
+    image: "sSfO1CsKJ4g",
+    url: "PLeySRPnY35dGY6GX7xO_lruvCIS6NkfR-",
+  },
+  {
+    title: "Área y Perímetro",
+    image: "DPcP6gz495U",
+    url: "PLeySRPnY35dGL6Gpm_T-30RH3Kr2IxeDN",
   },
 ];

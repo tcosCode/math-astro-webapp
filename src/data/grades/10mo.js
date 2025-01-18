@@ -1,14 +1,3 @@
-import { constants } from "@data/constants";
-
-const {
-  TRUEFALSE,
-  CHOOSEANSWER,
-  CORRECT,
-  INCORRECT,
-  VALIDATE_TRUE,
-  VALIDATE_FALSE,
-} = constants;
-
 export const grades10mo = {
   title: "10mo",
   img: "/img/video-tutorial.svg",
@@ -16,8 +5,8 @@ export const grades10mo = {
   exercises: [
     {
       id: "1",
-      type: TRUEFALSE,
-      title: "(Falta video)",
+      type: "TrueFalse",
+      title: "Funciones",
       texto: `Función:
 Una función es una correspondencia que a cada elemento de un conjunto A asocia un único elemento de un conjunto B.
       Escoja Verdadero o Falso segun corresponda:`,
@@ -43,74 +32,74 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
               <div>-2.5</div>
             </div>
           </div>`,
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "b",
           exercise: "La relación {R -- R; y = x/3 - 4; es una función:",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "c",
           exercise: "La relación {N -- N; y = x/2 - 4; es una función:",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "d",
           exercise:
             "La relación de R en R que a cada número real le hace corresponder su raíz cuadrada:",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "e",
           exercise: "La relación de Q en Q tal que f(x) = -3x + 4:",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "f",
           exercise: "La relación de Q en Q<sub>+</sub> tal que f(x) = 1/3 x:",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "g",
           exercise: "La relación de N en R tal que f(x) = x<sup>2</sup> - 4x:",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "h",
           exercise: "La relación de Z+ en Z tal que f(x) = x<sup>3</sup> + 3:",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
       ],
     },
     {
       id: "2",
-      type: TRUEFALSE,
-      title: "(Falta video)",
+      type: "TrueFalse",
+      title: "Funciones",
       texto: "Seleccionar V o F",
       incisos: [
         {
           id: "a",
           exercise: "La relación { R --  R: x/3 - 4} es una función ",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "b",
           exercise: "La relación { R -- R: y= x/2 - 4\\} es una función.",
-          validation: "VALIDATE_FALSE",
+          validation: "false",
         },
         {
           id: "c",
           exercise:
             "La correspondencia definida de R en R que a cada número real le hace corresponder su raíz cuadrada.",
-          validation: "VALIDATE_FALSE",
+          validation: "false",
         },
       ],
     },
     {
       id: "3",
-      type: CHOOSEANSWER,
-      title: "Función lineal (Falta video)",
+      type: "ChooseAnswer",
+      title: "Funciones",
       texto: "Calcular en la libreta y seleccionar la respuesta correcta: ",
       incisos: [
         {
@@ -119,15 +108,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "y = -x - 6",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "y = x + 6",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "y = -x + 6",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -137,15 +126,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "y = -1/3x + 2/3",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "y = 1/3x - 2/3",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "y = 1/3x + 2/3",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -155,15 +144,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "y = x",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "y = x + 1",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "y = -x",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -171,8 +160,8 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     },
     {
       id: "4",
-      type: CHOOSEANSWER,
-      title: "Monotonía de Funciones (Falta video)",
+      type: "ChooseAnswer",
+      title: "Funciones",
       texto: "Seleccionar la monotonía de la función ",
       incisos: [
         {
@@ -181,15 +170,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "Creciente ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "Decreciente ",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "Ninguna ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -199,15 +188,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "Creciente ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "Decreciente ",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "Ninguna ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -217,15 +206,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "Creciente",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "Decreciente ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "Ninguna ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -235,15 +224,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "Creciente ",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "Decreciente ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "Ninguna ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -253,15 +242,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "Creciente ",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "Decreciente ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "Ninguna ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -271,15 +260,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "Creciente ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "Decreciente ",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "Ninguna ",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -287,46 +276,46 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     },
     {
       id: "5",
-      type: TRUEFALSE,
-      title: "Función cuadrática (Falta video)",
+      type: "TrueFalse",
+      title: "Funciones cuadráticas",
       texto: "Seleccionar V si la función es cuadrática y F para otros casos",
       incisos: [
         {
           id: "a",
           exercise: "f(x) = x<sup>2</sup> - 3\n",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "b",
           exercise: "f(x) = x<sup>2</sup> - x + 1\n\n",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "c",
           exercise: "k(x) = x<sup>3</sup> -2x + 3",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "d",
           exercise: "h(x) = 2x + x<sup>2<sup>",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "e",
           exercise: "f(x) = 2x - 3",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "f",
           exercise: "h(x) = 1/3 x<sup>2</sup> + 1,5",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
       ],
     },
     {
       id: "6",
-      type: CHOOSEANSWER,
-      title: "Función lineal (Falta video)",
+      type: "ChooseAnswer",
+      title: "Funciones lineales",
       texto: "Seleccionar los valores de las funciones para x=5",
       incisos: [
         {
@@ -335,15 +324,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "a(5) = 0",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "a(5) = 4",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "a(5) =1",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -353,15 +342,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "b(5) = -14/3",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "b(5) = 14/3",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "b(5) = 13/3",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -371,15 +360,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "c(5) = 4",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "c(5) = 5",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "c(5) = -5",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -389,15 +378,15 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
           answer: [
             {
               text: "d(5) = -4",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "d(5) = 4",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "d(5) = 5",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },

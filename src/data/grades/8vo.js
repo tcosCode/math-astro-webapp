@@ -1,16 +1,3 @@
-import { constants } from "@data/constants";
-
-const {
-  TRUEFALSE,
-  CHOOSEANSWER,
-  MATCHING,
-  FILLBLANK,
-  CORRECT,
-  INCORRECT,
-  VALIDATE_TRUE,
-  VALIDATE_FALSE,
-} = constants;
-
 export const grades8vo = {
   title: "8vo",
   img: "/img/book-lover.svg",
@@ -18,7 +5,7 @@ export const grades8vo = {
   exercises: [
     {
       id: "1",
-      type: MATCHING,
+      type: "Matching",
       title: "División de polinomios",
       texto:
         "Encuentra las parejas. Para cada pregunta, seleccione la respuesta correcta:",
@@ -71,7 +58,7 @@ export const grades8vo = {
     },
     {
       id: "2",
-      type: FILLBLANK,
+      type: "FillBlank",
       title: "Estadística",
       texto: `La tabla muestra las temperaturas en grados Celsius registradas en una ciudad durante horas del día:
     <table>
@@ -124,6 +111,5 @@ export const grades8vo = {
         },
       ],
     },
-    
   ],
 };

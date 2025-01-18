@@ -34,7 +34,7 @@ if (!currentClass) {
         currentClass && (
           <lite-youtube
             videoid={currentClass.image}
-            playlistid={currentClass.url}
+            playlistid={currentClass.url ?? ""}
           />
         )
       }

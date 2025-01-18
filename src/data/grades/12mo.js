@@ -1,14 +1,3 @@
-import { constants } from "@data/constants";
-
-const {
-  TRUEFALSE,
-  CHOOSEANSWER,
-  CORRECT,
-  INCORRECT,
-  VALIDATE_TRUE,
-  VALIDATE_FALSE,
-} = constants;
-
 export const grades12mo = {
   title: "12mo",
   img: "/img/presentation.svg",
@@ -17,7 +6,7 @@ export const grades12mo = {
     {
       id: "1",
       type: "TrueFalse",
-      title: "(Falta video)",
+      title: "Funciones",
       texto: "Seleccionar V o F, justificar las falsas:",
       incisos: [
         {
@@ -93,7 +82,7 @@ export const grades12mo = {
     {
       id: "3",
       type: "ChooseAnswer",
-      title: "Números complejos (Falta video)",
+      title: "Números complejos",
       texto: "Calcular la suma de los siguientes números complejos ",
       incisos: [
         {
@@ -191,7 +180,7 @@ export const grades12mo = {
     {
       id: "4",
       type: "ChooseAnswer",
-      title: "Función inversa (Falta video)",
+      title: "Funciones inversas",
       texto: "Determinar si tienen inversa las funciones sgtes ",
       incisos: [
         {
@@ -271,7 +260,7 @@ export const grades12mo = {
     {
       id: "5",
       type: "TrueFalse",
-      title: "(Falta video)",
+      title: "Funciones compuestas",
       texto: "F. Compuesta. V o F",
       incisos: [
         {

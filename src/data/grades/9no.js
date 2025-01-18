@@ -1,16 +1,3 @@
-import { constants } from "@data/constants";
-import { table } from "node_modules/astro/dist/core/logger/core";
-
-const {
-  TRUEFALSE,
-  CHOOSEANSWER,
-  PROBLEM,
-  CORRECT,
-  INCORRECT,
-  VALIDATE_TRUE,
-  VALIDATE_FALSE,
-} = constants;
-
 // Data for 9no Grade
 export const grades9no = {
   title: "9no",
@@ -19,8 +6,8 @@ export const grades9no = {
   exercises: [
     {
       id: "1",
-      type: CHOOSEANSWER,
-      title: "Descomponer en factores (Falta video)",
+      type: "ChooseAnswer",
+      title: "Factorización",
       texto:
         "Descomponer en factores. Trabaje en su libreta y luego seleccione una opción como resultado:",
       incisos: [
@@ -28,36 +15,40 @@ export const grades9no = {
           id: "a",
           exercise: "8a - 8b",
           answer: [
-            { text: "(a - 8)(b - 8)", validation: INCORRECT },
-            { text: "8(a - 8b)", validation: INCORRECT },
-            { text: "8(a - b)", validation: CORRECT },
+            { text: "(a - 8)(b - 8)", validation: "incorrect" },
+            { text: "8(a - 8b)", validation: "incorrect" },
+            { text: "8(a - b)", validation: "correct" },
           ],
         },
         {
           id: "b",
           exercise: "x<sup>2</sup> - 2x - 48",
           answer: [
-            { text: "(x - 8)(x - 6)", validation: INCORRECT },
-            { text: "(x - 8)(x + 6)", validation: CORRECT },
-            { text: "D &lt; 0", validation: INCORRECT },
+            { text: "(x - 8)(x - 6)", validation: "incorrect" },
+            { text: "(x - 8)(x + 6)", validation: "correct" },
+            { text: "D &lt; 0", validation: "incorrect" },
           ],
         },
         {
           id: "c",
           exercise: "y<sup>2</sup> - 49",
           answer: [
-            { text: "(y + 7)(y - 7)", validation: INCORRECT },
-            { text: "(y + 7)(y + 7y)", validation: INCORRECT },
-            { text: "(y - 7)(y + 7)", validation: CORRECT },
+            { text: "(y + 7)(y - 7)", validation: "incorrect" },
+            { text: "(y + 7)(y + 7y)", validation: "incorrect" },
+            ,
+            { text: "(y - 7)(y + 7)", validation: "correct" },
           ],
         },
         {
           id: "d",
           exercise: "2m<sup>2</sup> - 17m - 48",
           answer: [
-            { text: "(2m + 1)(m + 8)", validation: INCORRECT },
-            { text: "(2m - 1)(m - 8)", validation: CORRECT },
-            { text: "(2m + 1)(m - 8)", validation: INCORRECT },
+            { text: "(2m + 1)(m + 8)", validation: "incorrect" },
+            ,
+            { text: "(2m - 1)(m - 8)", validation: "correct" },
+            ,
+            { text: "(2m + 1)(m - 8)", validation: "incorrect" },
+            ,
           ],
         },
         {
@@ -66,15 +57,15 @@ export const grades9no = {
           answer: [
             {
               text: "(y - 7<sup>1/2</sup>)(y - 7<sup>1/2</sup>)",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "(y + 7<sup>1/2</sup>)(y + 7<sup>1/2</sup>)",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "(y + 7<sup>1/2</sup>)(y - 7<sup>1/2</sup>)",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -82,35 +73,35 @@ export const grades9no = {
           id: "f",
           exercise: "5n<sup>2</sup> + 12n + 4",
           answer: [
-            { text: "(5n + 2)(n - 2)", validation: INCORRECT },
-            { text: "(5n + 2)(n + 2)", validation: CORRECT },
-            { text: "(5n - 2)(n + 2)", validation: INCORRECT },
+            { text: "(5n + 2)(n - 2)", validation: "incorrect" },
+            { text: "(5n + 2)(n + 2)", validation: "correct" },
+            { text: "(5n - 2)(n + 2)", validation: "incorrect" },
           ],
         },
         {
           id: "g",
           exercise: "x<sup>2</sup> - x + 8",
           answer: [
-            { text: "D &lt; 0", validation: CORRECT },
-            { text: "(x + 2)(x + 4)", validation: INCORRECT },
-            { text: "(x - 2)(x + 4)", validation: INCORRECT },
+            { text: "D &lt; 0", validation: "correct" },
+            { text: "(x + 2)(x + 4)", validation: "incorrect" },
+            { text: "(x - 2)(x + 4)", validation: "incorrect" },
           ],
         },
         {
           id: "h",
           exercise: "v<sup>2</sup> - 36 + 12v",
           answer: [
-            { text: "(v - 14.4)(v - 2.4)", validation: CORRECT },
-            { text: "(v + 14.4)(v + 2.4)", validation: INCORRECT },
-            { text: "(v + 14.4)(v - 2.4)", validation: INCORRECT },
+            { text: "(v - 14.4)(v - 2.4)", validation: "correct" },
+            { text: "(v + 14.4)(v + 2.4)", validation: "incorrect" },
+            { text: "(v + 14.4)(v - 2.4)", validation: "incorrect" },
           ],
         },
       ],
     },
     {
       id: "2",
-      type: CHOOSEANSWER,
-      title: "Factorizar (Falta video)",
+      type: "ChooseAnswer",
+      title: "Factorización",
       texto:
         "Factorizar completamente. Trabaje en su libreta y luego seleccione una opción como resultado:",
       incisos: [
@@ -118,36 +109,36 @@ export const grades9no = {
           id: "a",
           exercise: "8x<sup>3</sup> - 2x",
           answer: [
-            { text: "2x(2x-1)(2x-1)", validation: INCORRECT },
-            { text: "2x(2x+1)(2x+1)", validation: INCORRECT },
-            { text: "2x(2x+1)(2x-1)", validation: CORRECT },
+            { text: "2x(2x-1)(2x-1)", validation: "incorrect" },
+            { text: "2x(2x+1)(2x+1)", validation: "incorrect" },
+            { text: "2x(2x+1)(2x-1)", validation: "correct" },
           ],
         },
         {
           id: "b",
           exercise: "3y<sup>2</sup> + 6y - 24",
           answer: [
-            { text: "(3y - 6)(y + 4)", validation: CORRECT },
-            { text: "(3y + 6)(y + 4)", validation: INCORRECT },
-            { text: "(3y + 6)(y - 4)", validation: INCORRECT },
+            { text: "(3y - 6)(y + 4)", validation: "correct" },
+            { text: "(3y + 6)(y + 4)", validation: "incorrect" },
+            { text: "(3y + 6)(y - 4)", validation: "incorrect" },
           ],
         },
         {
           id: "c",
           exercise: "18z<sup>3</sup> - 54z",
           answer: [
-            { text: "9z(2z<sup>2</sup> + 6)", validation: INCORRECT },
-            { text: "9z(9z<sup>2</sup> - 6)", validation: CORRECT },
-            { text: "9z(2z<sup>2</sup> + 27)", validation: INCORRECT },
+            { text: "9z(2z<sup>2</sup> + 6)", validation: "incorrect" },
+            { text: "9z(9z<sup>2</sup> - 6)", validation: "correct" },
+            { text: "9z(2z<sup>2</sup> + 27)", validation: "incorrect" },
           ],
         },
         {
           id: "d",
           exercise: "b<sup>4</sup> - b<sup>2</sup> - 12",
           answer: [
-            { text: "(b+2)(b+2)(b<sup>2</sup>+3)", validation: INCORRECT },
-            { text: "(b+2)(b-2)(b<sup>2</sup>+3)", validation: CORRECT },
-            { text: "(b-2)(b-2)(b<sup>2</sup>+3)", validation: INCORRECT },
+            { text: "(b+2)(b+2)(b<sup>2</sup>+3)", validation: "incorrect" },
+            { text: "(b+2)(b-2)(b<sup>2</sup>+3)", validation: "correct" },
+            { text: "(b-2)(b-2)(b<sup>2</sup>+3)", validation: "incorrect" },
           ],
         },
         {
@@ -156,15 +147,15 @@ export const grades9no = {
           answer: [
             {
               text: "2x(x-2)<sup>2</sup>(x+2)<sup>2</sup>",
-              validation: CORRECT,
+              validation: "correct",
             },
             {
               text: "2x(x+2)<sup>2</sup>(x+2)<sup>2</sup>",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "2x(x-2)<sup>2</sup>(x-2)<sup>2</sup></sup>",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
           ],
         },
@@ -172,18 +163,18 @@ export const grades9no = {
           id: "f",
           exercise: "x<sup>2</sup> - 8x + 16",
           answer: [
-            { text: "(x - 4)(x + 4)", validation: INCORRECT },
-            { text: "(x - 4)(x - 4)", validation: CORRECT },
-            { text: "(x + 4)(x + 4)", validation: INCORRECT },
+            { text: "(x - 4)(x + 4)", validation: "incorrect" },
+            { text: "(x - 4)(x - 4)", validation: "correct" },
+            { text: "(x + 4)(x + 4)", validation: "incorrect" },
           ],
         },
         {
           id: "g",
           exercise: "m<sup>4</sup> - 256",
           answer: [
-            { text: "(m<sup>2</sup>+16)(m+4)(m+4)", validation: INCORRECT },
-            { text: "(m<sup>2</sup>+16)(m+4)(m-4)", validation: CORRECT },
-            { text: "(m<sup>2</sup>+16)(m-4)(m-4)", validation: INCORRECT },
+            { text: "(m<sup>2</sup>+16)(m+4)(m+4)", validation: "incorrect" },
+            { text: "(m<sup>2</sup>+16)(m+4)(m-4)", validation: "correct" },
+            { text: "(m<sup>2</sup>+16)(m-4)(m-4)", validation: "incorrect" },
           ],
         },
         {
@@ -192,15 +183,15 @@ export const grades9no = {
           answer: [
             {
               text: "3y(y<sup>6</sup>z - y<sup>3</sup>z - 2z)",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "3yz(y<sup>5</sup> - y<sup>3</sup> - 2)",
-              validation: INCORRECT,
+              validation: "incorrect",
             },
             {
               text: "3yz(y<sup>6</sup> - y<sup>3</sup> - 2)",
-              validation: CORRECT,
+              validation: "correct",
             },
           ],
         },
@@ -208,7 +199,7 @@ export const grades9no = {
     },
     {
       id: "3",
-      type: TRUEFALSE,
+      type: "TrueFalse",
       title: "(Falta video)",
       texto: "Escoja Verdadero o Falso segun corresponda:",
       incisos: [
@@ -216,55 +207,55 @@ export const grades9no = {
           id: "a",
           exercise:
             "La operación de sustracción no se puede realizar de manera ilimitada en el conjunto de los números naturales.",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "b",
           exercise:
             "La estadística se caracteriza por realizar estudios de datos relativos a conjuntos de datos, individuos y observaciones lo más numerosas posible y ocurridos en diferentes instantes de tiempo.",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "c",
           exercise:
             "1/6 es un número fraccionario que es a la vez menor que 0,6 y mayor que 1/5.",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "d",
           exercise:
             "La estadística descriptiva estudia una muestra derivando conclusiones sobre un grupo mayor de esta.",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "e",
           exercise:
             "El rango o recorrido de una variable es la diferencia entre el dato mayor y el dato menor del conjunto de valores que toma la variable.",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "f",
           exercise:
             "La marca de clase es el punto medio de la clase que se obtiene restando los límites de clase superior e inferior y dividiendo entre dos.",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
         {
           id: "g",
           exercise:
             "La clase modal es la clase de menor frecuencias cuando la anotaciones se presentan unidas en clases.",
-          validation: VALIDATE_TRUE,
+          validation: "true",
         },
         {
           id: "h",
           exercise:
             "La clase mediana es la clase en que se encuentra el mayor número de datos.",
-          validation: VALIDATE_FALSE,
+          validation: "false",
         },
       ],
     },
     {
       id: "4",
-      type: PROBLEM,
+      type: "Problem",
       title: "Estadística",
       texto: `En el mcpio Yateras se celebró la Asamblea 55 Aniversario de la OPJM, la cual estuvo representada por pioneros de la Educación Primaria y Secundaria Básica. El rango de participantes de edad hasta 13 años se muestra a continuación: 
       <table>
@@ -335,7 +326,7 @@ export const grades9no = {
     },
     {
       id: "5",
-      type: PROBLEM,
+      type: "Problem",
       title: "Estadística",
       texto: `La tabla muestra las temperaturas en grados celcius registradas en una ciudad durante horas del día:
       <table>
@@ -411,7 +402,7 @@ export const grades9no = {
     },
     {
       id: "6",
-      type: PROBLEM,
+      type: "Problem",
       title: "Estadística",
       texto: `La tabla muestra la cantidad de puntos anotados por los jugadores de un equipo de baloncesto al finalizar el juego.
       <table>
@@ -493,7 +484,7 @@ export const grades9no = {
     },
     {
       id: "7",
-      type: PROBLEM,
+      type: "Problem",
       title: "Estadística",
       texto: `La tabla muestra el consumo eléctrico, en kl/h, durante un mes en los apartamentos que hay en un edificio:
       <table>
@@ -609,7 +600,7 @@ export const grades9no = {
     {
       id: "9",
       type: "ChooseAnswer",
-      title: "Área de figuras planas (falta video)",
+      title: "Área y Perímetro",
       img: "/img/exercises/8v0-3.webp",
       texto: "En la figura ABCD es un rombo de 4,0cm de lado y DE altura.\n",
       incisos: [
