@@ -71,11 +71,13 @@ export const classes = [
   },
   {
     title: "Funciones inversas",
-    image: "9zXjR45lOUo",
+    image: "RIgzDV-AV_Q",
+    url: "PLeySRPnY35dEKKcGIdu6NYgMShNyuK9rA",
   },
   {
     title: "Funciones compuestas",
     image: "RIgzDV-AV_Q",
+    url: "PLeySRPnY35dEKKcGIdu6NYgMShNyuK9rA",
   },
   {
     title: "Factorización",
