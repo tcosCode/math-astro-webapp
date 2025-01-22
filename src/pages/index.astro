@@ -5,8 +5,8 @@ import Card from "@components/Card.astro";
 import { topics } from "@data/topics";
 ---
 
-<Layout title="Matemáticas">
-  <YearSection title="Temas por Grado-Secundaria">
+<Layout title="Matemáticas Monteserin">
+  <YearSection title="Secundaria">
     {
       topics
         .slice(0, 3)
@@ -21,7 +21,7 @@ import { topics } from "@data/topics";
     }
   </YearSection>
 
-  <YearSection title="Temas por Grado-PreUniversitario">
+  <YearSection title="PreUniversitario">
     {
       topics
         .slice(3)
