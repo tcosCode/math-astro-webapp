@@ -598,7 +598,7 @@ export const grades9no = {
       id: "9",
       type: "ChooseAnswer",
       title: "Área y Perímetro",
-      img: "/img/exercises/8v0-3.webp",
+      img: "/img/exercises/9no-9.webp",
       texto: "En la figura ABCD es un rombo de 4,0cm de lado y DE altura.\n",
       incisos: [
         {
