@@ -24,7 +24,11 @@ const { title } = Astro.props;
       property="og:description"
       content="Clases y ejercicios de matemáticas para estudiantes de secundaria y preuniversitarios"
     />
-    <meta property="og:image" content="/img/social-image.webp" />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://math.monteserin.dev/img/social-image.webp"
+    />
     <meta property="og:url" content="https://math.monteserin.dev/" />
     <meta property="og:type" content="website" />
 
@@ -35,7 +39,10 @@ const { title } = Astro.props;
       name="twitter:description"
       content="Clases y ejercicios de matemáticas para estudiantes de secundaria y preuniversitarios"
     />
-    <meta name="twitter:image" content="/img/social-image.webp" />
+    <meta
+      name="twitter:image"
+      content="https://math.monteserin.dev/img/social-image.webp"
+    />
 
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
