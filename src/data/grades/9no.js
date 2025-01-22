@@ -35,7 +35,6 @@ export const grades9no = {
           answer: [
             { text: "(y + 7)(y - 7)", validation: "incorrect" },
             { text: "(y + 7)(y + 7y)", validation: "incorrect" },
-            ,
             { text: "(y - 7)(y + 7)", validation: "correct" },
           ],
         },
@@ -44,11 +43,8 @@ export const grades9no = {
           exercise: "2m<sup>2</sup> - 17m - 48",
           answer: [
             { text: "(2m + 1)(m + 8)", validation: "incorrect" },
-            ,
             { text: "(2m - 1)(m - 8)", validation: "correct" },
-            ,
             { text: "(2m + 1)(m - 8)", validation: "incorrect" },
-            ,
           ],
         },
         {
@@ -63,6 +59,7 @@ export const grades9no = {
               text: "(y + 7<sup>1/2</sup>)(y + 7<sup>1/2</sup>)",
               validation: "incorrect",
             },
+
             {
               text: "(y + 7<sup>1/2</sup>)(y - 7<sup>1/2</sup>)",
               validation: "correct",
