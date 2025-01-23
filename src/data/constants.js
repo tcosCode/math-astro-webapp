@@ -58,7 +58,7 @@ export const classes = [
   },
   {
     title: "Funciones cuadráticas",
-    image: "YlhOfpREfHE", // if !url, then the video will be captured from the thumbnail
+    image: "YlhOfpREfHE", // if !playlist, then the video will be captured from the thumbnail
   },
   {
     title: "Funciones lineales",
@@ -88,5 +88,11 @@ export const classes = [
     title: "Área y Perímetro",
     image: "DPcP6gz495U",
     url: "PLeySRPnY35dGL6Gpm_T-30RH3Kr2IxeDN",
+  },
+
+  {
+    title: "Logaritmos",
+    image: "pZTuEHrnOMg",
+    url: "PLeySRPnY35dHyUzy-YVDD9ZllhtXfcQ4",
   },
 ];

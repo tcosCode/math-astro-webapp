@@ -533,5 +533,28 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "10",
+      type: "Problem",
+      title: "Logaritmos",
+      texto: "Demostrar que se cumple.\nResolver primero en la libreta &#9997;",
+      incisos: [
+        {
+          id: "a",
+          exercise: "log<sub>3</sub>27 - log<sub>3</sub>9 = log<sub>3</sub>3",
+          answer: "1 = 1",
+        },
+        {
+          id: "b",
+          exercise: "2(log<sub>3</sub>9) = log<sub>3</sub>81",
+          answer: "4 = 4",
+        },
+        {
+          id: "c",
+          exercise: "log<sub>2</sub>4 + log<sub>2</sub>8 = log<sub>2</sub>32",
+          answer: "5 = 5",
+        },
+      ],
+    },
   ],
 };
