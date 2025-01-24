@@ -95,4 +95,8 @@ export const classes = [
     image: "pZTuEHrnOMg",
     url: "PLeySRPnY35dHyUzy-YVDD9ZllhtXfcQ4",
   },
+  {
+    title: "Igualdad de triángulos",
+    image: "hhpN91CSJpY",
+  }
 ];

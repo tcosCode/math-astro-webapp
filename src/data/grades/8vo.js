@@ -111,5 +111,82 @@ export const grades8vo = {
         },
       ],
     },
+    {
+      id: "3",
+      type: "Problem",
+      title: "Igualdad de triángulos",
+      img: "/img/exercises/8vo-3.webp",
+      texto:
+        "En la figura PQMN es un trapecio isósceles, RSPQ es un rectángulo y MS = RN.",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "Identificar un movimiento del plano que transforme el &#916;MRQ en &#916;SNP.",
+          answer: "Movimiento de simetría axial.",
+        },
+        {
+          id: "b",
+          exercise: "Demostrar que &#916;MRQ = &#916;SNP",
+          answer: "Se puede realizar mediante el criterio lll",
+        },
+        {
+          id: "c",
+          exercise: "Identificar otro criterio para demostrarlo ",
+          answer: "Criterio lal",
+        },
+        {
+          id: "d",
+          exercise: "Demostrar el inciso (a) aplicando el criterio lal",
+          answer: "Se puede hacer utilizando el ángulo recto y sus lados",
+        },
+      ],
+    },
+    {
+      id: "4",
+      type: "TrueFalse",
+      title: "Igualdad de triángulos",
+      img: "/img/exercises/8vo-4.webp",
+      texto:
+        "En la figura A, B, C y D son puntos de una circunferencia de centro O. AC y BD diámetros, los arcos AC = BD. ",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "El &#916;ADO se transforma en &#916;BOC mediante una traslación de dirección AB",
+          validation: "false",
+        },
+        {
+          id: "b",
+          exercise:
+            "El &#916;BCO se transforma en &#916;ABD mediante una simetría central de centro O",
+          validation: "false",
+        },
+        {
+          id: "c",
+          exercise:
+            "El &#916;ABO es imagen del &#916;ABC mediante una simetría axial de eje AC",
+          validation: "false",
+        },
+        {
+          id: "d",
+          exercise:
+            "El &#916;ABD se transforma en &#916;ABC mediante una simetría axial de eje r mediatriz de AB",
+          validation: "true",
+        },
+        {
+          id: "e",
+          exercise:
+            "Se puede demostrar que &#916;ABD = &#916;ABC aplicando el criterio (ala).",
+          validation: "true",
+        },
+        {
+          id: "f",
+          exercise:
+            "Aplicando el criterio (lal) se demuestra que &#916;BCO = &#916;AOD",
+          validation: "true",
+        },
+      ],
+    },
   ],
 };
