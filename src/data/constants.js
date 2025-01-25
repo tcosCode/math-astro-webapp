@@ -26,12 +26,6 @@ export const classes = [
     url: "PLeySRPnY35dErygDdRDp1912SPALoaBmZ",
   },
   {
-    title: "Logaritmos",
-    grade: "10mo, 11no",
-    image: "pZTuEHrnOMg",
-    url: "PLeySRPnY35dHyUzy-YVDD9ZllhtXfcQ4_",
-  },
-  {
     title: "Ecuación de la recta",
     grade: "11no",
     image: "GBSmycLgTeU",
