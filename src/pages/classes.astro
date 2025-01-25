@@ -1,22 +1,32 @@
 ---
+// Importa tu layout y los datos necesarios
 import Layout from "@layouts/Layout.astro";
-import { classes } from "@data/constants";
+import ClassesComponent from "@components/Classes.astro";
+import { classes as classesData } from "@data/constants";
+
+const grade7mo = classesData.filter((class_) => class_.grade.includes("7mo"));
+const grade8vo = classesData.filter((class_) => class_.grade.includes("8vo"));
+const grade9no = classesData.filter((class_) => class_.grade.includes("9no"));
+const grade10mo = classesData.filter((class_) => class_.grade.includes("10mo"));
+const grade11no = classesData.filter((class_) => class_.grade.includes("11no"));
+const grade12mo = classesData.filter((class_) => class_.grade.includes("12mo"));
 ---
 
 <Layout title="Clases">
   <h1>Clases</h1>
-  <ul>
-    {
-      classes.map((class_) => (
-        <li>
-          <a href={`/${class_.title}`}>{class_.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <ClassesComponent title="7mo" classes={grade7mo} />
+  <ClassesComponent title="8vo" classes={grade8vo} />
+  <ClassesComponent title="9no" classes={grade9no} />
+  <ClassesComponent title="10mo" classes={grade10mo} />
+  <ClassesComponent title="11no" classes={grade11no} />
+  <ClassesComponent title="12mo" classes={grade12mo} />
 </Layout>
+
 <style>
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--dark-grey);
   }
 </style>
