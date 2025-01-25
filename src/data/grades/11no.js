@@ -556,5 +556,31 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "11",
+      type: "Problem",
+      title: "Identidades Trigonométricas",
+      texto:
+        "Sean las expresiones trigonométricas\nA(&#947;) = <sup>(sen2&#947;&#8226;tan2&#947; + cos2&#947;+sen&#947;)</sup>/<sub>(1+sen&#947)&#178;</sub> y B(&#947;) = <sup>1</sup>/<sub>(1+sen&#947;)</sub>",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "Determinar para qué valores de &#947; &#8712; [0; 2&#960;] se indefine B(&#947;)",
+          answer: "&#947;= <sup>3&#960;</sup>/<sub>2</sub>",
+        },
+        {
+          id: "b",
+          exercise:
+            "Calcular B(<sup>&#960;</sup>/<sub>6</sub>) y diga el dominio restringido al que pertenece ",
+          answer: "&#947; &#8712; Q+",
+        },
+        {
+          id: "c",
+          exercise: "Demostrar que A(&#947;) = B(&#947;)",
+          answer: "MI = MD",
+        },
+      ],
+    },
   ],
 };

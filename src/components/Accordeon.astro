@@ -6,7 +6,7 @@ const { text } = Astro.props;
   <summary>
     <h4><strong>Respuesta</strong></h4>
   </summary>
-  <p>{text}</p>
+  <p set:html={text} />
 </details>
 
 <style>

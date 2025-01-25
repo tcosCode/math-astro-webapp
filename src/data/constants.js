@@ -98,5 +98,10 @@ export const classes = [
   {
     title: "Igualdad de triángulos",
     image: "hhpN91CSJpY",
-  }
+  },
+  {
+    title: "Identidades Trigonométricas",
+    image: "PbvKVSWyvpI",
+    url: "PLeySRPnY35dHK3mo8UWd3zAnYCG13OgAR",
+  },
 ];
