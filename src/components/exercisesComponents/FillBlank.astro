@@ -1,7 +1,4 @@
 ---
-import CheckedCorrect from "@components/icons/CheckedCorrect.astro";
-import CheckedIncorrect from "@components/icons/CheckedIncorrect.astro";
-
 interface FillBlankProps {
   inciso: string;
   sentence: Array<string>;
@@ -25,7 +22,7 @@ const { inciso, sentence, options } = Astro.props as FillBlankProps;
         return words.startsWith("blank") ? (
           <span class="blank" data-id={words} />
         ) : (
-          <span>{words}</span>
+          <span set:html={words} />
         );
       })
     }
