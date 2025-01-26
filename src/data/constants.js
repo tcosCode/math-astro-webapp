@@ -21,7 +21,7 @@ export const classes = [
   },
   {
     title: "Sistema de ecuaciones lineales 2x2",
-    grade: "7mo",
+    grade: "9no",
     image: "oQQfG1zIPMc",
     url: "PLeySRPnY35dErygDdRDp1912SPALoaBmZ",
   },
