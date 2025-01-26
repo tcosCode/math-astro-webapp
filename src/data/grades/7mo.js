@@ -115,7 +115,7 @@ export const grades7mo = {
             {
               id: "a_option1",
               text: "30°",
-              position: "blank1",
+              position: "none",
             },
             {
               id: "a_option2",
@@ -125,7 +125,7 @@ export const grades7mo = {
             {
               id: "a_option3",
               text: "60°",
-              position: "none",
+              position: "blank1",
             },
           ],
         },
@@ -136,12 +136,12 @@ export const grades7mo = {
             {
               id: "b_option1",
               text: "14cm",
-              position: "blank1",
+              position: "none",
             },
             {
               id: "b_option2",
               text: "16cm",
-              position: "none",
+              position: "blank1",
             },
             {
               id: "b_option3",
@@ -157,7 +157,7 @@ export const grades7mo = {
             {
               id: "c_option1",
               text: "Equilátero ",
-              position: "blank1",
+              position: "none",
             },
             {
               id: "c_option2",
@@ -167,7 +167,7 @@ export const grades7mo = {
             {
               id: "c_option3",
               text: "Escaleno ",
-              position: "none",
+              position: "blank1",
             },
           ],
         },
