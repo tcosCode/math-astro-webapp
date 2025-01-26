@@ -97,7 +97,7 @@ export const classes = [
   },
   {
     title: "Área y Perímetro",
-    grade: "9no",
+    grade: "7mo, 9no",
     image: "DPcP6gz495U",
     url: "PLeySRPnY35dGL6Gpm_T-30RH3Kr2IxeDN",
   },
