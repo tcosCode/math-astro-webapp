@@ -491,7 +491,7 @@ export const grades11no = {
     {
       id: "9",
       type: "ChooseAnswer",
-      title: "Razones trigonométricas ",
+      title: "Razones trigonométricas",
       img: "/img/exercises/11no-9.webp",
       texto: "Determinar el valor de x ",
       incisos: [
