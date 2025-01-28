@@ -119,4 +119,10 @@ export const classes = [
     image: "PbvKVSWyvpI",
     url: "PLeySRPnY35dHK3mo8UWd3zAnYCG13OgAR",
   },
+  {
+    title: "Números enteros",
+    grade: "7mo",
+    image: "G0o9qedyQU0",
+    url: "PLeySRPnY35dG1HI0lMYzMbZULNZ89FL5G",
+  }
 ];

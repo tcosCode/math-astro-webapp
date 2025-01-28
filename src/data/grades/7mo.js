@@ -2,7 +2,7 @@ export const grades7mo = {
   title: "7mo",
   img: "/img/calculator.svg",
   list: ["Racionales", "Geometría", "Variables"],
-  exercises: [    
+  exercises: [
     {
       id: "1",
       type: "FillBlank",
@@ -76,6 +76,24 @@ export const grades7mo = {
               position: "blank1",
             },
           ],
+        },
+      ],
+    },
+    {
+      id: "2",
+      type: "Problem",
+      title: "Números enteros",
+      texto: "Calcular:",
+      incisos: [
+        {
+          id: "a",
+          exercise: "-½ + (2,1)² + 3(¼ + 1)",
+          answer: "7,66",
+        },
+        {
+          id: "b",
+          exercise: "(-½)³ +&#8730;25 &#8226; <sup>1</sup>/</sub>10</sub>",
+          answer: "-3,72",
         },
       ],
     },
