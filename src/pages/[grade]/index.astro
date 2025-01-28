@@ -45,19 +45,6 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
                   />
                 </figure>
                 <div class="exercises-container">
-                  <ul class="exercises-list">
-                    {topic.exercises.map((exercise) => {
-                      return (
-                        <li>
-                          <a href={`/${grade}/${exercise.id}`}>
-                            <p>
-                              Ejercicio {exercise.id}: {exercise.title}
-                            </p>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
                   <div class="accordion">
                     {titlesArray.map((title) => (
                       <AccordionExercises
@@ -95,6 +82,11 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
     align-items: center;
     justify-content: center;
     gap: 5rem;
+    padding-block: 2rem;
+  }
+
+  .section-container figure {
+    align-self: flex-start;
   }
 
   li {
@@ -117,6 +109,7 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
   @media (max-width: 768px) {
     .section-container {
       display: block;
+      padding-block: 1rem;
     }
     h2 {
       text-align: center;
