@@ -1,24 +1,35 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import AccordionExercises from "@components/AccordionExercises.astro";
 import { topics } from "@data/topics";
 
 export function getStaticPaths(): Array<Object> {
   return [
-    { params: { grade: "7mo" }, props: { grade: "7mo" } },
-    { params: { grade: "8vo" }, props: { grade: "8vo" } },
-    { params: { grade: "9no" }, props: { grade: "9no" } },
-    { params: { grade: "10mo" }, props: { grade: "10mo" } },
-    { params: { grade: "11no" }, props: { grade: "11no" } },
-    { params: { grade: "12mo" }, props: { grade: "12mo" } },
+    { params: { grade: "7mo" } },
+    { params: { grade: "8vo" } },
+    { params: { grade: "9no" } },
+    { params: { grade: "10mo" } },
+    { params: { grade: "11no" } },
+    { params: { grade: "12mo" } },
   ];
 }
 
 const { grade } = Astro.params;
+
+// Obtain the current topic
+const currentTopic = topics.find((topic) => topic.title === grade);
+// Create a set of exercise titles to build the accordion
+const currentTopicExercisesTitles = new Set(
+  currentTopic?.exercises.map((exercise) => exercise.title),
+);
+// Convert the set to an array
+const titlesArray = Array.from(currentTopicExercisesTitles);
 ---
 
 <Layout title={`Grado ${grade}`}>
   <section>
     <h2>Ejercicios de {grade} grado</h2>
+
     <div class="section-container">
       {
         topics
@@ -34,21 +45,15 @@ const { grade } = Astro.params;
                   />
                 </figure>
                 <div class="exercises-container">
-                  <ul class="exercises-list">
-                    {topic.exercises.map((exercise) => {
-                      // Handle both string and object exercises
-
-                      return (
-                        <li>
-                          <a href={`/${grade}/${exercise.id}`}>
-                            <p>
-                              Ejercicio {exercise.id}: {exercise.title}
-                            </p>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <div class="accordion">
+                    {titlesArray.map((title) => (
+                      <AccordionExercises
+                        grade={grade}
+                        exerciseTitle={title}
+                        currentTopic={currentTopic}
+                      />
+                    ))}
+                  </div>
                 </div>
               </>
             );
@@ -77,6 +82,11 @@ const { grade } = Astro.params;
     align-items: center;
     justify-content: center;
     gap: 5rem;
+    padding-block: 2rem;
+  }
+
+  .section-container figure {
+    align-self: flex-start;
   }
 
   li {
@@ -99,6 +109,7 @@ const { grade } = Astro.params;
   @media (max-width: 768px) {
     .section-container {
       display: block;
+      padding-block: 1rem;
     }
     h2 {
       text-align: center;
