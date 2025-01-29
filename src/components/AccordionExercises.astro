@@ -114,14 +114,13 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
     transition: all 0.25s ease;
   }
 
-  /*Rotate icon and add font weight to titles*/
+  /*Rotate icon and add font weight to titles and border to headers*/
   .accordion-open .accordion__icon {
     transform: rotate(45deg);
   }
   .accordion-open .accordion__title {
     font-weight: 600;
   }
-
   .accordion-open .accordion__header {
     border-bottom: 1px solid var(--border-description-color);
   }

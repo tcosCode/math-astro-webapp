@@ -27,12 +27,13 @@ import { topics } from "@data/topics.js";
         </div>
       </div>
       <a href="/classes" class="navbar-item navbar-link">Videoclases</a>
-      <a href="#" class="navbar-item navbar-link">Contacto</a>
     </div>
   </nav>
+  <!-- Hamburger menu -->
   <figure>
     <Menu class="menu" id="menu" />
   </figure>
+  <div class="auth navbar-item">Login</div>
 </header>
 <script src="../utils/scriptMenu.ts"></script>
 
@@ -168,6 +169,15 @@ import { topics } from "@data/topics.js";
     cursor: pointer;
   }
 
+  .header .auth {
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+  }
+  .auth:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+
   @media (max-width: 768px) {
     .menu {
       display: block;
@@ -254,6 +264,10 @@ import { topics } from "@data/topics.js";
 
     .menu-drop-down a:hover {
       background-color: var(--secondary-color-light-2);
+    }
+
+    .header .auth {
+      display: none;
     }
   }
 
