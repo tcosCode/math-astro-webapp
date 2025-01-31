@@ -97,5 +97,33 @@ export const grades7mo = {
         },
       ],
     },
+    {
+      id: "3",
+      type: "Problem",
+      title: "Solución de ecuaciones",
+      texto:
+        "En un destacamento de 34 alumnos de una secundaria \nBásica, el doble de la cantidad de varones disminuido en cinco es la cantidad de hembras ",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "Calcular la cantidad de varones y de hembras que integran el destacamento ",
+          answer: "V = 13; H= 21",
+        },
+      ],
+    },
+    {
+      id: "4",
+      type: "Problem",
+      title: "Operaciones combinadas",
+      texto: "Resolver respetando el orden de las operaciones ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "(½)³+(√25).(<sup>1</sup>/<sub>10</sub>-4)",
+          answer: "-3,72",
+        },
+      ],
+    },
   ],
 };

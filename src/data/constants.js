@@ -124,5 +124,17 @@ export const classes = [
     grade: "7mo",
     image: "G0o9qedyQU0",
     url: "PLeySRPnY35dG1HI0lMYzMbZULNZ89FL5G",
-  }
+  },
+  {
+    title: "Solución de ecuaciones",
+    grade: "7mo",
+    image: "FrJ-tBTpxzo",
+    url: "PLeySRPnY35dGIC7UWuH0zUDm8BtFXics9",
+  },
+  {
+    title: "Operaciones combinadas",
+    grade: "7mo",
+    image: "zfX5Jz_ZtZI",
+  },
+  
 ];
