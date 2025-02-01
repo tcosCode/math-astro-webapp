@@ -582,5 +582,20 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "12",
+      type: "Problem",
+      title: "Identidades Trigonométricas",
+      texto:
+        "Sean A(x) = cos2x - sen&#178;x + senx + 1\nB(x) = sen&#178;x cot&#178;x",
+      incisos: [
+        {
+          id: "a",
+          exercise: "Demostrar que B(x) = cos&#178;x para todo x admisible",
+          answer:
+            "MI=cos&#178;x.(<sup>cos&#178;x</sup>/<sub>sen&#178;x</sub>)=cos&#178;x=MD",
+        },
+      ],
+    },
   ],
 };

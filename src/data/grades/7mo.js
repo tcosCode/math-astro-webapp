@@ -125,5 +125,65 @@ export const grades7mo = {
         },
       ],
     },
+    {
+      id: "5",
+      type: "Problem",
+      title: "Solución de ecuaciones",
+      texto:
+        "María y Pedro son estudiantes de 7mo y han realizado un total de 78 exposiciones en esta jornada y María superó en 14 a las exposiciones de Pedro.",
+      incisos: [
+        {
+          id: "a",
+          exercise: "¿Cuántas exposiciones realizó cada uno?",
+          answer: "Pedro = 32 y María = 46",
+        },
+        {
+          id: "b",
+          exercise: "¿Qué % representan las que realizó Pedro?",
+          answer: "Pedro = 41,02%",
+        },
+      ],
+    },
+    {
+      id: "6",
+      type: "Problem",
+      title: "Solución de ecuaciones",
+      texto:
+        "En el concurso de Física, Química y matemáticas se presentaron un total de 450 estudiantes en las tres asignaturas. La cantidad de participantes en Matemáticas fue el doble de la de Química y en Física superaron en 18 a los de Química ",
+      incisos: [
+        {
+          id: "a",
+          exercise: "¿Cuántos estudiantes participaron en cada asignatura?",
+          answer: "Q = 108; F = 126 y Matemáticas = 216",
+        },
+      ],
+    },
+    {
+      id: "7",
+      type: "ChooseAnswer",
+      title: "Operaciones combinadas",
+      texto:
+        "Calcular el valor numérico de R(x). Seleccionar la respuesta correcta:",
+      incisos: [
+        {
+          id: "a",
+          exercise: "Si x = &#8741;(-8)",
+          answer: [
+            {
+              text: "R(x) = 2",
+              validation: "incorrect",
+            },
+            {
+              text: "R(x) = -1",
+              validation: "correct",
+            },
+            {
+              text: "R(x) = -2",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
