@@ -167,7 +167,7 @@ export const grades7mo = {
       incisos: [
         {
           id: "a",
-          exercise: "Si x = &#8741;(-8)",
+          exercise: "Si x = &#8731;(-8)",
           answer: [
             {
               text: "R(x) = 2",

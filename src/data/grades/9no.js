@@ -197,7 +197,7 @@ export const grades9no = {
     {
       id: "3",
       type: "TrueFalse",
-      title: "(Falta video)",
+      title: "Estadística",
       texto: "Escoja Verdadero o Falso segun corresponda:",
       incisos: [
         {
