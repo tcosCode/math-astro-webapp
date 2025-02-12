@@ -50,14 +50,14 @@ export const grades12mo = {
     {
       id: "2",
       type: "TrueFalse",
-      title: "(Falta video)",
+      title: "Igualdad de triángulos",
       texto: "Seleccionar V o F según convenga. Justificar las falsas ",
       incisos: [
         {
           id: "a",
           exercise:
             "Si dos triángulos tienen sus tres ángulos con la misma amplitud entonces son congruentes",
-          validation: "true",
+          validation: "false",
         },
         {
           id: "b",
