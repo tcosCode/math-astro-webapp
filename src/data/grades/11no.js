@@ -559,7 +559,7 @@ export const grades11no = {
     {
       id: "11",
       type: "Problem",
-      title: "Identidades Trigonométricas",
+      title: "Identidades trigonométricas",
       texto:
         "Sean las expresiones trigonométricas\nA(&#947;) = <sup>(sen2&#947;&#8226;tan2&#947; + cos2&#947;+sen&#947;)</sup>/<sub>(1+sen&#947)&#178;</sub> y B(&#947;) = <sup>1</sup>/<sub>(1+sen&#947;)</sub>",
       incisos: [
@@ -585,7 +585,7 @@ export const grades11no = {
     {
       id: "12",
       type: "Problem",
-      title: "Identidades Trigonométricas",
+      title: "Identidades trigonométricas",
       texto:
         "Sean A(x) = cos2x - sen&#178;x + senx + 1\nB(x) = sen&#178;x cot&#178;x",
       incisos: [
@@ -594,6 +594,30 @@ export const grades11no = {
           exercise: "Demostrar que B(x) = cos&#178;x para todo x admisible",
           answer:
             "MI=cos&#178;x.(<sup>cos&#178;x</sup>/<sub>sen&#178;x</sub>)=cos&#178;x=MD",
+        },
+      ],
+    },
+    {
+      id: "13",
+      type: "Problem",
+      title: "Identidades trigonométricas",
+      texto: "Demostrar que",
+      incisos: [
+        {
+          id: "a",
+          exercise: "<sup>sen2x</sup>/<sub>2tanx</sub> - sen²x = cos2x",
+          answer: "cos2x = cos2x",
+        },
+        {
+          id: "b",
+          exercise: "2tan²x . cos²x + cos2x = 1",
+          answer: "1 = 1",
+        },
+        {
+          id: "c",
+          exercise:
+            "<sup>(sen2x + cosx)</sup>/<sub>2 - 2cos²x + senx</sub> . tanx = tan<sub>π</sub>/<sub>4</sub>",
+          answer: "tan<sup>π</sup>/<sub>4</sub> = tan<sup>π</sup>/<sub>4</sub>",
         },
       ],
     },

@@ -114,7 +114,7 @@ export const classes = [
     image: "hhpN91CSJpY",
   },
   {
-    title: "Identidades Trigonométricas",
+    title: "Identidades trigonométricas",
     grade: "11no",
     image: "PbvKVSWyvpI",
     url: "PLeySRPnY35dHK3mo8UWd3zAnYCG13OgAR",
@@ -136,5 +136,4 @@ export const classes = [
     grade: "7mo",
     image: "zfX5Jz_ZtZI",
   },
-  
 ];
