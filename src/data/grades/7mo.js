@@ -58,7 +58,7 @@ export const grades7mo = {
         },
         {
           id: "c",
-          sentence: ["El &#916; según sus lados es ", "blank1"],
+          sentence: ["El &#916 AED; según sus lados es ", "blank1"],
           options: [
             {
               id: "c_option1",
