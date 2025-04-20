@@ -655,5 +655,76 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         },
       ],
     },
+    {
+      id: "11",
+      type: "FillBlank",
+      title: "Completar los espacios en blanco ",
+      texto: "En la función y=senx se cumple que ",
+      incisos: [
+        {
+          id: "a",
+          sentence: ["Si x=30 grados entonces", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "sen30=0",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "sen30=½",
+              position: "blank1",
+            },
+            {
+              id: "a_option3",
+              text: "sen30=1",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["Si x=90 grados entonces", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "sen90=0",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "sen90=½",
+              position: "none",
+            },
+            {
+              id: "b_option3",
+              text: "sen90=1",
+              position: "blank1",
+            },
+          ],
+        },
+        {
+          id: "c",
+          sentence: ["Si x=0 grados entonces ", "blank1", ""],
+          options: [
+            {
+              id: "c_option1",
+              text: "sen0=0",
+              position: "blank1",
+            },
+            {
+              id: "c_option2",
+              text: "sen0=½",
+              position: "none",
+            },
+            {
+              id: "c_option3",
+              text: "sen0=1",
+              position: "none",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

@@ -188,5 +188,76 @@ export const grades8vo = {
         },
       ],
     },
+    {
+      id: "5",
+      type: "FillBlank",
+      title: "Completar los espacios en blanco:",
+      texto: "Calcular el valor de x.",
+      incisos: [
+        {
+          id: "a",
+          sentence: ["6x + 1,8 = 0", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "x = 0,03",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "x = 0,03",
+              position: "none",
+            },
+            {
+              id: "a_option3",
+              text: "x = -0,3",
+              position: "blank1",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["<sup>2</sup>/<sub>3</sub>x + 7 = 0", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "x = -10,5",
+              position: "blank1",
+            },
+            {
+              id: "b_option2",
+              text: "x = 10,5",
+              position: "none",
+            },
+            {
+              id: "b_option3",
+              text: "x = 1,05",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "c",
+          sentence: ["-2x - 1,62 = 0", "blank1", ""],
+          options: [
+            {
+              id: "c_option1",
+              text: "x = 0,81",
+              position: "none",
+            },
+            {
+              id: "c_option2",
+              text: "x = -0,81",
+              position: "blank1",
+            },
+            {
+              id: "c_option3",
+              text: "x = 8,1",
+              position: "none",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

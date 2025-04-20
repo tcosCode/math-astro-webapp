@@ -752,5 +752,76 @@ export const grades9no = {
         },
       ],
     },
+    {
+      id: "13",
+      type: "FillBlank",
+      title: "Completar los espacios en blanco ",
+      texto: "Dada la función cuadrática X²+bx+c=0",
+      incisos: [
+        {
+          id: "a",
+          sentence: ["y = x² - 3x, el valor de c", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "c = 1",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "c = 3",
+              position: "none",
+            },
+            {
+              id: "a_option3",
+              text: "c = 0",
+              position: "blank1",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["Si a=1; b=-2 y c=5 entonces", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "x²+2x-5=0",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "x²-2x+5=0",
+              position: "blank1",
+            },
+            {
+              id: "b_option3",
+              text: "x²+2x+5=0",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "c",
+          sentence: ["y = -x² su gráfica abre hacia", "blank1", ""],
+          options: [
+            {
+              id: "c_option1",
+              text: "Arriba ",
+              position: "none",
+            },
+            {
+              id: "c_option2",
+              text: "Abajo ",
+              position: "blank1",
+            },
+            {
+              id: "c_option3",
+              text: "Derecha ",
+              position: "none",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

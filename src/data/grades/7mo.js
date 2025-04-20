@@ -185,5 +185,76 @@ export const grades7mo = {
         },
       ],
     },
+    {
+      id: "8",
+      type: "FillBlank",
+      title: "Completar los espacios en blanco:",
+      texto: "Dada la sgte lista \n1,2; ¾; 1,25 y 0,85. Seleccione:",
+      incisos: [
+        {
+          id: "a",
+          sentence: ["El número mayor ", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "0,85",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "1,2",
+              position: "none",
+            },
+            {
+              id: "a_option3",
+              text: "1,25",
+              position: "blank1",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["El número menor ", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "1,25",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "¾",
+              position: "blank1",
+            },
+            {
+              id: "b_option3",
+              text: "0,85",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "c",
+          sentence: ["El número < 1,2", "blank1", ""],
+          options: [
+            {
+              id: "c_option1",
+              text: "0,85",
+              position: "blank1",
+            },
+            {
+              id: "c_option2",
+              text: "1,2",
+              position: "none",
+            },
+            {
+              id: "c_option3",
+              text: "1,25",
+              position: "none",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
