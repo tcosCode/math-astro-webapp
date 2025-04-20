@@ -188,8 +188,9 @@ export const grades7mo = {
     {
       id: "8",
       type: "FillBlank",
-      title: "Completar los espacios en blanco:",
-      texto: "Dada la sgte lista \n1,2; ¾; 1,25 y 0,85. Seleccione:",
+      title: "Operaciones combinadas",
+      texto:
+        "Dada la sgte lista \n1,2; ¾; 1,25 y 0,85. Completar los espacios en blanco:",
       incisos: [
         {
           id: "a",
@@ -214,7 +215,7 @@ export const grades7mo = {
         },
         {
           id: "b",
-          sentence: ["El número menor ", "blank1", ""],
+          sentence: ["El menor número", "blank1", ""],
           options: [
             {
               id: "b_option1",
@@ -235,7 +236,7 @@ export const grades7mo = {
         },
         {
           id: "c",
-          sentence: ["El número < 1,2", "blank1", ""],
+          sentence: ["El número menor que 1,2", "blank1", ""],
           options: [
             {
               id: "c_option1",

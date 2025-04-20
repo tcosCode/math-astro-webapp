@@ -658,8 +658,8 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
     {
       id: "11",
       type: "FillBlank",
-      title: "Completar los espacios en blanco ",
-      texto: "En la función y=senx se cumple que ",
+      title: "Ecuaciones trigonométricas",
+      texto: "En la función y=senx se cumple que",
       incisos: [
         {
           id: "a",

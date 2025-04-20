@@ -755,7 +755,7 @@ export const grades9no = {
     {
       id: "13",
       type: "FillBlank",
-      title: "Completar los espacios en blanco ",
+      title: "Ecuaciones cuadráticas",
       texto: "Dada la función cuadrática X²+bx+c=0",
       incisos: [
         {

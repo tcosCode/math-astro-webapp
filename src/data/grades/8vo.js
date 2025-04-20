@@ -191,8 +191,8 @@ export const grades8vo = {
     {
       id: "5",
       type: "FillBlank",
-      title: "Completar los espacios en blanco:",
-      texto: "Calcular el valor de x.",
+      title: "División de polinomios",
+      texto: "Calcular el valor de x y complete los espacios en blanco:",
       incisos: [
         {
           id: "a",
