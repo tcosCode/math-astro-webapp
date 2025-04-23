@@ -621,5 +621,77 @@ export const grades11no = {
         },
       ],
     },
+    {
+      id: "14",
+      type: "FillBlank",
+      title: "Identidades trigonométricas",
+      texto:
+        "Dadas las identidades trigonométricas, complete las siguientes ecuaciones:",
+      incisos: [
+        {
+          id: "a",
+          sentence: ["sen²x + cos²x =", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "1",
+              position: "blank1",
+            },
+            {
+              id: "a_option2",
+              text: "sen²x",
+              position: "none",
+            },
+            {
+              id: "a_option3",
+              text: "cos²x",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["sen2x =", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "senxcosx",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "2senxcosx",
+              position: "blank1",
+            },
+            {
+              id: "b_option3",
+              text: "2senx",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "c",
+          sentence: ["cos2x =", "blank1", ""],
+          options: [
+            {
+              id: "c_option1",
+              text: "cosx-1",
+              position: "none",
+            },
+            {
+              id: "c_option2",
+              text: "2cosx-1",
+              position: "none",
+            },
+            {
+              id: "c_option3",
+              text: "2cos²x-1",
+              position: "blank1",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
