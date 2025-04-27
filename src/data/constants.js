@@ -63,7 +63,7 @@ export const classes = [
   },
   {
     title: "Funciones cuadráticas",
-    grade: "10mo",
+    grade: "9no, 10mo",
     image: "YlhOfpREfHE", // if !playlist, then the video will be captured from the thumbnail ID video
   },
   {

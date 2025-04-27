@@ -823,5 +823,83 @@ export const grades9no = {
         },
       ],
     },
+    {
+      id: "14",
+      type: "FillBlank",
+      title: "Funciones cuadráticas",
+      texto: "Seleccionar la ecuación de la parábola y=(x-d)²+e",
+      incisos: [
+        {
+          id: "a",
+          sentence: ["Con vértice V(-1;-3)", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "y=(x-1)²-3",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "y=(x-1)²+3",
+              position: "none",
+            },
+            {
+              id: "a_option3",
+              text: "y=(x+1)²-3",
+              position: "blank1",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["Con vértice V=(2;-1)", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "y=x-2)²-1",
+              position: "blank1",
+            },
+            {
+              id: "b_option2",
+              text: "y=(x+2)²+1",
+              position: "none",
+            },
+            {
+              id: "b_option3",
+              text: "Y=(x+2)²+1",
+              position: "none",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "15",
+      type: "TrueFalse",
+      title: "Funciones cuadráticas",
+      texto: "El vértice de la función y=(x-2)²-4 es",
+      incisos: [
+        {
+          id: "a",
+          exercise: "V=(-2;4)",
+          validation: "false",
+        },
+        {
+          id: "b",
+          exercise: "V=(2;-4)",
+          validation: "true",
+        },
+        {
+          id: "c",
+          exercise: "V=(2;4)",
+          validation: "false",
+        },
+        {
+          id: "d",
+          exercise: "V=(-2;-.4)",
+          validation: "false",
+        },
+      ],
+    },
   ],
 };
