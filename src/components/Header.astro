@@ -3,6 +3,12 @@ import ArrowDown from "@components/icons/ArrowDown.astro";
 import LogoFunction from "@components/icons/LogoFunction.astro";
 import Menu from "@components/icons/Menu.astro";
 import { topics } from "@data/topics.js";
+import {
+  SignedOut,
+  SignedIn,
+  SignInButton,
+  UserButton,
+} from "@clerk/astro/components";
 ---
 
 <!--Header-->
@@ -33,7 +39,12 @@ import { topics } from "@data/topics.js";
   <figure>
     <Menu class="menu" id="menu" />
   </figure>
-  <div class="auth navbar-item">Login</div>
+  <SignedOut>
+    <SignInButton mode="modal" class="auth navbar-item">Login</SignInButton>
+  </SignedOut>
+  <SignedIn>
+    <UserButton />
+  </SignedIn>
 </header>
 <script src="../utils/scriptMenu.ts"></script>
 
@@ -169,9 +180,11 @@ import { topics } from "@data/topics.js";
     cursor: pointer;
   }
 
-  .header .auth {
+  .auth {
     border: 1px solid var(--primary-color);
     border-radius: 5px;
+    background-color: var(--white-color);
+    font-size: 16px;
   }
   .auth:hover {
     background-color: var(--primary-color);

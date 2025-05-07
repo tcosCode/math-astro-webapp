@@ -12,7 +12,7 @@ const { img, grade, subjects, href } = Astro.props;
 <article class="grade">
   <a href={href}>
     <div class="image-container">
-      <img src={img} alt={grade} />
+      <img src={img} alt={grade} transition:name={`image ${grade} id`} />
     </div>
     <h3>{grade}</h3>
     <ul>
