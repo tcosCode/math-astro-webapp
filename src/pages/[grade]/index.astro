@@ -46,11 +46,12 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
                 </figure>
                 <div class="exercises-container">
                   <div class="accordion">
-                    {titlesArray.map((title) => (
+                    {titlesArray.map((title, index) => (
                       <AccordionExercises
                         grade={grade}
                         exerciseTitle={title}
                         currentTopic={currentTopic}
+                        isOdd={index % 2 === 0}
                       />
                     ))}
                   </div>

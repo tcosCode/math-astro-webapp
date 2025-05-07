@@ -1,9 +1,9 @@
 ---
-const { grade, exerciseTitle, currentTopic } = Astro.props;
+const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
 ---
 
-<div class="accordion__item">
-  <header class="accordion__header">
+<div class={`accordion__item ${isOdd ? "odd" : "even"}`}>
+  <header class=`accordion__header ${isOdd ? "odd" : "even"}`>
     <img
       src="/icons/bx-plus.svg"
       alt="Plus icon for the accordion "
@@ -13,7 +13,7 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
       {exerciseTitle}
     </h3>
   </header>
-  <div class="accordion__content">
+  <div class=`accordion__content ${isOdd ? "odd" : "even"}`>
     {
       currentTopic.exercises
         .filter((exercise: any) => exercise.title === exerciseTitle)
@@ -31,13 +31,14 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
 <script src="@utils/scriptAccordion.ts"></script>
 
 <style>
-  :root {
-    /*========== Colors ==========*/
-    --hue-color: 225;
-    --first-color: hsl(var(--hue-color), 48%, 35%);
-    --title-color: hsl(var(--hue-color), 48%, 22%);
-    --text-color: hsl(var(--hue-color), 12%, 35%);
-    --body-color: hsl(var(--hue-color), 49%, 98%);
+  .odd {
+    --bg-color-accordion-item: hsl(28, 100%, 95%);
+    --border-description-color: var(--secondary-color-light);
+  }
+
+  .even {
+    --bg-color-accordion-item: hsl(200, 100%, 95%);
+    --border-description-color: var(--primary-color-dark-2);
   }
 
   .accordion__title {
@@ -46,13 +47,16 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
     margin-top: 0.15rem;
     transition: 0.2s;
   }
+
   .accordion__header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 1.25rem 1.25rem 1.25rem 1rem;
     cursor: pointer;
+    background-color: var(--bg-color-accordion-item);
   }
+
   .accordion__description {
     font-size: 1rem;
     width: 100%;
@@ -62,14 +66,13 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
   }
 
   .accordion__description:hover {
-    background-color: hsla(0, 0%, 95%, 0.1);
+    background-color: var(--bg-color-accordion-item);
   }
 
   .accordion__icon {
     transition: 0.3s;
   }
   .accordion__item {
-    border-radius: 0.25rem 0 0.25rem;
     position: relative;
     transition: all 0.25s ease;
   }
@@ -80,34 +83,9 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 0.25rem 0 0 0.25rem;
+    background-color: var(--border-description-color);
   }
-  .accordion__item:nth-child(odd) {
-    background-color: hsl(28, 100%, 95%);
-    --border-description-color: var(--secondary-color-light);
-  }
-  .accordion__item:nth-child(odd)::after {
-    background-color: var(--secondary-color-light);
-  }
-  .accordion__item:nth-child(even) {
-    background-color: hsl(200, 100%, 95%);
-    --border-description-color: var(--primary-color-dark-2);
-  }
-  .accordion__item:nth-child(even)::after {
-    background-color: var(--primary-color-dark-2);
-  }
-  /* .accordion__item:nth-child(3n) {
-    background-color: #fff0f3;
-  }
-  .accordion__item:nth-child(3n)::after {
-    background-color: #ff8aa1;
-  }
-  .accordion__item:nth-child(4n) {
-    background-color:  #f0f0ff;
-  }
-  .accordion__item:nth-child(4n)::after {
-    background-color:  #8a8aff;
-  } */
+
   .accordion__content {
     overflow: hidden;
     height: 0;
@@ -118,9 +96,7 @@ const { grade, exerciseTitle, currentTopic } = Astro.props;
   .accordion-open .accordion__icon {
     transform: rotate(45deg);
   }
-  .accordion-open .accordion__title {
-    font-weight: 600;
-  }
+
   .accordion-open .accordion__header {
     border-bottom: 1px solid var(--border-description-color);
   }
