@@ -9,6 +9,8 @@ import Matching from "@components/exercisesComponents/Matching.astro";
 import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
 import { shuffle } from "@utils/shuffleArray";
 
+export const prerender = true;
+
 interface ExerciseChooseAnswer {
   id: string;
   type: string;
