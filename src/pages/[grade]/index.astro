@@ -3,8 +3,6 @@ import Layout from "@layouts/Layout.astro";
 import AccordionExercises from "@components/AccordionExercises.astro";
 import { topics } from "@data/topics";
 
-export const prerender = true;
-
 export function getStaticPaths(): Array<Object> {
   return [
     { params: { grade: "7mo" } },

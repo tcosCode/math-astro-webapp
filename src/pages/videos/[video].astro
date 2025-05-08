@@ -2,14 +2,12 @@
 import Layout from "@layouts/Layout.astro";
 import { classes } from "@data/constants";
 
-export const prerender = true;
-
 export function getStaticPaths() {
   const paths: Array<{ params: { video: string } }> = [];
 
   // Dinamic routes
   classes.forEach((class_) => {
-    paths.push({ params: { video: `videos/${class_.title}` } });
+    paths.push({ params: { video: `${class_.title}` } });
   });
   return paths;
 }
