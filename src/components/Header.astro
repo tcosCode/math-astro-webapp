@@ -36,15 +36,15 @@ import {
     </div>
   </nav>
   <!-- Hamburger menu -->
-  <figure>
-    <Menu class="menu" id="menu" />
-  </figure>
   <SignedOut>
-    <SignInButton mode="modal" class="auth navbar-item">Login</SignInButton>
+    <SignInButton mode="modal" class="auth">Login</SignInButton>
   </SignedOut>
   <SignedIn>
     <UserButton />
   </SignedIn>
+  <figure>
+    <Menu class="menu" id="menu" />
+  </figure>
 </header>
 <script src="../utils/scriptMenu.ts"></script>
 
@@ -185,6 +185,12 @@ import {
     border-radius: 5px;
     background-color: var(--white-color);
     font-size: 16px;
+    padding: 0.5rem 1rem;
+    color: var(--dark-grey);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
   }
   .auth:hover {
     background-color: var(--primary-color);
@@ -279,12 +285,14 @@ import {
       background-color: var(--secondary-color-light-2);
     }
 
+    /*
     .header .auth {
       display: none;
     }
+      */
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 550px) {
     .header-title {
       display: none;
     }
