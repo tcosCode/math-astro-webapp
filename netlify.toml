@@ -1,0 +1,8 @@
+[build]
+  command   = "bun run build"
+  publish   = "dist"                  # assets estáticos de cliente
+  functions = ".netlify/functions"    # Netlify Functions generadas
+
+[dev]
+  command = "bun start"
+  port    = 4321
