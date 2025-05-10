@@ -2,7 +2,7 @@ import { defineDb, defineTable, column, NOW } from "astro:db";
 
 const users = defineTable({
   columns: {
-    id: column.number({ primaryKey: true }),
+    id: column.number({ primaryKey: true, autoIncrement: true }),
     userId: column.text({ unique: true }), // Is important that the referenced column is unique
     name: column.text(),
     email: column.text(),
@@ -14,7 +14,7 @@ const users = defineTable({
 
 const answers = defineTable({
   columns: {
-    id: column.number({ primaryKey: true }),
+    id: column.number({ primaryKey: true, autoIncrement: true }),
     userId: column.text({
       references: () => users.columns.userId, // Here we reference the column of the users table
     }),

@@ -8,6 +8,7 @@ export const GET: APIRoute = ({ request, params }) => {
   );
 };
 
+/*
 export const POST: APIRoute = ({ request, params }) => {
   return new Response(
     JSON.stringify({
@@ -15,3 +16,4 @@ export const POST: APIRoute = ({ request, params }) => {
     }),
   );
 };
+*/
