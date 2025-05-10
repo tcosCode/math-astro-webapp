@@ -1,5 +1,5 @@
 [build]
-  command   = "bun run build"
+  command   = "bun run build --remote"
   publish   = "dist"                  # assets estáticos de cliente
   functions = ".netlify/functions"    # Netlify Functions generadas
 
