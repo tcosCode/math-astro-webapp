@@ -7,7 +7,7 @@ export function getStaticPaths() {
 
   // Dinamic routes
   classes.forEach((class_) => {
-    paths.push({ params: { video: class_.title } });
+    paths.push({ params: { video: `${class_.title}` } });
   });
   return paths;
 }

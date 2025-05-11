@@ -1,0 +1,25 @@
+---
+// index.astro file
+import { db, users } from "astro:db";
+
+const users_db = await db.select().from(users);
+---
+
+<html>
+  <head>
+    <title>Testing users Database</title>
+  </head>
+  <body>
+    <h2>Comments</h2>
+
+    {
+      users_db.map(({ name, email, createdAt }) => (
+        <article>
+          <p>Author: {name}</p>
+          <p>{email}</p>
+          <p>{createdAt}</p>
+        </article>
+      ))
+    }
+  </body>
+</html>

@@ -3,6 +3,12 @@ import ArrowDown from "@components/icons/ArrowDown.astro";
 import LogoFunction from "@components/icons/LogoFunction.astro";
 import Menu from "@components/icons/Menu.astro";
 import { topics } from "@data/topics.js";
+import {
+  SignedOut,
+  SignedIn,
+  SignInButton,
+  UserButton,
+} from "@clerk/astro/components";
 ---
 
 <!--Header-->
@@ -30,10 +36,15 @@ import { topics } from "@data/topics.js";
     </div>
   </nav>
   <!-- Hamburger menu -->
+  <SignedOut>
+    <SignInButton mode="modal" class="auth">Login</SignInButton>
+  </SignedOut>
+  <SignedIn>
+    <UserButton />
+  </SignedIn>
   <figure>
     <Menu class="menu" id="menu" />
   </figure>
-  <div class="auth navbar-item">Login</div>
 </header>
 <script src="../utils/scriptMenu.ts"></script>
 
@@ -169,9 +180,17 @@ import { topics } from "@data/topics.js";
     cursor: pointer;
   }
 
-  .header .auth {
+  .auth {
     border: 1px solid var(--primary-color);
     border-radius: 5px;
+    background-color: var(--white-color);
+    font-size: 16px;
+    padding: 0.5rem 1rem;
+    color: var(--dark-grey);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
   }
   .auth:hover {
     background-color: var(--primary-color);
@@ -266,12 +285,14 @@ import { topics } from "@data/topics.js";
       background-color: var(--secondary-color-light-2);
     }
 
+    /*
     .header .auth {
       display: none;
     }
+      */
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 550px) {
     .header-title {
       display: none;
     }

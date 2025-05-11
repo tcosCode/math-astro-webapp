@@ -108,7 +108,11 @@ export function getStaticPaths() {
   return paths;
 }
 
-const { grade, exercise } = Astro.params;
+const { grade, exercise } = Astro.params || {};
+
+if (!grade || !exercise) {
+  throw new Error("Los parámetros de la ruta son inválidos o no existen.");
+}
 
 // Busca el ejercicio actual
 const currentExercise = topics
@@ -146,7 +150,8 @@ const length = currentExercise?.incisos?.length ?? 0;
     }
     <p class="p-exercises-video">
       Si tienes alguna duda, mira la clase <span class="span-exercises-video">
-        <a href={`/${currentExercise?.title}`}>{currentExercise?.title}</a
+        <a href={`/videos/${currentExercise?.title}`}
+          >{currentExercise?.title}</a
         ></span
       >
     </p>

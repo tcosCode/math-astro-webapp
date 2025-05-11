@@ -10,11 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "astro": "^4.15.6",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/db": "^0.14.13",
+    "@astrojs/node": "^9.2.1",
+    "@clerk/astro": "^2.6.13",
+    "@clerk/localizations": "^3.14.4",
+    "@libsql/client": "^0.15.4",
+    "astro": "^5.7.10",
     "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@astrojs/netlify": "^6.3.2",
     "prettier-plugin-astro": "^0.14.1"
   }
 }
