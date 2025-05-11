@@ -257,5 +257,228 @@ export const grades7mo = {
         },
       ],
     },
+    {
+      id: "9",
+      type: "ChooseAnswer",
+      title: "Estadística",
+      texto: `Seleccionar la respuesta correcta.
+La tabla muestra la cantidad de sacos que existen en un almacén organizados como se muestra:
+    <table>
+        <thead>
+            <tr>
+                <th>Peso (kg)</th>
+                <th>Cant sacos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>12</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "¿Cuál es el peso promedio de los sacos?",
+          answer: [
+            {
+              text: "24,5",
+              validation: "incorrect",
+            },
+            {
+              text: "25,4",
+              validation: "correct",
+            },
+            {
+              text: "23,4",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "¿Cuál es el peso más común?",
+          answer: [
+            {
+              text: "12",
+              validation: "incorrect",
+            },
+            {
+              text: "20",
+              validation: "correct",
+            },
+            {
+              text: "25",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "10",
+      type: "TrueFalse",
+      title: "Estadística",
+      texto: `Seleccionar V o F.
+La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén como se muestra en la tabla.
+    <table>
+        <thead>
+            <tr>
+                <th>Peso (kg)</th>
+                <th>Cant de sacos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>12</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "En el almacén hay 10 sacos de frijoles.",
+          validation: "true",
+        },
+        {
+          id: "b",
+          exercise:
+            "En el almacén hay 5 sacos de frijoles que pesan más de 30 kg",
+          validation: "false",
+        },
+        {
+          id: "c",
+          exercise:
+            "La FA de un dato es la cantidad de veces que aparece repetido.",
+          validation: "true",
+        },
+      ],
+    },
+    {
+      id: "11",
+      type: "ChooseAnswer",
+      title: "Estadística",
+      texto: `La tabla muestra la cantidad de cajas con pesos diferentes (kg) de un almacén:
+    <table>
+        <thead>
+            <tr>
+                <th>Peso (kg)</th>
+                <th>Cantidad de cajas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>17</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>35</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>45</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+    </table>`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "¿Cuál es el peso promedio de las cajas?",
+          answer: [
+            {
+              text: "30,4kg",
+              validation: "correct",
+            },
+            {
+              text: "31,5kh",
+              validation: "incorrect",
+            },
+            {
+              text: "32,6kg",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "¿Cuál es el peso más común?",
+          answer: [
+            {
+              text: "35kg",
+              validation: "incorrect",
+            },
+            {
+              text: "30kg",
+              validation: "incorrect",
+            },
+            {
+              text: "25kg",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "¿Qué nombre recibe el 25 kg?",
+          answer: [
+            {
+              text: "Media ",
+              validation: "incorrect",
+            },
+            {
+              text: "Moda",
+              validation: "correct",
+            },
+            {
+              text: "Mediana ",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

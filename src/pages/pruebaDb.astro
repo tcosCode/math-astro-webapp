@@ -10,7 +10,7 @@ const users_db = await db.select().from(users);
     <title>Testing users Database</title>
   </head>
   <body>
-    <h2>Comments</h2>
+    <h2>Users</h2>
 
     {
       users_db.map(({ name, email, createdAt }) => (

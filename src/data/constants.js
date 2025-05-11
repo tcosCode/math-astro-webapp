@@ -33,7 +33,7 @@ export const classes = [
   },
   {
     title: "Estadística",
-    grade: "8vo, 9no",
+    grade: "7mo, 8vo, 9no",
     image: "CWDYwZ_c1lI",
     url: "PLeySRPnY35dFF5D9g_zi07yPKGXui4GII",
   },
