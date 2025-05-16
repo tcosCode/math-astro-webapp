@@ -6,12 +6,18 @@ interface TrueFalseProps {
 }
 
 const { inciso, exerciseText, validation } = Astro.props as TrueFalseProps;
+const { grade, exercise } = Astro.params;
 ---
 
 <div class="grid-item">
   <!-- Opciones de respuesta utilizando CSS Grid -->
   <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
-  <div class="buttons">
+  <div
+    class="buttons"
+    data-grade={grade}
+    data-exercise={exercise}
+    data-inciso={inciso}
+  >
     {
       validation === "true" ? (
         <>
@@ -36,7 +42,7 @@ const { inciso, exerciseText, validation } = Astro.props as TrueFalseProps;
   </div>
 </div>
 
-<script src="../../utils/scriptTrueFalse.ts"></script>
+<script src="@utils/scriptTrueFalse.ts"></script>
 
 <style>
   .grid-item {

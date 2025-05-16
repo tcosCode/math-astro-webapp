@@ -7,6 +7,7 @@ const isProtectedRoute = createRouteMatcher([
   "/10mo(.*)",
   "/11no(.*)",
   "/12mo(.*)",
+  "/pruebaDb(.*)",
 ]);
 
 export const onRequest = clerkMiddleware((auth, context) => {

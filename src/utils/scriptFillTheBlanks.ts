@@ -1,36 +1,43 @@
+import { postExerciseAnswer } from "../utils/api"; // Use relative path for client-side script
+
 // Definición de la interfaz Options que describe cada opción
 interface Options {
-  id: string; // Identificador único de la opción
-  text: string; // Texto de la opción que el usuario arrastrará
-  position: string; // Identificador de la posición de destino correcta en el ejercicio
+  id: string; // Unique identifier for the option
+  text: string; // Text of the option that the user will drag
+  position: string; // Identifier of the correct target position in the exercise
 }
 
-// Espera a que la página de Astro se cargue completamente
-document.addEventListener("astro:page-load", () => {
-  // Itera sobre cada ejercicio representado por elementos con la clase .grid-item
+// Wait until the Astro page is fully loaded
+document.addEventListener("astro:page-load", async () => {
+  // Iterate over each exercise represented by elements with the class .grid-item
   document.querySelectorAll(".grid-item").forEach((exercise) => {
-    // Almacena todas las opciones dentro del ejercicio actual
+    const grade = exercise.getAttribute("data-grade"); // Get the exercise grade
+    const exerciseAttr = exercise.getAttribute("data-exercise"); // Get the exercise ID attribute (as string)
+    const inciso = exercise.getAttribute("data-inciso"); // Get the exercise inciso (section ID) attribute
+
+    // Store all options within the current exercise
     const options: Options[] = Array.from(
       exercise.querySelectorAll(".option"),
     ).map((optionEl) => ({
-      id: optionEl.getAttribute("data-id") || "", // Identificador único de cada opción
-      text: optionEl.textContent || "", // Texto visible en la opción
-      position: optionEl.getAttribute("data-position") || "", // Posición objetivo correcta para la opción
+      id: optionEl.getAttribute("data-id") || "", // Unique identifier for each option
+      text: optionEl.textContent?.trim() || "", // Visible text in the option (trim added for safety)
+      position: optionEl.getAttribute("data-position") || "", // Correct target position for the option
     }));
 
-    let isChecked = false; // Controla si las respuestas ya han sido verificadas
+    let isChecked = false; // Controls if the answers have already been checked
 
-    // Configura todos los eventos necesarios para el ejercicio actual
+    // Set up all necessary events for the current exercise
     setupEventListeners(exercise);
 
-    let draggedOptionId: string | null = null; // Variable global para el id de la opción arrastrada
+    let draggedOptionId: string | null = null; // Global variable for the ID of the dragged option
 
     function setupEventListeners(exercise: Element) {
+      // Add event listener to the "Check Answers" button
       exercise
         .querySelector("#checkAnswers")
         ?.addEventListener("click", checkAnswers);
 
-      // Configuración de eventos para cada opción
+      // Set up events for each option (draggable items)
       exercise.querySelectorAll(".option").forEach((optionEl) => {
         optionEl.addEventListener(
           "dragstart",
@@ -39,35 +46,46 @@ document.addEventListener("astro:page-load", () => {
         optionEl.addEventListener(
           "touchstart",
           handleTouchStart as EventListener,
-        ); // Inicio del arrastre táctil
+        ); // Touch drag start
       });
 
-      // Configuración de eventos para cada espacio en blanco
+      // Set up events for each blank space (drop targets)
       exercise.querySelectorAll(".blank").forEach((blank) => {
-        blank.addEventListener("dragover", handleDragOver as EventListener); // Permite el drop
-        blank.addEventListener("drop", handleDrop as EventListener); // Acción de soltar
-        blank.addEventListener("click", handleBlankClick); // Limpia el contenido al hacer clic
-        blank.addEventListener("touchmove", handleTouchMove as EventListener); // Movimiento táctil
-        blank.addEventListener("touchend", handleTouchEnd as EventListener); // Soltar táctil
+        blank.addEventListener("dragover", handleDragOver as EventListener); // Allow drop
+        blank.addEventListener("drop", handleDrop as EventListener); // Drop action
+        blank.addEventListener("click", handleBlankClick); // Clear content on click
+        blank.addEventListener("touchmove", handleTouchMove as EventListener); // Touch move
+        blank.addEventListener("touchend", handleTouchEnd as EventListener); // Touch end
       });
     }
 
-    // Al tocar una opción, guarda el id en la variable global
+    // On touching an option, save its ID in the global variable
     function handleTouchStart(e: TouchEvent) {
       const target = e.target as HTMLElement;
-      draggedOptionId = target.getAttribute("data-id"); // Almacena el id de la opción tocada
+      draggedOptionId = target.getAttribute("data-id"); // Store the ID of the touched option
+      // Add a visual cue for the dragged item if needed
+      // target.classList.add('dragging');
     }
 
-    // Al mover el dedo, previene el comportamiento predeterminado
+    // On moving the finger, prevent default behavior
     function handleTouchMove(e: TouchEvent) {
-      e.preventDefault(); // Permite la acción de arrastre en móviles
+      e.preventDefault(); // Allow drag action on mobile
+      // Add logic here if you want to visually track the dragged item's position
     }
 
-    // Al soltar la opción, simula el evento de "drop" en la opción objetivo
+    // On releasing the option, simulate the "drop" event on the target element
     function handleTouchEnd(e: TouchEvent) {
       const touch = e.changedTouches[0];
-      const target = document.elementFromPoint(touch.clientX, touch.clientY); // Ubica el elemento en la posición de soltado
+      // Use elementFromPoint to find the element under the touch point
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      // Find the closest blank element to the touch point
       const blankEl = target?.closest(".blank") as HTMLElement;
+
+      // Remove visual cue from the dragged item if added in handleTouchStart
+      // if (draggedOptionId) {
+      //     const draggedOptionEl = exercise.querySelector(`.option[data-id="${draggedOptionId}"]`);
+      //     draggedOptionEl?.classList.remove('dragging');
+      // }
 
       if (blankEl && draggedOptionId) {
         const option = options.find((opt) => opt.id === draggedOptionId);
@@ -75,114 +93,195 @@ document.addEventListener("astro:page-load", () => {
         if (option) {
           swapText(blankEl, option);
           isChecked = false;
-          updateResult("", exercise);
+          // updateResult is called later, after checkAnswers
+          // updateResult("", exercise); // No need to call here
         }
       }
-      draggedOptionId = null; // Resetea la variable después del drop
+      draggedOptionId = null; // Reset the variable after the drop
     }
 
-    // Guarda el id de la opción arrastrada en el evento de transferencia de datos
+    // Save the ID of the dragged option in the data transfer event
     function handleDragStart(e: DragEvent) {
-      e.dataTransfer?.setData(
-        "text",
-        (e.target as HTMLElement).getAttribute("data-id") || "",
-      );
+      const target = e.target as HTMLElement;
+      const optionId = target.getAttribute("data-id") || "";
+      e.dataTransfer?.setData("text", optionId);
+      // Add a visual cue for the dragged item
+      // target.classList.add('dragging');
     }
 
-    // Permite que el espacio en blanco acepte el elemento arrastrado
+    // Allow the blank space to accept the dragged element
     function handleDragOver(e: DragEvent) {
-      e.preventDefault();
+      e.preventDefault(); // Necessary to allow dropping
+      // Add visual feedback to the blank element being dragged over
+      // (e.target as HTMLElement).classList.add('drag-over');
     }
 
-    // Al soltar una opción en un espacio en blanco, coloca el texto de la opción en el espacio
+    // On dropping an option into a blank space, place the option's text in the space
     function handleDrop(e: DragEvent) {
       e.preventDefault();
-      const optionId = e.dataTransfer?.getData("text"); // Obtiene el id de la opción
-      const option = options.find((opt) => opt.id === optionId); // Encuentra la opción en la lista
-      const blankEl = e.target as HTMLElement;
+      // Remove visual feedback from the blank element
+      // (e.target as HTMLElement).classList.remove('drag-over');
+
+      const optionId = e.dataTransfer?.getData("text"); // Get the option ID
+      const option = options.find((opt) => opt.id === optionId); // Find the option in the list
+      const blankEl = e.target as HTMLElement; // The blank space where it was dropped
+
+      // Remove visual cue from the dragged item if added in handleDragStart
+      // if (optionId) {
+      //     const draggedOptionEl = exercise.querySelector(`.option[data-id="${optionId}"]`);
+      //     draggedOptionEl?.classList.remove('dragging');
+      // }
 
       if (option && blankEl) {
-        swapText(blankEl, option); // Coloca el texto de la opción en el espacio en blanco
-        isChecked = false; // Marca el ejercicio como no verificado
-        updateResult("", exercise); // Resetea el resultado visual
+        swapText(blankEl, option); // Place the option's text in the blank space
+        isChecked = false; // Mark the exercise as unchecked
+        // updateResult is called later, after checkAnswers
+        // updateResult("", exercise); // No need to call here
       }
     }
 
-    // Al hacer clic en un espacio en blanco, lo vacía para permitir nueva entrada
+    // On clicking a blank space, empty it to allow new input
     function handleBlankClick(e: Event) {
       const blankEl = e.target as HTMLElement;
-      blankEl.textContent = ""; // Limpia el texto
-      blankEl.classList.remove("correct", "incorrect"); // Elimina estilos previos
-      isChecked = false; // Marca el ejercicio como no verificado
-      updateResult("", exercise); // Resetea el mensaje de resultado
+      blankEl.textContent = ""; // Clear the text
+      blankEl.classList.remove("correct", "incorrect"); // Remove previous styles
+      // Remove any status icons
+      blankEl.querySelector(".icon")?.remove();
+      isChecked = false; // Mark the exercise as unchecked
+      updateResult("", exercise); // Reset the visual result message (without sending to API)
     }
 
-    // Coloca el texto de una opción en un espacio en blanco y elimina estilos previos
+    // Place the text of an option into a blank space and remove previous styles
     function swapText(blankEl: HTMLElement, option: Options) {
-      blankEl.textContent = option.text; // Coloca el texto de la opción en el espacio en blanco
-      blankEl.classList.remove("correct", "incorrect"); // Elimina estilos
-      isChecked = false; // Marca el ejercicio como no verificado
-      updateResult("", exercise); // Resetea el resultado visual
+      blankEl.textContent = option.text; // Place the option's text in the blank space
+      blankEl.classList.remove("correct", "incorrect"); // Remove styles
+      // Remove any status icons
+      blankEl.querySelector(".icon")?.remove();
+      isChecked = false; // Mark the exercise as unchecked
+      // updateResult("", exercise); // No need to call here, checkAnswers will call it
     }
 
-    // Verifica si las respuestas en los espacios en blanco son correctas
+    // Check if the answers in the blank spaces are correct
     function checkAnswers() {
-      const blanks = exercise.querySelectorAll(".blank"); // Obtiene todos los espacios en blanco
-      let allCorrect = true; // Marca global para verificar si todas las respuestas son correctas
+      const blanks = exercise.querySelectorAll(".blank"); // Get all blank spaces
+      let allCorrect = true; // Global flag to check if all answers are correct
 
       blanks.forEach((blank) => {
-        const id = blank.getAttribute("data-id"); // Obtiene el id de posición del espacio en blanco
-        const answer = blank.textContent?.trim(); // Limpia el texto en el espacio en blanco
+        const id = blank.getAttribute("data-id"); // Get the position ID of the blank space
+        const answer = blank.textContent?.trim(); // Get and trim the text in the blank space
 
-        // Busca la opción correcta en función de su posición
-        const correctOption = options.find(
-          (opt) => opt.position === id && opt.position,
-        );
+        // Find the correct option based on its position
+        // Ensure correctOption is found and has a text property before comparing
+        const correctOption = options.find((opt) => opt.position === id);
+
+        // Compare the trimmed answer text with the trimmed correct option text
         const isCorrect = correctOption
           ? answer === correctOption.text.trim()
-          : false; // Compara el texto con el de la opción correcta
+          : false; // If no correct option found for this blank position, it's incorrect
 
-        if (!isCorrect) allCorrect = false; // Si alguna respuesta es incorrecta, marca como falso
-        updateBlankStatus(blank, isCorrect); // Actualiza el estado visual del espacio en blanco
+        if (!isCorrect) allCorrect = false; // If any answer is incorrect, mark as false
+        updateBlankStatus(blank, isCorrect); // Update the visual status of the blank space
       });
 
-      isChecked = true; // Marca el ejercicio como verificado
+      isChecked = true; // Mark the exercise as checked
+      // Call updateResult to show the overall result and send data to API
       updateResult(
         allCorrect
           ? "¡Felicidades! ¡Todas las respuestas son correctas!"
           : "Algunas respuestas son incorrectas. ¡Inténtalo de nuevo!",
         exercise,
-        allCorrect,
-      ); // Muestra el resultado general del ejercicio
+        allCorrect, // Pass the boolean result
+      ); // Show the overall exercise result and send to API
     }
 
-    // Actualiza el estado visual de cada espacio en blanco según si la respuesta es correcta o no
+    // Update the visual status of each blank space based on whether the answer is correct or not
     function updateBlankStatus(blank: Element, isCorrect: boolean) {
-      const existingIcon = blank.querySelector(".icon"); // Busca íconos de estado previos
-      if (existingIcon) existingIcon.remove(); // Remueve el ícono si existe
-      blank.classList.remove("correct", "incorrect"); // Elimina clases de estado previas
-      blank.classList.add(isCorrect ? "correct" : "incorrect"); // Añade clase según el estado
+      const existingIcon = blank.querySelector(".icon"); // Look for previous status icons
+      if (existingIcon) existingIcon.remove(); // Remove the icon if it exists
+      blank.classList.remove("correct", "incorrect"); // Remove previous status classes
+      blank.classList.add(isCorrect ? "correct" : "incorrect"); // Add class based on status
 
-      const icon = document.createElement("span"); // Crea un nuevo ícono de estado
-      icon.className = "icon"; // Asigna clase para estilizar el ícono
+      const icon = document.createElement("span"); // Create a new status icon
+      icon.className = "icon"; // Assign class for styling the icon
+      // SVG icons for correct (check) and incorrect (cross)
       icon.innerHTML = isCorrect
         ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
         : '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>';
-      blank.appendChild(icon); // Añade el ícono al espacio en blanco
+      blank.appendChild(icon); // Add the icon to the blank space
     }
 
-    // Actualiza el mensaje de resultado global para cada ejercicio
-    function updateResult(
+    // Update the global result message for each exercise AND SEND DATA TO THE API
+    // Marked as async because it uses await
+    async function updateResult(
       message: string,
       parentExercise: Element,
-      allCorrect?: boolean,
+      allCorrect?: boolean, // This parameter is now used to determine correctness for API
     ) {
-      const resultEl = parentExercise.querySelector("#result"); // Selecciona el elemento de resultado global
+      // --- Validation before sending to API ---
+      // Only send data to API if allCorrect is explicitly true or false (meaning checkAnswers was run)
+      if (allCorrect === undefined || !grade || !exerciseAttr || !inciso) {
+        // Log error if data is missing, but don't attempt to send to API
+        console.error("updateResult: Data missing for API submission.");
+        // Still update the UI message
+        const resultEl = parentExercise.querySelector("#result");
+        if (resultEl) {
+          resultEl.textContent = message;
+          resultEl.className = `result ${allCorrect === true ? "correct" : allCorrect === false ? "incorrect" : ""}`;
+        }
+        return; // Exit the function if data is incomplete
+      }
+
+      // --- Correct the exerciseId type ---
+      const exerciseId = parseInt(exerciseAttr, 10); // Parse exercise ID as a number
+      if (isNaN(exerciseId)) {
+        console.error(
+          "updateResult: Invalid exercise ID attribute:",
+          exerciseAttr,
+        );
+        // Still update the UI message
+        const resultEl = parentExercise.querySelector("#result");
+        if (resultEl) {
+          resultEl.textContent = message;
+          resultEl.className = `result ${allCorrect === true ? "correct" : allCorrect === false ? "incorrect" : ""}`;
+        }
+        return;
+      }
+
+      // --- Prepare data for POST request ---
+      // This structure must match the ExerciseSubmissionData interface in ../utils/api.ts
+      const submissionData = {
+        grade: grade, // string
+        exerciseId: exerciseId, // number
+        correct: allCorrect, // boolean
+        sectionId: inciso, // string - included because the API interface requires it
+      };
+
+      // --- Send data to the server using the API utility ---
+      try {
+        const result = await postExerciseAnswer(submissionData); // Use await here
+
+        if (result.ok) {
+          // Handle success (e.g., show a success message)
+          console.log("Data sent successfully:", result);
+          // TODO: Add a message to the user indicating data was saved
+        } else {
+          // Handle error (e.g., show an error message)
+          console.error("Error from API:", result.error);
+          // TODO: Add a message to the user about the API error
+        }
+      } catch (error: any) {
+        console.error("Error sending data to API:", error.message || error);
+        // TODO: display a user-friendly error message about the fetch failure
+      }
+
+      // --- Update the UI message regardless of API send status ---
+      const resultEl = parentExercise.querySelector("#result"); // Select the global result element
       if (resultEl) {
-        resultEl.textContent = message; // Actualiza el mensaje de texto
+        resultEl.textContent = message; // Update the text message
+        // Apply style based on the overall correctness
         if (allCorrect !== undefined)
-          resultEl.className = `result ${allCorrect ? "correct" : "incorrect"}`; // Aplica estilo según el resultado general
-        else resultEl.className = "result"; // Restaura el estilo básico si no hay resultado
+          resultEl.className = `result ${allCorrect ? "correct" : "incorrect"}`;
+        else resultEl.className = "result"; // Restore basic style if no result
       }
     }
   });

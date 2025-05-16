@@ -8,7 +8,9 @@
       "@data/*": ["src/data/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@db/*": ["db/*"],
+      "@repositories/*": ["src/repositories/*"],
     }
   }
 }

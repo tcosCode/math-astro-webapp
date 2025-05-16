@@ -13,9 +13,15 @@ interface Answer {
 }
 
 const { inciso, exerciseText, answer } = Astro.props as ChooseAnswerProps;
+const { grade, exercise } = Astro.params;
 ---
 
-<div class="grid-item">
+<div
+  class="grid-item"
+  data-grade={grade}
+  data-exercise={exercise}
+  data-inciso={inciso}
+>
   <!-- Opciones de respuesta utilizando CSS Grid -->
   <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
   <button class="option-btn" data-validation={answer[0].validation}>
