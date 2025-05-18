@@ -1,0 +1,68 @@
+---
+import FeaturesCard from "@components/FeaturesCard.astro";
+const [blueSky, orangeLight, purpleLigth] = [
+  "rgb(230 247 255 / 1)",
+  "rgb(255, 241, 235)",
+  "rgb(244 235 255 /1)",
+];
+---
+
+<section>
+  <h1>Características</h1>
+  <p>
+    Nuestra plataforma ofrece herramientas educativas diseñadas para facilitar
+    el aprendizaje
+  </p>
+  <div class="features">
+    <FeaturesCard
+      title="Ejercicios interactivos"
+      description="Practica con ejercicios interactivos adaptados a tu nivel académico"
+      image="./public/icons/prefooter-page.svg"
+      bgcolor={blueSky}
+    />
+    <FeaturesCard
+      title="Videoclases explicativas"
+      description="Aprende con videos que explican paso a paso los conceptos matemáticos clave"
+      image="./public/icons/prefooter-book.svg"
+      bgcolor={orangeLight}
+    />
+    <FeaturesCard
+      title="Programa de estudio"
+      description="Sigue un programa estructurado que te ayudará a dominar los temas de matemáticas"
+      image="./public/icons/prefooter-calendar.svg"
+      bgcolor={purpleLigth}
+    />
+  </div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    max-width: 42rem;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: rgb(75 85 99 / 1);
+  }
+
+  .features {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    place-items: center;
+  }
+</style>

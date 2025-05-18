@@ -1,0 +1,133 @@
+---
+import LogoFunction from "@components/icons/LogoFunction.astro";
+---
+
+<section class="pre-footer">
+  <div class="container">
+    <div class="grid">
+      <div class="description">
+        <div class="logo">
+          <figure><LogoFunction class="svg-logo" /></figure>
+        </div>
+        <p>
+          Plataforma educativa para el aprendizaje interactivo de las
+          matemáticas en nivel medio.
+        </p>
+      </div>
+      <article>
+        <h4>Secciones</h4>
+        <ul>
+          <li>
+            <a href="/#">Inicio</a>
+          </li>
+          <li>
+            <a href="/#">Ejercicios</a>
+          </li>
+          <li>
+            <a href="/classes">Videoclases</a>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h4>Grados</h4>
+        <ul>
+          <li>
+            <a href="/7mo">7mo grado</a>
+          </li>
+          <li>
+            <a href="/8vo">8vo grado</a>
+          </li>
+          <li>
+            <a href="/9no">9no grado</a>
+          </li>
+          <li>
+            <a href="/10mo">10mo grado</a>
+          </li>
+          <li>
+            <a href="/11no">11no grado</a>
+          </li>
+          <li>
+            <a href="/12mo">12mo grado</a>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+  <style>
+    .pre-footer {
+      background-color: rgb(249 250 251);
+      margin-top: 2rem;
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    .container {
+      margin: 0 auto;
+      padding: 0 1rem;
+      margin: 0 auto;
+    }
+
+    .container::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 3rem;
+      right: 3rem;
+      height: 1px;
+      background-color: var(--light-grey);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      place-items: center;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .svg-logo {
+      fill: var(--secondary-color-light-2);
+      width: 2rem;
+      height: auto;
+    }
+
+    .pre-footer h4 {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      max-width: 300px;
+    }
+
+    .pre-footer p,
+    .pre-footer a {
+      color: rgb(75 85 99);
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .pre-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .pre-footer li {
+      margin-bottom: 0.8rem;
+    }
+  </style>
+</section>

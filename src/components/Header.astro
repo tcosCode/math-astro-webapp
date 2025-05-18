@@ -15,7 +15,7 @@ import {
 <header class="header">
   <div>
     <figure><LogoFunction class="svg svg-logo" /></figure>
-    <h1 class="header-title">Matemática</h1>
+    <h1 class="header-title">Cesar</h1>
   </div>
   <!--Nav-->
   <nav class="navbar" id="navbar">
@@ -46,31 +46,55 @@ import {
     <Menu class="menu" id="menu" />
   </figure>
 </header>
-<script src="../utils/scriptMenu.ts"></script>
+<script src="@utils/scriptMenu.ts"></script>
 
 <style>
   .header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 0.5rem;
-    border-bottom: 2px solid var(--primary-color);
+    padding-block: 1rem;
+    /*border-bottom: 2px solid var(--primary-color);*/
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 3rem;
+    right: 3rem;
+    height: 2px;
+    background-color: var(--primary-color);
+  }
+
+  @media (max-width: 1280px) {
+    .header::after {
+      left: 1rem;
+      right: 1rem;
+    }
   }
 
   .header > div {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
   }
 
   .header-title {
-    font-size: clamp(2.5rem, 4vw, 3rem);
+    font-size: clamp(1.5rem, 4vw, 2rem);
     color: var(--primary-color);
+    font-weight: 700;
+    pointer-events: none;
   }
 
   .svg-logo {
     fill: var(--secondary-color-light-2);
-    width: 4rem;
+    width: clamp(2.5rem, 4vw, 3.5rem);
     height: auto;
   }
 
@@ -82,7 +106,6 @@ import {
 
   .navbar-list {
     display: flex;
-    margin-bottom: 3px;
     border-radius: 5px;
     position: relative;
     z-index: 100000;
@@ -94,6 +117,7 @@ import {
     padding: 0.5rem 1rem;
     color: var(--dark-grey);
     font-weight: 500;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
     user-select: none;
@@ -182,10 +206,10 @@ import {
 
   .auth {
     border: 1px solid var(--primary-color);
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: var(--white-color);
     font-size: 16px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     color: var(--dark-grey);
     font-weight: 500;
     cursor: pointer;
@@ -284,12 +308,6 @@ import {
     .menu-drop-down a:hover {
       background-color: var(--secondary-color-light-2);
     }
-
-    /*
-    .header .auth {
-      display: none;
-    }
-      */
   }
 
   @media (max-width: 550px) {

@@ -1,11 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import Hero from "@components/Hero.astro";
 import YearSection from "@components/YearSection.astro";
+import Features from "@components/Features.astro";
 import Card from "@components/Card.astro";
 import { topics } from "@data/topics";
 ---
 
 <Layout title="Matemáticas Monteserin">
+  <Hero />
   <YearSection title="Secundaria">
     {
       topics
@@ -35,4 +38,5 @@ import { topics } from "@data/topics";
         ))
     }
   </YearSection>
+  <Features />
 </Layout>

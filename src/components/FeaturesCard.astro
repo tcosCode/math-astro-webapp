@@ -1,0 +1,50 @@
+---
+const { title, description, image, bgcolor } = Astro.props;
+---
+
+<section class="pre-footer-card">
+  <div class="image-feature" style={`background-color: ${bgcolor}`}>
+    <img src={image} alt={title} />
+  </div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</section>
+
+<style>
+  .pre-footer-card {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    background-color: rgb(255 255 255);
+    box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+  }
+
+  .image-feature {
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgb(75 85 99 / 1);
+    margin-bottom: 0;
+  }
+</style>
