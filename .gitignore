@@ -24,6 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # testing db
-pruebaDb.astro
-
-.gitignore
+src/pages/pruebaDb.astro
