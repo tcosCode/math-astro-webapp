@@ -4,14 +4,14 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
 
 <div class={`accordion__item ${isOdd ? "odd" : "even"}`}>
   <header class=`accordion__header ${isOdd ? "odd" : "even"}`>
+    <h3 class="accordion__title">
+      {exerciseTitle}
+    </h3>
     <img
       src="/icons/bx-plus.svg"
       alt="Plus icon for the accordion "
       class="bx bx-plus accordion__icon"
     />
-    <h3 class="accordion__title">
-      {exerciseTitle}
-    </h3>
   </header>
   <div class=`accordion__content ${isOdd ? "odd" : "even"}`>
     {
@@ -42,27 +42,40 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
   }
 
   .accordion__title {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 600;
     margin-top: 0.15rem;
     transition: 0.2s;
+    margin-left: 10px;
   }
 
   .accordion__header {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1.25rem 1.25rem 1.25rem 1rem;
+    padding: 1rem;
     cursor: pointer;
-    background-color: var(--bg-color-accordion-item);
+    justify-content: space-between;
+    margin-left: 10px;
+  }
+
+  .accordion__header::after {
+    content: "";
+    width: 4px;
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 10px;
+    background-color: var(--border-description-color);
   }
 
   .accordion__description {
     font-size: 1rem;
     width: 100%;
-    padding: 1rem 3rem;
+    padding: 1rem 2.5rem;
+    color: var(--dark-grey);
     display: block;
-    background-color: white;
+    margin-left: 10px;
   }
 
   .accordion__description:hover {
@@ -71,19 +84,17 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
 
   .accordion__icon {
     transition: 0.3s;
+    margin-right: 15px;
   }
+
   .accordion__item {
     position: relative;
     transition: all 0.25s ease;
-  }
-  .accordion__item::after {
-    content: "";
-    width: 5px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--border-description-color);
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    border-width: solid 1px;
+    background-color: white;
+    overflow: hidden;
   }
 
   .accordion__content {

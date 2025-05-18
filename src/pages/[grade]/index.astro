@@ -28,7 +28,9 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
 
 <Layout title={`Grado ${grade}`}>
   <section>
-    <h2>Ejercicios de {grade} grado</h2>
+    <div class="title-bg">
+      <h2>Ejercicios de {grade} grado</h2>
+    </div>
 
     <div class="section-container">
       {
@@ -37,13 +39,6 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
           .map((topic) => {
             return (
               <>
-                <figure>
-                  <img
-                    src={topic.img}
-                    alt={grade}
-                    transition:name={`image ${grade} id`}
-                  />
-                </figure>
                 <div class="exercises-container">
                   <div class="accordion">
                     {titlesArray.map((title, index) => (
@@ -56,6 +51,29 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
                     ))}
                   </div>
                 </div>
+                <div class="card">
+                  <figure>
+                    <img
+                      src={topic.img}
+                      alt={grade}
+                      transition:name={`image ${grade} id`}
+                    />
+                  </figure>
+                  <h3>Progresa a tu ritmo</h3>
+                  <p>
+                    Practica con ejercicios interactivos y recibe
+                    retroalimentación inmediata para mejorar tu comprensión.
+                  </p>
+                  <div class="progress">
+                    <div class="progress-container">
+                      <span class="progress-text">Tu progreso</span>
+                      <span class="progress-percent">25%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" />
+                    </div>
+                  </div>
+                </div>
               </>
             );
           })
@@ -66,15 +84,26 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
 
 <style>
   section {
-    margin-top: 3rem;
+    margin-top: 6rem;
     padding: 2rem 4rem;
     background-color: var(--light-grey);
     border-radius: 15px;
   }
 
-  h2 {
-    margin-left: 2rem;
+  .title-bg {
+    background-color: var(--light-grey);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    margin-top: -3.8rem;
+    margin-left: -4rem;
+    width: fit-content;
+  }
+
+  .title-bg h2 {
     color: var(--dark-grey);
+    text-align: center;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin-bottom: 3rem;
   }
 
   .section-container {
@@ -86,18 +115,76 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
     padding-block: 2rem;
   }
 
-  .section-container figure {
-    align-self: flex-start;
+  .card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   }
 
-  p {
-    padding: 1rem 0.5rem;
+  figure {
+    max-width: 350px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .card h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: var(--dark-grey);
+    margin-bottom: 0.75rem;
+  }
+
+  .card p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgb(75 85 99);
+    margin-bottom: 1.5rem;
+    padding-inline: 2rem;
+  }
+
+  .progress {
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-text {
+    color: var(--dark-grey);
+    font-weight: 600;
+  }
+
+  .progress-percent {
+    color: var(--secondary-color-dark-2);
+  }
+
+  .progress-bar {
+    background-color: white;
+    border-radius: 20px;
+    height: 0.5rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background-color: var(--secondary-color-dark);
+    height: 100%;
+    width: 25%;
+    border-radius: 20px;
   }
 
   @media (max-width: 768px) {
     .section-container {
-      display: block;
-      padding-block: 1rem;
+      grid-template-columns: 1fr;
+      gap: 3rem;
     }
     h2 {
       text-align: center;
