@@ -17,8 +17,13 @@ import {
     <figure><LogoFunction class="svg svg-logo" /></figure>
     <h1 class="header-title">Cesar</h1>
   </div>
+
   <!--Nav-->
   <nav class="navbar" id="navbar">
+    <div class="mobile">
+      <figure><LogoFunction class="svg-logo" /></figure>
+      <h1 class="header-title">Cesar</h1>
+    </div>
     <div class="navbar-list">
       <a href="/" class="navbar-item navbar-link">Inicio</a>
       <div class="navbar-item drop-down">
@@ -35,17 +40,21 @@ import {
       <a href="/classes" class="navbar-item navbar-link">Videoclases</a>
     </div>
   </nav>
-  <!-- Hamburger menu -->
+
+  <!--Auth-->
   <SignedOut>
     <SignInButton mode="modal" class="auth">Login</SignInButton>
   </SignedOut>
   <SignedIn>
     <UserButton />
   </SignedIn>
+
+  <!-- Hamburger menu -->
   <figure>
     <Menu class="menu" id="menu" />
   </figure>
 </header>
+
 <script src="@utils/scriptMenu.ts"></script>
 
 <style>
@@ -54,7 +63,6 @@ import {
     justify-content: space-evenly;
     align-items: center;
     padding-block: 1rem;
-    /*border-bottom: 2px solid var(--primary-color);*/
     position: sticky;
     top: 0;
     width: 100%;
@@ -78,6 +86,10 @@ import {
       left: 1rem;
       right: 1rem;
     }
+  }
+
+  .mobile {
+    display: none;
   }
 
   .header > div {
@@ -216,12 +228,35 @@ import {
     transition: background-color 0.3s ease;
     user-select: none;
   }
+
   .auth:hover {
     background-color: var(--primary-color);
     color: var(--white-color);
   }
 
   @media (max-width: 768px) {
+    .navbar {
+      display: block;
+    }
+
+    .mobile {
+      display: flex;
+      align-items: center;
+      margin: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .mobile::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      height: 1px;
+      background-color: var(--primary-color);
+    }
+
     .menu {
       display: block;
       width: 1.5rem;
@@ -237,9 +272,9 @@ import {
       position: fixed;
       top: 0;
       left: -65vw;
-      border-radius: 0 5px 5px 0;
-      background-color: var(--secondary-color-dark);
-      box-shadow: 1px 0 8px var(--secondary-color-light-2);
+      background-color: rgb(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       width: 60vw;
       height: 100vh;
       z-index: 100;
@@ -256,14 +291,28 @@ import {
       flex-direction: column;
       justify-content: flex-start;
       gap: 0.1em;
-      margin-top: 2rem;
+      margin-top: 0;
       width: 100%;
     }
     .navbar-item {
       padding: 1rem 2rem;
-      color: var(--white-color);
+      color: var(--dark-grey);
       font-weight: 600;
       height: fit-content;
+    }
+
+    .navbar-item.drop-down {
+      padding-inline: 0;
+      background-color: transparent;
+    }
+
+    .navbar-item.drop-down span {
+      padding-left: 2rem;
+    }
+
+    .navbar-item.drop-down .menu-drop-down a {
+      padding-left: 3rem;
+      border-radius: 0;
     }
 
     .drop-down {
@@ -292,10 +341,6 @@ import {
       color: var(--dark-grey);
     }
 
-    .drop-down a:hover {
-      color: var(--white-color);
-    }
-
     .drop-down .arrow {
       display: none;
     }
@@ -306,13 +351,17 @@ import {
     }
 
     .menu-drop-down a:hover {
-      background-color: var(--secondary-color-light-2);
+      background-color: var(--light-grey);
     }
   }
 
   @media (max-width: 550px) {
     .header-title {
       display: none;
+    }
+
+    .mobile .header-title {
+      display: block;
     }
   }
 </style>
