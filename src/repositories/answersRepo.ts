@@ -50,7 +50,29 @@ export const handleExerciseSubmission = async (
   }
 
   // --- Database Interaction using Astro DB ---
+
+  // --- Check for existing answer ---
   try {
+    const existingAnswer = await db
+      .select()
+      .from(answers)
+      .where(
+        eq(answers.userId, user.id) &&
+          eq(answers.exerciseId, submissionData.exerciseId) &&
+          eq(answers.sectionId, submissionData.sectionId),
+      )
+      .get(); // Usamos .get() para obtener solo un resultado
+
+    if (existingAnswer) {
+      console.log("Answer already exists for this exercise and section");
+      return {
+        ok: true,
+        message: "Answer already exists, no action taken",
+      };
+    }
+
+    // --- Insert new answer if none exists ---
+
     // Use db.insert and CHAIN .returning() to get the 'id' column back
     const result = await db
       .insert(answers)
