@@ -7,6 +7,9 @@ let myChartPie: Chart | null = null;
 let myChartBar: Chart | null = null;
 
 async function fetchAndRender() {
+  const loaderElement = document.getElementById("loader");
+  const chartsContainer = document.getElementById("charts-container");
+
   // Get the canvas element and updates the statistics section
   const completedEx = document.getElementById(
     "completed-exercises",
@@ -14,9 +17,12 @@ async function fetchAndRender() {
   const pendingEx = document.getElementById("pending-exercises") as HTMLElement;
 
   // Check if the elements exist before updating
-  if (!completedEx || !pendingEx) {
+  if (!loaderElement || !chartsContainer || !completedEx || !pendingEx) {
     return;
   }
+
+  loaderElement.classList.remove("hidden");
+  chartsContainer.classList.add("hidden");
 
   //Get the data from the api
   const resp = await getAnswers();
@@ -25,8 +31,12 @@ async function fetchAndRender() {
   // Type-guard: check for error property to determine failure
   if ("error" in resp) {
     console.error("API error:", resp.error);
+    loaderElement.classList.add("hidden");
     return;
   }
+
+  loaderElement.classList.add("hidden");
+  chartsContainer.classList.remove("hidden");
 
   // Check if the response is an array
   const answersArray = Array.isArray(resp.answers) ? resp.answers : [];
@@ -103,3 +113,4 @@ async function fetchAndRender() {
 }
 
 document.addEventListener("astro:page-load", fetchAndRender);
+document.addEventListener("astro:navigate", fetchAndRender);
