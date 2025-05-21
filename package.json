@@ -17,6 +17,7 @@
     "@clerk/localizations": "^3.14.4",
     "@libsql/client": "^0.15.4",
     "astro": "^5.7.10",
+    "chart.js": "^4.4.9",
     "typescript": "^5.6.2"
   },
   "devDependencies": {

@@ -1,0 +1,109 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getTotalGradeExercises } from "@utils/helpers/getTopicsData.js";
+import { topics } from "@data/topics.js";
+
+// User name
+const user = await Astro.locals.currentUser();
+const userFirstName = user ? user.firstName : "Guest";
+const userLastName = user ? user.lastName : " ";
+const userName = userFirstName + " " + userLastName;
+
+// Get Total Exercises
+const totalExercises = getTotalGradeExercises(topics);
+---
+
+<Layout title="Dashboard">
+  <section class="dashboard">
+    <h1 class="dashboard-title">Mi Progreso | {userName.trim()}</h1>
+    <div class="container">
+      <div class="inner-container">
+        <div class="statistics">
+          <h3>
+            Ejercicios Completados: <span id="completed-exercises"></span>
+          </h3>
+
+          <h3>Ejercicios Pendientes: <span id="pending-exercises"></span></h3>
+          <h3>
+            Total de Ejercicios: <span id="total-exercises"
+              >{totalExercises}</span
+            >
+          </h3>
+        </div>
+        <canvas class="chart-bar" id="chart-bar"></canvas>
+      </div>
+      <div class="chart-pie-container">
+        <canvas class="chart-pie" id="chart-pie"></canvas>
+      </div>
+      <div class="note">
+        Las estadísticas, de momento, no incluyen los ejercicios de tipo
+        "Problema" y "Matching"
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script src="@utils/chart.ts"></script>
+
+<style>
+  .dashboard {
+    margin-block: 3.5rem 3rem;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: var(--light-grey);
+    border-radius: 1rem;
+    position: relative;
+  }
+
+  .dashboard-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .chart-pie {
+    width: 100%;
+    height: 100%;
+  }
+
+  .inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .statistics {
+    width: 100%;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--dark-grey-2);
+    text-align: center;
+  }
+
+  .statistics h3 {
+    color: var(--dark-grey);
+    margin-bottom: 0.5rem;
+  }
+
+  .chart-bar {
+    width: auto;
+    height: 200px;
+  }
+
+  .note {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    font-size: 0.8rem;
+    color: var(--dark-grey-2);
+    margin-top: 1rem;
+  }
+</style>

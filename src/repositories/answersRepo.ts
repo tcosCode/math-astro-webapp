@@ -1,5 +1,5 @@
 // Import the database instance and the 'answers' table definition
-import { db, answers, eq } from "astro:db"; // Ensure 'eq' is imported if used in getAllAnswers
+import { db, answers, eq, and } from "astro:db"; // Ensure 'eq' is imported if used in getAllAnswers
 
 // Define the expected type for the incoming data
 interface ExerciseSubmissionData {
@@ -57,9 +57,12 @@ export const handleExerciseSubmission = async (
       .select()
       .from(answers)
       .where(
-        eq(answers.userId, user.id) &&
-          eq(answers.exerciseId, submissionData.exerciseId) &&
+        and(
+          eq(answers.userId, user.id),
+          eq(answers.grade, submissionData.grade),
+          eq(answers.exerciseId, submissionData.exerciseId),
           eq(answers.sectionId, submissionData.sectionId),
+        ),
       )
       .get(); // Usamos .get() para obtener solo un resultado
 
