@@ -36,8 +36,8 @@ const totalExercises = getTotalGradeExercises(topics);
         <canvas class="chart-pie" id="chart-pie"></canvas>
       </div>
       <div class="note">
-        Las estadísticas, de momento, no incluyen los ejercicios de tipo
-        "Problema" y "Matching"
+        <span>NOTA: </span>Las estadísticas, de momento, no incluyen los
+        ejercicios de tipo "Problema" y "Matching"
       </div>
     </div>
   </section>
@@ -105,5 +105,9 @@ const totalExercises = getTotalGradeExercises(topics);
     font-size: 0.8rem;
     color: var(--dark-grey-2);
     margin-top: 1rem;
+  }
+
+  .note span {
+    font-weight: bold;
   }
 </style>
