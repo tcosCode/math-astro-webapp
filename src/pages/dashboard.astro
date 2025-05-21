@@ -19,7 +19,7 @@ const totalExercises = getTotalGradeExercises(topics);
     <div class="loader-container">
       <div class="loader" id="loader"></div>
     </div>
-    <div class="container" id="charts-container">
+    <div class="container hidden" id="charts-container">
       <div class="inner-container">
         <div class="statistics">
           <h3>
@@ -49,10 +49,6 @@ const totalExercises = getTotalGradeExercises(topics);
 <script src="@utils/chart.ts"></script>
 
 <style>
-  .hidden {
-    display: none;
-  }
-
   .dashboard {
     margin-block: 3.5rem 3rem;
   }
@@ -139,5 +135,9 @@ const totalExercises = getTotalGradeExercises(topics);
     100% {
       transform: rotate(1turn);
     }
+  }
+
+  .hidden {
+    display: none;
   }
 </style>
