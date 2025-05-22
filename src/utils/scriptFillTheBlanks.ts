@@ -1,4 +1,6 @@
-import { postExerciseAnswer } from "../utils/api"; // Use relative path for client-side script
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
+import { postExerciseAnswer } from "@utils/api"; // Use relative path for client-side script
 
 // Definición de la interfaz Options que describe cada opción
 interface Options {
@@ -9,6 +11,12 @@ interface Options {
 
 // Wait until the Astro page is fully loaded
 document.addEventListener("astro:page-load", async () => {
+  // Initialize Notyf for notifications
+  const notyf = new Notyf({
+    duration: 3000,
+    position: { x: "right", y: "top" },
+  });
+
   // Iterate over each exercise represented by elements with the class .grid-item
   document.querySelectorAll(".grid-item").forEach((exercise) => {
     const grade = exercise.getAttribute("data-grade"); // Get the exercise grade
@@ -221,6 +229,7 @@ document.addEventListener("astro:page-load", async () => {
       // Only send data to API if allCorrect is explicitly true or false (meaning checkAnswers was run)
       if (allCorrect === undefined || !grade || !exerciseAttr || !inciso) {
         // Log error if data is missing, but don't attempt to send to API
+        notyf.error("Faltan datos para enviar la respuesta al servidor");
         console.error("updateResult: Data missing for API submission.");
         // Still update the UI message
         const resultEl = parentExercise.querySelector("#result");
@@ -263,15 +272,15 @@ document.addEventListener("astro:page-load", async () => {
         if (result.ok) {
           // Handle success (e.g., show a success message)
           console.log("Data sent successfully:", result);
-          // TODO: Add a message to the user indicating data was saved
+          notyf.success("Respuesta enviada correctamente.");
         } else {
           // Handle error (e.g., show an error message)
           console.error("Error from API:", result.error);
-          // TODO: Add a message to the user about the API error
+          notyf.error("No se pudo enviar la respuesta.");
         }
       } catch (error: any) {
         console.error("Error sending data to API:", error.message || error);
-        // TODO: display a user-friendly error message about the fetch failure
+        notyf.error("No se pudo enviar la respuesta.");
       }
 
       // --- Update the UI message regardless of API send status ---

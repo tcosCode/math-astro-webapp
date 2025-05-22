@@ -1,8 +1,16 @@
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
+
 import { validateTrueFalse } from "@utils/validateTrueFalse";
 import { postExerciseAnswer } from "@utils/api";
 
 /* Listener-wrap para cuando cargue la pagina*/
 document.addEventListener("astro:page-load", () => {
+  // Initialize Notyf for notifications
+  const notyf = new Notyf({
+    duration: 3000,
+    position: { x: "right", y: "top" },
+  });
   // Listener para todos los botones de opciones
   document.querySelectorAll(".option-btn").forEach((button) => {
     button.addEventListener("click", async (event) => {
@@ -17,7 +25,7 @@ document.addEventListener("astro:page-load", () => {
       // --- Validation before sending ---
       if (!validation || !grade || !exerciseAttr || !inciso) {
         console.error("Missing required data attributes on button or parent.");
-        // Optionally display a user-friendly error message
+        notyf.error("Se qrequieren todos los datos.");
         return;
       }
 
@@ -48,15 +56,15 @@ document.addEventListener("astro:page-load", () => {
           if (result.ok) {
             // Handle success (e.g., show a success message)
             console.log("Data sent successfully:", result);
-            // TODO: Add a message to the user
+            notyf.success("Respuesta enviada correctamente.");
           } else {
             // Handle error (e.g., show an error message)
             console.error("Error from API:", result.error);
-            // TODO: Add a message to the user
+            notyf.error("No se pudo enviar la respuesta.");
           }
         } catch (error) {
           console.error("Error sending data to API:", error);
-          // TODO: display a user-friendly error message
+          notyf.error("No se pudo enviar la respuesta.");
         }
       }
     });
