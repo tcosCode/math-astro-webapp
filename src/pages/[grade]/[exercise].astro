@@ -141,26 +141,28 @@ const length = currentExercise?.incisos?.length ?? 0;
     <p set:html={currentExercise?.texto} />
 
     <!-- Excercise Image -->
-    <div class="image-container">
-      <div class="legend">
-        <span
-          ><img
-            src="/icons/ex-figure-book.svg"
-            alt="book-figure"
-            class="ex-svg"
-          /> Figura del ejercicio</span
-        >
-      </div>
-      {
-        currentExercise?.img && (
+    {
+      currentExercise?.img && (
+        <div class="image-container">
+          <div class="legend">
+            <span>
+              <img
+                src="/icons/ex-figure-book.svg"
+                alt="book-figure"
+                class="ex-svg"
+              />{" "}
+              Figura del ejercicio
+            </span>
+          </div>
+
           <img
             class="img-exercises"
             src={`/img/exercises/${grade}-${exercise}.webp`}
             alt="Imagen del ejercicio"
           />
-        )
-      }
-    </div>
+        </div>
+      )
+    }
 
     <!--Video button -->
     <div class="exercises-video-container">
