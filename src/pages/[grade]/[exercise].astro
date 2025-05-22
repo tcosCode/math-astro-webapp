@@ -139,22 +139,41 @@ const length = currentExercise?.incisos?.length ?? 0;
       <span>{grade} Grado | Ejercicio No. {exercise}</span>
     </h2>
     <p set:html={currentExercise?.texto} />
-    {
-      currentExercise?.img && (
-        <img
-          class="img-exercises"
-          src={`/img/exercises/${grade}-${exercise}.webp`}
-          alt="Imagen del ejercicio"
-        />
-      )
-    }
-    <p class="p-exercises-video">
-      Si tienes alguna duda, mira la clase <span class="span-exercises-video">
-        <a href={`/videos/${currentExercise?.title}`}
-          >{currentExercise?.title}</a
-        ></span
+
+    <!-- Excercise Image -->
+    <div class="image-container">
+      <div class="legend">
+        <span
+          ><img
+            src="/icons/ex-figure-book.svg"
+            alt="book-figure"
+            class="ex-svg"
+          /> Figura del ejercicio</span
+        >
+      </div>
+      {
+        currentExercise?.img && (
+          <img
+            class="img-exercises"
+            src={`/img/exercises/${grade}-${exercise}.webp`}
+            alt="Imagen del ejercicio"
+          />
+        )
+      }
+    </div>
+
+    <!--Video button -->
+    <div class="exercises-video-container">
+      <p>Si tienes alguna duda, mira la clase</p>
+      <a
+        class="span-exercises-video"
+        href={`/videos/${currentExercise?.title}`}
       >
-    </p>
+        <img src="/icons/ex-video.svg" alt="" /> Ver videoclase sobre <span
+          >{currentExercise?.title}</span
+        ></a
+      >
+    </div>
 
     <!-- Sección de ejercicios -->
     <div class="grid-container">
@@ -164,8 +183,11 @@ const length = currentExercise?.incisos?.length ?? 0;
             ?.filter(
               (
                 inciso,
-              ): inciso is { id: string; exercise: string; answer: Answer[] } =>
-                "answer" in inciso,
+              ): inciso is {
+                id: string;
+                exercise: string;
+                answer: Answer[];
+              } => "answer" in inciso,
             )
             .map((inciso) => {
               return (
@@ -236,96 +258,103 @@ const length = currentExercise?.incisos?.length ?? 0;
       {currentExercise?.type === "" && "Ejercicio por añadir"}
     </div>
   </section>
-</Layout>
 
-<style>
-  .exercises {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-block: 4rem;
-  }
-  .h2-exercises {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.5rem;
-    color: var(--dark-grey);
-  }
-
-  .img-exercises {
-    width: 350px;
-    height: auto;
-    margin-block: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: var(--secondary-color-light-3);
-    padding: 0.4rem;
-  }
-
-  @media (max-width: 768px) {
-    .img-exercises {
-      width: 70%;
-      margin-inline: auto;
+  <style>
+    .svg {
+      color: var(--secondary-color-light-2);
     }
-  }
 
-  .p-exercises-video {
-    color: var(--secondary-color-light-3);
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-top: 1rem;
-    margin-left: 10%;
-    padding: 0.3rem;
-    background-color: var(--secondary-color-dark);
-    border-radius: 0 0 0 25px;
-  }
+    .exercises {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-block: 4rem;
+    }
+    .h2-exercises {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.5rem;
+      color: var(--dark-grey);
+    }
 
-  .span-exercises-video {
-    color: var(--secondary-color-dark);
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    padding: 0.3rem 1rem;
-    background-color: white;
-  }
+    .image-container {
+      max-width: 400px;
+      margin-block: 1rem;
+      border-radius: 10px 10px 0 0;
+      overflow: clip;
+    }
 
-  .span-exercises-video:hover {
-    color: black;
-  }
+    .legend {
+      padding: 1rem;
+      background-color: var(--primary-color-dark);
+    }
 
-  @media (max-width: 600px) {
-    .p-exercises-video {
-      width: 100%;
-      margin-left: 0;
-      border-radius: 0;
+    .legend span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      color: var(--primary-color-light-3);
+    }
+
+    .img-exercises {
+      max-width: 100%;
+      height: auto;
+      background-color: var(--primary-color-light-3);
+      padding: 3rem;
+    }
+
+    .exercises-video-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: var(--secondary-color-light-1);
+      border-radius: 10px;
+    }
+
+    .exercises-video-container p {
+      color: var(--secondary-color-light-3);
+      font-size: 1rem;
+      font-weight: 700;
     }
 
     .span-exercises-video {
-      display: block;
-      width: fit-content;
-      margin-inline: auto;
-      margin-top: 0.3rem;
-      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--secondary-color-light-1);
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+      padding: 0.8rem 1.2rem;
+      background-color: white;
+      border-radius: 10px;
+      font-weight: 600;
     }
-  }
 
-  p {
-    font-size: 1.1rem;
-    color: var(--dark-grey);
-  }
+    .span-exercises-video span {
+      text-transform: uppercase;
+    }
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
+    .span-exercises-video:hover {
+      opacity: 0.95;
+    }
 
-  @media (max-width: 768px) {
     .grid-container {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
-  }
-</style>
+
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</Layout>
