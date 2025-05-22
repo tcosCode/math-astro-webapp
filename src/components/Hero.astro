@@ -63,20 +63,18 @@
   .button {
     border: 1px solid var(--primary-color);
     border-radius: 50px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-dark);
     font-size: 16px;
     padding: 1rem 1.5rem;
     color: var(--white-color);
     font-weight: 500;
     cursor: pointer;
-    transition:
-      background-color,
-      transform 0.3s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
     user-select: none;
   }
 
   .button:hover {
-    transform: scale(1.05);
+    background-color: var(--primary-color);
   }
 
   .button-outline {
@@ -88,12 +86,11 @@
     color: var(--dark-grey);
     font-weight: 500;
     cursor: pointer;
-    transition:
-      background-color,
-      transform 0.3s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
     user-select: none;
   }
+
   .button-outline:hover {
-    transform: scale(1.05);
+    background-color: var(--primary-color-light-3);
   }
 </style>
