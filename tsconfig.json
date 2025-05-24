@@ -11,6 +11,7 @@
       "@utils/*": ["src/utils/*"],
       "@db/*": ["db/*"],
       "@repositories/*": ["src/repositories/*"],
+      "@types": ["src/types"]
     }
   }
 }

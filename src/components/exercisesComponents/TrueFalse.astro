@@ -1,23 +1,20 @@
 ---
-interface TrueFalseProps {
-  inciso: string;
-  exerciseText: string;
-  validation: "true" | "false";
-}
+//Import types
+import type { TrueFalseProps, GradeExerciseParams } from "@types";
+
+import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, exerciseText, validation } = Astro.props as TrueFalseProps;
-const { grade, exercise } = Astro.params;
+const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
+
+const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---
 
 <div class="grid-item">
   <!-- Opciones de respuesta utilizando CSS Grid -->
   <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
-  <div
-    class="buttons"
-    data-grade={grade}
-    data-exercise={exercise}
-    data-inciso={inciso}
-  >
+
+  <div class="buttons" {...gridAttrs}>
     {
       validation === "true" ? (
         <>

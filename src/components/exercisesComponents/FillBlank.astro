@@ -1,27 +1,16 @@
 ---
-interface FillBlankProps {
-  inciso: string;
-  sentence: Array<string>;
-  options: Array<Options>;
-}
+//Import types
+import type { FillBlankProps, GradeExerciseParams } from "@types";
 
-interface Options {
-  id: string;
-  text: string;
-  position: string;
-}
+import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, sentence, options } = Astro.props as FillBlankProps;
-const { grade, exercise } = Astro.params;
+const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
+
+const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---
 
-<div
-  class="grid-item"
-  id="grid-item"
-  data-grade={grade}
-  data-exercise={exercise}
-  data-inciso={inciso}
->
+<div class="grid-item" id="grid-item" {...gridAttrs}>
   <div id="sentence" class="sentence">
     <span>{inciso}) </span>
     {

@@ -1,4 +1,6 @@
 ---
+import type { GradeOnlyParams } from "@types";
+
 import Layout from "@layouts/Layout.astro";
 import AccordionExercises from "@components/AccordionExercises.astro";
 import { topics } from "@data/topics";
@@ -14,7 +16,7 @@ export function getStaticPaths(): Array<Object> {
   ];
 }
 
-const { grade } = Astro.params;
+const { grade } = Astro.params as GradeOnlyParams;
 
 // Obtain the current topic
 const currentTopic = topics.find((topic) => topic.title === grade);

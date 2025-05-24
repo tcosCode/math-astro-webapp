@@ -1,9 +1,6 @@
 ---
-interface MatchingProps {
-  text: string;
-  pairId: number;
-  length: number;
-}
+//Import types
+import type { MatchingProps } from "@types";
 
 const { text, pairId, length } = Astro.props as MatchingProps;
 ---

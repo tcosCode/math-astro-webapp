@@ -1,4 +1,6 @@
 ---
+import type { VideoParams } from "@types";
+
 import Layout from "@layouts/Layout.astro";
 import { classes } from "@data/constants";
 
@@ -12,7 +14,7 @@ export function getStaticPaths() {
   return paths;
 }
 
-const { video } = Astro.params;
+const { video } = Astro.params as VideoParams;
 const currentClass = classes.find((class_) => class_.title === video);
 
 if (!currentClass) {

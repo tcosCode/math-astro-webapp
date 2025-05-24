@@ -1,4 +1,7 @@
 ---
+//import types
+import type { Exercise, Answer, GradeExerciseParams } from "@types";
+
 import Layout from "@layouts/Layout.astro";
 import { topics } from "@data/topics";
 import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
@@ -8,86 +11,6 @@ import Problem from "@components/exercisesComponents/Problem.astro";
 import Matching from "@components/exercisesComponents/Matching.astro";
 import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
 import { shuffle } from "@utils/shuffleArray";
-
-interface ExerciseChooseAnswer {
-  id: string;
-  type: string;
-  title: string;
-  img?: string;
-  texto: string;
-  incisos?: Array<{
-    id: string;
-    exercise: string;
-    answer: Array<Answer>;
-  }>;
-}
-
-interface Answer {
-  text: string;
-  validation: "correct" | "incorrect";
-}
-
-interface ExerciseTrueFalse {
-  id: string;
-  type: string;
-  title: string;
-  img?: string;
-  texto: string;
-  incisos?: Array<{
-    id: string;
-    exercise: string;
-    validation: "correct" | "incorrect";
-  }>;
-}
-
-interface ExerciseProblem {
-  id: string;
-  type: string;
-  title: string;
-  img?: string;
-  texto: string;
-  incisos?: Array<{
-    id: string;
-    exercise: string;
-    answer: string;
-  }>;
-}
-
-interface ExerciseMatching {
-  id: string;
-  type: string;
-  img?: string;
-  title: string;
-  texto: string;
-  incisos?: Array<{
-    text: string;
-    pairId: number;
-  }>;
-}
-
-interface ExerciseFillBlank {
-  id: string;
-  type: string;
-  title: string;
-  img?: string;
-  texto: string;
-  incisos: Array<{
-    id: string;
-    sentence: Array<string>;
-    options: Array<{
-      id: string;
-      text: string;
-      position: string;
-    }>;
-  }>;
-}
-
-type Exercise =
-  | ExerciseChooseAnswer
-  | ExerciseTrueFalse
-  | ExerciseProblem
-  | ExerciseMatching
-  | ExerciseFillBlank;
 
 // Define la función getStaticPaths
 export function getStaticPaths() {
@@ -108,7 +31,7 @@ export function getStaticPaths() {
   return paths;
 }
 
-const { grade, exercise } = Astro.params || {};
+const { grade, exercise } = Astro.params as GradeExerciseParams;
 
 if (!grade || !exercise) {
   throw new Error("Los parámetros de la ruta son inválidos o no existen.");

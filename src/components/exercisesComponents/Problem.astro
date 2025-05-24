@@ -1,11 +1,8 @@
 ---
-import Accordeon from "@components/Accordeon.astro";
+//Import types
+import type { ProblemProps } from "@types";
 
-interface ProblemProps {
-  inciso: string;
-  exerciseText: string;
-  answer: string;
-}
+import Accordeon from "@components/Accordeon.astro";
 
 const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
 ---
