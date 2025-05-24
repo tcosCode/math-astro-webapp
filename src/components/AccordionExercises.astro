@@ -1,4 +1,15 @@
 ---
+interface Props {
+  grade: string;
+  exerciseTitle: string;
+  currentTopic: Topic;
+  isOdd: boolean;
+}
+
+type Topic = { exercises: Array<Exercise> };
+
+type Exercise = { id: string; title: string };
+
 const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
 ---
 
@@ -16,8 +27,8 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
   <div class=`accordion__content ${isOdd ? "odd" : "even"}`>
     {
       currentTopic.exercises
-        .filter((exercise: any) => exercise.title === exerciseTitle)
-        .map((exercise: any) => {
+        .filter((exercise) => exercise.title === exerciseTitle)
+        .map((exercise) => {
           return (
             <a class="accordion__description" href={`/${grade}/${exercise.id}`}>
               Ejercicio {exercise.id}

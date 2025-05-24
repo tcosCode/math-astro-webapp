@@ -1,6 +1,4 @@
 ---
-const { title, classes } = Astro.props as Props;
-
 interface Props {
   title: string;
   classes: class_[];
@@ -12,13 +10,15 @@ interface class_ {
   image: string;
   url?: string;
 }
+
+const { title, classes } = Astro.props;
 ---
 
 <section class="grade-section">
   <h2>{title}</h2>
   <ul class="class-list">
     {
-      classes.map((class_: class_) => (
+      classes.map((class_) => (
         <li>
           <a href={`/videos/${class_.title}`} class="class-link">
             {class_.title}
