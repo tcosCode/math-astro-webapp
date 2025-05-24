@@ -61,14 +61,19 @@ const { grade, exercise } = Astro.params;
 <style>
   .grid-item {
     background-color: var(--background-color);
-    padding: 1.8rem 4rem;
-    border: 1px solid var(--border-background-color);
-    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid var(--light-grey);
+    border-radius: 10px;
     text-align: left;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .grid-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
 
   .sentence {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
   }
