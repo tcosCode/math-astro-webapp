@@ -34,7 +34,8 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
         .map((exercise) => {
           return (
             <a class="accordion__description" href={`/${grade}/${exercise.id}`}>
-              Ejercicio {exercise.id}
+              Ejercicio {exercise.id}{" "}
+              <span class="type-exercise">{exercise.type}</span>
             </a>
           );
         })
@@ -88,12 +89,22 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
     width: 100%;
     padding: 1rem 2.5rem;
     color: var(--dark-grey);
-    display: block;
+    display: flex;
+    justify-content: space-between;
     margin-left: 10px;
   }
 
   .accordion__description:hover {
     background-color: var(--bg-color-accordion-item);
+  }
+
+  .type-exercise {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--bg-color-accordion-item);
+    background-color: var(--border-description-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
   }
 
   .accordion__icon {
