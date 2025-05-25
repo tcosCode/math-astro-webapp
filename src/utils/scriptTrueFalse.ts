@@ -1,5 +1,6 @@
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
+import notyfOptions from "@utils/helpers/notyfOptions";
 
 import { validateTrueFalse } from "@utils/validateTrueFalse";
 import { postExerciseAnswer } from "@utils/api";
@@ -7,10 +8,8 @@ import { postExerciseAnswer } from "@utils/api";
 /* Listener-wrap para cuando cargue la pagina*/
 document.addEventListener("astro:page-load", () => {
   // Initialize Notyf for notifications
-  const notyf = new Notyf({
-    duration: 3000,
-    position: { x: "right", y: "top" },
-  });
+  const notyf = new Notyf(notyfOptions);
+
   // Listener para todos los botones de opciones
   document.querySelectorAll(".option-btn").forEach((button) => {
     button.addEventListener("click", async (event) => {

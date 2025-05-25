@@ -1,5 +1,7 @@
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
+import notyfOptions from "@utils/helpers/notyfOptions";
+
 import { postExerciseAnswer } from "@utils/api"; // Use relative path for client-side script
 
 // Definición de la interfaz Options que describe cada opción
@@ -12,10 +14,7 @@ interface Options {
 // Wait until the Astro page is fully loaded
 document.addEventListener("astro:page-load", async () => {
   // Initialize Notyf for notifications
-  const notyf = new Notyf({
-    duration: 3000,
-    position: { x: "right", y: "top" },
-  });
+  const notyf = new Notyf(notyfOptions);
 
   // Iterate over each exercise represented by elements with the class .grid-item
   document.querySelectorAll(".grid-item").forEach((exercise) => {
