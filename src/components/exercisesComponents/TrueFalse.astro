@@ -2,6 +2,8 @@
 //Import types
 import type { TrueFalseProps, GradeExerciseParams } from "@types";
 
+import ExercisesCard from "@components/ui/ExercisesCard.astro";
+
 import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, exerciseText, validation } = Astro.props as TrueFalseProps;
@@ -10,11 +12,11 @@ const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
 const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---
 
-<div class="grid-item">
+<ExercisesCard id="grid-item" {...gridAttrs}>
   <!-- Opciones de respuesta utilizando CSS Grid -->
   <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
 
-  <div class="buttons" {...gridAttrs}>
+  <div class="buttons">
     {
       validation === "true" ? (
         <>
@@ -37,7 +39,7 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
       )
     }
   </div>
-</div>
+</ExercisesCard>
 
 <script src="@utils/scriptTrueFalse.ts"></script>
 

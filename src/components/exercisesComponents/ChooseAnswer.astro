@@ -1,9 +1,11 @@
 ---
 //Import types
 import type { ChooseAnswerProps, GradeExerciseParams } from "@types";
-import { createGridAttrs } from "@utils/helpers/commons";
 
+import ExercisesCard from "@components/ui/ExercisesCard.astro";
 import ArrowRedoRight from "@components/icons/ArrowRedoRight.astro";
+
+import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, exerciseText, answer } = Astro.props as ChooseAnswerProps;
 const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
@@ -11,7 +13,7 @@ const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
 const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---
 
-<div class="grid-item" id="grid-item" {...gridAttrs}>
+<ExercisesCard id="grid-item" {...gridAttrs}>
   <!-- Opciones de respuesta utilizando CSS Grid -->
   <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
   <button class="option-btn" data-validation={answer[0].validation}>
@@ -41,19 +43,11 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
       <span>Intentarlo de nuevo</span>
     </div>
   </button>
-</div>
+</ExercisesCard>
 
 <script src="@utils/scriptChooseAnswer.ts"></script>
 
 <style>
-  .grid-item {
-    background-color: var(--background-color);
-    padding: 1.8rem 4rem;
-    border: 1px solid var(--border-background-color);
-    border-radius: 8px;
-    text-align: left;
-  }
-
   .option-btn {
     background-color: var(--btn-option-background-color);
     border: 2px solid var(--border-btn-option);

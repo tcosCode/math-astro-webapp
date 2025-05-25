@@ -1,5 +1,5 @@
 ---
-
+import Button from "@components/ui/Button.astro";
 ---
 
 <section class="hero">
@@ -14,8 +14,8 @@
       divertido.
     </p>
     <div class="buttons">
-      <a href="/#topics-start" class="button">Comenzar ahora</a>
-      <a href="/classes" class="button-outline">Ver videoclases</a>
+      <Button buttonType="primary" text="Comenzar ahora" url="/#topics-start" />
+      <Button buttonType="outline" text="Ver videoclases" url="/classes" />
     </div>
   </div>
 </section>
@@ -58,39 +58,5 @@
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-  }
-
-  .button {
-    border: 1px solid var(--primary-color);
-    border-radius: 50px;
-    background-color: var(--primary-color-dark);
-    font-size: 16px;
-    padding: 1rem 1.5rem;
-    color: var(--white-color);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    user-select: none;
-  }
-
-  .button:hover {
-    background-color: var(--primary-color);
-  }
-
-  .button-outline {
-    border: 1px solid var(--primary-color);
-    border-radius: 50px;
-    background-color: var(--white-color);
-    font-size: 16px;
-    padding: 1rem 1.5rem;
-    color: var(--dark-grey);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    user-select: none;
-  }
-
-  .button-outline:hover {
-    background-color: var(--primary-color-light-3);
   }
 </style>

@@ -14,17 +14,21 @@ document.addEventListener("astro:page-load", () => {
   document.querySelectorAll(".option-btn").forEach((button) => {
     button.addEventListener("click", async (event) => {
       const target = event.currentTarget as HTMLButtonElement;
-      const parent = target.parentElement as HTMLDivElement;
-      if (!parent) return;
+      const dataContainer = target.closest("#grid-item") as HTMLDivElement;
+
+      if (!dataContainer) {
+        notyf.error("Error: No se pudo encontrar el contenedor del ejercicio.");
+        return;
+      }
+
       const validation = target.getAttribute("data-validation");
-      const grade = parent.getAttribute("data-grade");
-      const exerciseAttr = parent.getAttribute("data-exercise") || "";
-      const inciso = parent.getAttribute("data-inciso");
+      const grade = dataContainer.getAttribute("data-grade");
+      const exerciseAttr = dataContainer.getAttribute("data-exercise");
+      const inciso = dataContainer.getAttribute("data-inciso");
 
       // --- Validation before sending ---
       if (!validation || !grade || !exerciseAttr || !inciso) {
-        console.error("Missing required data attributes on button or parent.");
-        notyf.error("Se qrequieren todos los datos.");
+        notyf.error("Se requieren todos los datos.");
         return;
       }
 

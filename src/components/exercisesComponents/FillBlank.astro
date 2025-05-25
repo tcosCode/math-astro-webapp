@@ -2,6 +2,7 @@
 //Import types
 import type { FillBlankProps, GradeExerciseParams } from "@types";
 
+import ExercisesCard from "@components/ui/ExercisesCard.astro";
 import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, sentence, options } = Astro.props as FillBlankProps;
@@ -10,7 +11,7 @@ const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
 const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---
 
-<div class="grid-item" id="grid-item" {...gridAttrs}>
+<ExercisesCard id="grid-item" {...gridAttrs}>
   <div id="sentence" class="sentence">
     <span>{inciso}) </span>
     {
@@ -43,24 +44,11 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
     <button id="checkAnswers">Comprobar Respuestas</button>
   </div>
   <p id="result" class="result"></p>
-</div>
+</ExercisesCard>
 
 <script src="@utils/scriptFillTheBlanks.ts"></script>
 
 <style>
-  .grid-item {
-    background-color: var(--background-color);
-    padding: 1.5rem;
-    border: 1px solid var(--light-grey);
-    border-radius: 10px;
-    text-align: left;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .grid-item:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  }
-
   .sentence {
     font-size: 1rem;
     line-height: 1.5;
