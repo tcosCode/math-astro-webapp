@@ -1,7 +1,14 @@
+export * from "./grades/7mo";
+export * from "./grades/8vo";
+export * from "./grades/9no";
+export * from "./grades/10mo";
+export * from "./grades/11no";
+export * from "./grades/12mo";
+
 import { grades7mo } from "@data/grades/7mo";
-import { grades8vo } from "@data/grades/8vo";
+import { grades8vo } from "@src/data/grades/8vo";
 import { grades9no } from "@data/grades/9no";
-import { grades10mo } from "@data/grades/10mo";
+import { grades10mo } from "@src/data/grades/10mo";
 import { grades11no } from "@data/grades/11no";
 import { grades12mo } from "@src/data/grades/12mo";
 

@@ -1,30 +1,13 @@
+//import types
+import type {
+  AuthUser,
+  ExerciseSubmissionData,
+  SubmissionSuccess,
+  SubmissionError,
+} from "@types";
+
 // Import the database instance and the 'answers' table definition
 import { db, answers, eq, and } from "astro:db"; // Ensure 'eq' is imported if used in getAllAnswers
-
-// Define the expected type for the incoming data
-interface ExerciseSubmissionData {
-  grade: string;
-  exerciseId: number;
-  sectionId: string; // (a, b, c, etc.)
-  correct: boolean;
-}
-
-// Define a type for the user object you get from locals.currentUser()
-interface AuthUser {
-  id: string;
-  // Add other user properties if your repository logic needs them
-}
-
-interface SubmissionSuccess {
-  ok: true;
-  message: string;
-  insertedId?: number; // Keep this as we'll try to return the ID
-}
-
-interface SubmissionError {
-  ok: false;
-  error: string;
-}
 
 // Function to handle the submission logic using Astro DB
 export const handleExerciseSubmission = async (

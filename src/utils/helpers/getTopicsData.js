@@ -1,4 +1,4 @@
-import { topics } from "@data/topics.js";
+import { topics } from "@src/data/index.js";
 
 const [grade7mo, grade8vo, grade9no, grade10mo, grade11no, grade12mo] = topics;
 

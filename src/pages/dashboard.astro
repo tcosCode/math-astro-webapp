@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { getTotalGradeExercises } from "@utils/helpers/getTopicsData.js";
-import { topics } from "@data/topics.js";
+import { getTotalGradeExercises } from "@utils/helpers/getTopicsData";
+import { topics } from "@src/data/index";
 
 // User name
 const user = await Astro.locals.currentUser();

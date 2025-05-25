@@ -1,9 +1,9 @@
 ---
-import type { GradeOnlyParams } from "@types";
+import type { GradeOnlyParams, Exercise } from "@types";
 
 import Layout from "@layouts/Layout.astro";
 import AccordionExercises from "@components/AccordionExercises.astro";
-import { topics } from "@data/topics";
+import { topics } from "@data/index";
 
 export function getStaticPaths(): Array<Object> {
   return [
@@ -15,6 +15,13 @@ export function getStaticPaths(): Array<Object> {
     { params: { grade: "12mo" } },
   ];
 }
+
+type Topic = {
+  title: string;
+  img: string;
+  list: string[];
+  exercises: Exercise[];
+};
 
 const { grade } = Astro.params as GradeOnlyParams;
 
@@ -43,14 +50,16 @@ const titlesArray = Array.from(currentTopicExercisesTitles);
               <>
                 <div class="exercises-container">
                   <div class="accordion">
-                    {titlesArray.map((title, index) => (
-                      <AccordionExercises
-                        grade={grade}
-                        exerciseTitle={title}
-                        currentTopic={currentTopic}
-                        isOdd={index % 2 === 0}
-                      />
-                    ))}
+                    {titlesArray.map((title, index) =>
+                      currentTopic ? (
+                        <AccordionExercises
+                          grade={grade}
+                          exerciseTitle={title}
+                          currentTopic={currentTopic as Topic}
+                          isOdd={index % 2 === 0}
+                        />
+                      ) : null,
+                    )}
                   </div>
                 </div>
                 <div class="card">

@@ -1,14 +1,17 @@
 ---
+import type { Exercise } from "@src/types";
+
 interface Props {
   grade: string;
   exerciseTitle: string;
-  currentTopic: Topic;
+  currentTopic: {
+    title: string;
+    img: string;
+    list: string[];
+    exercises: Array<Exercise>;
+  };
   isOdd: boolean;
 }
-
-type Topic = { exercises: Array<Exercise> };
-
-type Exercise = { id: string; title: string };
 
 const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
 ---

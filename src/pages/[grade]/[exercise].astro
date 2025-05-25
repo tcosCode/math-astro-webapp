@@ -3,7 +3,7 @@
 import type { Exercise, Answer, GradeExerciseParams } from "@types";
 
 import Layout from "@layouts/Layout.astro";
-import { topics } from "@data/topics";
+import { topics } from "@data/index";
 import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
 import TrueFalse from "@components/exercisesComponents/TrueFalse.astro";
 import Pencil from "@components/icons/Pencil.astro";
@@ -40,7 +40,7 @@ if (!grade || !exercise) {
 // Busca el ejercicio actual
 const currentExercise = topics
   .find((topic) => topic.title === grade)
-  ?.exercises.find((ex) => ex.id === exercise) as Exercise | undefined;
+  ?.exercises.find((ex) => ex.id === exercise) as Exercise;
 
 if (!currentExercise) {
   Astro.redirect("/404");
