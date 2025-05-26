@@ -3,13 +3,16 @@
 import type { Exercise, Answer, GradeExerciseParams } from "@types";
 
 import Layout from "@layouts/Layout.astro";
-import { topics } from "@data/index";
 import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
 import TrueFalse from "@components/exercisesComponents/TrueFalse.astro";
-import Pencil from "@components/icons/Pencil.astro";
 import Problem from "@components/exercisesComponents/Problem.astro";
 import Matching from "@components/exercisesComponents/Matching.astro";
 import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
+
+import Pencil from "@assets/icons/pencil.svg";
+import ExerciseBookIcon from "@assets/icons/ex-figure-book.svg";
+import ExerciseVideoIcon from "@assets/icons/ex-video.svg";
+import { topics } from "@data/index";
 import { shuffle } from "@utils/shuffleArray";
 
 // Define la función getStaticPaths
@@ -58,7 +61,7 @@ const length = currentExercise?.incisos?.length ?? 0;
 <Layout title={`Grado ${grade} | Ejercicio ${exercise}`}>
   <section class="exercises">
     <h2 class="h2-exercises">
-      <Pencil class="svg" />
+      <Pencil class="svg svg-pencil" />
       <span>{grade} Grado | Ejercicio No. {exercise}</span>
     </h2>
     <p set:html={currentExercise?.texto} />
@@ -69,11 +72,7 @@ const length = currentExercise?.incisos?.length ?? 0;
         <div class="image-container">
           <div class="legend">
             <span>
-              <img
-                src="/icons/ex-figure-book.svg"
-                alt="book-figure"
-                class="ex-svg"
-              />{" "}
+              <ExerciseBookIcon />
               Figura del ejercicio
             </span>
           </div>
@@ -94,7 +93,7 @@ const length = currentExercise?.incisos?.length ?? 0;
         class="span-exercises-video"
         href={`/videos/${currentExercise?.title}`}
       >
-        <img src="/icons/ex-video.svg" alt="" /> Ver videoclase sobre <span
+        <ExerciseVideoIcon /> Ver videoclase sobre <span
           >{currentExercise?.title}</span
         ></a
       >
@@ -185,7 +184,7 @@ const length = currentExercise?.incisos?.length ?? 0;
   </section>
 
   <style>
-    .svg {
+    .svg-pencil {
       color: var(--secondary-color-light-2);
     }
 

@@ -1,29 +1,39 @@
 ---
 interface Props {
-  text: string;
-  url: string;
+  url?: string;
   buttonType: "primary" | "outline";
+  [key: string]: any; // Allow additional properties
 }
 
-const { text, url, buttonType } = Astro.props;
+const { url, buttonType, ...restProps } = Astro.props;
 ---
 
-<a href={url} class={buttonType === "primary" ? "button-primary" : "button-outline"}
-  >{text}</a
+<a
+  href={url}
+  class={buttonType === "primary"
+    ? "button button-primary"
+    : "button button-outline"}
+  {...restProps}
 >
+  <slot />
+</a>
 
 <style>
-  .button-primary {
+  .button {
     border: 1px solid var(--primary-color);
     border-radius: 50px;
-    background-color: var(--primary-color-dark);
     font-size: 16px;
     padding: 1rem 1.5rem;
-    color: var(--white-color);
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     user-select: none;
+    max-width: fit-content;
+  }
+
+  .button-primary {
+    background-color: var(--primary-color-dark);
+    color: var(--white-color);
   }
 
   .button-primary:hover {
@@ -31,16 +41,8 @@ const { text, url, buttonType } = Astro.props;
   }
 
   .button-outline {
-    border: 1px solid var(--primary-color);
-    border-radius: 50px;
     background-color: var(--white-color);
-    font-size: 16px;
-    padding: 1rem 1.5rem;
     color: var(--dark-grey);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    user-select: none;
   }
 
   .button-outline:hover {

@@ -1,7 +1,7 @@
 // Data for 9no Grade
 export const grades9no = {
   title: "9no",
-  img: "/img/school-36.svg",
+  img: "src/assets/img/school-36.svg",
   list: ["Estadística", "Geometría", "Ecuaciones"],
   exercises: [
     {

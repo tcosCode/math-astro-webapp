@@ -2,16 +2,16 @@
 interface Props {
   title: string;
   description: string;
-  image: string;
+  image: typeof import("*.svg").default;
   bgcolor: string;
 }
 
-const { title, description, image, bgcolor } = Astro.props;
+const { title, description, image: Icon, bgcolor } = Astro.props;
 ---
 
 <section class="pre-footer-card">
   <div class="image-feature" style={`background-color: ${bgcolor}`}>
-    <img src={image} alt={title} />
+    <Icon />
   </div>
   <h3>{title}</h3>
   <p>{description}</p>

@@ -1,6 +1,6 @@
 export const grades8vo = {
   title: "8vo",
-  img: "/img/book-lover.svg",
+  img: "src/assets/img/book-lover.svg",
   list: ["Estadística", "Geometría", "Funciones"],
   exercises: [
     {

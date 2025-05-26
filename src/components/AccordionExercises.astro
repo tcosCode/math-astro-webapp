@@ -1,6 +1,8 @@
 ---
 import type { Exercise } from "@src/types";
 
+import BxPlus from "@assets/icons/bx-plus.svg";
+
 interface Props {
   grade: string;
   exerciseTitle: string;
@@ -21,11 +23,7 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
     <h3 class="accordion__title">
       {exerciseTitle}
     </h3>
-    <img
-      src="/icons/bx-plus.svg"
-      alt="Plus icon for the accordion "
-      class="bx bx-plus accordion__icon"
-    />
+    <BxPlus class="bx bx-plus accordion__icon" />
   </header>
   <div class=`accordion__content ${isOdd ? "odd" : "even"}`>
     {

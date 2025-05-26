@@ -1,5 +1,8 @@
 ---
 import FeaturesCard from "@components/FeaturesCard.astro";
+import PreFooterPageIcon from "@assets/icons/prefooter-page.svg";
+import PreFooterBookIcon from "@assets/icons/prefooter-book.svg";
+import PreFooterCalendarIcon from "@assets/icons/prefooter-calendar.svg";
 
 const [blueSky, orangeLight, purpleLigth] = [
   "rgb(230 247 255)",
@@ -18,19 +21,19 @@ const [blueSky, orangeLight, purpleLigth] = [
     <FeaturesCard
       title="Ejercicios interactivos"
       description="Practica con ejercicios interactivos adaptados a tu nivel académico"
-      image="/icons/prefooter-page.svg"
+      image={PreFooterPageIcon}
       bgcolor={blueSky}
     />
     <FeaturesCard
       title="Videoclases explicativas"
       description="Aprende con videos que explican paso a paso los conceptos matemáticos clave"
-      image="/icons/prefooter-book.svg"
+      image={PreFooterBookIcon}
       bgcolor={orangeLight}
     />
     <FeaturesCard
       title="Programa de estudio"
       description="Sigue un programa estructurado que te ayudará a dominar los temas de matemáticas"
-      image="/icons/prefooter-calendar.svg"
+      image={PreFooterCalendarIcon}
       bgcolor={purpleLigth}
     />
   </div>
