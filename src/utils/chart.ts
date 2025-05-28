@@ -1,7 +1,28 @@
-import Chart from "chart.js/auto";
+import {
+  Chart,
+  Legend,
+  Tooltip,
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  PieController,
+  ArcElement,
+} from "chart.js";
 import { getAnswers } from "@utils/api";
 
 import { totalExercises } from "@utils/helpers/getTopicsData";
+
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  BarController,
+  BarElement,
+  PieController,
+  ArcElement,
+  Legend,
+  Tooltip,
+);
 
 let myChartPie: Chart | null = null;
 let myChartBar: Chart | null = null;
@@ -54,7 +75,7 @@ async function fetchAndRender() {
     labels: ["Correctos", "Incorrectos", "No Resueltos"],
     datasets: [
       {
-        label: "Progreso",
+        label: "Ejercicios",
         data: [
           correctAnswers.length,
           incorrectAnswers.length,
