@@ -2,7 +2,7 @@ import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import notyfOptions from "@utils/helpers/notyfOptions";
 
-import { validateTrueFalse } from "@utils/validateTrueFalse";
+import { validateAnswer } from "@utils/validateAnswer";
 import { postExerciseAnswer } from "@utils/api";
 
 /* Listener-wrap para cuando cargue la pagina*/
@@ -51,7 +51,7 @@ document.addEventListener("astro:page-load", () => {
       };
 
       if (validation) {
-        validateTrueFalse(validation, target);
+        validateAnswer(validation, target);
 
         // --- Send data to the server ---
         try {

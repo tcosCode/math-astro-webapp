@@ -15,10 +15,11 @@ const { buttonClass, dataValidation } = Astro.props;
   .option-btn {
     background-color: var(--btn-option-background-color);
     border: 2px solid var(--border-btn-option);
-    padding: 10px 15px;
+    padding: 0.6rem 1rem;
     font-size: 1rem;
     cursor: pointer;
     width: 100%;
+    border-radius: 0.5rem;
     transition:
       background-color 0.3s ease,
       transform 0.3s ease;
@@ -26,7 +27,7 @@ const { buttonClass, dataValidation } = Astro.props;
 
   .option-btn:hover {
     background-color: var(--btn-option-hover-background-color);
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 
   .correct {

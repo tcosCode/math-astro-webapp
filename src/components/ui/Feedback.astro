@@ -1,15 +1,15 @@
 ---
-import Alert from "@assets/icons/alert-feedback.svg";
+import AlertIcon from "@assets/icons/alert-feedback.svg";
 ---
 
 <div id="feedback">
   <h3 id="h3-correct" style="display: none">
-    <Alert stroke="currentColor" />
+    <AlertIcon class="svg svg-stroke" />
     <span>¡Felicidades! Lo ha conseguido.</span>
   </h3>
   <h3 id="h3-incorrect" style="display: none">
-    <Alert stroke="currentColor" />
-    Lo sentimos. Su selección no es correcta.
+    <AlertIcon class="svg svg-stroke" />
+    <span>Lo sentimos. Su selección no es correcta.</span>
   </h3>
 </div>
 
@@ -17,9 +17,11 @@ import Alert from "@assets/icons/alert-feedback.svg";
   #h3-correct,
   #h3-incorrect {
     padding: 1rem;
+    padding-left: 2.2rem;
     border-radius: 0.75rem;
     font-size: 0.875rem;
     font-weight: 500;
+    position: relative;
   }
 
   #h3-correct {
@@ -32,5 +34,13 @@ import Alert from "@assets/icons/alert-feedback.svg";
     color: var(--incorrect-color);
     background-color: rgb(254 242 242);
     border: 1px solid rgb(254 202 202);
+  }
+
+  .svg {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    vertical-align: middle;
+    margin-top: 1px
   }
 </style>

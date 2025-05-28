@@ -2,12 +2,13 @@
 //Import types
 import type { ProblemProps } from "@types";
 
-import Accordeon from "@components/Accordeon.astro";
+import ExercisesCard from "@components/ui/ExercisesCard.astro";
+import Accordion from "@components/AccordionProblem.astro";
 
 const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
 ---
 
-<div class="grid-item">
+<ExercisesCard id="grid-item">
   <!-- Opciones de respuesta utilizando CSS Grid -->
 
   <div class="card">
@@ -16,30 +17,16 @@ const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
         <p><strong>{inciso})</strong> <span set:html={exerciseText} /></p>
       </div>
       <div class="card-back">
-        <Accordeon text={answer} />
+        <Accordion text={answer} />
       </div>
     </div>
   </div>
-</div>
+</ExercisesCard>
 
 <style>
-  .grid-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: auto;
-    align-items: center;
-    background-color: var(--background-color);
-    padding: 20px;
-    border: 1px solid var(--border-background-color);
-    border-radius: 8px;
-    text-align: left;
-  }
-  .grid-item p {
-    flex: 1;
-  }
-
   /* Card Flip */
   .card {
+    align-self: center;
     width: 300px;
     height: 200px;
     perspective: 1000px;

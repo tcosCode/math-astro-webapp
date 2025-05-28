@@ -3,6 +3,9 @@
 import type { FillBlankProps, GradeExerciseParams } from "@types";
 
 import ExercisesCard from "@components/ui/ExercisesCard.astro";
+import Button from "@components/ui/Button.astro";
+import Feedback from "@components/ui/Feedback.astro";
+
 import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, sentence, options } = Astro.props as FillBlankProps;
@@ -29,6 +32,7 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
       options.map((option) => {
         return (
           <div
+            id={`option-${option.id}`}
             class="option"
             draggable="true"
             data-id={option.id}
@@ -40,10 +44,9 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
       })
     }
   </div>
-  <div class="buttons">
-    <button id="checkAnswers">Comprobar Respuestas</button>
-  </div>
-  <p id="result" class="result"></p>
+
+  <Button buttonType="primary" id="checkAnswers">Comprobar Respuestas</Button>
+  <Feedback />
 </ExercisesCard>
 
 <script src="@utils/scriptFillTheBlanks.ts"></script>
@@ -53,6 +56,7 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
+    flex: 1;
   }
 
   .blank {
@@ -60,13 +64,12 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
     align-items: center;
     justify-content: space-between;
     min-width: 100px;
-    height: 24px;
-    border-bottom: 2px dashed #999;
-    margin: 0 5px;
-    padding: 0 5px;
-    text-align: center;
+    height: 2rem;
+    border: 2px dashed #999;
+    margin-left: 5px;
+    padding: 5px 10px;
     cursor: pointer;
-    position: relative;
+    vertical-align: middle;
   }
 
   .blank.correct {
@@ -79,109 +82,37 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
     background-color: #ffebee;
   }
 
-  .icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-  }
-
-  .correct .icon {
-    color: #4caf50;
-  }
-
-  .incorrect .icon {
-    color: #f44336;
-  }
-
   .options {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
     min-height: 40px;
     padding: 10px;
+    width: 100%;
   }
 
   .option {
+    flex: 1 1 calc(33.333% - 20px);
+    text-align: center;
     background-color: var(--white-color);
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 20px;
+    border-radius: 5px;
     cursor: grab;
     user-select: none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
   }
 
+  :global(.fill-the-blanks-icon) {
+    margin: auto 0;
+    margin-left: 15px;
+  }
+
   @media (max-width: 768px) {
     .option {
-      padding: 30px 40px;
+      padding: 30px;
     }
-  }
-
-  .option:hover {
-    background-color: #d0d0d0;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: left;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
-
-  #checkAnswers {
-    background-color: #2196f3;
-    color: white;
-  }
-
-  #checkAnswers:hover {
-    background-color: #1976d2;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  #resetExercise {
-    background-color: #f44336;
-    color: white;
-  }
-
-  #resetExercise:hover {
-    background-color: #d32f2f;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  .result {
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: bold;
-    min-height: 27px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: all 0.2s ease;
-  }
-
-  .result.correct {
-    color: #4caf50;
-    background-color: rgba(76, 175, 80, 0.1);
-  }
-
-  .result.incorrect {
-    color: #f44336;
-    background-color: rgba(244, 67, 54, 0.1);
   }
 </style>
