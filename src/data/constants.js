@@ -136,4 +136,9 @@ export const classes = [
     grade: "7mo",
     image: "zfX5Jz_ZtZI",
   },
+  {
+    title: "Geometría del espacio",
+    grade: "9no",
+    image: "JjDanEMMbFo",
+  },
 ];

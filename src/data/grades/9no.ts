@@ -901,5 +901,126 @@ export const grades9no = {
         },
       ],
     },
+    {
+      id: "16",
+      type: "FillBlank",
+      title: "Geometría del espacio",
+      texto: "Completar los espacios en blanco: Dado un cono de vértice S",
+      incisos: [
+        {
+          id: "a",
+          sentence: [
+            "La fórmula para calcular el volumen del cono es",
+            "blank1",
+            "",
+          ],
+          options: [
+            {
+              id: "a_option1",
+              text: "V = πr²h",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "V = <sup>1</sup>/<sub>3</sub>πr²h",
+              position: "blank1",
+            },
+            {
+              id: "a_option3",
+              text: "<sup>1</sup>/<sub>3</sub>πrh",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: [
+            "Calcular el volumen del cono si r = 5cm y h = 10cm",
+            "blank1",
+            "",
+          ],
+          options: [
+            {
+              id: "b_option1",
+              text: "V = 261,66cm²",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "V = 230,45cm³",
+              position: "none",
+            },
+            {
+              id: "b_option3",
+              text: "V = 261,66cm³",
+              position: "blank1",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "17",
+      type: "ChooseAnswer",
+      title: "Geometría del espacio",
+      texto:
+        "Si un cono circular recto de radio (r), generatriz (g), altura (h), área lateral (A<sub>L</sub>) y área total (A<sub>T</sub>). Seleccionar la respuesta correcta:",
+      incisos: [
+        {
+          id: "a",
+          exercise: "De r = 6,0cm y g = 10cm, entonces A<sub>L</sub> =",
+          answer: [
+            {
+              text: "188,4cm",
+              validation: "incorrect",
+            },
+            {
+              text: "188,4cm²",
+              validation: "correct",
+            },
+            {
+              text: "188,4cm³",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "De r = 1,6dm y h = 12cm entonces V =",
+          answer: [
+            {
+              text: "32,15cm²",
+              validation: "incorrect",
+            },
+            {
+              text: "32,15dm³",
+              validation: "incorrect",
+            },
+            {
+              text: "32,15cm³",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "De A<sub>L</sub> = 423,9dm² y g = 15,0dm, entonces r =",
+          answer: [
+            {
+              text: "9,0cm",
+              validation: "incorrect",
+            },
+            {
+              text: "9,0cm²",
+              validation: "incorrect",
+            },
+            {
+              text: "9,0dm",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

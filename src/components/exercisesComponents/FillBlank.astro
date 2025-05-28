@@ -38,7 +38,7 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
             data-id={option.id}
             data-position={option.position}
           >
-            {option.text}
+            <span set:html={option.text} />
           </div>
         );
       })
