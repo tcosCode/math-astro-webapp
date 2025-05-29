@@ -1,31 +1,97 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import ClassesComponent from "@components/Classes.astro";
-import { classes as classesData } from "@data/constants";
+import ClassesComponent from "@components/VideoClasses.astro";
+import Tabs from "@components/ui/Tabs.astro";
+import { classes as classesData } from "@src/data/constants";
+import { getVideos } from "@src/utils/helpers/youtubeService";
+import { parseDuration } from "@src/utils/helpers/parseVideoYtTime";
 
-const grade7mo = classesData.filter((class_) => class_.grade.includes("7mo"));
-const grade8vo = classesData.filter((class_) => class_.grade.includes("8vo"));
-const grade9no = classesData.filter((class_) => class_.grade.includes("9no"));
-const grade10mo = classesData.filter((class_) => class_.grade.includes("10mo"));
-const grade11no = classesData.filter((class_) => class_.grade.includes("11no"));
-const grade12mo = classesData.filter((class_) => class_.grade.includes("12mo"));
+import type { YouTubeVideo } from "@types";
+
+// Obtener todos los videos de YouTube (esto se ejecuta en el servidor durante la construcción)
+const allVideos: YouTubeVideo[] = await getVideos();
+
+// Función para parsear la duración de YouTube (ISO 8601 a formato legible)
+
+// Unificar los datos de 'classesData' con la información detallada de YouTube
+const videosWithClassInfo = classesData
+  .map((classItem) => {
+    // Buscar el video de YouTube que coincide con el ID de la imagen en classItem
+    const youtubeVideo = allVideos.find(
+      (video) => video.id === classItem.image,
+    );
+
+    // Si no se encuentra el video de YouTube, se devuelve null y se filtra después
+    if (!youtubeVideo) {
+      console.warn(
+        `No se encontró el video de YouTube para el ID: ${classItem.image}`,
+      );
+      return null;
+    }
+
+    // Devolver un objeto con las propiedades que ClassesComponent espera,
+    // extrayéndolas del objeto youtubeVideo
+    return {
+      title: classItem.title, // Título del video de YouTube
+      src: youtubeVideo.snippet.thumbnails.medium.url, // URL de la miniatura del video de YouTube
+      description: youtubeVideo.snippet.description, // Descripción del video de YouTube
+      time: parseDuration(youtubeVideo.contentDetails.duration), // Duración parseada del video de YouTube
+      grade: classItem.grade, // Grado de tus datos locales
+      id: youtubeVideo.id, // ID del video de YouTube (útil para el enlace)
+    };
+  })
+  .filter(Boolean); // Filtra cualquier entrada 'null' si un video no se encontró
 ---
 
 <Layout title="Clases">
-  <h1>Clases</h1>
-  <ClassesComponent title="7mo" classes={grade7mo} />
-  <ClassesComponent title="8vo" classes={grade8vo} />
-  <ClassesComponent title="9no" classes={grade9no} />
-  <ClassesComponent title="10mo" classes={grade10mo} />
-  <ClassesComponent title="11no" classes={grade11no} />
-  <ClassesComponent title="12mo" classes={grade12mo} />
+  <section class="section-videos">
+    <h1 class="title">Videoclases de matemáticas</h1>
+    <Tabs />
+    <div class="container">
+      {
+        videosWithClassInfo.map((videoData) => (
+          <ClassesComponent
+            idVideo={videoData!.id}
+            title={videoData!.title}
+            src={videoData!.src}
+            description={videoData!.description}
+            time={videoData!.time}
+            grade={videoData!.grade}
+          />
+        ))
+      }
+    </div>
+  </section>
 </Layout>
 
+<script src="@utils/helpers/filterVideos.ts"></script>
+
 <style>
-  h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--dark-grey);
+  .section-videos {
+    margin-block: 3.5rem 3rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    place-items: center;
+    margin-top: 2rem;
+    padding: 4rem 2rem;
+    width: 100%;
+    background-color: var(--light-grey);
+    border-radius: 1rem;
+    position: relative;
+  }
+
+  @media (max-width: 450px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

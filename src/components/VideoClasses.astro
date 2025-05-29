@@ -1,0 +1,171 @@
+---
+import Play from "@assets/icons/play.svg";
+import Clock from "@assets/icons/clock.svg";
+
+interface Props {
+  idVideo: string;
+  title: string;
+  src: string;
+  time: string;
+  description: string;
+  grade: string;
+}
+
+const { title, src, time, description, grade, idVideo } = Astro.props;
+---
+
+<section class="video-container" data-grade={grade}>
+  <a href=`/videos/${idVideo}` class="video-link">
+    <figure>
+      <div class="video-duration">
+        <Clock class="svg-stroke clock-icon" />
+        {time}
+      </div>
+      <div class="overlay">
+        <div class="svg-play">
+          <Play class="svg-stroke play-icon" />
+        </div>
+      </div>
+      <img class="thumb" src={src} alt={title} />
+    </figure>
+    <article>
+      <div class="grade">{grade}</div>
+      <div class="video-description">
+        <h4 class="title">{title}</h4>
+        <p class="description">{description}</p>
+      </div>
+    </article>
+  </a>
+</section>
+
+<style>
+  .video-container[data-hidden="true"] {
+    display: none;
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-width: 500px;
+    margin-bottom: 0.75rem;
+    background-color: whitesmoke;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .video-container:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+
+  figure {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+  }
+
+  .thumb {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .svg-play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--primary-color-dark);
+  }
+
+  .play-icon {
+    color: var(--white-color);
+    stroke-width: 2px;
+  }
+
+  .video-container:hover .overlay {
+    opacity: 1;
+  }
+
+  .video-container .video-duration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--dark-grey);
+    border-radius: 0.25rem;
+    z-index: 5;
+    opacity: 0.95;
+    font-size: 0.75rem;
+    color: white;
+  }
+
+  .video-container .clock-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.25rem;
+  }
+
+  article {
+    padding: 1rem;
+    max-width: 350px;
+  }
+
+  .grade {
+    width: fit-content;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    background-color: var(--primary-color-light);
+  }
+
+  .video-description {
+    margin-top: 0.5rem;
+  }
+
+  .title {
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Limita el texto a 1 línea */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .description {
+    font-size: 0.875rem;
+    color: rgb(75 85 99);
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita el texto a 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

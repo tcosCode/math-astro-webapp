@@ -101,7 +101,6 @@ export const classes = [
     image: "DPcP6gz495U",
     url: "PLeySRPnY35dGL6Gpm_T-30RH3Kr2IxeDN",
   },
-
   {
     title: "Logaritmos",
     grade: "10mo, 11no",
@@ -110,7 +109,7 @@ export const classes = [
   },
   {
     title: "Igualdad de triángulos",
-    grade: "8vo",
+    grade: "8vo, 12mo",
     image: "hhpN91CSJpY",
   },
   {

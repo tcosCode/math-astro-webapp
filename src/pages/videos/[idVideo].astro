@@ -1,0 +1,111 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { classes } from "@src/data/constants";
+
+import type { VideoParams } from "@types";
+import type { YouTubeVideo } from "@types";
+
+import { getVideoById } from "@src/utils/helpers/youtubeService";
+import { parseDuration } from "@src/utils/helpers/parseVideoYtTime";
+import { findVideoById } from "@src/utils/helpers/findVideo";
+
+/*
+export function getStaticPaths() {
+  const paths: Array<{ params: { video: string } }> = [];
+
+  // Dinamic routes
+  classes.forEach((class_) => {
+    paths.push({ params: { video: `${class_.title}` } });
+  });
+  return paths;
+}
+  */
+
+const { idVideo } = Astro.params as unknown as VideoParams;
+
+// Obtener los datos completos del video usando su ID.
+// getVideoById() seguirá usando el caché si está disponible, lo cual es bueno.
+const videoYtData = (await getVideoById(idVideo)) as YouTubeVideo;
+const videoLocalData = findVideoById(idVideo);
+
+// Manejar el caso de que el video no se encuentre (redirección a 404)
+if (!videoYtData || !videoLocalData) {
+  return Astro.redirect("/404");
+}
+
+const formattedDuration = parseDuration(videoYtData.contentDetails.duration);
+---
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
+></script>
+
+<Layout title={`Videos de la clase ${videoLocalData.title}`}>
+  {}
+  <section class="video-detail-page">
+    <h2 class="h2-video">
+      <span>{videoLocalData.title}</span>
+    </h2>
+    <div class="video-container">
+      <lite-youtube videoid={videoYtData.id} playlistid={videoLocalData.url}
+      ></lite-youtube>
+    </div>
+    <div class="video-info">
+      <h3>Descripción:</h3>
+      <p>{videoYtData.snippet.description}</p>
+      <p>Duración: {formattedDuration}</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .video-detail-page {
+    margin-block: clamp(1rem, 2vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .h2-video {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: var(--dark-grey);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    margin-inline: auto;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondary-color-light-3);
+    padding: clamp(0.5rem, 2vw, 2rem);
+    overflow: hidden;
+  }
+
+  .video-container lite-youtube {
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-info {
+    max-width: 800px;
+    margin-top: 2rem;
+    padding: 0 1rem;
+    color: var(--dark-grey);
+  }
+
+  .video-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .video-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+</style>

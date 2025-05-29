@@ -1,6 +1,6 @@
 ---
 //import types
-import type { Exercise, Answer, GradeExerciseParams } from "@types";
+import type { Exercise, Answer } from "@types";
 
 import Layout from "@layouts/Layout.astro";
 import ChooseAnswer from "@components/exercisesComponents/ChooseAnswer.astro";
@@ -12,11 +12,12 @@ import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
 import Pencil from "@assets/icons/pencil.svg";
 import ExerciseBookIcon from "@assets/icons/ex-figure-book.svg";
 import ExerciseVideoIcon from "@assets/icons/ex-video.svg";
-import { topics } from "@data/index";
+import { topics } from "@src/data/index";
 import { shuffle } from "@utils/shuffleArray";
+import { findVideoByTitle } from "@src/utils/helpers/findVideo";
 
 // Define la función getStaticPaths
-export function getStaticPaths() {
+/*export function getStaticPaths() {
   const paths: Array<{ params: { grade: string; exercise: string } }> = [];
 
   // Genera rutas dinámicas basadas en los datos disponibles
@@ -32,9 +33,9 @@ export function getStaticPaths() {
   });
 
   return paths;
-}
+}*/
 
-const { grade, exercise } = Astro.params as GradeExerciseParams;
+const { grade, exercise } = Astro.params;
 
 if (!grade || !exercise) {
   throw new Error("Los parámetros de la ruta son inválidos o no existen.");
@@ -91,7 +92,7 @@ const length = currentExercise?.incisos?.length ?? 0;
       <p>Si tienes alguna duda, mira la clase</p>
       <a
         class="span-exercises-video"
-        href={`/videos/${currentExercise?.title}`}
+        href={`/videos/${findVideoByTitle(currentExercise?.title)?.image}`}
       >
         <ExerciseVideoIcon /> Ver videoclase sobre <span
           >{currentExercise?.title}</span
