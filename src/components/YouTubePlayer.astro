@@ -1,0 +1,174 @@
+---
+export interface Props {
+  videoId: string;
+  // You can add more playerVars here if needed, e.g., autoplay, controls
+}
+
+const { videoId } = Astro.props;
+const playerContainerId = `Youtuber-container-${videoId}`; // Unique ID for the player container
+---
+
+<div id={playerContainerId} class="youtube-iframe-container"></div>
+
+<style>
+  .youtube-iframe-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000; /* Optional: background while loading */
+  }
+  .youtube-iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<script define:vars={{ videoId, playerContainerId }}>
+  // This script will run on the client
+  let player;
+  let apiReady = false;
+  const pendingActions = [];
+  const playerGlobalObjectName = `youtubePlayer_${playerContainerId}`;
+
+  // Limpiar player anterior si existe
+  if (window[playerGlobalObjectName]) {
+    console.log("Limpiando player anterior:", playerGlobalObjectName);
+    if (
+      window[playerGlobalObjectName].player &&
+      typeof window[playerGlobalObjectName].player.destroy === "function"
+    ) {
+      try {
+        window[playerGlobalObjectName].player.destroy();
+      } catch (e) {
+        console.warn("Error al destruir player anterior:", e);
+      }
+    }
+    delete window[playerGlobalObjectName];
+  }
+
+  // 1. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  function onYouTubeIframeAPIReady() {
+    console.log(
+      "YouTubePlayer.astro (onYouTubeIframeAPIReady): playerContainerId passed from define:vars:",
+      playerContainerId,
+    );
+    apiReady = true;
+
+    // Verificar que el contenedor existe antes de crear el player
+    const container = document.getElementById(playerContainerId);
+    if (!container) {
+      console.error("No se encontró el contenedor:", playerContainerId);
+      return;
+    }
+
+    player = new YT.Player(playerContainerId, {
+      height: "100%", // Will be controlled by CSS
+      width: "100%", // Will be controlled by CSS
+      videoId: videoId,
+      playerVars: {
+        playsinline: 1, // Important for mobile
+        // 'autoplay': 0, // Set to 1 for autoplay
+        // 'controls': 1, // Set to 0 to hide controls
+      },
+      events: {
+        onReady: onPlayerReady,
+        // 'onStateChange': onPlayerStateChange // You can add other event handlers
+      },
+    });
+
+    // Process any pending actions that were queued before API was ready
+    while (pendingActions.length > 0) {
+      const action = pendingActions.shift();
+      action();
+    }
+  }
+
+  // 2. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    console.log("Player is ready:", event.target);
+    // Actualizar la referencia global cuando el player esté listo
+    window[playerGlobalObjectName] = {
+      seekTo: seekTo,
+      player: player,
+    };
+    console.log("Player registrado globalmente como:", playerGlobalObjectName);
+  }
+
+  // Function to seek to a specific time in seconds
+  function seekTo(seconds) {
+    if (player && typeof player.seekTo === "function") {
+      player.seekTo(seconds, true);
+      player.playVideo(); // Optionally play video after seeking
+      console.log(`Seeking to ${seconds} seconds.`);
+    } else {
+      console.warn("Player not available or seekTo not a function.");
+      // Si el player no está listo, agregar a pendingActions
+      pendingActions.push(() => {
+        if (player && typeof player.seekTo === "function") {
+          player.seekTo(seconds, true);
+          player.playVideo();
+          console.log(`Delayed seeking to ${seconds} seconds.`);
+        }
+      });
+    }
+  }
+
+  // Registrar el objeto global inmediatamente (aunque el player no esté listo)
+  window[playerGlobalObjectName] = {
+    seekTo: seekTo,
+    player: null,
+  };
+
+  // Función para manejar la inicialización del API
+  function initializePlayer() {
+    if (window.YT && window.YT.Player) {
+      // API ya está cargada
+      onYouTubeIframeAPIReady();
+    } else {
+      // API no está cargada aún
+      if (!window.YT) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
+
+      // Configurar el callback global
+      const originalCallback = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function () {
+        if (originalCallback && typeof originalCallback === "function") {
+          originalCallback();
+        }
+        onYouTubeIframeAPIReady();
+      };
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializePlayer);
+  } else {
+    // DOM ya está listo
+    initializePlayer();
+  }
+
+  // Cleanup cuando se navegue fuera de la página (solo en navegadores que lo soporten)
+  if (typeof window !== "undefined" && "addEventListener" in window) {
+    window.addEventListener("beforeunload", function () {
+      if (player && typeof player.destroy === "function") {
+        try {
+          player.destroy();
+        } catch (e) {
+          console.warn("Error al limpiar player en beforeunload:", e);
+        }
+      }
+    });
+  }
+</script>

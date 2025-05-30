@@ -1,3 +1,4 @@
+// YouTubeVideo
 export interface YouTubeVideo {
   id: string; // El ID real del video de YouTube
   snippet: {
@@ -22,4 +23,18 @@ export interface YouTubeVideo {
     viewCount?: string;
     likeCount?: string;
   };
+}
+
+// Local Data Videos
+export interface Video {
+  title: string;
+  grade: string;
+  image: string;
+  description: string;
+  url?: string;
+}
+
+export interface VideoChapter {
+  time: string;
+  title: string;
 }

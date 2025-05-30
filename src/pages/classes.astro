@@ -34,7 +34,7 @@ const videosWithClassInfo = classesData
     return {
       title: classItem.title, // Título del video de YouTube
       src: youtubeVideo.snippet.thumbnails.medium.url, // URL de la miniatura del video de YouTube
-      description: youtubeVideo.snippet.description, // Descripción del video de YouTube
+      description: classItem.description, // Descripción del video de YouTube
       time: parseDuration(youtubeVideo.contentDetails.duration), // Duración parseada del video de YouTube
       grade: classItem.grade, // Grado de tus datos locales
       id: youtubeVideo.id, // ID del video de YouTube (útil para el enlace)

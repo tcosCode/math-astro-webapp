@@ -1,11 +1,5 @@
 import { classes as classesData } from "@data/constants";
-
-interface Video {
-  title: string;
-  grade: string;
-  image: string;
-  url?: string;
-}
+import type { Video } from "@types";
 
 /**
  * Finds a video by its title

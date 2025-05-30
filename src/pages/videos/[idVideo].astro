@@ -1,13 +1,18 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { classes } from "@src/data/constants";
+import VideoChapters from "@components/ui/VideoChapters.astro";
+import YouTubePlayer from "@src/components/YouTubePlayer.astro";
 
-import type { VideoParams } from "@types";
-import type { YouTubeVideo } from "@types";
+import Book from "@assets/icons/ex-figure-book.svg";
+import YoutubeIcon from "@assets/icons/youtube.svg";
+
+import type { VideoParams, YouTubeVideo, VideoChapter } from "@types";
 
 import { getVideoById } from "@src/utils/helpers/youtubeService";
 import { parseDuration } from "@src/utils/helpers/parseVideoYtTime";
 import { findVideoById } from "@src/utils/helpers/findVideo";
+import { extractChaptersFromDescription } from "@src/utils/helpers/youtubeChapters";
+import { classes } from "@src/data/constants";
 
 /*
 export function getStaticPaths() {
@@ -34,6 +39,10 @@ if (!videoYtData || !videoLocalData) {
 }
 
 const formattedDuration = parseDuration(videoYtData.contentDetails.duration);
+
+const chapters: VideoChapter[] = extractChaptersFromDescription(
+  videoYtData.snippet.description,
+);
 ---
 
 <script
@@ -41,55 +50,53 @@ const formattedDuration = parseDuration(videoYtData.contentDetails.duration);
 ></script>
 
 <Layout title={`Videos de la clase ${videoLocalData.title}`}>
-  {}
   <section class="video-detail-page">
-    <h2 class="h2-video">
-      <span>{videoLocalData.title}</span>
-    </h2>
-    <div class="video-container">
-      <lite-youtube videoid={videoYtData.id} playlistid={videoLocalData.url}
-      ></lite-youtube>
-    </div>
-    <div class="video-info">
-      <h3>Descripción:</h3>
-      <p>{videoYtData.snippet.description}</p>
-      <p>Duración: {formattedDuration}</p>
-    </div>
+    <article class="video-page-data">
+      <div class="video-container">
+        <YouTubePlayer videoId={videoYtData.id} />
+        <!-- <lite-youtube videoid={videoYtData.id} params="enablejsapi=1"
+        ></lite-youtube>
+       -->
+      </div>
+
+      <div class="video-info">
+        <h2 class="video-title">
+          {videoLocalData.title}
+        </h2>
+        <div class="video-data">
+          <Book class="svg-stroke video-data-icon" />
+          {videoLocalData.grade}
+          <YoutubeIcon class="svg-stroke video-data-icon" />
+          <span>{formattedDuration}</span>
+        </div>
+        <h3>Descripción:</h3>
+        <p>{videoLocalData.description}</p>
+      </div>
+    </article>
+
+    <article class="video-chapters-playlist">
+      <!-- Video Chapters -->
+      <VideoChapters chapters={chapters} videoId={videoYtData.id} />
+    </article>
   </section>
 </Layout>
 
 <style>
   .video-detail-page {
-    margin-block: clamp(1rem, 2vw, 4rem);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .h2-video {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    color: var(--dark-grey);
-    text-align: center;
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
+    gap: 2rem;
+    margin-block: 3.5rem 3rem;
   }
 
   .video-container {
     width: 100%;
     max-width: 800px;
     aspect-ratio: 16 / 9;
-    margin-inline: auto;
-    margin-top: 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: var(--secondary-color-light-3);
-    padding: clamp(0.5rem, 2vw, 2rem);
+    background-color: var(--light-grey);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 3px solid var(--dark-grey);
     overflow: hidden;
-  }
-
-  .video-container lite-youtube {
-    width: 100%;
-    height: 100%;
   }
 
   .video-info {
@@ -99,8 +106,26 @@ const formattedDuration = parseDuration(videoYtData.contentDetails.duration);
     color: var(--dark-grey);
   }
 
+  .video-title {
+    font-size: 1.5rem;
+  }
+
+  .video-data {
+    display: flex;
+    align-items: center;
+    margin-block: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 2;
+  }
+
+  .video-data-icon {
+    margin-right: 0.25rem;
+    margin-left: 1rem;
+    width: 16px;
+  }
+
   .video-info h3 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     margin-bottom: 0.5rem;
   }
 
