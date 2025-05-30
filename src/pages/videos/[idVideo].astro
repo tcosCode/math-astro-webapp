@@ -1,62 +1,47 @@
 ---
+import "plyr/dist/plyr.css";
+
 import Layout from "@layouts/Layout.astro";
-import VideoChapters from "@components/ui/VideoChapters.astro";
-import YouTubePlayer from "@src/components/YouTubePlayer.astro";
+import VideoChapters from "@components/ui/VideoChapters.astro"; // No cambia la importación
 
 import Book from "@assets/icons/ex-figure-book.svg";
 import YoutubeIcon from "@assets/icons/youtube.svg";
 
 import type { VideoParams, YouTubeVideo, VideoChapter } from "@types";
 
-import { getVideoById } from "@src/utils/helpers/youtubeService";
+import { getVideoById } from "@src/utils/helpers/youtubeService"; // Asumimos que aún quieres datos de YT
 import { parseDuration } from "@src/utils/helpers/parseVideoYtTime";
 import { findVideoById } from "@src/utils/helpers/findVideo";
 import { extractChaptersFromDescription } from "@src/utils/helpers/youtubeChapters";
-import { classes } from "@src/data/constants";
-
-/*
-export function getStaticPaths() {
-  const paths: Array<{ params: { video: string } }> = [];
-
-  // Dinamic routes
-  classes.forEach((class_) => {
-    paths.push({ params: { video: `${class_.title}` } });
-  });
-  return paths;
-}
-  */
 
 const { idVideo } = Astro.params as unknown as VideoParams;
 
-// Obtener los datos completos del video usando su ID.
-// getVideoById() seguirá usando el caché si está disponible, lo cual es bueno.
+// Obtener datos del video (esto puede seguir igual si necesitas info de la API de YT)
 const videoYtData = (await getVideoById(idVideo)) as YouTubeVideo;
 const videoLocalData = findVideoById(idVideo);
 
-// Manejar el caso de que el video no se encuentre (redirección a 404)
 if (!videoYtData || !videoLocalData) {
   return Astro.redirect("/404");
 }
 
 const formattedDuration = parseDuration(videoYtData.contentDetails.duration);
-
 const chapters: VideoChapter[] = extractChaptersFromDescription(
   videoYtData.snippet.description,
 );
----
 
-<script
-  src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"
-></script>
+const playerGlobalObjectName = `PlayerInstance_${idVideo}`; // Mismo nombre que en VideoChapters
+---
 
 <Layout title={`Videos de la clase ${videoLocalData.title}`}>
   <section class="video-detail-page">
     <article class="video-page-data">
       <div class="video-container">
-        <YouTubePlayer videoId={videoYtData.id} />
-        <!-- <lite-youtube videoid={videoYtData.id} params="enablejsapi=1"
-        ></lite-youtube>
-       -->
+        <!-- Reproductor de YouTube -->
+        <div class="plyr__video-embed" id="player" data-video-id={idVideo}>
+          <iframe
+            src={`https://www.youtube.com/embed/${idVideo}?autoplay=0&mute=1`}
+            allowfullscreen></iframe>
+        </div>
       </div>
 
       <div class="video-info">
@@ -77,11 +62,49 @@ const chapters: VideoChapter[] = extractChaptersFromDescription(
     </article>
 
     <article class="video-chapters-playlist">
-      <!-- Video Chapters -->
       <VideoChapters chapters={chapters} videoId={videoYtData.id} />
     </article>
   </section>
 </Layout>
+
+<script>
+  import Plyr from "plyr";
+
+  let player: any;
+
+  function initializePlayer() {
+    // Desmonta el reproductor existente si ya está inicializado
+    if (player) {
+      player.destroy();
+    }
+    // Inicializa un nuevo reproductor
+    player = new Plyr("#player");
+
+    const playerEl = document.getElementById("player");
+    // ¡Aquí está nuestro idVideo!
+    const idVideo = playerEl?.dataset.videoId;
+    if (!idVideo) {
+      console.error("No encontré data-video-id en #player");
+      return;
+    }
+
+    // Registra el reproductor como una variable global
+    (window as any)[`PlayerInstance_${idVideo}`] = player;
+
+    // Opcional: esperar al evento ready
+    player.on("ready", () => {
+      console.log(`PlayerInstance_${idVideo} listo`);
+    });
+  }
+
+  // Asegúrate de que el reproductor se inicialice al cargar la página
+  document.addEventListener("astro:after-swap", () => {
+    initializePlayer();
+  });
+
+  // También lo inicializamos en la primera carga
+  initializePlayer();
+</script>
 
 <style>
   .video-detail-page {

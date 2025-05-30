@@ -1,4 +1,5 @@
 ---
+// YouTubePlayer.astro
 export interface Props {
   videoId: string;
 }
@@ -28,476 +29,117 @@ const playerContainerId = `Youtuber-container-${videoId}`;
 </style>
 
 <script define:vars={{ videoId, playerContainerId }}>
-  // Variables globales para este player específico
   const playerGlobalObjectName = `youtubePlayer_${playerContainerId}`;
   let ytPlayerInstance = null;
   let isPlayerReady = false;
-  let initializationPromise = null;
 
-  console.log("=== INIT PLAYER SCRIPT ===");
-  console.log("Player ID:", playerGlobalObjectName);
-  console.log("Container ID:", playerContainerId);
-
-  // Función para verificar si el API está disponible
-  function isYouTubeAPIReady() {
-    return (
-      window.YT && window.YT.Player && typeof window.YT.Player === "function"
-    );
-  }
-
-  // Función para cargar el API de YouTube
   function loadYouTubeAPI() {
     return new Promise((resolve) => {
-      if (isYouTubeAPIReady()) {
+      if (window.YT && window.YT.Player) {
+        console.log("✅ YouTube API already loaded.");
         resolve();
         return;
       }
 
-      // Si ya hay un script cargándose, esperar
-      if (window.YT) {
-        const checkReady = () => {
-          if (isYouTubeAPIReady()) {
-            resolve();
-          } else {
-            setTimeout(checkReady, 100);
-          }
+      if (!window.YT) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+
+        window.onYouTubeIframeAPIReady = () => {
+          console.log("✅ YouTube API loaded successfully.");
+          resolve();
         };
-        checkReady();
-        return;
-      }
-
-      // Cargar script del API
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-
-      window.onYouTubeIframeAPIReady = function () {
+        document.body.appendChild(tag);
+      } else {
         resolve();
-      };
-
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
     });
   }
 
-  // Función MEJORADA: verificar si el contenedor existe Y el player está funcional
-  function isPlayerValid() {
-    // 1. Verificar que el contenedor existe en el DOM
+  async function createPlayer() {
     const container = document.getElementById(playerContainerId);
     if (!container) {
-      console.log("❌ Container not found in DOM");
-      return false;
+      console.error("❌ Player container not found during player creation.");
+      return;
     }
 
-    // 2. Verificar que tenemos una instancia del player
-    if (!ytPlayerInstance) {
-      console.log("❌ No ytPlayerInstance");
-      return false;
-    }
+    await loadYouTubeAPI();
 
-    // 3. Verificar que el player está marcado como listo
-    if (!isPlayerReady) {
-      console.log("❌ Player not ready");
-      return false;
-    }
-
-    // 4. NO verificar iframe inmediatamente - puede no existir aún durante la inicialización
-    // En su lugar, verificar solo si el player puede responder a llamadas API
-    try {
-      const state = ytPlayerInstance.getPlayerState();
-      // Estados válidos: -1 (unstarted), 0 (ended), 1 (playing), 2 (paused), 3 (buffering), 5 (cued)
-      if (state >= -1 && state <= 5) {
-        console.log("✅ Player is valid, state:", state);
-        return true;
-      } else {
-        console.log("❌ Invalid player state:", state);
-        return false;
-      }
-    } catch (error) {
-      console.log("❌ Player API call failed:", error.message);
-      return false;
-    }
+    console.log("🎥 Initializing YouTube Player...");
+    ytPlayerInstance = new YT.Player(playerContainerId, {
+      height: "100%",
+      width: "100%",
+      videoId,
+      playerVars: {
+        playsinline: 1,
+        enablejsapi: 1,
+      },
+      events: {
+        onReady: () => {
+          isPlayerReady = true;
+          console.log("✅ Player is ready.");
+          exposePlayerAPI();
+        },
+        onError: (error) => {
+          isPlayerReady = false;
+          console.error("❌ Player error:", error);
+        },
+      },
+    });
   }
 
-  // Función para limpiar completamente el estado
-  function resetPlayerState() {
-    console.log("🧹 Resetting player state...");
-
-    // Destruir el player existente de forma segura
-    if (ytPlayerInstance && typeof ytPlayerInstance.destroy === "function") {
-      try {
-        ytPlayerInstance.destroy();
-        console.log("✅ Player destroyed successfully");
-      } catch (error) {
-        console.warn("⚠️ Error destroying player:", error);
-      }
-    }
-
-    // Limpiar variables locales
-    ytPlayerInstance = null;
-    isPlayerReady = false;
-    initializationPromise = null;
-
-    // Limpiar el contenedor DOM
+  async function ensurePlayerReady() {
     const container = document.getElementById(playerContainerId);
-    if (container) {
-      container.innerHTML = "";
-    }
-  }
-
-  // Función de seek con validación completa y mejor manejo de errores
-  function performSeek(seconds) {
-    console.log("=== PERFORM SEEK ===");
-    console.log("Seconds:", seconds);
-
-    // Verificar si el player es válido
-    if (!isPlayerValid()) {
-      console.warn("⚠️ Player invalid, attempting to recreate...");
-
-      // Resetear y recrear
-      resetPlayerState();
-
-      // Crear nuevo player y luego hacer seek
-      ensurePlayerReady()
-        .then(() => {
-          if (isPlayerValid()) {
-            console.log("🔄 Player recreated, retrying seek...");
-            // Dar más tiempo para que el player se estabilice
-            setTimeout(() => performSeek(seconds), 1500);
-          } else {
-            console.error("❌ Failed to recreate player");
-          }
-        })
-        .catch((error) => {
-          console.error("❌ Error recreating player:", error);
-        });
-
-      return false;
+    if (!container) {
+      console.warn("⚠️ Player container not found during validation.");
+      return;
     }
 
-    try {
-      console.log("✅ Executing seekTo...");
-      ytPlayerInstance.seekTo(seconds, true);
-
-      // Opcional: reproducir después del seek con verificación adicional
-      setTimeout(() => {
-        if (
-          isPlayerValid() &&
-          typeof ytPlayerInstance.playVideo === "function"
-        ) {
-          try {
-            ytPlayerInstance.playVideo();
-          } catch (error) {
-            console.warn("⚠️ Could not auto-play after seek:", error);
-          }
-        }
-      }, 500);
-
-      console.log("✅ Seek completed successfully");
-      return true;
-    } catch (error) {
-      console.error("❌ Error during seek:", error);
-      return false;
+    if (ytPlayerInstance && isPlayerReady) {
+      console.log("✅ Player already initialized and ready.");
+      return;
     }
+
+    if (ytPlayerInstance) {
+      console.log("♻️ Destroying existing player instance.");
+      ytPlayerInstance.destroy();
+    }
+
+    await createPlayer();
   }
 
-  // Callback cuando el player está listo
-  function onPlayerReady(event) {
-    console.log("=== PLAYER READY ===");
-    console.log("Event:", event);
+  function exposePlayerAPI() {
+    if (!ytPlayerInstance) return;
 
-    ytPlayerInstance = event.target;
-    isPlayerReady = true;
-
-    // Actualizar el objeto global
-    updateGlobalObject();
-
-    console.log("✅ Player registered globally as:", playerGlobalObjectName);
-
-    // Test del player con delay adicional para asegurar estabilidad
-    setTimeout(() => {
-      if (isPlayerValid()) {
-        console.log("=== PLAYER TEST ===");
-        try {
-          console.log("Player state:", ytPlayerInstance.getPlayerState());
-          console.log("Video duration:", ytPlayerInstance.getDuration());
-        } catch (e) {
-          console.warn("Player test failed:", e);
-        }
-      }
-    }, 1500); // Aumentado el delay
-  }
-
-  // Función para actualizar el objeto global
-  function updateGlobalObject() {
     window[playerGlobalObjectName] = {
-      seekTo: performSeek,
-      player: ytPlayerInstance,
-      isReady: isPlayerReady,
-      videoId: videoId,
-      containerId: playerContainerId,
-      validate: isPlayerValid,
-      recreate: () => {
-        resetPlayerState();
-        return ensurePlayerReady();
+      seekTo: (seconds) => {
+        if (!isPlayerReady) {
+          console.warn("⚠️ Player not ready for seek.");
+          return;
+        }
+        ytPlayerInstance.seekTo(seconds, true);
+        console.log(`⏩ Seeked to ${seconds} seconds.`);
+      },
+      getPlayerState: () => {
+        if (!isPlayerReady) {
+          console.warn("⚠️ Player not ready for state check.");
+          return null;
+        }
+        return ytPlayerInstance.getPlayerState();
       },
     };
   }
 
-  // Callback para errores
-  function onPlayerError(event) {
-    console.error("❌ YouTube Player Error:", event.data);
-    isPlayerReady = false;
-    updateGlobalObject();
+  function initializePlayer() {
+    console.log("🚀 Initializing player setup...");
+    ensurePlayerReady();
   }
 
-  // Callback para cambios de estado
-  function onPlayerStateChange(event) {
-    console.log("🔄 Player state changed:", event.data);
-    // Actualizar el objeto global cuando cambie el estado
-    updateGlobalObject();
-  }
-
-  // Función principal para crear el player
-  async function createYouTubePlayer() {
-    console.log("=== CREATING PLAYER ===");
-
-    try {
-      // Verificar contenedor
-      const container = document.getElementById(playerContainerId);
-      if (!container) {
-        console.error("❌ Container not found:", playerContainerId);
-        throw new Error("Container not found");
-      }
-
-      // Resetear estado previo
-      resetPlayerState();
-
-      // Cargar API
-      await loadYouTubeAPI();
-      console.log("✅ YouTube API loaded");
-
-      // Pequeño delay para asegurar que el DOM esté estable
-      await new Promise((resolve) => setTimeout(resolve, 100));
-
-      // Verificar que el contenedor sigue existiendo
-      const freshContainer = document.getElementById(playerContainerId);
-      if (!freshContainer) {
-        console.error("❌ Container disappeared after API load");
-        throw new Error("Container disappeared");
-      }
-
-      // Crear player
-      console.log("Creating YT.Player...");
-
-      // Retornar una promesa que se resuelve cuando el player esté listo
-      return new Promise((resolve, reject) => {
-        try {
-          const player = new YT.Player(playerContainerId, {
-            height: "100%",
-            width: "100%",
-            videoId: videoId,
-            playerVars: {
-              playsinline: 1,
-              enablejsapi: 1,
-              origin: window.location.origin,
-              widget_referrer: window.location.href,
-            },
-            events: {
-              onReady: (event) => {
-                onPlayerReady(event);
-                // Dar tiempo adicional antes de resolver
-                setTimeout(() => resolve(player), 500);
-              },
-              onError: (event) => {
-                onPlayerError(event);
-                reject(new Error(`Player error: ${event.data}`));
-              },
-              onStateChange: onPlayerStateChange,
-            },
-          });
-
-          console.log("✅ YT.Player created:", player);
-        } catch (error) {
-          console.error("❌ Error creating YT.Player:", error);
-          reject(error);
-        }
-      });
-    } catch (error) {
-      console.error("❌ Error in createYouTubePlayer:", error);
-      throw error;
-    }
-  }
-
-  // Función para asegurar que el player esté listo
-  async function ensurePlayerReady() {
-    // Si ya tenemos un player válido, no hacer nada
-    if (isPlayerValid()) {
-      console.log("✅ Player already valid");
-      return;
-    }
-
-    // Si ya hay una inicialización en progreso, esperar
-    if (initializationPromise) {
-      console.log("⏳ Waiting for existing initialization...");
-      try {
-        await initializationPromise;
-        return;
-      } catch (error) {
-        console.warn("Previous initialization failed:", error);
-        initializationPromise = null;
-      }
-    }
-
-    // Crear nueva inicialización
-    console.log("🚀 Starting player initialization...");
-    initializationPromise = createYouTubePlayer();
-
-    try {
-      await initializationPromise;
-      console.log("✅ Player initialization completed");
-    } catch (error) {
-      console.error("❌ Player initialization failed:", error);
-      initializationPromise = null;
-      throw error;
-    }
-  }
-
-  // Inicialización principal mejorada
-  async function initPlayer() {
-    console.log("=== INIT PLAYER ===");
-
-    // Triple verificación del contenedor
-    let container = document.getElementById(playerContainerId);
-    if (!container) {
-      console.log("Container not found, waiting...");
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      container = document.getElementById(playerContainerId);
-
-      if (!container) {
-        console.error("❌ Container still not found after wait");
-        return;
-      }
-    }
-
-    console.log("✅ Container found, initializing player...");
-
-    try {
-      await ensurePlayerReady();
-    } catch (error) {
-      console.error("❌ Failed to initialize player:", error);
-    }
-  }
-
-  // Registrar objeto global inmediatamente con mejor manejo de inicialización
-  window[playerGlobalObjectName] = {
-    seekTo: function (seconds) {
-      console.log("🎯 Seek requested:", seconds);
-
-      if (isPlayerValid()) {
-        return performSeek(seconds);
-      }
-
-      console.warn("⚠️ Player not ready, initializing...");
-
-      // Esperar por el contenedor antes de inicializar
-      waitForContainer()
-        .then(() => {
-          return ensurePlayerReady();
-        })
-        .then(() => {
-          if (isPlayerValid()) {
-            setTimeout(() => performSeek(seconds), 1000);
-          } else {
-            console.error("❌ Failed to initialize player for seek");
-          }
-        })
-        .catch((error) => {
-          console.error("❌ Error during player initialization:", error);
-        });
-
-      return false;
-    },
-    player: null,
-    isReady: false,
-    videoId: videoId,
-    containerId: playerContainerId,
-    validate: isPlayerValid,
-    recreate: () => {
-      resetPlayerState();
-      return waitForContainer().then(() => ensurePlayerReady());
-    },
-  };
-
-  // Función para verificar si el contenedor está listo en el DOM
-  function waitForContainer() {
-    return new Promise((resolve) => {
-      const checkContainer = () => {
-        const container = document.getElementById(playerContainerId);
-        if (container) {
-          resolve();
-        } else {
-          setTimeout(checkContainer, 100); // Aumenta el intervalo a 100ms
-        }
-      };
-      checkContainer();
-    });
-  }
-
-  // Inicialización mejorada con espera por contenedor
-  async function initPlayerWhenReady() {
-    console.log("=== WAITING FOR CONTAINER ===");
-
-    try {
-      // Esperar a que el contenedor esté disponible y visible
-      await waitForContainer();
-      console.log("✅ Container is ready");
-
-      // Pequeño delay adicional para asegurar estabilidad
-      await new Promise((resolve) => setTimeout(resolve, 200));
-
-      // Ahora inicializar el player
-      await initPlayer();
-    } catch (error) {
-      console.error("❌ Error during initialization:", error);
-    }
-  }
-
-  // Inicializar cuando el DOM esté listo
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initPlayerWhenReady);
+    document.addEventListener("DOMContentLoaded", initializePlayer);
   } else {
-    // Si el DOM ya está listo, inicializar con espera por contenedor
-    initPlayerWhenReady();
+    initializePlayer();
   }
 
-  // Para debugging
-  window[`debug_${playerContainerId}`] = {
-    getPlayer: () => ytPlayerInstance,
-    getReady: () => isPlayerReady,
-    testSeek: (seconds) => performSeek(seconds),
-    getGlobal: () => window[playerGlobalObjectName],
-    isValid: isPlayerValid,
-    recreate: () => ensurePlayerReady(),
-    reset: resetPlayerState,
-    forceInit: initPlayer,
-  };
-
-  // Al final del script, después de la inicialización
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (!document.getElementById(playerContainerId)) {
-        resetPlayerState();
-        observer.disconnect();
-      }
-    });
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  console.log("✅ Player script loaded for:", playerContainerId);
-
-  // En el script del componente
-  document.addEventListener("astro:page-load", () => {
-    initPlayerWhenReady();
-  });
+  document.addEventListener("astro:page-load", initializePlayer);
 </script>
