@@ -69,8 +69,10 @@ const chapters: VideoChapter[] = extractChaptersFromDescription(
           <YoutubeIcon class="svg-stroke video-data-icon" />
           <span>{formattedDuration}</span>
         </div>
-        <h3>Descripción:</h3>
-        <p>{videoLocalData.description}</p>
+        <div class="description">
+          <h3>Descripción:</h3>
+          <p>{videoLocalData.description}</p>
+        </div>
       </div>
     </article>
 
@@ -122,6 +124,19 @@ const chapters: VideoChapter[] = extractChaptersFromDescription(
     margin-right: 0.25rem;
     margin-left: 1rem;
     width: 16px;
+  }
+
+  .description {
+    margin-block: 2rem;
+    padding: 1.5rem;
+    border: 1px solid hsl(214.3 31.8% 91.4%);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .description p {
+    color: rgb(75 85 99);
   }
 
   .video-info h3 {
