@@ -8,7 +8,6 @@ interface Props {
 }
 
 const { chapters, videoId } = Astro.props;
-// Cambiar para coincidir con el nombre usado en YouTubePlayer.astro
 const playerGlobalObjectName = `youtubePlayer_Youtuber-container-${videoId}`;
 ---
 
@@ -38,104 +37,269 @@ const playerGlobalObjectName = `youtubePlayer_Youtuber-container-${videoId}`;
 }
 
 <script is:inline>
-  // This script is inlined and runs globally
+  // Función para parsear timestamp a segundos
   function parseTimestampToSeconds(timestamp) {
     const parts = timestamp.split(":").map(Number);
     let seconds = 0;
     if (parts.length === 3) {
-      // HH:MM:SS
       seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
     } else if (parts.length === 2) {
-      // MM:SS
       seconds = parts[0] * 60 + parts[1];
     } else if (parts.length === 1) {
-      // SS
       seconds = parts[0];
     }
     return seconds;
   }
 
+  // Función principal mejorada para manejar clicks en capítulos
   function handleChapterClick(event, timeString, playerObjectName) {
     event.preventDefault();
+
     const seconds = parseTimestampToSeconds(timeString);
 
-    console.log("Intentando buscar player:", playerObjectName);
-    console.log("Tiempo a buscar:", seconds, "seconds");
+    console.log("=== CHAPTER CLICK DEBUG ===");
+    console.log("Timestamp:", timeString, "->", seconds, "seconds");
+    console.log("Looking for player:", playerObjectName);
 
-    // Función para intentar hacer seek
-    function attemptSeek() {
-      if (
-        window[playerObjectName] &&
-        typeof window[playerObjectName].seekTo === "function"
-      ) {
-        console.log("Player encontrado, haciendo seek...");
-        window[playerObjectName].seekTo(seconds);
-        return true;
-      }
-      return false;
-    }
-
-    // Intentar inmediatamente
-    if (attemptSeek()) {
+    // Verificar si el objeto global existe
+    if (!window[playerObjectName]) {
+      console.error("❌ Player object not found:", playerObjectName);
+      showUserMessage(
+        "El reproductor no está disponible. Recargando la página...",
+        "error",
+      );
+      // Recargar la página como último recurso
+      setTimeout(() => window.location.reload(), 2000);
       return;
     }
 
-    // Si no funciona, esperar un poco y reintentar (el player puede estar inicializándose)
-    console.log("Player no disponible inmediatamente, esperando...");
+    const playerObj = window[playerObjectName];
+    console.log("Player object:", playerObj);
 
+    // Usar la función validate si está disponible
+    const isPlayerValid = playerObj.validate
+      ? playerObj.validate()
+      : playerObj.isReady;
+    console.log("Player valid:", isPlayerValid);
+
+    if (isPlayerValid) {
+      console.log("🎯 Player is valid, attempting seek...");
+      const success = playerObj.seekTo(seconds);
+
+      if (success) {
+        showUserMessage(`Saltando a ${timeString}`, "success");
+      } else {
+        console.warn("⚠️ Seek returned false, will retry...");
+        retrySeekWithFeedback(seconds, timeString, playerObj);
+      }
+    } else {
+      console.warn("⚠️ Player not valid, attempting to recreate...");
+      showUserMessage("Preparando reproductor...", "info");
+
+      // Intentar recrear el player si tiene esa función
+      if (playerObj.recreate && typeof playerObj.recreate === "function") {
+        playerObj
+          .recreate()
+          .then(() => {
+            console.log("🔄 Player recreated, attempting seek...");
+            setTimeout(() => {
+              const newSuccess = playerObj.seekTo(seconds);
+              if (newSuccess) {
+                showUserMessage(`Saltando a ${timeString}`, "success");
+              } else {
+                retrySeekWithFeedback(seconds, timeString, playerObj);
+              }
+            }, 1000);
+          })
+          .catch((error) => {
+            console.error("❌ Failed to recreate player:", error);
+            showUserMessage("Error al cargar el reproductor", "error");
+          });
+      } else {
+        // Fallback: intentar seek directo
+        retrySeekWithFeedback(seconds, timeString, playerObj);
+      }
+    }
+  }
+
+  // Función para reintentar seek con feedback visual
+  function retrySeekWithFeedback(seconds, timeString, playerObj) {
     let attempts = 0;
-    const maxAttempts = 10;
-    const retryInterval = 500; // 500ms
+    const maxAttempts = 8;
+    const baseDelay = 500;
 
-    const retrySeek = setInterval(() => {
+    showUserMessage("Sincronizando reproductor...", "info");
+
+    function attemptSeek() {
       attempts++;
-      console.log(`Intento ${attempts}/${maxAttempts} de encontrar player...`);
+      console.log(`🔄 Retry attempt ${attempts}/${maxAttempts}`);
 
-      if (attemptSeek()) {
-        clearInterval(retrySeek);
-        console.log("Player encontrado después de esperar");
-        return;
+      // Verificar si el player ahora es válido
+      const isValid = playerObj.validate
+        ? playerObj.validate()
+        : playerObj.isReady;
+
+      if (isValid) {
+        console.log("✅ Player ready on retry, attempting seek...");
+        const success = playerObj.seekTo(seconds);
+
+        if (success) {
+          console.log("✅ Seek successful on retry!");
+          showUserMessage(`Saltando a ${timeString}`, "success");
+          return;
+        }
       }
 
       if (attempts >= maxAttempts) {
-        clearInterval(retrySeek);
-        console.warn(
-          `No se pudo encontrar el player después de ${maxAttempts} intentos`,
+        console.error("❌ Max retry attempts reached");
+        showUserMessage(
+          "No se pudo sincronizar. Intenta recargar la página.",
+          "error",
         );
-
-        // Como último recurso, buscar cualquier player disponible
-        const availablePlayers = Object.keys(window).filter(
-          (key) =>
-            key.startsWith("youtubePlayer") &&
-            window[key] &&
-            typeof window[key].seekTo === "function",
-        );
-
-        console.log("Players disponibles:", availablePlayers);
-
-        if (availablePlayers.length > 0) {
-          console.log("Usando player alternativo:", availablePlayers[0]);
-          window[availablePlayers[0]].seekTo(seconds);
-        } else {
-          console.error("No se encontró ningún player funcional");
-          alert(
-            "Error: El reproductor no está listo. Por favor, espera un momento e intenta de nuevo.",
-          );
-        }
+        return;
       }
-    }, retryInterval);
+
+      // Retry with increasing delay
+      const delay = baseDelay + attempts * 300;
+      setTimeout(attemptSeek, delay);
+    }
+
+    // Start retrying after a short delay
+    setTimeout(attemptSeek, 200);
   }
 
-  // Función global para debug - puedes llamarla desde la consola
-  window.debugYoutubePlayers = function () {
-    const players = Object.keys(window).filter((key) =>
+  // Función para mostrar mensajes al usuario
+  function showUserMessage(message, type = "info") {
+    // Remover mensaje anterior si existe
+    const existingMessage = document.querySelector(".chapter-message");
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+
+    // Crear elemento del mensaje
+    const messageEl = document.createElement("div");
+    messageEl.className = `chapter-message chapter-message-${type}`;
+    messageEl.textContent = message;
+
+    // Estilos inline para el mensaje
+    messageEl.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 500;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-size: 14px;
+      max-width: 300px;
+      transition: all 0.3s ease;
+    `;
+
+    // Colores según el tipo
+    switch (type) {
+      case "success":
+        messageEl.style.backgroundColor = "#10B981";
+        break;
+      case "error":
+        messageEl.style.backgroundColor = "#EF4444";
+        break;
+      case "info":
+      default:
+        messageEl.style.backgroundColor = "#3B82F6";
+        break;
+    }
+
+    // Agregar al DOM
+    document.body.appendChild(messageEl);
+
+    // Auto-remover después de un tiempo
+    const duration = type === "error" ? 5000 : 3000;
+    setTimeout(() => {
+      messageEl.style.opacity = "0";
+      messageEl.style.transform = "translateX(100%)";
+      setTimeout(() => messageEl.remove(), 300);
+    }, duration);
+  }
+
+  // Función de debug mejorada
+  window.debugChapterSystem = function () {
+    console.log("=== CHAPTER SYSTEM DEBUG ===");
+
+    // Encontrar todos los players
+    const allPlayers = Object.keys(window).filter((key) =>
       key.startsWith("youtubePlayer"),
     );
-    console.log("Todos los players de YouTube encontrados:", players);
-    players.forEach((playerName) => {
-      console.log(`${playerName}:`, window[playerName]);
+
+    console.log("Available players:", allPlayers);
+
+    allPlayers.forEach((playerName) => {
+      const player = window[playerName];
+      console.log(`\n${playerName}:`);
+      console.log("  - Object:", player);
+      console.log("  - isReady:", player?.isReady);
+      console.log("  - seekTo type:", typeof player?.seekTo);
+      console.log("  - videoId:", player?.videoId);
+      console.log("  - containerId:", player?.containerId);
+
+      // Test validation function if available
+      if (player?.validate && typeof player.validate === "function") {
+        console.log("  - validate():", player.validate());
+      }
+
+      // Test the player if ready
+      if (player?.validate ? player.validate() : player?.isReady) {
+        console.log("  - Testing seek to 10 seconds...");
+        const result = player.seekTo(10);
+        console.log("  - Test result:", result);
+      }
+    });
+
+    return allPlayers;
+  };
+
+  // Función para forzar recreación de todos los players
+  window.recreateAllPlayers = function () {
+    const allPlayers = Object.keys(window).filter((key) =>
+      key.startsWith("youtubePlayer"),
+    );
+
+    console.log("🔄 Recreating all players:", allPlayers);
+
+    allPlayers.forEach((playerName) => {
+      const player = window[playerName];
+      if (player?.recreate && typeof player.recreate === "function") {
+        console.log(`🔄 Recreating ${playerName}...`);
+        player
+          .recreate()
+          .catch((e) => console.error(`Failed to recreate ${playerName}:`, e));
+      }
     });
   };
+
+  // Auto-debug cuando se cargan los capítulos
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      console.log("=== AUTO-DEBUG: VideoChapters loaded ===");
+      debugChapterSystem();
+    }, 2000);
+  });
+
+  // Debug adicional para detectar problemas de navegación
+  let pageLoadTime = Date.now();
+  window.addEventListener("load", () => {
+    pageLoadTime = Date.now();
+    console.log("🔍 Page fully loaded at:", pageLoadTime);
+  });
+
+  // Debug cuando se hace click en un capítulo
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("chapter-link")) {
+      const timeSinceLoad = Date.now() - pageLoadTime;
+      console.log("🔍 Chapter clicked", timeSinceLoad, "ms after page load");
+    }
+  });
 </script>
 
 <style>
@@ -145,7 +309,6 @@ const playerGlobalObjectName = `youtubePlayer_Youtuber-container-${videoId}`;
     border: 1px solid var(--light-grey-2);
     overflow: hidden;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    /*position: sticky;*/
   }
 
   .title-chapters {
@@ -167,9 +330,31 @@ const playerGlobalObjectName = `youtubePlayer_Youtuber-container-${videoId}`;
     cursor: pointer;
     border-bottom: 1px solid var(--light-grey-2);
     transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
   }
 
   .time-chapter:hover {
     background-color: var(--light-grey);
+  }
+
+  .chapter-link:hover {
+    text-decoration: none;
+  }
+
+  /* Estilos para los mensajes de estado */
+  .chapter-message {
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 </style>
