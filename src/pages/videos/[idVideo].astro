@@ -111,6 +111,16 @@ const playerGlobalObjectName = `PlayerInstance_${idVideo}`; // Mismo nombre que 
     display: flex;
     gap: 2rem;
     margin-block: 3.5rem 3rem;
+    justify-content: space-between;
+
+  }
+
+  @media (max-width: 768px) {
+    .video-detail-page {
+      flex-direction: column;
+      gap: 1rem;
+      margin-block: 3rem;
+    }
   }
 
   .video-container {

@@ -133,6 +133,7 @@ import {
     color: var(--dark-grey);
     font-weight: 500;
     font-size: 1rem;
+    border-radius: 5px 5px 0 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
     user-select: none;
@@ -167,8 +168,7 @@ import {
     align-items: center;
     font-size: 0.8rem;
     width: 100%;
-    border-radius: 4px;
-    padding: 5px;
+    border-radius: 0 0 5px 5px;
     background-color: var(--light-grey);
     position: absolute;
     margin-top: 0.4rem;
@@ -204,8 +204,9 @@ import {
   }
 
   .menu-drop-down a {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: center;
     transition: background-color 0.3s ease;
   }
 
@@ -302,6 +303,7 @@ import {
       color: var(--dark-grey);
       font-weight: 600;
       height: fit-content;
+      border-radius:0;
     }
 
     .navbar-item.drop-down {
@@ -338,6 +340,7 @@ import {
 
     .drop-down a {
       padding-left: 1rem;
+      text-align: left;
     }
 
     .drop-down:hover a {

@@ -28,7 +28,8 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
               class="chapter-link"
               onclick={`handleChapterClick(event, '${chapter.time}', '${playerGlobalObjectName}')`}
             >
-              {chapter.time} - {chapter.title}
+              <p class="chapter-text">{chapter.time}</p>
+              <p>{chapter.title}</p>
             </a>
           </li>
         ))}
@@ -72,6 +73,15 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
     border: 1px solid var(--light-grey-2);
     overflow: hidden;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 6rem;
+  }
+
+  @media (max-width: 768px) {
+    .video-chapters {
+      position: auto;
+      top: auto;
+    }
   }
 
   .title-chapters {
@@ -82,26 +92,34 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
     border: 1px solid var(--light-grey-2);
   }
 
-  .video-data-icon {
+  .video-chapters-icon {
     margin-right: 0.25rem;
-    width: 16px;
+    width: 18px;
+    color: var(--primary-color);
   }
 
   .chapter-link {
     display: flex;
+    gap: 1rem;
+    align-items: center;
     padding: 1rem;
     cursor: pointer;
     border-bottom: 1px solid var(--light-grey-2);
     transition: all 0.3s ease;
     text-decoration: none;
-    color: inherit;
+    color: var(--dark-grey);
+    opacity: 0.9;
+    font-size: 0.875rem;
   }
 
-  .time-chapter:hover {
-    background-color: var(--light-grey);
+  .chapter-text {
+    padding: 0.2rem 0.5rem;
+    background-color: var(--light-grey-2);
+    border-radius: 5px;
   }
 
   .chapter-link:hover {
+    background-color: var(--light-grey);
     text-decoration: none;
   }
 
