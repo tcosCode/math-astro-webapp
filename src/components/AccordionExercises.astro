@@ -45,13 +45,13 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
 
 <style>
   .odd {
-    --bg-color-accordion-item: hsl(28, 100%, 95%);
+    --bg-color-accordion-item: 28, 100%, 95%;
     --border-description-color: var(--secondary-color-light);
   }
 
   .even {
-    --bg-color-accordion-item: hsl(200, 100%, 95%);
-    --border-description-color: var(--primary-color-dark-2);
+    --bg-color-accordion-item: 200, 100%, 95%;
+    --border-description-color: var(--primary-color-dark);
   }
 
   .accordion__title {
@@ -79,28 +79,28 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
     top: 15px;
     bottom: 15px;
     left: 10px;
-    background-color: var(--border-description-color);
+    background-color: hsl(var(--border-description-color));
   }
 
   .accordion__description {
     font-size: 1rem;
     width: 100%;
     padding: 1rem 2.5rem;
-    color: var(--dark-grey);
+    color: hsl(var(--dark-grey));
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
   }
 
   .accordion__description:hover {
-    background-color: var(--bg-color-accordion-item);
+    background-color: hsl(var(--bg-color-accordion-item));
   }
 
   .type-exercise {
     font-size: 0.65rem;
     font-weight: 600;
-    color: var(--bg-color-accordion-item);
-    background-color: var(--border-description-color);
+    color: hsl(var(--bg-color-accordion-item));
+    background-color: hsl(var(--border-description-color));
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
   }
@@ -132,6 +132,6 @@ const { grade, exerciseTitle, currentTopic, isOdd } = Astro.props;
   }
 
   .accordion-open .accordion__header {
-    border-bottom: 1px solid var(--border-description-color);
+    border-bottom: 1px solid hsl(var(--border-description-color));
   }
 </style>

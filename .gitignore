@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # testing db
 src/pages/pruebaDb.astro
+src/pages/pruebascolor.astro

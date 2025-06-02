@@ -69,8 +69,8 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
 <style>
   .video-chapters {
     border-radius: 0.75rem;
-    background-color: hsl(0 0% 100%);
-    border: 1px solid var(--light-grey-2);
+    background-color: white;
+    border: 1px solid hsl(var(--light-grey-2));
     overflow: hidden;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -89,13 +89,13 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
     align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    border: 1px solid var(--light-grey-2);
+    border: 1px solid hsl(var(--light-grey));
   }
 
   .video-chapters-icon {
     margin-right: 0.25rem;
     width: 18px;
-    color: var(--primary-color);
+    color: hsl(var(--primary-color));
   }
 
   .chapter-link {
@@ -104,22 +104,22 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
     align-items: center;
     padding: 1rem;
     cursor: pointer;
-    border-bottom: 1px solid var(--light-grey-2);
+    border-bottom: 1px solid hsl(var(--light-grey));
     transition: all 0.3s ease;
     text-decoration: none;
-    color: var(--dark-grey);
+    color: hsl(var(--dark-grey));
     opacity: 0.9;
     font-size: 0.875rem;
   }
 
   .chapter-text {
     padding: 0.2rem 0.5rem;
-    background-color: var(--light-grey-2);
+    background-color: hsl(var(--light-grey));
     border-radius: 5px;
   }
 
   .chapter-link:hover {
-    background-color: var(--light-grey);
+    background-color: hsl(var(--light-grey));
     text-decoration: none;
   }
 

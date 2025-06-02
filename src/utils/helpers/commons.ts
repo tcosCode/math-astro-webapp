@@ -1,4 +1,4 @@
-import type { GridItemAttributes } from "@types";
+import type { GridItemAttributes } from "@types"; 
 
 export function createGridAttrs(
   grade: string,

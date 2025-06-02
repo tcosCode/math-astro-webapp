@@ -112,7 +112,6 @@ const playerGlobalObjectName = `PlayerInstance_${idVideo}`; // Mismo nombre que 
     gap: 2rem;
     margin-block: 3.5rem 3rem;
     justify-content: space-between;
-
   }
 
   @media (max-width: 768px) {
@@ -128,9 +127,9 @@ const playerGlobalObjectName = `PlayerInstance_${idVideo}`; // Mismo nombre que 
     max-width: 800px;
     aspect-ratio: 16 / 9;
     border-radius: 10px;
-    background-color: var(--light-grey);
+    background-color: hsl(var(--light-grey));
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border: 3px solid var(--dark-grey);
+    border: 3px solid hsl(var(--dark-grey));
     overflow: hidden;
   }
 
@@ -138,7 +137,7 @@ const playerGlobalObjectName = `PlayerInstance_${idVideo}`; // Mismo nombre que 
     max-width: 800px;
     margin-top: 2rem;
     padding: 0 1rem;
-    color: var(--dark-grey);
+    color: hsl(var(--dark-grey));
   }
 
   .video-title {
@@ -162,7 +161,7 @@ const playerGlobalObjectName = `PlayerInstance_${idVideo}`; // Mismo nombre que 
   .description {
     margin-block: 2rem;
     padding: 1.5rem;
-    border: 1px solid hsl(214.3 31.8% 91.4%);
+    border: 1px solid hsl(var(--light-grey-2));
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);

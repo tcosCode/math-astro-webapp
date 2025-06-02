@@ -186,7 +186,7 @@ const length = currentExercise?.incisos?.length ?? 0;
 
   <style>
     .svg-pencil {
-      color: var(--secondary-color-light-2);
+      color: hsl(var(--secondary-color-light));
     }
 
     .exercises {
@@ -201,7 +201,7 @@ const length = currentExercise?.incisos?.length ?? 0;
       align-items: center;
       gap: 1rem;
       font-size: 1.5rem;
-      color: var(--dark-grey);
+      color: hsl(var(--dark-grey));
     }
 
     .image-container {
@@ -213,7 +213,7 @@ const length = currentExercise?.incisos?.length ?? 0;
 
     .legend {
       padding: 1rem;
-      background-color: var(--primary-color-dark);
+      background-color: hsl(var(--primary-color-dark));
     }
 
     .legend span {
@@ -221,13 +221,13 @@ const length = currentExercise?.incisos?.length ?? 0;
       align-items: center;
       gap: 0.5rem;
       font-size: 1rem;
-      color: var(--primary-color-light-3);
+      color: hsl(var(--primary-color-light-2));
     }
 
     .img-exercises {
-      max-width: 100%;
+      width: 100%;
       height: auto;
-      background-color: var(--primary-color-light-3);
+      background-color: hsl(var(--primary-color-light-2));
       padding: 3rem;
     }
 
@@ -239,12 +239,12 @@ const length = currentExercise?.incisos?.length ?? 0;
       gap: 0.5rem;
       margin-top: 1rem;
       padding: 1rem;
-      background-color: var(--secondary-color-light-1);
+      background-color: hsl(var(--secondary-color-dark));
       border-radius: 10px;
     }
 
     .exercises-video-container p {
-      color: var(--secondary-color-light-3);
+      color: hsl(var(--secondary-color-light-2));
       font-size: 1rem;
       font-weight: 700;
     }
@@ -252,8 +252,10 @@ const length = currentExercise?.incisos?.length ?? 0;
     .span-exercises-video {
       display: flex;
       align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 0.5rem;
-      color: var(--secondary-color-light-1);
+      color: hsl(var(--secondary-color-light));
       cursor: pointer;
       transition: opacity 0.3s ease;
       padding: 0.8rem 1.2rem;

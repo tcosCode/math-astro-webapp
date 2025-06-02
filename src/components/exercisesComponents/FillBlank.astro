@@ -9,7 +9,9 @@ import Feedback from "@components/ui/Feedback.astro";
 import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, sentence, options } = Astro.props as FillBlankProps;
-const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
+const params = Astro.params as Partial<GradeExerciseParams>;
+const grade = String(params.grade); // Asegura que es string
+const exercise = String(params.exercise);
 
 const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---
@@ -96,7 +98,7 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
   .option {
     flex: 1 1 calc(33.333% - 20px);
     text-align: center;
-    background-color: var(--white-color);
+    background-color: white;
     padding: 20px;
     border-radius: 5px;
     cursor: grab;

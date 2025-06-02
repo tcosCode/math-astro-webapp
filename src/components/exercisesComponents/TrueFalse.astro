@@ -9,7 +9,9 @@ import Feedback from "@components/ui/Feedback.astro";
 import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, exerciseText, validation } = Astro.props as TrueFalseProps;
-const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
+const params = Astro.params as Partial<GradeExerciseParams>;
+const grade = String(params.grade); // Asegura que es string
+const exercise = String(params.exercise);
 
 const gridAttrs = createGridAttrs(grade, exercise, inciso);
 ---

@@ -11,9 +11,11 @@ import ArrowRedoRight from "@assets/icons/arrow-redo-right.svg";
 import { createGridAttrs } from "@utils/helpers/commons";
 
 const { inciso, exerciseText, answer } = Astro.props as ChooseAnswerProps;
-const { grade, exercise } = Astro.params as unknown as GradeExerciseParams;
+const params = Astro.params as Partial<GradeExerciseParams>;
+const grade = String(params.grade); // Asegura que es string
+const exercise = String(params.exercise);
 
-const gridAttrs = createGridAttrs(grade, exercise, inciso);
+const gridAttrs = createGridAttrs(grade, exercise.toString(), inciso);
 ---
 
 <ExercisesCard id="grid-item" {...gridAttrs}>

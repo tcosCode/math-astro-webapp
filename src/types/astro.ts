@@ -5,7 +5,7 @@ export interface GradeExerciseParams {
 }
 
 export interface GradeOnlyParams {
-  grade: "7mo" | "8vo" | "9no" | "10mo" | "11no" | "12mo";
+  grade: string;
 }
 
 export interface VideoParams {

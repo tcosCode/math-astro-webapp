@@ -61,7 +61,7 @@ const totalExercises = getTotalGradeExercises(topics);
     padding: 2rem;
     width: 100%;
     flex-wrap: wrap;
-    background-color: var(--light-grey);
+    background-color: hsl(var(--light-grey-2));
     border-radius: 1rem;
     position: relative;
   }
@@ -87,12 +87,12 @@ const totalExercises = getTotalGradeExercises(topics);
   .statistics {
     width: 100%;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--dark-grey-2);
+    border-bottom: 2px solid hsl(var(--dark-grey));
     text-align: center;
   }
 
   .statistics h3 {
-    color: var(--dark-grey);
+    color: hsl(var(--dark-grey));
     margin-bottom: 0.5rem;
   }
 
@@ -106,7 +106,7 @@ const totalExercises = getTotalGradeExercises(topics);
     bottom: 10px;
     left: 15px;
     font-size: 0.8rem;
-    color: var(--dark-grey-2);
+    color: hsl(var(--dark-grey-2));
     margin-top: 1rem;
   }
 
@@ -120,9 +120,14 @@ const totalExercises = getTotalGradeExercises(topics);
     aspect-ratio: 1;
     border-radius: 50%;
     background:
-      radial-gradient(farthest-side, var(--secondary-color-dark) 94%, #0000)
+      radial-gradient(
+          farthest-side,
+          hsl(var(--secondary-color-dark)),
+          94%,
+          #0000
+        )
         top/8px 8px no-repeat,
-      conic-gradient(#0000 30%, var(--secondary-color-dark));
+      conic-gradient(#0000 30%, hsl(var(--secondary-color-dark)));
     -webkit-mask: radial-gradient(
       farthest-side,
       #0000 calc(100% - 8px),

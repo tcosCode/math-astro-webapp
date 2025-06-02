@@ -21,8 +21,8 @@ const { text, pairId, length } = Astro.props as MatchingProps;
 
     .card {
       padding: 2rem 1rem;
-      background-color: var(--btn-option-background-color);
-      border: 3px solid var(--border-btn-option);
+      background-color: hsl(var(--light-grey));
+      border: 3px solid hsl(var(--border-btn-option));
       border-radius: 1rem;
       text-align: center;
       cursor: pointer;
@@ -36,37 +36,37 @@ const { text, pairId, length } = Astro.props as MatchingProps;
     }
 
     .card:hover {
-      background-color: var(--btn-option-hover-background-color);
+      background-color: hsl(var(--btn-option-hover-background-color));
     }
 
     /* Borde azul al seleccionar */
     .selected {
-      border-color: var(--primary-color);
+      border-color: hsl(var(--primary-color));
     }
 
     /* Efecto de shake para cartas incorrectas */
     .incorrect {
-      border-color: var(--border-incorrect-color);
-      background-color: var(--incorrect-color);
+      border-color: hsl(var(--incorrect-color));
+      background-color: hsl(var(--incorrect-color));
       animation: vibrate 0.5s linear both;
     }
 
     .incorrect:hover {
-      background-color: var(--incorrect-color);
+      background-color: hsl(var(--incorrect-color));
     }
 
     /* Zoom out y desvanecimiento para cartas correctas */
     .correct {
-      background-color: var(--correct-color);
-      color: var(--white-color);
-      border-color: var(--border-correct-color);
+      background-color: hsl(var(--correct-color));
+      color: white;
+      border-color: hsl(var(--correct-color));
       transform: scale(0.5); /* Zoom out */
       opacity: 0; /* Desvanecer */
       pointer-events: none; /* Desactivar interacción */
     }
 
     .correct:hover {
-      background-color: var(--correct-color);
+      background-color: hsl(var(--correct-color));
     }
 
     /* Animación de vibrate */

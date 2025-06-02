@@ -81,7 +81,7 @@ import {
     left: 3rem;
     right: 3rem;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: hsl(var(--primary-color));
   }
 
   @media (max-width: 1280px) {
@@ -102,13 +102,13 @@ import {
 
   .header-title {
     font-size: clamp(1.5rem, 4vw, 2rem);
-    color: var(--primary-color);
+    color: hsl(var(--primary-color));
     font-weight: 700;
     pointer-events: none;
   }
 
   .svg-logo {
-    fill: var(--secondary-color-light-2);
+    fill: hsl(var(--secondary-color-light));
     width: clamp(2.5rem, 4vw, 3.5rem);
     height: auto;
   }
@@ -130,7 +130,7 @@ import {
 
   .navbar-item {
     padding: 0.5rem 1rem;
-    color: var(--dark-grey);
+    color: hsl(var(--dark-grey));
     font-weight: 500;
     font-size: 1rem;
     border-radius: 5px;
@@ -144,8 +144,8 @@ import {
   }
 
   .navbar-item:hover {
-    background-color: var(--light-grey);
-    color: var(--dark-grey);
+    background-color: hsl(var(--light-grey));
+    color: hsl(var(--dark-grey));
   }
 
   .navbar-link {
@@ -173,7 +173,7 @@ import {
     font-size: 0.8rem;
     width: 100%;
     border-radius: 0 0 5px 5px;
-    background-color: var(--light-grey);
+    background-color: hsl(var(--light-grey));
     position: absolute;
     margin-top: 0.4rem;
     top: 100%;
@@ -215,8 +215,8 @@ import {
   }
 
   .menu-drop-down a:hover {
-    background-color: var(--primary-color);
-    color: var(--white-color);
+    background-color:hsl(var(--primary-color));
+    color: white;
   }
 
   .menu {
@@ -225,12 +225,12 @@ import {
   }
 
   .auth {
-    border: 1px solid var(--primary-color);
+    border: 1px solid hsl(var(--primary-color));
     border-radius: 20px;
-    background-color: var(--white-color);
+    background-color: white;
     font-size: 16px;
     padding: 0.5rem 1.5rem;
-    color: var(--dark-grey);
+    color: hsl(var(--dark-grey));
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -238,8 +238,8 @@ import {
   }
 
   .auth:hover {
-    background-color: var(--primary-color);
-    color: var(--white-color);
+    background-color: hsl(var(--primary-color));
+    color: white;
   }
 
   @media (max-width: 768px) {
@@ -262,7 +262,7 @@ import {
       left: 0;
       width: 50%;
       height: 1px;
-      background-color: var(--primary-color);
+      background-color: hsl(var(--primary-color));
     }
 
     .menu {
@@ -304,7 +304,7 @@ import {
     }
     .navbar-item {
       padding: 1rem 2rem;
-      color: var(--dark-grey);
+      color: hsl(var(--dark-grey));
       font-weight: 600;
       height: fit-content;
       border-radius: 0;
@@ -348,7 +348,7 @@ import {
     }
 
     .drop-down:hover a {
-      color: var(--dark-grey);
+      color: hsl(var(--dark-grey));
     }
 
     .drop-down .arrow {
@@ -361,7 +361,7 @@ import {
     }
 
     .menu-drop-down a:hover {
-      background-color: var(--light-grey);
+      background-color: hsl(var(--light-grey));
     }
   }
 

@@ -20,7 +20,7 @@ const { url, buttonType, ...restProps } = Astro.props;
 
 <style>
   .button {
-    border: 1px solid var(--primary-color);
+    border: 1px solid hsl(var(--primary-color));
     border-radius: 50px;
     font-size: 16px;
     padding: 1rem 1.5rem;
@@ -32,20 +32,20 @@ const { url, buttonType, ...restProps } = Astro.props;
   }
 
   .button-primary {
-    background-color: var(--primary-color-dark);
-    color: var(--white-color);
+    background-color: hsl(var(--primary-color-dark));
+    color: white;
   }
 
   .button-primary:hover {
-    background-color: var(--primary-color);
+    background-color: hsl(var(--primary-color));
   }
 
   .button-outline {
-    background-color: var(--white-color);
-    color: var(--dark-grey);
+    background-color: white;
+    color: hsl(var(--dark-grey));
   }
 
   .button-outline:hover {
-    background-color: var(--primary-color-light-3);
+    background-color: hsl(var(--primary-color-light-2));
   }
 </style>
