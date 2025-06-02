@@ -1,6 +1,6 @@
 export const grades11no = {
   title: "11no",
-  img: "src/assets/img/coach-85.svg",
+  img: "/img/coach-85.svg",
   list: ["Logaritmos", "Geometría", " Límites"],
   exercises: [
     {

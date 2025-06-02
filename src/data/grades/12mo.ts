@@ -1,6 +1,6 @@
 export const grades12mo = {
   title: "12mo",
-  img: "src/assets/img/presentation.svg",
+  img: "/img/presentation.svg",
   list: ["Probabilidades", "Geometría", "Trigonometría"],
   exercises: [
     {

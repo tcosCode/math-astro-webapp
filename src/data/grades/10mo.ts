@@ -1,6 +1,6 @@
 export const grades10mo = {
   title: "10mo",
-  img: "src/assets/img/video-tutorial.svg",
+  img: "/img/video-tutorial.svg",
   list: ["Variables", "Potencias", "Raíces"],
   exercises: [
     {

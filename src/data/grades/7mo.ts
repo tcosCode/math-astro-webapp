@@ -1,6 +1,6 @@
 export const grades7mo = {
   title: "7mo",
-  img: "src/assets/img/calculator.svg",
+  img: "/img/calculator.svg",
   list: ["Racionales", "Geometría", "Variables"],
   exercises: [
     {
