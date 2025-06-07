@@ -2,6 +2,7 @@
   "include": ["src/**/*"],
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "types": ["@astrojs/db"],
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
