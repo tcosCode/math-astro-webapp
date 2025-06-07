@@ -927,7 +927,7 @@ export const grades9no = {
             },
             {
               id: "a_option3",
-              text: "<sup>1</sup>/<sub>3</sub>πrh",
+              text: "V = <sup>1</sup>/<sub>3</sub>πrh",
               position: "none",
             },
           ],
