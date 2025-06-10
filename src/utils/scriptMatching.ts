@@ -1,3 +1,16 @@
+import confetti from "canvas-confetti";
+
+// 1) Creamos y añadimos nuestro propio canvas al DOM
+const confettiCanvas = document.createElement("canvas");
+confettiCanvas.classList.add("confetti-canvas");
+document.body.appendChild(confettiCanvas);
+
+// 2) Instanciamos el launcher usando ese canvas
+const myConfetti = confetti.create(confettiCanvas, {
+  resize: true, // para que siempre ocupe la pantalla completa
+  useWorker: true, // para que no bloquee el hilo principal
+});
+
 // Interfaz para las cartas con tipado específico
 interface CardElement extends HTMLElement {
   classList: DOMTokenList;
@@ -50,18 +63,19 @@ function resetCardSelection(): void {
 // Función para animar y eliminar cartas correctas del DOM
 function removeCorrectCards(card1: CardElement, card2: CardElement): void {
   // Encontrar los contenedores padre (grid-item)
-  const container1 = card1.closest('.grid-item') || card1.parentElement;
-  const container2 = card2.closest('.grid-item') || card2.parentElement;
-  
+  const container1 = card1.closest(".grid-item") || card1.parentElement;
+  const container2 = card2.closest(".grid-item") || card2.parentElement;
+
   // Aplicar animación de salida a los contenedores
-  const exitAnimation = "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-out";
-  
+  const exitAnimation =
+    "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-out";
+
   if (container1) {
     (container1 as HTMLElement).style.transition = exitAnimation;
     (container1 as HTMLElement).style.transform = "scale(0) rotate(180deg)";
     (container1 as HTMLElement).style.opacity = "0";
   }
-  
+
   if (container2) {
     (container2 as HTMLElement).style.transition = exitAnimation;
     (container2 as HTMLElement).style.transform = "scale(0) rotate(180deg)";
@@ -88,7 +102,9 @@ function handleCorrectMatch(): void {
   secondCard.classList.add("correct");
   matchedPairs++;
 
-  console.log(`Pareja encontrada! Total parejas: ${matchedPairs} de ${totalPairsInGame}`);
+  console.log(
+    `Pareja encontrada! Total parejas: ${matchedPairs} de ${totalPairsInGame}`,
+  );
 
   // Eliminar las cartas y sus contenedores del DOM
   removeCorrectCards(firstCard, secondCard);
@@ -128,6 +144,13 @@ function checkGameCompletion(): void {
 
 // Función para mostrar el modal de finalización
 function showGameOverMessage(): void {
+  // dispara el confetti con tus opciones:
+  myConfetti({
+    particleCount: 150,
+    spread: 60,
+    origin: { x: 0.5, y: 0.3 },
+  });
+
   // Crear el overlay del modal
   const modalOverlay = document.createElement("div");
   modalOverlay.id = "game-over-modal";
@@ -276,7 +299,7 @@ function closeModalOld(): void {
       modalContent.style.animation = "modalBounceOut 0.3s ease-out forwards";
     }
     modal.style.animation = "fadeInOverlay 0.3s ease-out reverse";
-    
+
     setTimeout(() => {
       modal.remove();
       document.removeEventListener("keydown", handleEscKey);
@@ -297,8 +320,8 @@ function removeAllRemainingCards(): void {
   console.log(`Eliminando ${remainingCards.length} cartas restantes del DOM`);
 
   remainingCards.forEach((card: CardElement, index) => {
-    const container = card.closest('.grid-item') || card.parentElement;
-    
+    const container = card.closest(".grid-item") || card.parentElement;
+
     setTimeout(() => {
       if (container && container.parentNode) {
         container.parentNode.removeChild(container);
