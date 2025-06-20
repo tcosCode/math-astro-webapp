@@ -4,6 +4,7 @@ import type { ProblemProps } from "@types";
 
 import ExercisesCard from "@components/ui/ExercisesCard.astro";
 import Accordion from "@components/AccordionProblem.astro";
+import Button from "@components/ui/Button.astro";
 
 const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
 ---
@@ -21,9 +22,16 @@ const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
       </div>
     </div>
   </div>
+  <Button class="button-problem" buttonType="primary">
+    Marcar como resuelto
+  </Button>
 </ExercisesCard>
 
 <style>
+  #grid-item {
+    place-items: center;
+  }
+
   /* Card Flip */
   .card {
     align-self: center;
@@ -76,4 +84,6 @@ const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
     transform: rotateY(180deg);
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
   }
+
+  
 </style>

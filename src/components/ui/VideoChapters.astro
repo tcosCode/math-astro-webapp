@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { chapters, videoId } = Astro.props;
-// 1. Cambiar el nombre global para que coincida con el que se define en [video].astro
+// 1. Cambiar el nombre global para que coincida con el que se define en [idVideo].astro
 const playerGlobalObjectName = `PlayerInstance_${videoId}`;
 ---
 
@@ -53,12 +53,12 @@ const playerGlobalObjectName = `PlayerInstance_${videoId}`;
       return;
     }
 
-    // 3) Asegúrate de que el player esté listo
+    // 3) Se asegura de que el player esté listo
     if (!player.ready) {
       await new Promise((resolve) => player.on("ready", resolve));
     }
 
-    // 4) Haz el seek con currentTime y luego play()
+    // 4) Hace que el reproductor se desplace al tiempo correcto y luego play()
     player.currentTime = seconds;
     player
       .play()
