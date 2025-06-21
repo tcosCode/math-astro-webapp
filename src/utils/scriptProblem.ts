@@ -2,7 +2,7 @@ import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import notyfOptions from "@utils/helpers/notyfOptions";
 
-import { showGameOverMessage } from "@utils/gameOverModal";
+import { createProgressIndicator, updateProgress } from "@utils/scriptProgressIndicator";
 
 document.addEventListener("astro:page-load", () => {
   // Initialize Notyf for notifications
@@ -19,6 +19,12 @@ document.addEventListener("astro:page-load", () => {
         return;
       }
 
+      // Verificar si ya está resuelto
+      if (dataContainer.classList.contains("card-solved")) {
+        notyf.error("Este ejercicio ya está resuelto");
+        return;
+      }
+
       // Agregar la clase para mostrar el icono
       dataContainer.classList.add("card-solved");
 
@@ -26,6 +32,16 @@ document.addEventListener("astro:page-load", () => {
       target.textContent = "✓ Resuelto";
       target.disabled = true;
       target.style.opacity = "0.6";
+
+      // Actualizar progreso y verificar completado
+      createProgressIndicator();
+      setTimeout(updateProgress, 100); // Pequeño delay para que se actualice el DOM
     });
   });
+
+  // Inicializar al cargar la página
+  setTimeout(() => {
+    createProgressIndicator();
+    updateProgress();
+  }, 100);
 });

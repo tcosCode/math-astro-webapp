@@ -8,10 +8,13 @@ import TrueFalse from "@components/exercisesComponents/TrueFalse.astro";
 import Problem from "@components/exercisesComponents/Problem.astro";
 import Matching from "@components/exercisesComponents/Matching.astro";
 import FillBlanks from "@components/exercisesComponents/FillBlank.astro";
+import ProgressIndicator from "@components/ui/ProgressIndicator.astro";
+import GameOverModal from "@src/components/ui/GameOverModal.astro";
 
 import Pencil from "@assets/icons/pencil.svg";
 import ExerciseBookIcon from "@assets/icons/ex-figure-book.svg";
 import ExerciseVideoIcon from "@assets/icons/ex-video.svg";
+
 import { topics } from "@src/data/index";
 import { shuffle } from "@utils/shuffleArray";
 import { findVideoByTitle } from "@src/utils/helpers/findVideo";
@@ -100,6 +103,9 @@ const length = currentExercise?.incisos?.length ?? 0;
       >
     </div>
 
+    <!-- Indicador de progreso -->
+    <ProgressIndicator totalExercises={length} />
+
     <!-- Sección de ejercicios -->
     <div class="grid-container">
       {
@@ -182,6 +188,9 @@ const length = currentExercise?.incisos?.length ?? 0;
 
       {currentExercise?.type === "" && "Ejercicio por añadir"}
     </div>
+
+    <!-- Game Over Modal -->
+    <GameOverModal />
   </section>
 
   <style>

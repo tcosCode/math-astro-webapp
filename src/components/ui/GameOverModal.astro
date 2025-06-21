@@ -2,19 +2,16 @@
 
 ---
 
-<div class="modal-overlay" id="game-over-modal">
-  <div class="modal-content" id="modal-content">
-    <div class="feast">🎉</div>
-    <h2>¡Felicitaciones!</h2>
-    <p>
-      Has completado el juego exitosamente.<br />
-      ¡Todas las parejas encontradas!
-    </p>
-    <div class="modal-buttons">
-      <button class="btn-primary" id="play-again-btn">
-        🔄 Jugar de nuevo
-      </button>
-      <button class="btn-secondary" id="close-modal-btn"> ✨ Cerrar </button>
+<div id="game-over-modal">
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <div class="title-icon">🎉</div>
+      <h2>¡Felicitaciones!</h2>
+      <p>¡Has completado el juego exitosamente!</p>
+      <div class="buttons">
+        <button id="play-again-btn"> 🔄 Jugar de nuevo </button>
+        <button id="close-modal-btn"> ✨ Cerrar </button>
+      </div>
     </div>
   </div>
 </div>
@@ -22,8 +19,32 @@
 <script src="@utils/gameOverModal.ts"></script>
 
 <style>
+  #game-over-modal {
+    visibility: hidden;
+    z-index: 9999;
+    opacity: 0;
+    transition:
+      visibility 0s linear 0.3s,
+      opacity 0.3s ease-out;
+  }
+
+  #game-over-modal.modal-visible {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity 0.3s ease-out;
+  }
+
+  #game-over-modal.modal-hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0s linear 0.3s,
+      opacity 0.3s ease-out;
+  }
+
   .modal-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -31,14 +52,10 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
-    z-index: 1000;
+    z-index: 9999;
+    display: flex;
     align-items: center;
     justify-content: center;
-    animation: fadeInOverlay 0.3s ease-out;
-  }
-
-  .modal-overlay.show {
-    display: flex;
   }
 
   .modal-content {
@@ -51,42 +68,44 @@
     max-width: 400px;
     width: 90%;
     transform: scale(0.7);
-    animation: modalBounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
-      forwards;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  .modal-content.closing {
-    animation: modalBounceOut 0.3s ease-out forwards;
+  #game-over-modal.modal-visible .modal-content {
+    transform: scale(1);
   }
 
-  .feast {
+  #game-over-modal.modal-hidden .modal-content {
+    transform: scale(0.7);
+  }
+
+  .title-icon {
     font-size: 60px;
     margin-bottom: 20px;
-    animation: bounce 1s infinite alternate;
   }
 
-  .modal-content h2 {
+  h2 {
     margin: 0 0 15px 0;
     font-size: 28px;
     font-weight: bold;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
-  .modal-content p {
+  p {
     margin: 0 0 30px 0;
     font-size: 18px;
     opacity: 0.9;
     line-height: 1.4;
   }
 
-  .modal-buttons {
+  .buttons {
     display: flex;
     gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
   }
 
-  .btn-primary {
+  #play-again-btn {
     background: white;
     color: #667eea;
     border: none;
@@ -95,16 +114,18 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
-  .btn-primary:hover {
+  #play-again-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
   }
 
-  .btn-secondary {
+  #close-modal-btn {
     background: transparent;
     color: white;
     border: 2px solid white;
@@ -113,82 +134,13 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
 
-  .btn-secondary:hover {
-    background: white;
+  #close-modal-btn:hover {
+    background-color: white;
     color: #667eea;
-  }
-
-  /* Animations */
-  @keyframes fadeInOverlay {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOutOverlay {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  @keyframes modalBounceIn {
-    0% {
-      transform: scale(0.7);
-      opacity: 0;
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  @keyframes modalBounceOut {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(0.7);
-      opacity: 0;
-    }
-  }
-
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-10px);
-    }
-  }
-
-  /* Responsive */
-  @media (max-width: 480px) {
-    .modal-content {
-      padding: 30px 20px;
-      margin: 20px;
-    }
-
-    .modal-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      width: 200px;
-    }
   }
 </style>
