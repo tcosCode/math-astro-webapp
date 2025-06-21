@@ -104,7 +104,11 @@ const length = currentExercise?.incisos?.length ?? 0;
     </div>
 
     <!-- Indicador de progreso -->
-    <ProgressIndicator totalExercises={length} />
+    {
+      currentExercise.type !== "Matching" && (
+        <ProgressIndicator totalExercises={length} />
+      )
+    }
 
     <!-- Sección de ejercicios -->
     <div class="grid-container">
@@ -190,7 +194,7 @@ const length = currentExercise?.incisos?.length ?? 0;
     </div>
 
     <!-- Game Over Modal -->
-    <GameOverModal />
+    {currentExercise.type !== "Matching" && <GameOverModal />}
   </section>
 
   <style>

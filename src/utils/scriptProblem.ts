@@ -14,7 +14,7 @@ document.addEventListener("astro:page-load", () => {
   document.querySelectorAll(".button-problem").forEach((button) => {
     button.addEventListener("click", (event) => {
       const target = event.currentTarget as HTMLButtonElement;
-      const dataContainer = target.closest("#grid-item") as HTMLDivElement;
+      const dataContainer = target.closest("[id^='grid-item']") as HTMLDivElement;
 
       if (!dataContainer) {
         notyf.error("Ha ocurrido un error: Refresca la página.");

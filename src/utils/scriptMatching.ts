@@ -1,5 +1,3 @@
-import { showGameOverMessage } from "@utils/gameOverModal";
-
 // Interfaz para las cartas con tipado específico
 interface CardElement extends HTMLElement {
   classList: DOMTokenList;
@@ -52,8 +50,8 @@ function resetCardSelection(): void {
 // Función para animar y eliminar cartas correctas del DOM
 function removeCorrectCards(card1: CardElement, card2: CardElement): void {
   // Encontrar los contenedores padre (grid-item)
-  const container1 = card1.closest(".grid-item") || card1.parentElement;
-  const container2 = card2.closest(".grid-item") || card2.parentElement;
+  const container1 = card1.closest("[id^='grid-item']") || card1.parentElement;
+  const container2 = card2.closest("[id^='grid-item']") || card2.parentElement;
 
   // Aplicar animación de salida a los contenedores
   const exitAnimation =
@@ -126,7 +124,6 @@ function checkGameCompletion(): void {
     console.log("¡Juego completado!");
     setTimeout(() => {
       removeAllRemainingCards(); // Eliminar cartas sobrantes si las hay
-      showGameOverMessage();
     }, 500);
   }
 }
@@ -137,7 +134,7 @@ function removeAllRemainingCards(): void {
   console.log(`Eliminando ${remainingCards.length} cartas restantes del DOM`);
 
   remainingCards.forEach((card: CardElement, index) => {
-    const container = card.closest(".grid-item") || card.parentElement;
+    const container = card.closest("[id^='grid-item']") || card.parentElement;
 
     setTimeout(() => {
       if (container && container.parentNode) {

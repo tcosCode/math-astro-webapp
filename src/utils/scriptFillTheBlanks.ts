@@ -14,7 +14,7 @@ interface Options {
 document.addEventListener("astro:page-load", async () => {
   const notyf = new Notyf(notyfOptions);
 
-  document.querySelectorAll(".grid-item").forEach((exercise) => {
+  document.querySelectorAll("[id^='grid-item']").forEach((exercise) => {
     const grade = exercise.getAttribute("data-grade");
     const exerciseAttr = exercise.getAttribute("data-exercise");
     const inciso = exercise.getAttribute("data-inciso");
@@ -314,20 +314,20 @@ document.addEventListener("astro:page-load", async () => {
 
         if (result.ok) {
           console.log("Data sent successfully:", result);
-          notyf.success("Respuesta enviada correctamente.");
+          //notyf.success("Respuesta enviada correctamente.");
         } else {
           console.error("Error from API:", result.error);
-          notyf.error("No se pudo enviar la respuesta.");
+          //notyf.error("No se pudo enviar la respuesta.");
         }
       } catch (error: any) {
         console.error("Error sending data to API:", error.message || error);
-        notyf.error("No se pudo enviar la respuesta.");
+        //notyf.error("No se pudo enviar la respuesta.");
       }
     }
 
     function handleAPIError(message: string) {
       console.error("API Error:", message);
-      notyf.error(message);
+      //notyf.error(message);
     }
   });
 });

@@ -18,7 +18,7 @@ const exercise = String(params.exercise);
 const gridAttrs = createGridAttrs(grade, exercise.toString(), inciso);
 ---
 
-<ExercisesCard id="grid-item" {...gridAttrs}>
+<ExercisesCard id=`grid-item-${grade}-${exercise}-${inciso}`>
   <p><strong>{inciso}) <span set:html={exerciseText} /></strong></p>
 
   <!-- Answer options -->
