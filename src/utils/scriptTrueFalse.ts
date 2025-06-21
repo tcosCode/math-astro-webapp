@@ -2,8 +2,14 @@ import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import notyfOptions from "@utils/helpers/notyfOptions";
 
+import { retry } from "@utils/retryExercise";
 import { validateAnswer } from "@utils/validateAnswer";
-import { postExerciseAnswer } from "@utils/api";
+import { validateDataToSend } from "@utils/helpers/validateDataToSend";
+import { sendData } from "@utils/helpers/sendData";
+import {
+  createProgressIndicator,
+  updateProgress,
+} from "@utils/scriptProgressIndicator";
 
 /* Listener-wrap para cuando cargue la pagina*/
 document.addEventListener("astro:page-load", () => {
@@ -12,7 +18,7 @@ document.addEventListener("astro:page-load", () => {
 
   // Listener para todos los botones de opciones
   document.querySelectorAll(".option-btn").forEach((button) => {
-    button.addEventListener("click", async (event) => {
+    button.addEventListener("click", (event) => {
       const target = event.currentTarget as HTMLButtonElement;
       const dataContainer = target.closest("#grid-item") as HTMLDivElement;
 
@@ -22,58 +28,40 @@ document.addEventListener("astro:page-load", () => {
         return;
       }
 
+      // Verificar si ya está resuelto
+      if (dataContainer.classList.contains("card-solved")) {
+        notyf.error("Este ejercicio ya está resuelto");
+        return;
+      }
+
       const validation = target.getAttribute("data-validation");
-      const grade = dataContainer.getAttribute("data-grade");
-      const exerciseAttr = dataContainer.getAttribute("data-exercise");
-      const inciso = dataContainer.getAttribute("data-inciso");
-
-      // --- Validation before sending ---
-      if (!validation || !grade || !exerciseAttr || !inciso) {
-        notyf.error("Ha ocurrido un error: Refresca la página.");
-        console.error(
-          `Se requieren todos los datos: ${validation}, ${grade}, ${exerciseAttr}, ${inciso}`,
-        );
-        return;
-      }
-
-      // --- Correct the exerciseId type ---
-      const exerciseId = parseInt(exerciseAttr, 10); // Parse exercise ID as a number
-      if (isNaN(exerciseId)) {
-        console.error("Invalid exercise ID attribute:", exerciseAttr);
-        return;
-      }
-
-      // Determine 'correct' status based on validation attribute
-      const isCorrect = validation === "correct";
-
-      // --- Prepare data for POST request ---
-      const submissionData = {
-        grade: grade,
-        exerciseId: exerciseId,
-        correct: isCorrect,
-        sectionId: inciso,
-      };
 
       if (validation) {
-        validateAnswer(validation, target);
+        const submissionData = validateDataToSend(
+          target,
+          dataContainer,
+          validation,
+        );
+
+        validateAnswer(validation, target, dataContainer);
 
         // --- Send data to the server ---
-        try {
-          const result = await postExerciseAnswer(submissionData);
-          if (result.ok) {
-            // Handle success (e.g., show a success message)
-            console.log("Data sent successfully:", result);
-            notyf.success("Respuesta enviada correctamente.");
-          } else {
-            // Handle error (e.g., show an error message)
-            console.error("Error from API:", result.error);
-            notyf.error("No se pudo enviar la respuesta.");
-          }
-        } catch (error) {
-          console.error("Error sending data to API:", error);
-          notyf.error("No se pudo enviar la respuesta.");
-        }
+        sendData(submissionData, notyf);
       }
     });
   });
+
+  // Listener para todos los Botones de Retry
+  document.querySelectorAll("#retryButton").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const target = event.currentTarget as HTMLButtonElement;
+      retry(target);
+    });
+  });
+
+  // Inicializar al cargar la página
+  setTimeout(() => {
+    createProgressIndicator();
+    updateProgress();
+  }, 100);
 });

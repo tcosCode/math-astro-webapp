@@ -32,7 +32,9 @@ document.addEventListener("astro:page-load", () => {
         notyf.error("Este ejercicio ya está resuelto");
         return;
       }
+
       const validation = target.getAttribute("data-validation");
+
       if (validation) {
         const submissionData = validateDataToSend(
           target,

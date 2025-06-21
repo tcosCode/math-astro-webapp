@@ -5,6 +5,8 @@ import type { TrueFalseProps, GradeExerciseParams } from "@types";
 import ExercisesCard from "@components/ui/ExercisesCard.astro";
 import ExerciseButton from "@components/ui/ExerciseButton.astro";
 import Feedback from "@components/ui/Feedback.astro";
+import Button from "@components/ui/Button.astro";
+import ArrowRedoRight from "@assets/icons/arrow-redo-right.svg";
 
 import { createGridAttrs } from "@utils/helpers/commons";
 
@@ -46,6 +48,14 @@ const gridAttrs = createGridAttrs(grade, exercise, inciso);
 
   <!-- Feedback space -->
   <Feedback />
+
+  <!-- Button to reset the exercise -->
+  <Button buttonType="primary" id="retryButton" style="display: none">
+    <div>
+      <ArrowRedoRight class="svg" />
+      <span>Intentarlo de nuevo</span>
+    </div>
+  </Button>
 </ExercisesCard>
 
 <script src="@utils/scriptTrueFalse.ts"></script>
