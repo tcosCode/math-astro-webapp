@@ -2,7 +2,10 @@ import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import notyfOptions from "@utils/helpers/notyfOptions";
 
-import { createProgressIndicator, updateProgress } from "@utils/scriptProgressIndicator";
+import {
+  createProgressIndicator,
+  updateProgress,
+} from "@utils/scriptProgressIndicator";
 
 document.addEventListener("astro:page-load", () => {
   // Initialize Notyf for notifications

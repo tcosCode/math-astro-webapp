@@ -1,12 +1,14 @@
+import {
+  createProgressIndicator,
+  updateProgress,
+} from "@utils/scriptProgressIndicator";
+
 // Funcion para validar la respuesta
-export function validateAnswer(answer: string, button: HTMLButtonElement) {
-  const container = button.closest("#grid-item") as HTMLDivElement;
-
-  if (!container) {
-    console.warn("Grid-item element not found");
-    return;
-  }
-
+export function validateAnswer(
+  answer: string,
+  button: HTMLButtonElement,
+  container: HTMLDivElement,
+) {
   const options = container.querySelectorAll(
     ".option-btn",
   ) as NodeListOf<HTMLButtonElement>;
@@ -22,6 +24,11 @@ export function validateAnswer(answer: string, button: HTMLButtonElement) {
     button.classList.add("correct");
     const h3 = feedback.querySelector("#h3-correct") as HTMLHeadingElement;
     h3.style.display = "block";
+    // Agregar la clase para mostrar el icono
+    container.classList.add("card-solved");
+    // Actualizar progreso y verificar completado
+    createProgressIndicator();
+    setTimeout(updateProgress, 100); // Pequeño delay para que se actualice el DOM
   } else {
     button.classList.add("incorrect");
     const h3 = feedback.querySelector("#h3-incorrect") as HTMLHeadingElement;
