@@ -1,6 +1,4 @@
-import { Notyf } from "notyf";
-import "notyf/notyf.min.css";
-import notyfOptions from "@utils/helpers/notyfOptions";
+import NotyfSingleton from "@src/utils/helpers/notyfInstance";
 
 import {
   createProgressIndicator,
@@ -14,7 +12,7 @@ import { retry } from "@utils/retryExercise";
 /* Listener-wrap para cuando cargue la pagina*/
 document.addEventListener("astro:page-load", () => {
   // Initialize Notyf for notifications
-  const notyf = new Notyf(notyfOptions);
+  const notyf = NotyfSingleton.getInstance();
   // Listener para todos los botones de opciones
   document.querySelectorAll(".option-btn").forEach((button) => {
     button.addEventListener("click", async (event) => {
@@ -47,7 +45,7 @@ document.addEventListener("astro:page-load", () => {
         validateAnswer(validation, target, dataContainer);
 
         // --- Send data to the server ---
-        sendData(submissionData, notyf);
+        sendData(submissionData);
       }
     });
   });

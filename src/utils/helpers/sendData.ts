@@ -1,6 +1,8 @@
 import { postExerciseAnswer } from "@utils/api";
+//import NotyfSingleton from "@utils/helpers/notyfInstance";
 
-export async function sendData(submissionData: any, notyf: any) {
+export async function sendData(submissionData: any) {
+  //const notyf = NotyfSingleton.getInstance();
   try {
     const result = await postExerciseAnswer(submissionData);
     if (result.ok) {

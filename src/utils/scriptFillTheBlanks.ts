@@ -1,6 +1,4 @@
-import { Notyf } from "notyf";
-import "notyf/notyf.min.css";
-import notyfOptions from "@utils/helpers/notyfOptions";
+import NotyfSingleton from "@src/utils/helpers/notyfInstance";
 
 import { postExerciseAnswer } from "@utils/api";
 
@@ -12,7 +10,7 @@ interface Options {
 
 // Wait until the Astro page is fully loaded
 document.addEventListener("astro:page-load", async () => {
-  const notyf = new Notyf(notyfOptions);
+  const notyf = NotyfSingleton.getInstance();
 
   document.querySelectorAll("[id^='grid-item']").forEach((exercise) => {
     const grade = exercise.getAttribute("data-grade");

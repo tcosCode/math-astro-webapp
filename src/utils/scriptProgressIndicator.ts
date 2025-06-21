@@ -1,10 +1,5 @@
-import { Notyf } from "notyf";
-import "notyf/notyf.min.css";
-import notyfOptions from "@utils/helpers/notyfOptions";
+import NotyfSingleton from "@src/utils/helpers/notyfInstance";
 import { showGameOverMessage } from "@utils/gameOverModal";
-
-// Initialize Notyf for notifications
-const notyf = new Notyf(notyfOptions);
 
 // Función para obtener estadísticas del progreso
 const getProgressStats = () => {
@@ -27,6 +22,7 @@ const getProgressStats = () => {
 
 // Función para actualizar el progreso y verificar completado
 export const updateProgress = () => {
+  const notyf = NotyfSingleton.getInstance();
   const stats = getProgressStats();
 
   console.log(
@@ -41,17 +37,17 @@ export const updateProgress = () => {
   // Mostrar notificaciones de progreso
   if (stats.solved > 0 && stats.solved < stats.total) {
     if (stats.remaining === 1) {
-      notyf.success("¡Solo falta 1 ejercicio más! 🔥");
+      notyf.success("¡Solo falta 1 inciso más! 🔥");
     } else if (stats.remaining <= 3) {
       notyf.success(
-        `¡Excelente progreso! Solo faltan ${stats.remaining} ejercicios 💪`,
+        `¡Excelente progreso! Solo faltan ${stats.remaining} incisos 💪`,
       );
     }
   }
 
   // Verificar si todos están completos
   if (stats.total > 0 && stats.solved === stats.total) {
-    console.log("🎉 ¡TODOS LOS EJERCICIOS COMPLETADOS!");
+    console.log("🎉 ¡TODOS LOS INCISOS COMPLETADOS!");
 
     // Animación de celebración en el título
     document.title = `🎉 ${document.title.split(" - ")[0]} - ¡COMPLETADO! 🎉`;
@@ -60,7 +56,7 @@ export const updateProgress = () => {
     setTimeout(() => {
       showGameOverMessage();
       notyf.success(
-        "🎊 ¡FELICITACIONES! Has completado todos los ejercicios. ¡Eres increíble! 🎊",
+        "🎊 ¡FELICITACIONES! Has completado el ejercicio. ¡Eres increíble! 🎊",
       );
     }, 500);
 
