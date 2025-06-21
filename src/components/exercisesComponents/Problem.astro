@@ -4,7 +4,6 @@ import type { ProblemProps } from "@types";
 
 import ExercisesCard from "@components/ui/ExercisesCard.astro";
 import Accordion from "@components/AccordionProblem.astro";
-import Button from "@components/ui/Button.astro";
 
 const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
 ---
@@ -22,10 +21,10 @@ const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
       </div>
     </div>
   </div>
-  <Button class="button-problem" buttonType="primary">
-    Marcar como resuelto
-  </Button>
+  <button class="button-problem"> Marcar como resuelto </button>
 </ExercisesCard>
+
+<script src="@utils/scriptProblem.ts"></script>
 
 <style>
   #grid-item {
@@ -85,5 +84,21 @@ const { inciso, exerciseText, answer } = Astro.props as ProblemProps;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
   }
 
-  
+  .button-problem {
+    background-color: hsl(var(--primary-color));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 1rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    user-select: none;
+    max-width: fit-content;
+  }
+
+  .button-problem:hover {
+    background-color: hsl(var(--primary-color-dark));
+  }
 </style>

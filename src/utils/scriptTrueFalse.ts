@@ -17,7 +17,8 @@ document.addEventListener("astro:page-load", () => {
       const dataContainer = target.closest("#grid-item") as HTMLDivElement;
 
       if (!dataContainer) {
-        notyf.error("Error: No se pudo encontrar el contenedor del ejercicio.");
+        notyf.error("Ha ocurrido un error: Refresca la página.");
+        console.error("No se pudo encontrar el contenedor del ejercicio.");
         return;
       }
 
@@ -28,7 +29,10 @@ document.addEventListener("astro:page-load", () => {
 
       // --- Validation before sending ---
       if (!validation || !grade || !exerciseAttr || !inciso) {
-        notyf.error("Se requieren todos los datos.");
+        notyf.error("Ha ocurrido un error: Refresca la página.");
+        console.error(
+          `Se requieren todos los datos: ${validation}, ${grade}, ${exerciseAttr}, ${inciso}`,
+        );
         return;
       }
 

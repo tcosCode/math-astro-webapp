@@ -1,157 +1,184 @@
-// Variables globales del modal
-let modal: HTMLElement | null = null;
-let modalContent: HTMLElement | null = null;
-let playAgainBtn: HTMLElement | null = null;
-let closeModalBtn: HTMLElement | null = null;
-let isModalOpen = false;
+import confetti from "canvas-confetti";
 
-// Función para inicializar el modal
-function initializeModal(): void {
-  // Obtener elementos del DOM
-  modal = document.getElementById("game-over-modal");
-  modalContent = modal?.querySelector(".modal-content") as HTMLElement;
-  playAgainBtn = document.getElementById("play-again-btn");
-  closeModalBtn = document.getElementById("close-modal-btn");
+// 1) Creamos y añadimos nuestro propio canvas al DOM
+const confettiCanvas = document.createElement("canvas");
+confettiCanvas.classList.add("confetti-canvas");
+document.body.appendChild(confettiCanvas);
 
-  if (!modal) {
-    console.error('Modal con id "game-over-modal" no encontrado');
-    return;
+// 2) Instanciamos el launcher usando ese canvas
+const myConfetti = confetti.create(confettiCanvas, {
+  resize: true, // para que siempre ocupe la pantalla completa
+  useWorker: true, // para que no bloquee el hilo principal
+});
+
+// Función para mostrar el modal de finalización
+export function showGameOverMessage(): void {
+  // dispara el confetti con tus opciones:
+  myConfetti({
+    particleCount: 150,
+    spread: 60,
+    origin: { x: 0.5, y: 0.3 },
+  });
+
+  // Crear el overlay del modal
+  const modalOverlay = document.createElement("div");
+  modalOverlay.id = "game-over-modal";
+  modalOverlay.innerHTML = `
+    <div class="modal-overlay" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInOverlay 0.3s ease-out;
+    ">
+      <div class="modal-content" style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        max-width: 400px;
+        width: 90%;
+        transform: scale(0.7);
+        animation: modalBounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      ">
+        <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
+        <h2 style="
+          margin: 0 0 15px 0; 
+          font-size: 28px; 
+          font-weight: bold; 
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        ">¡Felicitaciones!</h2>
+        <p style="
+          margin: 0 0 30px 0; 
+          font-size: 18px; 
+          opacity: 0.9;
+          line-height: 1.4;
+        ">Has completado el juego exitosamente.<br>¡Todas las parejas encontradas!</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <button id="play-again-btn" style="
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+          " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255,255,255,0.4)'"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255,255,255,0.3)'">
+            🔄 Jugar de nuevo
+          </button>
+          <button id="close-modal-btn" style="
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+          " onmouseover="this.style.background='white'; this.style.color='#667eea'"
+             onmouseout="this.style.background='transparent'; this.style.color='white'">
+            ✨ Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes fadeInOverlay {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes modalBounceIn {
+        0% { 
+          transform: scale(0.7); 
+          opacity: 0; 
+        }
+        50% { 
+          transform: scale(1.05); 
+        }
+        100% { 
+          transform: scale(1); 
+          opacity: 1; 
+        }
+      }
+      @keyframes modalBounceOut {
+        0% { 
+          transform: scale(1); 
+          opacity: 1; 
+        }
+        100% { 
+          transform: scale(0.7); 
+          opacity: 0; 
+        }
+      }
+    </style>
+  `;
+
+  // Agregar el modal al DOM
+  document.body.appendChild(modalOverlay);
+
+  // Agregar event listeners a los botones
+  const playAgainBtn = document.getElementById("play-again-btn");
+  const closeModalBtn = document.getElementById("close-modal-btn");
+
+  if (playAgainBtn) {
+    playAgainBtn.addEventListener("click", () => {
+      location.reload();
+    });
   }
 
-  // Agregar event listeners
-  setupEventListeners();
-
-  console.log("Modal de juego completado inicializado correctamente");
-}
-
-// Configurar todos los event listeners
-function setupEventListeners(): void {
-  // Botón "Jugar de nuevo"
-  playAgainBtn?.addEventListener("click", handlePlayAgain);
-
-  // Botón "Cerrar"
-  closeModalBtn?.addEventListener("click", closeModal);
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", () => {
+      closeModalOld();
+    });
+  }
 
   // Cerrar modal al hacer clic en el overlay
-  modal?.addEventListener("click", handleOverlayClick);
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      closeModalOld();
+    }
+  });
 
   // Cerrar modal con tecla ESC
-  document.addEventListener("keydown", handleKeydown);
+  document.addEventListener("keydown", handleEscKey);
+
+  console.log("Modal de completado mostrado");
 }
 
-// Mostrar el modal
-function showModal(): void {
-  if (!modal) {
-    console.error("Modal no inicializado");
-    return;
-  }
-
-  modal.style.display = "flex";
-  isModalOpen = true;
-
-  // Prevenir scroll del body
-  document.body.style.overflow = "hidden";
-
-  // Reiniciar animaciones
-  if (modalContent) {
-    modalContent.classList.remove("closing");
-    modalContent.style.animation =
-      "modalBounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards";
-  }
-
-  console.log("Modal mostrado");
-}
-
-// Cerrar el modal con animación
-function closeModal(): void {
-  if (!modal || !modalContent || !isModalOpen) return;
-
-  // Agregar clase de cierre para animación
-  modalContent.style.animation = "modalBounceOut 0.3s ease-out forwards";
-
-  // Animar overlay
-  modal.style.animation = "fadeOutOverlay 0.3s ease-out forwards";
-
-  setTimeout(() => {
-    if (modal) {
-      modal.style.display = "none";
-      modal.style.animation = "";
-      isModalOpen = false;
-
-      // Restaurar scroll del body
-      document.body.style.overflow = "";
-
-      console.log("Modal cerrado");
+// Función para cerrar el modal con animación
+function closeModalOld(): void {
+  const modal = document.getElementById("game-over-modal");
+  if (modal) {
+    const modalContent = modal.querySelector(".modal-content") as HTMLElement;
+    if (modalContent) {
+      modalContent.style.animation = "modalBounceOut 0.3s ease-out forwards";
     }
-  }, 300);
-}
+    modal.style.animation = "fadeInOverlay 0.3s ease-out reverse";
 
-// Manejar el botón "Jugar de nuevo"
-function handlePlayAgain(): void {
-  console.log("Reiniciando juego...");
-  closeModal();
-
-  // Esperar a que el modal se cierre antes de recargar
-  setTimeout(() => {
-    window.location.reload();
-  }, 400);
-}
-
-// Manejar click en el overlay
-function handleOverlayClick(e: Event): void {
-  if (e.target === modal) {
-    closeModal();
+    setTimeout(() => {
+      modal.remove();
+      document.removeEventListener("keydown", handleEscKey);
+    }, 300);
   }
 }
 
-// Manejar teclas del teclado
-function handleKeydown(e: KeyboardEvent): void {
-  if (e.key === "Escape" && isModalOpen) {
-    closeModal();
+// Función para manejar la tecla ESC
+function handleEscKey(e: KeyboardEvent): void {
+  if (e.key === "Escape") {
+    closeModalOld();
   }
 }
-
-// Limpiar event listeners
-function cleanup(): void {
-  if (playAgainBtn) playAgainBtn.removeEventListener("click", handlePlayAgain);
-  if (closeModalBtn) closeModalBtn.removeEventListener("click", closeModal);
-  if (modal) modal.removeEventListener("click", handleOverlayClick);
-  document.removeEventListener("keydown", handleKeydown);
-}
-
-// Función principal para inicializar cuando el DOM esté listo
-function initGameOverModal(): void {
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeModal);
-  } else {
-    initializeModal();
-  }
-}
-
-// Función para mostrar el modal desde fuera (API pública)
-function displayGameOverModal(): void {
-  if (!modal) {
-    initializeModal();
-  }
-  showModal();
-}
-
-// Manejar navegación de Astro
-document.addEventListener("astro:page-load", () => {
-  // Limpiar listeners anteriores si existen
-  cleanup();
-
-  // Reinicializar el modal
-  initializeModal();
-});
-
-// Limpiar al salir de la página
-document.addEventListener("astro:before-preparation", () => {
-  cleanup();
-});
-
-// Inicializar automáticamente
-initGameOverModal();
-
-// Hacer la función disponible globalmente para poder llamarla desde otros scripts
-(window as any).displayGameOverModal = displayGameOverModal;
