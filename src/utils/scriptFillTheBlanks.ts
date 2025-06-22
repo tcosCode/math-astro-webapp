@@ -1,6 +1,9 @@
+import {
+  createProgressIndicator,
+  updateProgress,
+} from "@utils/scriptProgressIndicator";
+import { sendData } from "@utils/helpers/sendData";
 import NotyfSingleton from "@src/utils/helpers/notyfInstance";
-
-import { postExerciseAnswer } from "@utils/api";
 
 interface Options {
   id: string;
@@ -26,10 +29,17 @@ document.addEventListener("astro:page-load", async () => {
     }));
 
     let isChecked = false;
+    let isDisabled = false; // Nueva variable para controlar el estado deshabilitado
     let draggedOptionId: string | null = null;
 
     // Initialize all event listeners for the current exercise
     initializeEventListeners();
+
+    // Inicializar progreso con delay
+    setTimeout(() => {
+      createProgressIndicator();
+      updateProgress();
+    }, 100);
 
     function initializeEventListeners() {
       setupCheckAnswersButton();
@@ -65,9 +75,41 @@ document.addEventListener("astro:page-load", async () => {
       });
     }
 
+    // Nueva función para deshabilitar todas las interacciones
+    function disableAllInteractions() {
+      isDisabled = true;
+
+      // Deshabilitar el botón de verificar
+      const checkButton = exercise.querySelector(
+        "#checkAnswers",
+      ) as HTMLButtonElement;
+      if (checkButton) {
+        checkButton.disabled = true;
+        checkButton.style.opacity = "0.5";
+        checkButton.style.cursor = "not-allowed";
+      }
+
+      // Deshabilitar drag and drop en las opciones
+      exercise.querySelectorAll(".option").forEach((option) => {
+        const optionEl = option as HTMLElement;
+        optionEl.draggable = false;
+        optionEl.style.opacity = "0.6";
+        optionEl.style.cursor = "not-allowed";
+        optionEl.style.pointerEvents = "none";
+      });
+
+      // Deshabilitar los espacios en blanco
+      exercise.querySelectorAll(".blank").forEach((blank) => {
+        const blankEl = blank as HTMLElement;
+        blankEl.style.pointerEvents = "none";
+        blankEl.style.cursor = "not-allowed";
+      });
+    }
+
     // Hide feedback when user interacts after checking answers
     function hideFeedbackIfNeeded() {
-      if (isChecked) {
+      if (isChecked && !isDisabled) {
+        // Solo ocultar si no está deshabilitado
         hideFeedback();
         isChecked = false;
       }
@@ -90,16 +132,21 @@ document.addEventListener("astro:page-load", async () => {
 
     // Touch event handlers
     function handleTouchStart(e: TouchEvent) {
+      if (isDisabled) return; // Prevenir interacción si está deshabilitado
+
       const target = e.target as HTMLElement;
       draggedOptionId = target.getAttribute("data-id");
-      hideFeedbackIfNeeded();
+      // hideFeedbackIfNeeded();
     }
 
     function handleTouchMove(e: TouchEvent) {
+      if (isDisabled) return; // Prevenir interacción si está deshabilitado
       e.preventDefault();
     }
 
     function handleTouchEnd(e: TouchEvent) {
+      if (isDisabled) return; // Prevenir interacción si está deshabilitado
+
       const touch = e.changedTouches[0];
       const target = document.elementFromPoint(touch.clientX, touch.clientY);
       // FIX: Buscar el blank más cercano, incluso si tocaste el icono
@@ -116,18 +163,28 @@ document.addEventListener("astro:page-load", async () => {
 
     // Drag and drop event handlers
     function handleDragStart(e: DragEvent) {
+      if (isDisabled) {
+        e.preventDefault(); // Prevenir drag si está deshabilitado
+        return;
+      }
+
       const target = e.target as HTMLElement;
       const optionId = target.getAttribute("data-id") || "";
       e.dataTransfer?.setData("text", optionId);
-      hideFeedbackIfNeeded();
+      //hideFeedbackIfNeeded();
     }
 
     function handleDragOver(e: DragEvent) {
+      if (isDisabled) return; // Prevenir interacción si está deshabilitado
       e.preventDefault();
     }
 
     function handleDrop(e: DragEvent) {
+      if (isDisabled) return; // Prevenir interacción si está deshabilitado
+
       e.preventDefault();
+
+      hideFeedbackIfNeeded();
 
       const optionId = e.dataTransfer?.getData("text");
       const option = options.find((opt) => opt.id === optionId);
@@ -145,6 +202,8 @@ document.addEventListener("astro:page-load", async () => {
 
     // Blank click handler
     function handleBlankClick(e: Event) {
+      if (isDisabled) return; // Prevenir interacción si está deshabilitado
+
       const targetElement = e.target as HTMLElement;
 
       // Si el clic fue en el icono, obtener el blank padre
@@ -183,6 +242,8 @@ document.addEventListener("astro:page-load", async () => {
 
     // Answer checking logic
     function checkAnswers() {
+      if (isDisabled) return; // Prevenir verificación si está deshabilitado
+
       const blanks = exercise.querySelectorAll(".blank");
 
       // Check if there are any answers at all
@@ -219,6 +280,16 @@ document.addEventListener("astro:page-load", async () => {
 
       isChecked = true;
       updateResult(allCorrect);
+
+      // Si todas las respuestas son correctas, deshabilitar interacciones
+      if (allCorrect) {
+        disableAllInteractions();
+        exercise.classList.add("card-solved");
+
+        // Actualizar progreso y verificar completado
+        createProgressIndicator();
+        setTimeout(updateProgress, 100);
+      }
     }
 
     function validateBlankAnswer(blank: Element): boolean {
@@ -307,20 +378,8 @@ document.addEventListener("astro:page-load", async () => {
         sectionId: inciso,
       };
 
-      try {
-        const result = await postExerciseAnswer(submissionData);
-
-        if (result.ok) {
-          console.log("Data sent successfully:", result);
-          //notyf.success("Respuesta enviada correctamente.");
-        } else {
-          console.error("Error from API:", result.error);
-          //notyf.error("No se pudo enviar la respuesta.");
-        }
-      } catch (error: any) {
-        console.error("Error sending data to API:", error.message || error);
-        //notyf.error("No se pudo enviar la respuesta.");
-      }
+      // --- Send data to the server ---
+      sendData(submissionData);
     }
 
     function handleAPIError(message: string) {
