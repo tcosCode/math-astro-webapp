@@ -1,3 +1,9 @@
+import {
+  createProgressIndicatorMatching,
+  updateProgressMatching,
+} from "@utils/scriptProgressIndicator";
+import NotyfSingleton from "@utils/helpers/notyfInstance";
+
 // Interfaz para las cartas con tipado específico
 interface CardElement extends HTMLElement {
   classList: DOMTokenList;
@@ -92,6 +98,12 @@ function handleCorrectMatch(): void {
   console.log(
     `Pareja encontrada! Total parejas: ${matchedPairs} de ${totalPairsInGame}`,
   );
+
+  // Actualizar progreso y verificar completado
+  createProgressIndicatorMatching(totalPairsInGame, matchedPairs);
+  setTimeout(() => {
+    updateProgressMatching(totalPairsInGame, matchedPairs);
+  }, 100); // Pequeño delay para que se actualice el DOM
 
   // Eliminar las cartas y sus contenedores del DOM
   removeCorrectCards(firstCard, secondCard);
@@ -207,6 +219,9 @@ function handleCardClick(card: CardElement): void {
 function initializeGame(): void {
   console.log("Inicializando juego...");
 
+  // Inicializar instancia de Notyf
+  const notyf = NotyfSingleton.getInstance();
+
   // Resetear variables del juego
   matchedPairs = 0;
   resetCardSelection();
@@ -214,11 +229,11 @@ function initializeGame(): void {
   // Calcular el total de parejas UNA VEZ al inicio
   totalPairsInGame = calculateTotalPairs();
 
-  // Remover modal anterior si existe
-  const existingModal = document.querySelector("#game-over-modal");
-  if (existingModal) {
-    existingModal.remove();
-  }
+  // Inicializar progreso con delay
+  setTimeout(() => {
+    createProgressIndicatorMatching(totalPairsInGame, matchedPairs);
+    updateProgressMatching(totalPairsInGame, matchedPairs);
+  }, 100);
 
   // Resetear todas las cartas
   const cards = document.querySelectorAll<CardElement>(".card");
