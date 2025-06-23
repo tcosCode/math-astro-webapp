@@ -1,37 +1,11 @@
-interface ExerciseSubmissionData {
-  grade: string;
-  exerciseId: number;
-  correct: boolean;
-  sectionId: string;
-}
-
-interface SubmissionSuccessResponse {
-  ok: true;
-  message: string;
-  insertedId?: number; // Si la API devuelve el ID insertado
-}
-
-interface SubmissionErrorResponse {
-  ok: false;
-  error: string;
-}
-
-interface GetAnswersSuccessResponse {
-  answers: Array<{
-    id: number;
-    userId: string;
-    grade: string;
-    exerciseId: number;
-    correct: boolean;
-    createdAt: string;
-  }>;
-}
-
-// Union type for POST API responses
-type PostApiResponse = SubmissionSuccessResponse | SubmissionErrorResponse;
-
-// Union type for GET API responses
-type GetApiResponse = GetAnswersSuccessResponse | { ok: false; error: string };
+import type {
+  GetAnswersSuccessResponse,
+  ExerciseSubmissionData,
+  SubmissionSuccess,
+  SubmissionError,
+  PostApiResponse,
+  GetApiResponse,
+} from "@types";
 
 /**
  * Send exercise answer data to the API.
@@ -62,7 +36,7 @@ export const postExerciseAnswer = async (
         if (
           response.headers.get("content-type")?.includes("application/json")
         ) {
-          const errorJson: SubmissionErrorResponse = await response.json();
+          const errorJson: SubmissionError = await response.json();
           errorDetails = `Error ${response.status}: ${JSON.stringify(errorJson, null, 2)}`;
           // Si la API devuelve un objeto de error estructurado, puedes retornarlo directamente
           if (errorJson.ok === false && errorJson.error) {
@@ -88,7 +62,7 @@ export const postExerciseAnswer = async (
     }
 
     // If response is OK (e.g., 201 Created)
-    const responseData: SubmissionSuccessResponse = await response.json();
+    const responseData: SubmissionSuccess = await response.json();
     return responseData;
   } catch (error: any) {
     // Catch fetch errors or errors thrown above
@@ -122,7 +96,7 @@ export const getAnswers = async (): Promise<GetApiResponse> => {
           response.headers.get("content-type")?.includes("application/json")
         ) {
           // Assume GET errors can also be structured JSON
-          const errorJson: SubmissionErrorResponse = await response.json();
+          const errorJson: SubmissionError = await response.json();
           errorDetails = `Error ${response.status}: ${JSON.stringify(errorJson, null, 2)}`;
           if (errorJson.ok === false && errorJson.error) {
             console.error(

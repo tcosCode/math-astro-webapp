@@ -44,6 +44,8 @@ function initializeEventListeners() {
       target.disabled = true;
       target.style.opacity = "0.6";
 
+      //TODO: GUARDAR EN LOCAL STORAGE
+
       // Actualizar progreso y verificar completado
       createProgressIndicator();
       setTimeout(updateProgress, 100);

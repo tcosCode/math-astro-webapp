@@ -1,5 +1,8 @@
 import confetti from "canvas-confetti";
 
+import { validateDataToSend } from "@utils/helpers/validateDataToSend";
+import { sendData } from "@utils/helpers/sendData";
+
 const confettiOptions = {
   particleCount: 150,
   spread: 60,
@@ -79,6 +82,22 @@ export function showGameOverMessage(): void {
   // dispara el confetti con tus opciones:
   throwConfetti(confettiOptions);
   showModal();
+
+  // Capturar datos
+  const exercise = document
+    .querySelector("#game-over-modal")
+    ?.getAttribute("data-exercise");
+  const grade = document
+    .querySelector("#game-over-modal")
+    ?.getAttribute("data-grade");
+
+  //Enviar datos al Servidor
+  const submissionData = validateDataToSend(exercise ?? "", grade ?? "");
+  if (!submissionData) {
+    console.error("Error al enviar datos al servidor");
+    return;
+  }
+  sendData(submissionData);
 
   // Agregar event listeners a los botones
   const playAgainBtn = document.getElementById("play-again-btn");

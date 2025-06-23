@@ -2,7 +2,6 @@ import {
   createProgressIndicator,
   updateProgress,
 } from "@utils/scriptProgressIndicator";
-import { sendData } from "@utils/helpers/sendData";
 import NotyfSingleton from "@src/utils/helpers/notyfInstance";
 
 interface Options {
@@ -289,6 +288,8 @@ document.addEventListener("astro:page-load", async () => {
         // Actualizar progreso y verificar completado
         createProgressIndicator();
         setTimeout(updateProgress, 100);
+
+        // TODO: GUARDAR EN LOCAL STORAGE
       }
     }
 
@@ -326,12 +327,12 @@ document.addEventListener("astro:page-load", async () => {
       return icon;
     }
 
-    // Result handling and API communication
+    // Result handling
     async function updateResult(allCorrect?: boolean) {
       // Show feedback only if we have a result from checking answers
       if (allCorrect !== undefined) {
         showFeedback(allCorrect);
-        await sendResultToAPI(allCorrect);
+        //TODO: GUARDAR EN LOCAL STORAGE
       }
     }
 
@@ -356,35 +357,6 @@ document.addEventListener("astro:page-load", async () => {
       } else if (!allCorrect && incorrectH3) {
         incorrectH3.style.display = "block";
       }
-    }
-
-    async function sendResultToAPI(allCorrect: boolean) {
-      // Validate required data
-      if (!grade || !exerciseAttr || !inciso) {
-        handleAPIError("Faltan datos para enviar la respuesta al servidor");
-        return;
-      }
-
-      const exerciseId = parseInt(exerciseAttr, 10);
-      if (isNaN(exerciseId)) {
-        handleAPIError(`ID de ejercicio inválido: ${exerciseAttr}`);
-        return;
-      }
-
-      const submissionData = {
-        grade: grade,
-        exerciseId: exerciseId,
-        correct: allCorrect,
-        sectionId: inciso,
-      };
-
-      // --- Send data to the server ---
-      sendData(submissionData);
-    }
-
-    function handleAPIError(message: string) {
-      console.error("API Error:", message);
-      //notyf.error(message);
     }
   });
 });

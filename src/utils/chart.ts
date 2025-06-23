@@ -62,39 +62,25 @@ async function fetchAndRender() {
   // Check if the response is an array
   const answersArray = Array.isArray(resp.answers) ? resp.answers : [];
 
-  // Filter the answers to get correct and incorrect ones
-  const correctAnswers = answersArray.filter((a) => a.correct === true);
-  console.log("Correct answers:", correctAnswers);
-  const incorrectAnswers = answersArray.filter((a) => a.correct === false);
-  console.log("Incorrect answers:", incorrectAnswers);
-  const unresolvedAnswers =
-    totalExercises - correctAnswers.length - incorrectAnswers.length;
+  // --- Calculate statistics ---
+  const resolvedExercises = answersArray.length;
+  const unresolvedExercises = totalExercises - resolvedExercises;
 
   // Data for the pie chart
   const data = {
-    labels: ["Correctos", "Incorrectos", "No Resueltos"],
+    labels: ["Resueltos", "No Resueltos"],
     datasets: [
       {
         label: "Ejercicios",
-        data: [
-          correctAnswers.length,
-          incorrectAnswers.length,
-          unresolvedAnswers,
-        ],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        data: [resolvedExercises, unresolvedExercises],
+        backgroundColor: ["#FF6384", "#36A2EB"],
       },
     ],
   };
 
   // Update the statistics section with the data
-  completedEx.innerText = (
-    correctAnswers.length + incorrectAnswers.length
-  ).toString();
-  pendingEx.innerText = (
-    totalExercises -
-    correctAnswers.length -
-    incorrectAnswers.length
-  ).toString();
+  completedEx.innerText = resolvedExercises.toString();
+  pendingEx.innerText = unresolvedExercises.toString();
 
   // Destruir instancias previas si existen
   if (myChartPie) {

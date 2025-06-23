@@ -1,6 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { getTotalGradeExercises } from "@utils/helpers/getTopicsData";
+import { getTotalExercises } from "@src/utils/helpers/getTopicsData";
 import { topics } from "@src/data/index";
 
 // User name
@@ -10,7 +10,7 @@ const userLastName = user ? user.lastName : " ";
 const userName = userFirstName + " " + userLastName;
 
 // Get Total Exercises
-const totalExercises = getTotalGradeExercises(topics);
+const totalExercises = getTotalExercises(topics);
 ---
 
 <Layout title="Dashboard">
@@ -37,10 +37,6 @@ const totalExercises = getTotalGradeExercises(topics);
       </div>
       <div class="chart-pie-container">
         <canvas class="chart-pie" id="chart-pie"></canvas>
-      </div>
-      <div class="note">
-        <span>NOTA: </span>Las estadísticas, de momento, no incluyen los
-        ejercicios de tipo "Problema" y "Matching"
       </div>
     </div>
   </section>
@@ -99,19 +95,6 @@ const totalExercises = getTotalGradeExercises(topics);
   .chart-bar {
     width: auto;
     max-height: 200px;
-  }
-
-  .note {
-    position: absolute;
-    bottom: 10px;
-    left: 15px;
-    font-size: 0.8rem;
-    color: hsl(var(--dark-grey-2));
-    margin-top: 1rem;
-  }
-
-  .note span {
-    font-weight: bold;
   }
 
   .loader {

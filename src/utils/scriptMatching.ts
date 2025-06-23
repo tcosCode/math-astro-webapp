@@ -108,6 +108,8 @@ function handleCorrectMatch(): void {
   // Eliminar las cartas y sus contenedores del DOM
   removeCorrectCards(firstCard, secondCard);
 
+  // TODO: GUARDAR EN LOCAL STORAGE
+
   setTimeout(() => {
     checkGameCompletion();
     resetCardSelection();

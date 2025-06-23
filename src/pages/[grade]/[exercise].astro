@@ -38,9 +38,10 @@ import { findVideoByTitle } from "@src/utils/helpers/findVideo";
   return paths;
 }*/
 
-const { grade, exercise } = Astro.params;
+const { grade="", exercise="" } = Astro.params;
 
 if (!grade || !exercise) {
+  Astro.redirect("/404");
   throw new Error("Los parámetros de la ruta son inválidos o no existen.");
 }
 
@@ -190,7 +191,7 @@ const length = currentExercise?.incisos?.length ?? 0;
     </div>
 
     <!-- Game Over Modal -->
-    <GameOverModal />
+    <GameOverModal exercise={exercise} grade={grade} />
   </section>
 
   <style>

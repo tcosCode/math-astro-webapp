@@ -1,33 +1,26 @@
 export function validateDataToSend(
-  target: HTMLButtonElement,
-  dataContainer: HTMLDivElement,
-  validation: string,
+  exercise: string,
+  grade: string,
+  //inciso?:string,
+  //local?: boolean,
 ) {
-  const grade = dataContainer.getAttribute("data-grade");
-  const exerciseAttr = dataContainer.getAttribute("data-exercise") || "";
-  const inciso = dataContainer.getAttribute("data-inciso");
-
   // --- Validation before sending ---
-  if (!validation || !grade || !exerciseAttr || !inciso) {
+  if (!grade || !exercise) {
     console.error("Error: Missing required data attributes.");
     return;
   }
 
   // --- Correct the exerciseId type ---
-  const exerciseId = parseInt(exerciseAttr, 10); // Parse exercise ID as a number
+  const exerciseId = parseInt(exercise, 10); // Parse exercise ID as a number
   if (isNaN(exerciseId)) {
-    console.error("Invalid exercise ID attribute:", exerciseAttr);
+    console.error("Invalid exercise ID attribute:", exercise);
     return;
   }
-
-  // Determine 'correct' status based on validation attribute
-  const isCorrect = validation === "correct";
 
   // --- Prepare data for POST request ---
   return {
     grade: grade,
     exerciseId: exerciseId,
-    correct: isCorrect,
-    sectionId: inciso,
+    //sectionId: inciso
   };
 }

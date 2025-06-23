@@ -7,7 +7,7 @@ import type {
 } from "@types";
 
 // Import the database instance and the 'answers' table definition
-import { db, answers, eq, and } from "astro:db"; // Ensure 'eq' is imported if used in getAllAnswers
+import { db, answers, eq, and } from "astro:db";
 
 // Function to handle the submission logic using Astro DB
 export const handleExerciseSubmission = async (
@@ -21,14 +21,12 @@ export const handleExerciseSubmission = async (
   // --- Validation Logic ---
   if (
     typeof submissionData.grade !== "string" ||
-    typeof submissionData.exerciseId !== "number" ||
-    typeof submissionData.sectionId !== "string" ||
-    typeof submissionData.correct !== "boolean"
+    typeof submissionData.exerciseId !== "number"
   ) {
     return {
       ok: false,
       error:
-        "Invalid submission data format. Expected grade (string), exerciseId (number), sectionId(string), correct (boolean).",
+        "Invalid submission data format. Expected grade (string), exerciseId (number).",
     };
   }
 
@@ -44,13 +42,12 @@ export const handleExerciseSubmission = async (
           eq(answers.userId, user.id),
           eq(answers.grade, submissionData.grade),
           eq(answers.exerciseId, submissionData.exerciseId),
-          eq(answers.sectionId, submissionData.sectionId),
         ),
       )
       .get(); // Usamos .get() para obtener solo un resultado
 
     if (existingAnswer) {
-      console.log("Answer already exists for this exercise and section");
+      console.log("Answer already exists for this exercise");
       return {
         ok: true,
         message: "Answer already exists, no action taken",
@@ -66,8 +63,6 @@ export const handleExerciseSubmission = async (
         userId: user.id, // Get userId from the authenticated user
         grade: submissionData.grade,
         exerciseId: submissionData.exerciseId,
-        sectionId: submissionData.sectionId,
-        correct: submissionData.correct,
         // createdAt will be set automatically by NOW default
       })
       .returning({

@@ -5,9 +5,7 @@ const answers = defineTable({
     id: column.number({ primaryKey: true, autoIncrement: true }),
     userId: column.text(),
     grade: column.text(),
-    exerciseId: column.number(),
-    sectionId: column.text(), // (a, b, c, etc.)
-    correct: column.boolean(),
+    exerciseId: column.number(),    
     createdAt: column.date({ default: NOW }),
   },
 });

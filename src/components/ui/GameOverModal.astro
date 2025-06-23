@@ -1,8 +1,16 @@
 ---
-
+interface Props {
+  exercise: string;
+  grade: string;
+}
+const { exercise = "", grade = "" } = Astro.props;
+if (!grade || !exercise) {
+  Astro.redirect("/404");
+  throw new Error("Los parámetros de la ruta son inválidos o no existen.");
+}
 ---
 
-<div id="game-over-modal">
+<div id="game-over-modal" data-exercise={exercise} data-grade={grade}>
   <div class="modal-overlay">
     <div class="modal-content">
       <div class="title-icon">🎉</div>

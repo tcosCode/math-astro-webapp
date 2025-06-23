@@ -2,8 +2,6 @@ import NotyfSingleton from "@src/utils/helpers/notyfInstance";
 
 import { retry } from "@utils/retryExercise";
 import { validateAnswer } from "@utils/validateAnswer";
-import { validateDataToSend } from "@utils/helpers/validateDataToSend";
-import { sendData } from "@utils/helpers/sendData";
 import {
   createProgressIndicator,
   updateProgress,
@@ -37,16 +35,8 @@ document.addEventListener("astro:page-load", () => {
       const validation = target.getAttribute("data-validation");
 
       if (validation) {
-        const submissionData = validateDataToSend(
-          target,
-          dataContainer,
-          validation,
-        );
-
+        //TODO: SEND DATA TO LOCAL STORAGE
         validateAnswer(validation, target, dataContainer);
-
-        // --- Send data to the server ---
-        sendData(submissionData);
       }
     });
   });
