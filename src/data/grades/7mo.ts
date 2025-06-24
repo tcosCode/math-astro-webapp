@@ -480,5 +480,71 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
         },
       ],
     },
+    {
+      id: "12",
+      type: "ChooseAnswer",
+      title: "Área y Perímetro",
+      texto:
+        " En la figura se muestra el &#916;. Seleccionar la respuesta correcta:",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            " Por las amplitudes de sus ángulos interiores, el &#916;RMN es:",
+          answer: [
+            {
+              text: "Obtusángulo",
+              validation: "incorrect",
+            },
+            {
+              text: "Acutángulo",
+              validation: "correct",
+            },
+            {
+              text: " Rectángulo",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise:
+            " En todo triángulo rectángulo la suma de las longitudes de dos de sus lados, comparada con la del tercero es siempre:",
+          answer: [
+            {
+              text: " Mayor",
+              validation: "correct",
+            },
+            {
+              text: " Igual",
+              validation: "incorrect",
+            },
+            {
+              text: " Menor",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise:
+            "En todo triángulo la suma de las amplitudes de dos de sus ángulos interiores, comparada con la del tercero es:",
+          answer: [
+            {
+              text: " Menor",
+              validation: "incorrect",
+            },
+            {
+              text: " Mayor",
+              validation: "incorrect",
+            },
+            {
+              text: " Mayor o igual",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
