@@ -127,7 +127,7 @@ export const grades12mo = {
           answer: [
             {
               text: "-3+7i",
-              validation: "incorrect",
+              validation: "correct",
             },
             {
               text: "3-7i",
@@ -135,7 +135,7 @@ export const grades12mo = {
             },
             {
               text: "3+7i",
-              validation: "correct",
+              validation: "incorrect",
             },
           ],
         },
