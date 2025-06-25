@@ -82,7 +82,7 @@ export const grades12mo = {
     {
       id: "3",
       type: "ChooseAnswer",
-      title: "Números complejos",
+      title: "Números complejos:",
       texto: "Calcular la suma de los siguientes números complejos ",
       incisos: [
         {
@@ -108,16 +108,16 @@ export const grades12mo = {
           exercise: "(1+7i)+(4+5i)",
           answer: [
             {
-              text: "31+13i",
+              text: "-5+12i",
               validation: "incorrect",
             },
             {
-              text: "-31+13i",
+              text: "5-12i",
+              validation: "incorrect",
+            },
+            {
+              text: "5+12i",
               validation: "correct",
-            },
-            {
-              text: "31+13i",
-              validation: "incorrect",
             },
           ],
         },

@@ -7,7 +7,7 @@ export const grades7mo = {
       id: "1",
       type: "FillBlank",
       title: "Área y Perímetro",
-      img: "/img/exercises/11no-4.webp",
+      img: "/img/exercises/7mo-1.webp",
       texto:
         "En la figura ABCD es un rombo de 4,0 cm de lado y DF altura. Completar los espacios en blanco.",
       incisos: [
@@ -484,8 +484,9 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
       id: "12",
       type: "ChooseAnswer",
       title: "Área y Perímetro",
+      img: "/img/exercises/7mo-12.webp",
       texto:
-        " En la figura se muestra el &#916;. Seleccionar la respuesta correcta:",
+        " En la figura se muestra el &#916;RMN. Seleccionar la respuesta correcta:",
       incisos: [
         {
           id: "a",
@@ -543,6 +544,45 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
               validation: "correct",
             },
           ],
+        },
+      ],
+    },
+    {
+      id: "13",
+      type: "TrueFalse",
+      title: "Área y Perímetro",
+      texto: "Seleccionar V o F según convenga. La fórmula para calcular:",
+      incisos: [
+        {
+          id: "a",
+          exercise: "El perímetro de un triángulo: P = a + b + c",
+          validation: "true",
+        },
+        {
+          id: "b",
+          exercise: "El perímetro de un paralelogramo: p = 4a",
+          validation: "false",
+        },
+        {
+          id: "c",
+          exercise: "El perímetro de un rombo: P = 4a",
+          validation: "true",
+        },
+        {
+          id: "d",
+          exercise: "El perímetro de un trapecio: p = a + b + c",
+          validation: "false",
+        },
+        {
+          id: "e",
+          exercise:
+            "El área de un triángulo: A = <sup>(b.h)</sup>/<sub>2</sub>",
+          validation: "true",
+        },
+        {
+          id: "f",
+          exercise: "El área de un rectángulo: P = a.b",
+          validation: "true",
         },
       ],
     },
