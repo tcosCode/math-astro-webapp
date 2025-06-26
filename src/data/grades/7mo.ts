@@ -586,5 +586,53 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
         },
       ],
     },
+    {
+      id: "14",
+      type: "Problem",
+      title: "Área y Perímetro",
+      img: "/img/exercises/7mo-14.webp",
+      texto:
+        "En el &#916;ABC se han trazado AD&#8869;BC y DE&#8869;AB. D &#8712; BC y E &#8712; AB. AD es bisectriz del &#8738;BAC. |AD| = 6,0cm. &#8738;CAB = 60&#176;",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "Identificar la fórmula para calcular el área del &#916;AED.",
+          answer: "A<sub>&#916;AED</sub> = (|AE|.|ED|)/<sub>2</sub>",
+        },
+        {
+          id: "b",
+          exercise: "Calcular el área del &#916;AED",
+          answer: "A<sub>&#916;AED</sub> = 7,8cm&#178;",
+        },
+      ],
+    },
+    {
+      id: "15",
+      type: "Problem",
+      title: "Área y Perímetro",
+      img: "/img/exercises/7mo-15.webp",
+      texto:
+        "Dado el &#916;DEF; rectángulo en F: PQ || DF, |DE| = 10cm, |DF| = 6,0cm, |EF|= 8.0cm, |FQ| = 2,4cm",
+      incisos: [
+        {
+          id: "a",
+          exercise:
+            "Identificar la fórmula para calcular el perímetro del cuadrilátero DPQF",
+          answer: "P<sub>DPQF</sub> = |DP|+|PQ|+|QF|+|FD|",
+        },
+        {
+          id: "b",
+          exercise:
+            "Calcular |QP| y |DP| aplicando el teorema de las transversales",
+          answer: "|QP| = 4,2cm y |DP| = 3cm",
+        },
+        {
+          id: "c",
+          exercise: "Calcular el perímetro del cuadrilátero DPQF",
+          answer: "P<sub>DPQF</sub> = 16cm",
+        },
+      ],
+    },
   ],
 };
