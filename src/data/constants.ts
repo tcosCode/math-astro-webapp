@@ -160,12 +160,12 @@ export const classes: Video[] = [
       "Adéntrate en el mundo de las identidades trigonométricas y descubre cómo simplificar expresiones complejas. La clase explica las relaciones fundamentales entre las funciones trigonométricas con ejemplos claros. Una herramienta clave para estudiantes de 11no que desean profundizar en trigonometría avanzada.",
   },
   {
-    title: "Números enteros",
+    title: "Números reales",
     grade: "7mo",
     image: "G0o9qedyQU0",
     url: "PLeySRPnY35dG1HI0lMYzMbZULNZ89FL5G",
     description:
-      "Una introducción sencilla y visual al concepto de los números enteros. Se abordan las operaciones básicas y la ubicación de estos números en la recta numérica. Ideal para estudiantes de 7mo que están iniciando en el estudio de la aritmética.",
+      "Una introducción sencilla y visual al concepto de los números reales. Se abordan las operaciones básicas y la ubicación de estos números en la recta numérica. Ideal para estudiantes de 7mo que están iniciando en el estudio de la aritmética.",
   },
   {
     title: "Solución de ecuaciones",

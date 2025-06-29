@@ -638,7 +638,7 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
     {
       id: "16",
       type: "Matching",
-      title: "Números enteros",
+      title: "Números reales",
       texto: " Resolver: &#8730;(1024)÷0,8",
       incisos: [
         {
@@ -670,7 +670,7 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
     {
       id: "17",
       type: "FillBlank",
-      title: "Números enteros",
+      title: "Números reales",
       texto:
         " Calcular en la libreta y luego arrastrar la respuesta correcta al espacio en blanco.",
       incisos: [
@@ -750,7 +750,7 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
     {
       id: "18",
       type: "ChooseAnswer",
-      title: "Números enteros",
+      title: "Números reales",
       texto: " Seleccionar la respuesta correcta.",
       incisos: [
         {
