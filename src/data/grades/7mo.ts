@@ -634,40 +634,178 @@ La tabla muestra la cantidad de sacos de diferentes pesos en kg de un almacén c
         },
       ],
     },
+
     {
       id: "16",
       type: "Matching",
-      title: "Área y Perímetro",
-      texto:
-        "Enlaza las parejas. Escoge la fórmula correspondiente a cada figura geométrica",
+      title: "Números enteros",
+      texto: " Resolver: &#8730;(1024)÷0,8",
       incisos: [
         {
-          text: "<strong>Pregunta:</strong> Fórmula para calcular el área de un triángulo.",
+          text: "<strong>Pregunta:</strong>  Primer paso",
           pairId: 1,
         },
         {
-          text: "Respuesta: A = &#189;(b * h)",
+          text: "Respuesta:  Raíz cuadrada",
           pairId: 1,
         },
         {
-          text: "<strong>Pregunta:</strong> Fórmula para calcular el área de un rectángulo.",
+          text: "<strong>Pregunta:</strong>  Segundo paso",
+          pairId: 2,
+        },
+        {
+          text: "Respuesta:  Dividir",
+          pairId: 2,
+        },
+        {
+          text: "<strong>Pregunta:</strong>  Tercer paso",
           pairId: 3,
         },
         {
-          text: "Respuesta: A = a * b",
+          text: "Respuesta:  &#8730;(1024)÷0,8 = 40",
           pairId: 3,
         },
+      ],
+    },
+    {
+      id: "17",
+      type: "FillBlank",
+      title: "Números enteros",
+      texto:
+        " Calcular en la libreta y luego arrastrar la respuesta correcta al espacio en blanco.",
+      incisos: [
         {
-          text: "<strong>Pregunta:</strong> Fórmula para calcular el área de una circunferencia.",
-          pairId: 4,
+          id: "a",
+          sentence: [
+            "(-<sup>7</sup>/<sub>16</sub>)-2&#179;÷&#8731;(0,000125)",
+            "blank1",
+            "",
+          ],
+          options: [
+            {
+              id: "a_option1",
+              text: "-178,7562",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "168,7543",
+              position: "none",
+            },
+            {
+              id: "a_option3",
+              text: "-160,4375",
+              position: "blank1",
+            },
+          ],
         },
         {
-          text: "Respuesta: A = Πr²",
-          pairId: 4,
+          id: "b",
+          sentence: [
+            "-5&#179;-112(-1,76+0,2+0,36-0,8)÷&#8731;(0,000125))",
+            "blank1",
+            "",
+          ],
+          options: [
+            {
+              id: "b_option1",
+              text: "130,48",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "129,48",
+              position: "blank1",
+            },
+            {
+              id: "b_option3",
+              text: "-129,48",
+              position: "none",
+            },
+          ],
         },
         {
-          text: "Respuesta: A = a + b",
-          pairId: 5,
+          id: "c",
+          sentence: ["(-2)²+-2<sup>9</sup>÷&#8731;(0,000125)", "blank1", ""],
+          options: [
+            {
+              id: "c_option1",
+              text: "-10236",
+              position: "blank1",
+            },
+            {
+              id: "c_option2",
+              text: "10236",
+              position: "none",
+            },
+            {
+              id: "c_option3",
+              text: "-10336",
+              position: "none",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "18",
+      type: "ChooseAnswer",
+      title: "Números enteros",
+      texto: " Seleccionar la respuesta correcta.",
+      incisos: [
+        {
+          id: "a",
+          exercise: "<sup>1</sup>/<sub>5</sub>+(3,85)(6)-0,3",
+          answer: [
+            {
+              text: "-21",
+              validation: "incorrect",
+            },
+            {
+              text: "21",
+              validation: "incorrect",
+            },
+            {
+              text: "23",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "-9+(0,125)²(8)²",
+          answer: [
+            {
+              text: "-8",
+              validation: "correct",
+            },
+            {
+              text: "8",
+              validation: "incorrect",
+            },
+            {
+              text: "1",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "&#8730;81-(10)(0,01)+0,1",
+          answer: [
+            {
+              text: "7",
+              validation: "incorrect",
+            },
+            {
+              text: "9",
+              validation: "correct",
+            },
+            {
+              text: "4",
+              validation: "incorrect",
+            },
+          ],
         },
       ],
     },

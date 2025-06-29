@@ -1022,5 +1022,42 @@ export const grades9no = {
         },
       ],
     },
+    {
+      id: "18",
+      type: "Matching",
+      title: "Área y Perímetro",
+      texto:
+        "Enlaza las parejas. Escoge la fórmula correspondiente a cada figura geométrica",
+      incisos: [
+        {
+          text: "<strong>Pregunta:</strong> Fórmula para calcular el área de un triángulo.",
+          pairId: 1,
+        },
+        {
+          text: "Respuesta: A = &#189;(b * h)",
+          pairId: 1,
+        },
+        {
+          text: "<strong>Pregunta:</strong> Fórmula para calcular el área de un rectángulo.",
+          pairId: 3,
+        },
+        {
+          text: "Respuesta: A = a * b",
+          pairId: 3,
+        },
+        {
+          text: "<strong>Pregunta:</strong> Fórmula para calcular el área de una circunferencia.",
+          pairId: 4,
+        },
+        {
+          text: "Respuesta: A = Πr²",
+          pairId: 4,
+        },
+        {
+          text: "Respuesta: A = a + b",
+          pairId: 5,
+        },
+      ],
+    },
   ],
 };

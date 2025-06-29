@@ -259,5 +259,85 @@ export const grades8vo = {
         },
       ],
     },
+    {
+      id: "6",
+      type: "ChooseAnswer",
+      title: "División de polinomios",
+      texto: "Seleccionar la respuesta correcta.",
+      incisos: [
+        {
+          id: "a",
+          exercise: " (2d²+7d+13)÷(d-3)",
+          answer: [
+            {
+              text: "2d-13",
+              validation: "incorrect",
+            },
+            {
+              text: "2d+13",
+              validation: "correct",
+            },
+            {
+              text: "-2d+13",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "(a³+5a²+11a+14)÷(a+3)",
+          answer: [
+            {
+              text: "a²+2a-5",
+              validation: "incorrect",
+            },
+            {
+              text: "a²-2a+5",
+              validation: "incorrect",
+            },
+            {
+              text: "a²+2a+5",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "(2x³+x²-2x-8)÷(x-1)",
+          answer: [
+            {
+              text: "2x²+3x+1",
+              validation: "correct",
+            },
+            {
+              text: "2x²-3x+1",
+              validation: "incorrect",
+            },
+            {
+              text: "2x²+3x-1",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "(6p²-7p-6)÷(2p-1)",
+          answer: [
+            {
+              text: "3p+2",
+              validation: "incorrect",
+            },
+            {
+              text: "3p-2",
+              validation: "correct",
+            },
+            {
+              text: "-3p+2",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
