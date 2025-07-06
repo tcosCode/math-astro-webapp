@@ -587,7 +587,7 @@ export const grades11no = {
       type: "Problem",
       title: "Identidades trigonométricas",
       texto:
-        "Sean A(x) = cos2x - sen&#178;x + senx + 1\nB(x) = sen&#178;x cot&#178;x",
+        "Sean <p>A(x) = cos²x - sen²x + senx + 1</p><p>B(x) = sen²x · cot²x</p>",
       incisos: [
         {
           id: "a",

@@ -14,24 +14,27 @@ Una función es una correspondencia que a cada elemento de un conjunto A asocia 
         {
           id: "a",
           exercise: `Identificar si es función. Fundamente:
-          <div style="display: inline-block; font-size: 12px; margin-top: 10px;">
-            <div style="display: flex; gap:15px; padding: 5px 10px;">
-              <div style="margin-right: 15px;">A</div>
-              <div>0</div>
-              <div>3</div>
-              <div>-1</div>
-              <div>12</div>
-              <div>12</div>
-            </div>
-            <div style="display: flex; gap:15px; padding: 5px 10px; margin-top: 5px;">
-              <div style="margin-right: 15px;">B</div>
-              <div>1</div>
-              <div>1</div>
-              <div>-8</div>
-              <div>-2</div>
-              <div>-2.5</div>
-            </div>
-          </div>`,
+          <table border="1">            
+            <tbody>
+              <tr>
+                <td>A</td>
+                <td>0</td>
+                <td>3</td>
+                <td>-1</td>
+                <td>12</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td>1</td>
+                <td>1</td>
+                <td>-8</td>
+                <td>-2</td>
+                <td>-2.5</td>
+              </tr>
+            </tbody>
+          </table>
+          `,
           validation: "false",
         },
         {

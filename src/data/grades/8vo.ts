@@ -339,5 +339,278 @@ export const grades8vo = {
         },
       ],
     },
+    {
+      id: "7",
+      type: "ChooseAnswer",
+      title: "Estadística",
+      texto: `La tabla muestra las temperaturas en grados celsius registradas en una ciudad durante horas del día:
+  <table>
+  <thead>
+    <tr>
+      <th>Hora del Día (Temp. en °C)</th>
+      <td>38°C</td>
+      <td>37°C</td>
+      <td>36°C</td>
+      <td>35°C</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Frecuencia Absoluta (FA)</th>
+      <td>5</td>
+      <td>8</td>
+      <td>10</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+
+  Seleccione la respuesta correcta:`,
+      incisos: [
+        {
+          id: "a",
+          exercise: "La temperatura más común es:",
+          answer: [
+            {
+              text: "37",
+              validation: "incorrect",
+            },
+            {
+              text: "36",
+              validation: "incorrect",
+            },
+            {
+              text: "35",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "La mediana de las temperaturas es:",
+          answer: [
+            {
+              text: "36,5",
+              validation: "correct",
+            },
+            {
+              text: "36",
+              validation: "incorrect",
+            },
+            {
+              text: "37",
+              validation: "incorrect",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "8",
+      type: "FillBlank",
+      title: "Estadística",
+      texto: `Se realiza un estudio sobre la masa corporal de los adolescentes de una comunidad. Este registró la información siguiente: <table>
+  <tr>
+    <th>Cantidad de puntos</th>
+    <td>0</td>
+    <td>4</td>
+    <td>6</td>
+    <td>10</td>
+    <td>15</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <th>Cantidad de jugadores</th>
+    <td>2</td>
+    <td>1</td>
+    <td>2</td>
+    <td>4</td>
+    <td>2</td>
+    <td>1</td>
+  </tr>
+</table>\n\nCompletar los espacios en blanco.`,
+      incisos: [
+        {
+          id: "a",
+          sentence: ["La media de los puntos anotados es:", "blank1", ""],
+          options: [
+            {
+              id: "a_option1",
+              text: "8,2",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "9,1",
+              position: "blank1",
+            },
+            {
+              id: "a_option3",
+              text: "10,3",
+              position: "none",
+            },
+          ],
+        },
+        {
+          id: "b",
+          sentence: ["La moda de los puntos anotados es:", "blank1", ""],
+          options: [
+            {
+              id: "b_option1",
+              text: "8",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "9",
+              position: "none",
+            },
+            {
+              id: "b_option3",
+              text: "10",
+              position: "blank1",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: "9",
+      type: "Matching",
+      title: "Estadística",
+      texto: `La tabla muestra el peso en libras de la cantidad de aves en desarrollo que tiene un campesino en su patio. 
+  <table>
+  <tr>
+    <th>Peso (lbs)</th>
+    <td>2</td>
+    <td>2,5</td>
+    <td>3</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <th>No aves</th>
+    <td>5</td>
+    <td>3</td>
+    <td>8</td>
+    <td>3</td>
+  </tr>
+</table>
+  Formar parejas:`,
+      incisos: [
+        {
+          text: "<strong>Pregunta:</strong> La FA correspondiente al peso 3 lbs es:",
+          pairId: 1,
+        },
+        {
+          text: "Respuesta: 8 aves",
+          pairId: 1,
+        },
+        {
+          text: "Respuesta: 3 aves",
+          pairId: 2,
+        },
+        {
+          text: "<strong>Pregunta:</strong> ¿Cuántas aves pesan 2 libras?",
+          pairId: 3,
+        },
+        {
+          text: "Respuesta: 5 aves",
+          pairId: 3,
+        },
+        {
+          text: "Respuesta: 4 aves",
+          pairId: 4,
+        },
+        {
+          text: "<strong>Pregunta:</strong> La moda del peso de las aves es:",
+          pairId: 5,
+        },
+        {
+          text: "Respuesta: 3 lbs",
+          pairId: 5,
+        },
+      ],
+    },
+    {
+  "id": "10",
+  "type": "ChooseAnswer",
+  "title": "Estadística",
+  "texto": `<table>
+  <caption>La tabla muestra largo de 17 piezas de madera.</caption>
+  <thead>
+    <tr>
+      <th>Largo (metros)</th>
+      <td>10</td>
+      <td>20</td>
+      <td>30</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>FA.</th>
+      <td>5</td>
+      <td>8</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+\n\nSeleccionar la respuesta correcta`,
+  "incisos": [
+    {
+      "id": "a",
+      "exercise": "¿Cuál es el promedio del largo de las piezas?",
+      "answer": [
+        {
+          "text": "10 metros",
+          "validation": "incorrect"
+        },
+        {
+          "text": "20 metros",
+          "validation": "correct"
+        },
+        {
+          "text": "30 metros",
+          "validation": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "exercise": "¿Cuántas piezas tienen su largo como promedio?",
+      "answer": [
+        {
+          "text": "8 metros",
+          "validation": "correct"
+        },
+        {
+          "text": "5 metros",
+          "validation": "incorrect"
+        },
+        {
+          "text": "4 metros",
+          "validation": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "exercise": "¿Cuál es el porciento de piezas cuyo largo es promedio?",
+      "answer": [
+        {
+          "text": "47,52%",
+          "validation": "incorrect"
+        },
+        {
+          "text": "47,23%",
+          "validation": "incorrect"
+        },
+        {
+          "text": "47,05%",
+          "validation": "correct"
+        }
+      ]
+    }
+  ]
+}
   ],
 };

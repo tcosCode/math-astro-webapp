@@ -82,7 +82,7 @@ export const grades7mo = {
     {
       id: "2",
       type: "Problem",
-      title: "Números enteros",
+      title: "Números reales",
       texto: "Calcular:",
       incisos: [
         {
