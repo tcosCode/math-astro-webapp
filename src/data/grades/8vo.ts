@@ -532,10 +532,10 @@ export const grades8vo = {
       ],
     },
     {
-  "id": "10",
-  "type": "ChooseAnswer",
-  "title": "Estadística",
-  "texto": `<table>
+      id: "10",
+      type: "ChooseAnswer",
+      title: "Estadística",
+      texto: `<table>
   <caption>La tabla muestra largo de 17 piezas de madera.</caption>
   <thead>
     <tr>
@@ -555,62 +555,122 @@ export const grades8vo = {
   </tbody>
 </table>
 \n\nSeleccionar la respuesta correcta`,
-  "incisos": [
-    {
-      "id": "a",
-      "exercise": "¿Cuál es el promedio del largo de las piezas?",
-      "answer": [
+      incisos: [
         {
-          "text": "10 metros",
-          "validation": "incorrect"
+          id: "a",
+          exercise: "¿Cuál es el promedio del largo de las piezas?",
+          answer: [
+            {
+              text: "10 metros",
+              validation: "incorrect",
+            },
+            {
+              text: "20 metros",
+              validation: "correct",
+            },
+            {
+              text: "30 metros",
+              validation: "incorrect",
+            },
+          ],
         },
         {
-          "text": "20 metros",
-          "validation": "correct"
+          id: "b",
+          exercise: "¿Cuántas piezas tienen su largo como promedio?",
+          answer: [
+            {
+              text: "8 metros",
+              validation: "correct",
+            },
+            {
+              text: "5 metros",
+              validation: "incorrect",
+            },
+            {
+              text: "4 metros",
+              validation: "incorrect",
+            },
+          ],
         },
         {
-          "text": "30 metros",
-          "validation": "incorrect"
-        }
-      ]
+          id: "c",
+          exercise: "¿Cuál es el porciento de piezas cuyo largo es promedio?",
+          answer: [
+            {
+              text: "47,52%",
+              validation: "incorrect",
+            },
+            {
+              text: "47,23%",
+              validation: "incorrect",
+            },
+            {
+              text: "47,05%",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
     },
     {
-      "id": "b",
-      "exercise": "¿Cuántas piezas tienen su largo como promedio?",
-      "answer": [
+      id: "11",
+      type: "FillBlank",
+      title: "Igualdad de triángulos",
+      img: "/img/exercises/8vo-11.webp",
+      texto:
+        "En la figura, ABCD es un triángulo rectángulo. E &#8712; AB y E es el punto medio DF. El &#916;BEF es isósceles de base FB.\nBG es una de sus alturas.\nCompletar los espacios en blanco.",
+      incisos: [
         {
-          "text": "8 metros",
-          "validation": "correct"
+          id: "a",
+          sentence: [
+            "Se cumple que &#916;DAE=&#916;EGB según criterio de igualdad de triángulos",
+            "blank1",
+            "",
+          ],
+          options: [
+            {
+              id: "a_option1",
+              text: "lll",
+              position: "none",
+            },
+            {
+              id: "a_option2",
+              text: "ala",
+              position: "blank1",
+            },
+            {
+              id: "a_option3",
+              text: "lal",
+              position: "none",
+            },
+          ],
         },
         {
-          "text": "5 metros",
-          "validation": "incorrect"
+          id: "b",
+          sentence: [
+            "Si &#8738;EDA=30° y |AE|=2,0cm entonces|AD|=",
+            "blank1",
+            "",
+          ],
+          options: [
+            {
+              id: "b_option1",
+              text: "√3cm",
+              position: "none",
+            },
+            {
+              id: "b_option2",
+              text: "√2cm",
+              position: "none",
+            },
+            {
+              id: "b_option3",
+              text: "2√3cm",
+              position: "blank1",
+            },
+          ],
         },
-        {
-          "text": "4 metros",
-          "validation": "incorrect"
-        }
-      ]
+      ],
     },
-    {
-      "id": "c",
-      "exercise": "¿Cuál es el porciento de piezas cuyo largo es promedio?",
-      "answer": [
-        {
-          "text": "47,52%",
-          "validation": "incorrect"
-        },
-        {
-          "text": "47,23%",
-          "validation": "incorrect"
-        },
-        {
-          "text": "47,05%",
-          "validation": "correct"
-        }
-      ]
-    }
-  ]
-}
   ],
 };
