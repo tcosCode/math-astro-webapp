@@ -672,5 +672,105 @@ export const grades8vo = {
         },
       ],
     },
+    {
+      id: "12",
+      type: "Problem",
+      title: "Sistema de ecuaciones lineales 2x2",
+      texto:
+        "María Rosa y Juan tienen ahorrado entre los tres un total de $360, 00. Sí María tiene ahorrado $30,00 más que Rosa y Juan el triple de lo que ha ahorrado María.",
+      incisos: [
+        {
+          id: "a",
+          exercise: "Escribir el sistema de ecuaciones.",
+          answer: "x+y+z=360; x=y+30; z=3y",
+        },
+        {
+          id: "b",
+          exercise: "¿Qué por ciento ahorro María del total?",
+          answer: "26,6%",
+        },
+      ],
+    },
+    {
+      id: "12",
+      type: "ChooseAnswer",
+      title: "Sistema de ecuaciones lineales 2x2",
+      texto:
+        "José tiene que pagar por luz y teléfono un total de $58,00 en el presente mes. Lo que paga por luz excede en $12,00 a lo que paga por el servicio de teléfono.",
+      incisos: [
+        {
+          id: "a",
+          exercise: "Seleccionar la primera ecuación del sistema.",
+          answer: [
+            {
+              text: "x - y = 58",
+              validation: "incorrect",
+            },
+            {
+              text: "x + y = 58",
+              validation: "correct",
+            },
+            {
+              text: "x + y = 12",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "b",
+          exercise: "Seleccionar la otra ecuación.",
+          answer: [
+            {
+              text: "x = y - 12",
+              validation: "incorrect",
+            },
+            {
+              text: "x = y - 58",
+              validation: "incorrect",
+            },
+            {
+              text: "x = y + 12",
+              validation: "correct",
+            },
+          ],
+        },
+        {
+          id: "c",
+          exercise: "Por el servicio de luz paga:",
+          answer: [
+            {
+              text: "$35,00",
+              validation: "correct",
+            },
+            {
+              text: "$23,00",
+              validation: "incorrect",
+            },
+            {
+              text: "$12,00",
+              validation: "incorrect",
+            },
+          ],
+        },
+        {
+          id: "d",
+          exercise: "Por teléfono paga:",
+          answer: [
+            {
+              text: "$35,00",
+              validation: "incorrect",
+            },
+            {
+              text: "$12,00",
+              validation: "incorrect",
+            },
+            {
+              text: "$23,00",
+              validation: "correct",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
