@@ -692,85 +692,84 @@ export const grades8vo = {
       ],
     },
     {
-      id: "12",
-      type: "ChooseAnswer",
-      title: "Sistema de ecuaciones lineales 2x2",
-      texto:
-        "José tiene que pagar por luz y teléfono un total de $58,00 en el presente mes. Lo que paga por luz excede en $12,00 a lo que paga por el servicio de teléfono.",
-      incisos: [
+  "id": "13",
+  "type": "ChooseAnswer",
+  "title": "Sistema de ecuaciones lineales 2x2",
+  "texto": "José tiene que pagar por luz y teléfono un total de $58,00 en el presente mes.Lo que paga por luz excede en $12,00 a lo que paga por el servicio de teléfono.",
+  "incisos": [
+    {
+      "id": "a",
+      "exercise": "Seleccionar la primera ecuación del sistema.",
+      "answer": [
         {
-          id: "a",
-          exercise: "Seleccionar la primera ecuación del sistema.",
-          answer: [
-            {
-              text: "x - y = 58",
-              validation: "incorrect",
-            },
-            {
-              text: "x + y = 58",
-              validation: "correct",
-            },
-            {
-              text: "x + y = 12",
-              validation: "incorrect",
-            },
-          ],
+          "text": "x - y = 58",
+          "validation": "incorrect"
         },
         {
-          id: "b",
-          exercise: "Seleccionar la otra ecuación.",
-          answer: [
-            {
-              text: "x = y - 12",
-              validation: "incorrect",
-            },
-            {
-              text: "x = y - 58",
-              validation: "incorrect",
-            },
-            {
-              text: "x = y + 12",
-              validation: "correct",
-            },
-          ],
+          "text": "x + y = 58",
+          "validation": "correct"
         },
         {
-          id: "c",
-          exercise: "Por el servicio de luz paga:",
-          answer: [
-            {
-              text: "$35,00",
-              validation: "correct",
-            },
-            {
-              text: "$23,00",
-              validation: "incorrect",
-            },
-            {
-              text: "$12,00",
-              validation: "incorrect",
-            },
-          ],
-        },
-        {
-          id: "d",
-          exercise: "Por teléfono paga:",
-          answer: [
-            {
-              text: "$35,00",
-              validation: "incorrect",
-            },
-            {
-              text: "$12,00",
-              validation: "incorrect",
-            },
-            {
-              text: "$23,00",
-              validation: "correct",
-            },
-          ],
-        },
-      ],
+          "text": "x + y = 12",
+          "validation": "incorrect"
+        }
+      ]
     },
+    {
+      "id": "b",
+      "exercise": "Seleccionar la otra ecuación.",
+      "answer": [
+        {
+          "text": "x = y - 12",
+          "validation": "incorrect"
+        },
+        {
+          "text": "x = y - 58",
+          "validation": "incorrect"
+        },
+        {
+          "text": "x = y + 12",
+          "validation": "correct"
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "exercise": "Por el servicio de luz paga:",
+      "answer": [
+        {
+          "text": "$35,00",
+          "validation": "correct"
+        },
+        {
+          "text": "$23,00",
+          "validation": "incorrect"
+        },
+        {
+          "text": "$12,00",
+          "validation": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "d",
+      "exercise": "Por teléfono paga:",
+      "answer": [
+        {
+          "text": "$35,00",
+          "validation": "incorrect"
+        },
+        {
+          "text": "$12,00",
+          "validation": "incorrect"
+        },
+        {
+          "text": "$23,00",
+          "validation": "correct"
+        }
+      ]
+    }
+  ]
+}
   ],
 };
